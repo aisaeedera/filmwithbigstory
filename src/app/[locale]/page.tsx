@@ -27,7 +27,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
 
   return (
     <>
-      <JsonLd data={[localBusinessSchema(), videoObjectSchema()]} />
+      <JsonLd data={[localBusinessSchema(), ...videoObjectSchema()]} />
 
       {/* HERO — H1 at the bottom, editorial */}
       <section className="relative overflow-hidden border-b border-[color:var(--color-line)]">
@@ -63,32 +63,42 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
         </div>
       </section>
 
-      {/* SHOWREEL strip */}
+      {/* SHOWREEL — 3-card placeholder grid for upcoming sketch-based case-study films.
+          The Vimeo showreel was removed; no video renders until the sketch-based films land. */}
       <Section>
         <Reveal>
           <Eyebrow>{t(home.showreel.eyebrow, locale)}</Eyebrow>
           <h2 className="mt-5 text-[clamp(2rem,4.5vw,3.25rem)]">{t(home.showreel.title, locale)}</h2>
+          <p className="bs-lead mt-6 max-w-3xl text-[color:var(--color-muted)]">{t(home.showreel.lead, locale)}</p>
         </Reveal>
-        <Reveal delay={80}>
-          {/* Showreel — Vimeo embed (Big Story Profile Video, id 1131424506). Live: CLIENT_HANDOFF.md §5 */}
-          <div
-            className="mt-8 aspect-video w-full overflow-hidden rounded-2xl border border-[color:var(--color-line)]"
-            style={{
-              background:
-                "radial-gradient(120% 100% at 50% 0%, rgba(201,162,39,0.10), transparent 60%), var(--color-elevated)",
-            }}
-          >
-            <iframe
-              src="https://player.vimeo.com/video/1131424506?badge=0&autopause=0&muted=1&player_id=0&app_id=58479"
-              title="Big Story Profile Video"
-              loading="lazy"
-              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              className="h-full w-full"
-              style={{ border: 0 }}
-            />
-          </div>
-        </Reveal>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {home.showreel.cards.map((c, i) => (
+            <Reveal as="div" key={i} delay={i * 80}>
+              {/* TODO(video): each card is player-ready at 16:9 — replace the gradient placeholder
+                  <div> below with the film's <iframe>/<video> embed once the sketch-based film is
+                  delivered, and update the matching VideoObject in JsonLd.tsx (videoObjectSchema). */}
+              <figure className="group overflow-hidden rounded-2xl border border-[color:var(--color-line)]">
+                <div
+                  className="relative aspect-video w-full"
+                  style={{
+                    background:
+                      "radial-gradient(120% 100% at 50% 0%, rgba(201,162,39,0.14), transparent 60%), var(--color-elevated)",
+                  }}
+                >
+                  {/* Coming-soon pill */}
+                  <span className="absolute right-3 top-3 rounded-full border border-[color:var(--color-line)] bg-[color:color-mix(in_srgb,var(--color-bg)_70%,transparent)] px-3 py-1 text-[0.7rem] uppercase tracking-widest text-[color:var(--color-gold)] backdrop-blur">
+                    {t(home.showreel.comingSoon, locale)}
+                  </span>
+                  {/* Title + tagline overlay */}
+                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[color:var(--color-bg)] to-transparent p-5 pt-16">
+                    <h3 className="text-xl">{t(c.title, locale)}</h3>
+                    <p className="mt-1 text-sm text-[color:var(--color-muted)]">{t(c.tagline, locale)}</p>
+                  </figcaption>
+                </div>
+              </figure>
+            </Reveal>
+          ))}
+        </div>
       </Section>
 
       {/* WHAT WE DO */}

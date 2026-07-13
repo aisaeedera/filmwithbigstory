@@ -110,20 +110,42 @@ export function faqSchema(items: { q: string; a: string }[]) {
   };
 }
 
+// Placeholder VideoObjects for the upcoming sketch-based case-study films.
+// The Vimeo showreel VideoObject was removed. contentUrl/embedUrl are intentionally
+// omitted until each film is delivered — add them (and the thumbnail) at that point so
+// Google can surface a video rich result. Keep these in sync with home.showreel.cards.
 export function videoObjectSchema() {
-  return {
+  const upcoming = [
+    {
+      slug: "the-dental-practice",
+      name: "The Dental Practice — Big Story brand film",
+      description:
+        "A 60-second brand film for a dental practice — a client idea taken from script and storyboard to cinema-grade production by Big Story in Dubai.",
+    },
+    {
+      slug: "a-home-that-knows",
+      name: "A Home That Knows — Big Story brand film",
+      description:
+        "A 60-second smart-home brand film — story-first real-estate production, scripted, storyboarded and shot by Big Story across the UAE.",
+    },
+    {
+      slug: "the-connected-worker",
+      name: "The Connected Worker — Big Story brand film",
+      description:
+        "A 60-second brand film on a connected-worker smart solution — an idea-led production crafted by Big Story from concept to final cut.",
+    },
+  ];
+
+  return upcoming.map((v) => ({
     "@context": "https://schema.org",
     "@type": "VideoObject",
-    "@id": `${SITE.domain}/#showreel`,
-    name: "Big Story Showreel",
-    description:
-      "A minute of what Big Story makes — brand films, TVCs and social work produced across Dubai and the UAE.",
-    thumbnailUrl: "https://vumbnail.com/1131424506.jpg",
+    "@id": `${SITE.domain}/#video-${v.slug}`,
+    name: v.name,
+    description: v.description,
+    thumbnailUrl: `${SITE.domain}/opengraph-image`,
     uploadDate: "2026-07-13",
-    contentUrl: "https://vimeo.com/1131424506",
-    embedUrl: "https://vimeo.com/1131424506",
     publisher: { "@id": `${SITE.domain}/#organization` },
-  };
+  }));
 }
 
 export function serviceSchema(opts: {

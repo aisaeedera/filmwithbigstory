@@ -67,9 +67,19 @@ export const home = {
     h1: { en: "Brands deserve stories worth watching.", ar: "العلامات تستحق قصصاً تستحق المشاهدة." },
   },
   showreel: {
-    eyebrow: { en: "Showreel", ar: "عرض الأعمال" },
-    title: { en: "A minute of what we make.", ar: "دقيقة مما نصنعه." },
-    note: { en: "Our 2026 showreel is in the cut. Until it lands, start a project and we'll send recent work that fits your brief.", ar: "عرض أعمالنا لعام 2026 قيد المونتاج. حتى يصدر، ابدأ مشروعاً وسنرسل أعمالاً حديثة تناسب ملخصك." },
+    eyebrow: { en: "In production", ar: "قيد الإنتاج" },
+    title: { en: "Three films, three ideas.", ar: "ثلاثة أفلام، ثلاث أفكار." },
+    lead: {
+      en: "Every great film starts with a story — not a budget. We turn client ideas into cinema-grade films through meticulous scriptwriting, storyboarding and production craft.",
+      ar: "كل فيلم عظيم يبدأ بقصة — لا بميزانية. نحوّل أفكار العملاء إلى أفلام بمستوى سينمائي عبر كتابة نصوص دقيقة وقصص مصورة وحرفية إنتاج.",
+    },
+    comingSoon: { en: "Coming soon", ar: "قريباً" },
+    // Placeholder case-study films — swap in real players as each sketch-based film is delivered.
+    cards: [
+      { title: { en: "The Dental Practice", ar: "عيادة الأسنان" }, tagline: { en: "A 60-second brand film", ar: "فيلم تعريفي بمدة 60 ثانية" } },
+      { title: { en: "A Home That Knows", ar: "منزل يعرفك" }, tagline: { en: "A 60-second brand film", ar: "فيلم تعريفي بمدة 60 ثانية" } },
+      { title: { en: "The Connected Worker", ar: "العامل المتصل" }, tagline: { en: "A 60-second brand film", ar: "فيلم تعريفي بمدة 60 ثانية" } },
+    ] as { title: L; tagline: L }[],
   },
   whatWeDo: {
     eyebrow: { en: "What we do", ar: "ما نقوم به" },
