@@ -10,7 +10,7 @@ import { Section, Eyebrow, Button } from "@/components/primitives";
 import Reveal from "@/components/Reveal";
 import Marquee from "@/components/Marquee";
 import CtaBand from "@/components/CtaBand";
-import { JsonLd, localBusinessSchema } from "@/components/JsonLd";
+import { JsonLd, localBusinessSchema, videoObjectSchema } from "@/components/JsonLd";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -27,7 +27,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
 
   return (
     <>
-      <JsonLd data={localBusinessSchema()} />
+      <JsonLd data={[localBusinessSchema(), videoObjectSchema()]} />
 
       {/* HERO — H1 at the bottom, editorial */}
       <section className="relative overflow-hidden border-b border-[color:var(--color-line)]">
@@ -70,19 +70,23 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
           <h2 className="mt-5 text-[clamp(2rem,4.5vw,3.25rem)]">{t(home.showreel.title, locale)}</h2>
         </Reveal>
         <Reveal delay={80}>
-          {/* TODO(client): swap for Cloudflare Stream embed when showreel is ready — CLIENT_HANDOFF.md */}
-          <div className="mt-8 flex aspect-video w-full items-center justify-center rounded-2xl border border-[color:var(--color-line)] bg-[color:var(--color-elevated)]">
-            <div className="text-center">
-              <span
-                aria-hidden="true"
-                className="mx-auto grid h-16 w-16 place-items-center rounded-full border border-[color:var(--color-gold)]/50 text-2xl text-[color:var(--color-gold)]"
-              >
-                ▶
-              </span>
-              <p className="mt-4 max-w-md px-6 text-sm text-[color:var(--color-muted)]">
-                {t(home.showreel.note, locale)}
-              </p>
-            </div>
+          {/* Showreel — Vimeo embed (Big Story Profile Video, id 1131424506). Live: CLIENT_HANDOFF.md §5 */}
+          <div
+            className="mt-8 aspect-video w-full overflow-hidden rounded-2xl border border-[color:var(--color-line)]"
+            style={{
+              background:
+                "radial-gradient(120% 100% at 50% 0%, rgba(201,162,39,0.10), transparent 60%), var(--color-elevated)",
+            }}
+          >
+            <iframe
+              src="https://player.vimeo.com/video/1131424506?badge=0&autopause=0&muted=1&player_id=0&app_id=58479"
+              title="Big Story Profile Video"
+              loading="lazy"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              className="h-full w-full"
+              style={{ border: 0 }}
+            />
           </div>
         </Reveal>
       </Section>

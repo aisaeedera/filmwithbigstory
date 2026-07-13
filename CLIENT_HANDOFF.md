@@ -8,7 +8,6 @@ marked in code with a `TODO(client)` comment.
 
 | Asset | Where it plugs in | Spec |
 |---|---|---|
-| **Showreel video** | Home `/` showreel strip + service pages | Cloudflare Stream ID. Swap the placeholder block in `src/app/[locale]/page.tsx`. 90–120s, 16:9. |
 | **Case-study stills** | `/work/[slug]` hero + `/work` cards | 16:9, 2400px, AVIF/WebP, ~250KB. |
 | **Founder / team headshots** | `/about` team strip | 1:1, 800px, monochrome/warm-toned. Replace placeholder tiles + `about.team.note`. |
 | **Client logos** | Home trust strip | SVG or transparent PNG. Replace the service-tile grid in `page.tsx`. NDA-cleared only. |
@@ -39,6 +38,7 @@ Optionally add **Vercel Analytics** or **Plausible** for privacy-friendly analyt
 
 ## 5. What's already done
 
+- **Showreel video — LIVE.** Big Story Profile Video ([Vimeo 1131424506](https://vimeo.com/1131424506)) is embedded in the Home `/` showreel strip — responsive 16:9, lazy-loaded, muted by default, dark-gradient poster fallback, accessible title "Big Story Profile Video". `VideoObject` JSON-LD ("Big Story Showreel") is on the homepage.
 - 10 core EN pages + 7 service pages + 42 location pages + 3 case studies — mirrored in Arabic (`/ar/*`). ~130 routes total.
 - WhatsApp-first CTAs with pre-filled brief, secondary email, tertiary form.
 - Schema.org: Organization, LocalBusiness/ProfessionalService, WebSite, Service (areaServed), FAQPage, BreadcrumbList.

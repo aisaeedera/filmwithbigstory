@@ -110,6 +110,22 @@ export function faqSchema(items: { q: string; a: string }[]) {
   };
 }
 
+export function videoObjectSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "@id": `${SITE.domain}/#showreel`,
+    name: "Big Story Showreel",
+    description:
+      "A minute of what Big Story makes — brand films, TVCs and social work produced across Dubai and the UAE.",
+    thumbnailUrl: "https://vumbnail.com/1131424506.jpg",
+    uploadDate: "2026-07-13",
+    contentUrl: "https://vimeo.com/1131424506",
+    embedUrl: "https://vimeo.com/1131424506",
+    publisher: { "@id": `${SITE.domain}/#organization` },
+  };
+}
+
 export function serviceSchema(opts: {
   locale: Locale;
   name: string;
