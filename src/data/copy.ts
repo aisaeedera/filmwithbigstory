@@ -67,14 +67,13 @@ export const home = {
     h1: { en: "Brands deserve stories worth watching.", ar: "العلامات تستحق قصصاً تستحق المشاهدة." },
   },
   showreel: {
-    eyebrow: { en: "In production", ar: "قيد الإنتاج" },
-    title: { en: "Three films, three ideas.", ar: "ثلاثة أفلام، ثلاث أفكار." },
+    eyebrow: { en: "Our work", ar: "أعمالنا" },
+    title: { en: "Featured films.", ar: "أعمال مختارة." },
     lead: {
       en: "Every great film starts with a story — not a budget. We turn client ideas into cinema-grade films through meticulous scriptwriting, storyboarding and production craft.",
       ar: "كل فيلم عظيم يبدأ بقصة — لا بميزانية. نحوّل أفكار العملاء إلى أفلام بمستوى سينمائي عبر كتابة نصوص دقيقة وقصص مصورة وحرفية إنتاج.",
     },
-    comingSoon: { en: "Coming soon", ar: "قريباً" },
-    // Placeholder case-study films — swap in real players as each sketch-based film is delivered.
+    // Static editorial placeholders — image gallery for featured case-study films.
     cards: [
       { title: { en: "The Dental Practice", ar: "عيادة الأسنان" }, tagline: { en: "A 60-second brand film", ar: "فيلم تعريفي بمدة 60 ثانية" } },
       { title: { en: "A Home That Knows", ar: "منزل يعرفك" }, tagline: { en: "A 60-second brand film", ar: "فيلم تعريفي بمدة 60 ثانية" } },

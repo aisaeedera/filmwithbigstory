@@ -10,7 +10,7 @@ import { Section, Eyebrow, Button } from "@/components/primitives";
 import Reveal from "@/components/Reveal";
 import Marquee from "@/components/Marquee";
 import CtaBand from "@/components/CtaBand";
-import { JsonLd, localBusinessSchema, videoObjectSchema } from "@/components/JsonLd";
+import { JsonLd, localBusinessSchema } from "@/components/JsonLd";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -27,7 +27,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
 
   return (
     <>
-      <JsonLd data={[localBusinessSchema(), ...videoObjectSchema()]} />
+      <JsonLd data={[localBusinessSchema()]} />
 
       {/* HERO — H1 at the bottom, editorial */}
       <section className="relative overflow-hidden border-b border-[color:var(--color-line)]">
@@ -63,8 +63,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
         </div>
       </section>
 
-      {/* SHOWREEL — 3-card placeholder grid for upcoming sketch-based case-study films.
-          The Vimeo showreel was removed; no video renders until the sketch-based films land. */}
+      {/* OUR WORK — static 3-card editorial image placeholder grid (implied gallery).
+          No video embeds or badges; cards are pure visual placeholders. */}
       <Section>
         <Reveal>
           <Eyebrow>{t(home.showreel.eyebrow, locale)}</Eyebrow>
@@ -74,9 +74,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {home.showreel.cards.map((c, i) => (
             <Reveal as="div" key={i} delay={i * 80}>
-              {/* TODO(video): each card is player-ready at 16:9 — replace the gradient placeholder
-                  <div> below with the film's <iframe>/<video> embed once the sketch-based film is
-                  delivered, and update the matching VideoObject in JsonLd.tsx (videoObjectSchema). */}
+              {/* Static image placeholder — 16:9 gold-gradient editorial card, no video/badges. */}
               <figure className="group overflow-hidden rounded-2xl border border-[color:var(--color-line)]">
                 <div
                   className="relative aspect-video w-full"
@@ -85,10 +83,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
                       "radial-gradient(120% 100% at 50% 0%, rgba(201,162,39,0.14), transparent 60%), var(--color-elevated)",
                   }}
                 >
-                  {/* Coming-soon pill */}
-                  <span className="absolute right-3 top-3 rounded-full border border-[color:var(--color-line)] bg-[color:color-mix(in_srgb,var(--color-bg)_70%,transparent)] px-3 py-1 text-[0.7rem] uppercase tracking-widest text-[color:var(--color-gold)] backdrop-blur">
-                    {t(home.showreel.comingSoon, locale)}
-                  </span>
                   {/* Title + tagline overlay */}
                   <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[color:var(--color-bg)] to-transparent p-5 pt-16">
                     <h3 className="text-xl">{t(c.title, locale)}</h3>
