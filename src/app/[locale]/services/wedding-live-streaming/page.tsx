@@ -11,6 +11,7 @@ import CtaBand from "@/components/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema, articleSchema } from "@/components/JsonLd";
 import { SITE, waLink } from "@/lib/site";
+import UaeTravelSection from "@/components/UaeTravelSection";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -151,7 +152,7 @@ export default async function WeddingLiveStreamingPage({ params }: { params: Pro
               ? "بث حفل الزفاف مباشرة للضيوف في الخارج عبر يوتيوب وإنستغرام لايف. Hollyland Pyro S مربوط بـ 5G، 3 كاميرات، مشغل بث مخصص."
               : "Stream the wedding ceremony live to overseas guests on YouTube and Instagram Live. Hollyland Pyro S 5G-bonded, 3 cameras, dedicated stream operator.",
             path,
-            areaServed: ["Dubai", "Abu Dhabi", "Sharjah"],
+            areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah", "Al Ain"],
           }),
           faqSchema(itemFaqs),
         ]}
@@ -324,6 +325,7 @@ export default async function WeddingLiveStreamingPage({ params }: { params: Pro
         </div>
       </Section>
 
+      <UaeTravelSection locale={locale} />
       <CtaBand
         locale={locale}
         heading={isAr ? "جاهز لبث حفل زفافك للأقارب في الخارج؟" : "Ready to stream your wedding to overseas family?"}

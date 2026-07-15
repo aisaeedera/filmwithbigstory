@@ -11,6 +11,7 @@ import CtaBand from "@/components/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema, articleSchema } from "@/components/JsonLd";
 import { SITE, waLink } from "@/lib/site";
+import UaeTravelSection from "@/components/UaeTravelSection";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -150,7 +151,7 @@ export default async function WeddingAlbumDesignPage({ params }: { params: Promi
               ? "تصميم وطباعة ألبوم زفاف احترافي في دبي — 40 صفحة بغلاف صلب، ورق أرشيفي، 4 أسابيع من اختيار الصور."
               : "Professional wedding album design and printing in Dubai — 40-page hard cover, archival paper, 4 weeks from photo selection.",
             path,
-            areaServed: ["Dubai", "Abu Dhabi", "Sharjah"],
+            areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah", "Al Ain"],
           }),
           faqSchema(itemFaqs),
         ]}
@@ -326,6 +327,7 @@ export default async function WeddingAlbumDesignPage({ params }: { params: Promi
         </div>
       </Section>
 
+      <UaeTravelSection locale={locale} />
       <CtaBand
         locale={locale}
         heading={isAr ? "جاهز لتصميم ألبوم زفافك؟" : "Ready to design your wedding album?"}

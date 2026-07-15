@@ -11,6 +11,7 @@ import CtaBand from "@/components/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema, articleSchema } from "@/components/JsonLd";
 import { SITE, waLink } from "@/lib/site";
+import UaeTravelSection from "@/components/UaeTravelSection";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -175,7 +176,7 @@ export default async function WeddingVideographyDubaiPage({ params }: { params: 
               ? "خدمة مصور فيديو الزفاف في دبي من بيك ستوري — ريل 3 دقائق 3,500 درهم، ريل 8 دقائق 6,000 درهم، زفاف سينمائي 18,500–35,000 درهم."
               : "Wedding videography service in Dubai from Big Story — 3-min reel AED 3,500, 8-min reel AED 6,000, cinematic wedding AED 18,500–35,000. Sony FX3 + RED Komodo X.",
             path,
-            areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman"],
+            areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah", "Al Ain"],
           }),
           faqSchema(itemFaqs),
         ]}
@@ -477,6 +478,7 @@ export default async function WeddingVideographyDubaiPage({ params }: { params: 
         </div>
       </Section>
 
+      <UaeTravelSection locale={locale} />
       <CtaBand
         locale={locale}
         heading={isAr ? "مستعد لحجز مصور فيديو زفاف في دبي؟" : "Ready to book a wedding videographer in Dubai?"}

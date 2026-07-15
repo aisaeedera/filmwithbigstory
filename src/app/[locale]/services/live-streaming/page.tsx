@@ -11,6 +11,7 @@ import CtaBand from "@/components/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema, articleSchema } from "@/components/JsonLd";
 import { SITE, waLink } from "@/lib/site";
+import UaeTravelSection from "@/components/UaeTravelSection";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -152,7 +153,7 @@ export default async function LiveStreamingPage({ params }: { params: Promise<{ 
               ? "بث الزفاف المباشر في دبي عبر يوتيوب وإنستغرام لايف للضيوف في الخارج. Hollyland 5G مربوط، مشغل بث مخصص."
               : "Wedding live streaming in Dubai on YouTube and Instagram Live for overseas guests. Hollyland 5G-bonded kit, dedicated stream operator.",
             path,
-            areaServed: ["Dubai", "Abu Dhabi", "Sharjah"],
+            areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah", "Al Ain"],
           }),
           faqSchema(itemFaqs),
         ]}
@@ -367,6 +368,7 @@ export default async function LiveStreamingPage({ params }: { params: Promise<{ 
         </div>
       </Section>
 
+      <UaeTravelSection locale={locale} />
       <CtaBand
         locale={locale}
         heading={isAr ? "مستعد لبث حفل زفافك؟" : "Ready to stream your wedding?"}

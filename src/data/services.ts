@@ -21,11 +21,11 @@ export type Service = {
   process: ProcessStep[];
   deliverables: L[];
   faqs: FAQ[];
-  /** location intro — {city} token replaced at render */
+  /** location intro — UAE-wide intro — no city tokens used anywhere on service pages */
   locIntro: L;
-  /** location "on the ground" service angle — {city} token */
+  /** location "on the ground" service angle — UAE-wide */
   groundAngle: L;
-  /** 2 location FAQs — {city} token allowed */
+  /** 2 location FAQs — UAE-wide FAQs — no city tokens */
   locFaqs: FAQ[];
 };
 
@@ -101,16 +101,16 @@ export const services: Service[] = [
       { q: { en: "Do you handle casting and talent?", ar: "هل تتولون اختيار الممثلين والمواهب؟" }, a: { en: "We manage casting, talent contracts, wardrobe and usage rights as part of preproduction.", ar: "ندير اختيار الممثلين وعقود المواهب والأزياء وحقوق الاستخدام ضمن مرحلة ما قبل الإنتاج." } },
     ],
     locIntro: {
-      en: "Big Story produces campaign-ready TVCs in {city} — from concept and storyboard through to the final graded master. We handle casting, locations, cinema-grade camera and lighting, and post, so your commercial lands on TV, YouTube and social with the same polish.",
-      ar: "تنتج بيك ستوري إعلانات تلفزيونية جاهزة للحملات في {city} — من الفكرة والقصة المصورة حتى النسخة النهائية المصححة الألوان. نتولى اختيار الممثلين والمواقع والكاميرا والإضاءة بمستوى سينمائي والمونتاج، ليصل إعلانك إلى التلفزيون ويوتيوب والسوشيال بالجودة نفسها.",
+      en: "Big Story produces campaign-ready TVCs in the UAE — from concept and storyboard through to the final graded master. We handle casting, locations, cinema-grade camera and lighting, and post, so your commercial lands on TV, YouTube and social with the same polish.",
+      ar: "تنتج بيك ستوري إعلانات تلفزيونية جاهزة للحملات في الإمارات — من الفكرة والقصة المصورة حتى النسخة النهائية المصححة الألوان. نتولى اختيار الممثلين والمواقع والكاميرا والإضاءة بمستوى سينمائي والمونتاج، ليصل إعلانك إلى التلفزيون ويوتيوب والسوشيال بالجودة نفسها.",
     },
     groundAngle: {
       en: "For a TVC that means scouting the right set, securing the permits and blocking the light so the shoot day runs without surprises.",
       ar: "بالنسبة للإعلان التلفزيوني يعني ذلك اختيار الموقع المناسب وتأمين التصاريح وضبط الإضاءة حتى يمر يوم التصوير دون مفاجآت.",
     },
     locFaqs: [
-      { q: { en: "How long does a TVC take to produce in {city}?", ar: "كم يستغرق إنتاج إعلان تلفزيوني في {city}؟" }, a: { en: "Most commercials run four to eight weeks from concept lock to final master, depending on cast, locations and the post schedule.", ar: "تستغرق معظم الإعلانات من أربعة إلى ثمانية أسابيع من اعتماد الفكرة حتى النسخة النهائية، حسب الممثلين والمواقع وجدول المونتاج." } },
-      { q: { en: "Do you handle filming permits in {city}?", ar: "هل تتولون تصاريح التصوير في {city}؟" }, a: { en: "Yes — arranging the location permits and approvals your shoot needs is part of our preproduction.", ar: "نعم — ترتيب تصاريح المواقع والموافقات التي يحتاجها تصويرك جزء من مرحلة ما قبل الإنتاج لدينا." } },
+      { q: { en: "How long does a TVC take to produce in the UAE?", ar: "كم يستغرق إنتاج إعلان تلفزيوني في الإمارات؟" }, a: { en: "Most commercials run four to eight weeks from concept lock to final master, depending on cast, locations and the post schedule.", ar: "تستغرق معظم الإعلانات من أربعة إلى ثمانية أسابيع من اعتماد الفكرة حتى النسخة النهائية، حسب الممثلين والمواقع وجدول المونتاج." } },
+      { q: { en: "Do you handle filming permits in the UAE?", ar: "هل تتولون تصاريح التصوير في الإمارات؟" }, a: { en: "Yes — arranging the location permits and approvals your shoot needs is part of our preproduction.", ar: "نعم — ترتيب تصاريح المواقع والموافقات التي يحتاجها تصويرك جزء من مرحلة ما قبل الإنتاج لدينا." } },
     ],
   },
   {
@@ -147,8 +147,8 @@ export const services: Service[] = [
       { q: { en: "How do you keep it from feeling like an ad?", ar: "كيف تحافظون على ألا يبدو كإعلان؟" }, a: { en: "We lead with a real narrative and let the brand sit inside it. The result earns attention instead of demanding it.", ar: "نتصدر بسرد حقيقي ونترك العلامة داخله. النتيجة تكسب الانتباه بدل أن تطلبه." } },
     ],
     locIntro: {
-      en: "Big Story makes story-led brand films in {city} — founder journeys, purpose pieces and campaign films that make audiences feel why a brand exists. We plan the narrative, shoot cinematically and craft an edit that carries emotion.",
-      ar: "تصنع بيك ستوري أفلاماً تعريفية تروي قصة في {city} — رحلات المؤسسين وأفلام الغاية وأفلام الحملات التي تجعل الجمهور يشعر بسبب وجود العلامة. نخطط للسرد ونصور سينمائياً ونصوغ مونتاجاً يحمل العاطفة.",
+      en: "Big Story makes story-led brand films in the UAE — founder journeys, purpose pieces and campaign films that make audiences feel why a brand exists. We plan the narrative, shoot cinematically and craft an edit that carries emotion.",
+      ar: "تصنع بيك ستوري أفلاماً تعريفية تروي قصة في الإمارات — رحلات المؤسسين وأفلام الغاية وأفلام الحملات التي تجعل الجمهور يشعر بسبب وجود العلامة. نخطط للسرد ونصور سينمائياً ونصوغ مونتاجاً يحمل العاطفة.",
     },
     groundAngle: {
       en: "For a brand film that means finding real locations and moments across the emirate that make the story feel true and rooted.",
@@ -156,7 +156,7 @@ export const services: Service[] = [
     },
     locFaqs: [
       { q: { en: "How long is a typical brand film?", ar: "ما مدة الفيلم التعريفي المعتاد؟" }, a: { en: "Most hero brand films run 90 seconds to three minutes, with shorter cut-downs delivered for social and paid campaigns.", ar: "تتراوح معظم الأفلام التعريفية الرئيسية بين 90 ثانية وثلاث دقائق، مع نسخ أقصر للسوشيال والحملات المدفوعة." } },
-      { q: { en: "Can you film across {city} and beyond?", ar: "هل يمكنكم التصوير في {city} وخارجها؟" }, a: { en: "Yes — we film on location across {city} and the wider UAE, arranging crew, kit and permits wherever the story leads.", ar: "نعم — نصور في المواقع عبر {city} والإمارات، ونرتب الطاقم والمعدات والتصاريح أينما تقود القصة." } },
+      { q: { en: "Can you film across the UAE and beyond?", ar: "هل يمكنكم التصوير في الإمارات وخارجها؟" }, a: { en: "Yes — we film on location across the UAE, arranging crew, kit and permits wherever the story leads.", ar: "نعم — نصور في المواقع عبر the UAE والإمارات، ونرتب الطاقم والمعدات والتصاريح أينما تقود القصة." } },
     ],
   },
   {
@@ -193,16 +193,16 @@ export const services: Service[] = [
       { q: { en: "Can you handle interviews with senior leadership?", ar: "هل يمكنكم إدارة مقابلات مع كبار القيادة؟" }, a: { en: "We prepare questions in advance, direct gently on the day and keep the schedule tight to respect executive time.", ar: "نجهز الأسئلة مسبقاً ونوجه بلطف يوم التصوير ونحافظ على جدول محكم احتراماً لوقت التنفيذيين." } },
     ],
     locIntro: {
-      en: "Big Story produces corporate video in {city} — company profiles, leadership films, recruitment and training. We keep crews lean and schedules tight so filming fits around your business, and deliver clear, polished films in Arabic and English.",
-      ar: "تنتج بيك ستوري فيديو الشركات في {city} — أفلام تعريفية وأفلام قيادة وتوظيف وتدريب. نبقي الطواقم صغيرة والجداول محكمة ليتناسب التصوير مع أعمالكم، ونسلّم أفلاماً واضحة ومصقولة بالعربية والإنجليزية.",
+      en: "Big Story produces corporate video in the UAE — company profiles, leadership films, recruitment and training. We keep crews lean and schedules tight so filming fits around your business, and deliver clear, polished films in Arabic and English.",
+      ar: "تنتج بيك ستوري فيديو الشركات في الإمارات — أفلام تعريفية وأفلام قيادة وتوظيف وتدريب. نبقي الطواقم صغيرة والجداول محكمة ليتناسب التصوير مع أعمالكم، ونسلّم أفلاماً واضحة ومصقولة بالعربية والإنجليزية.",
     },
     groundAngle: {
       en: "For corporate video that means filming inside offices, sites and boardrooms across the emirate with minimal disruption to your team.",
       ar: "بالنسبة لفيديو الشركات يعني ذلك التصوير داخل المكاتب والمواقع وقاعات الاجتماعات عبر الإمارة بأقل تعطيل لفريقكم.",
     },
     locFaqs: [
-      { q: { en: "Can you film across multiple {city} sites in one day?", ar: "هل يمكنكم التصوير في عدة مواقع بـ {city} في يوم واحد؟" }, a: { en: "Yes — we plan a route and schedule that captures several locations efficiently, keeping crew time and cost controlled.", ar: "نعم — نخطط لمسار وجدول يلتقط عدة مواقع بكفاءة، مع ضبط وقت الطاقم والتكلفة." } },
-      { q: { en: "Do you deliver bilingual versions?", ar: "هل تسلّمون نسخاً ثنائية اللغة؟" }, a: { en: "We provide Arabic and English edits, subtitles and voiceover from a single shoot in {city}.", ar: "نوفر نسخاً بالعربية والإنجليزية وترجمات وتعليقاً صوتياً من تصوير واحد في {city}." } },
+      { q: { en: "Can you film across multiple the UAE sites in one day?", ar: "هل يمكنكم التصوير في عدة مواقع بـ the UAE في يوم واحد؟" }, a: { en: "Yes — we plan a route and schedule that captures several locations efficiently, keeping crew time and cost controlled.", ar: "نعم — نخطط لمسار وجدول يلتقط عدة مواقع بكفاءة، مع ضبط وقت الطاقم والتكلفة." } },
+      { q: { en: "Do you deliver bilingual versions?", ar: "هل تسلّمون نسخاً ثنائية اللغة؟" }, a: { en: "We provide Arabic and English edits, subtitles and voiceover from a single shoot in the UAE.", ar: "نوفر نسخاً بالعربية والإنجليزية وترجمات وتعليقاً صوتياً من تصوير واحد في الإمارات." } },
     ],
   },
   {
@@ -239,16 +239,16 @@ export const services: Service[] = [
       { q: { en: "Can you match our packaging and brand colours?", ar: "هل يمكنكم مطابقة تغليفنا وألوان علامتنا؟" }, a: { en: "Colour, lighting and grade are all tuned to your packaging and brand palette in post.", ar: "نضبط الألوان والإضاءة والتدرج لتطابق تغليفكم ولوحة ألوان علامتكم في مرحلة المونتاج." } },
     ],
     locIntro: {
-      en: "Big Story shoots product films in {city} — launches, demos, e-commerce and lifestyle. We combine macro tabletop detail with in-use lifestyle in a controlled setup, then grade and cut for web, retail and paid campaigns.",
-      ar: "تصور بيك ستوري أفلام المنتجات في {city} — إطلاقات وعروض توضيحية وتجارة إلكترونية وأسلوب حياة. نجمع تفاصيل الماكرو على الطاولة مع أسلوب الحياة أثناء الاستخدام في إعداد محكوم، ثم نصحح الألوان ونقص للويب والتجزئة والحملات المدفوعة.",
+      en: "Big Story shoots product films in the UAE — launches, demos, e-commerce and lifestyle. We combine macro tabletop detail with in-use lifestyle in a controlled setup, then grade and cut for web, retail and paid campaigns.",
+      ar: "تصور بيك ستوري أفلام المنتجات في الإمارات — إطلاقات وعروض توضيحية وتجارة إلكترونية وأسلوب حياة. نجمع تفاصيل الماكرو على الطاولة مع أسلوب الحياة أثناء الاستخدام في إعداد محكوم، ثم نصحح الألوان ونقص للويب والتجزئة والحملات المدفوعة.",
     },
     groundAngle: {
       en: "For product work that means a controlled studio space or a real retail and lifestyle location across the emirate to match your brand world.",
       ar: "بالنسبة لأعمال المنتجات يعني ذلك مساحة استوديو محكومة أو موقع بيع وأسلوب حياة حقيقي عبر الإمارة يطابق عالم علامتكم.",
     },
     locFaqs: [
-      { q: { en: "Do you have a studio in {city}?", ar: "هل لديكم استوديو في {city}؟" }, a: { en: "We shoot in controlled studio spaces and on location across {city}, choosing whichever setup best fits the product and budget.", ar: "نصور في مساحات استوديو محكومة وفي مواقع عبر {city}، ونختار الإعداد الأنسب للمنتج والميزانية." } },
-      { q: { en: "How fast can product films be turned around in {city}?", ar: "ما سرعة تسليم أفلام المنتجات في {city}؟" }, a: { en: "A focused product shoot can be edited within one to two weeks, with faster turnarounds for social cut-downs.", ar: "يمكن مونتاج تصوير منتج مركّز خلال أسبوع إلى أسبوعين، مع تسليم أسرع لنسخ السوشيال." } },
+      { q: { en: "Do you have a studio in the UAE?", ar: "هل لديكم استوديو في الإمارات؟" }, a: { en: "We shoot in controlled studio spaces and on location across the UAE, choosing whichever setup best fits the product and budget.", ar: "نصور في مساحات استوديو محكومة وفي مواقع عبر the UAE، ونختار الإعداد الأنسب للمنتج والميزانية." } },
+      { q: { en: "How fast can product films be turned around in the UAE?", ar: "ما سرعة تسليم أفلام المنتجات في الإمارات؟" }, a: { en: "A focused product shoot can be edited within one to two weeks, with faster turnarounds for social cut-downs.", ar: "يمكن مونتاج تصوير منتج مركّز خلال أسبوع إلى أسبوعين، مع تسليم أسرع لنسخ السوشيال." } },
     ],
   },
   {
@@ -285,16 +285,16 @@ export const services: Service[] = [
       { q: { en: "Can you shoot in a way that suits both organic and paid?", ar: "هل يمكنكم التصوير بما يناسب العضوي والمدفوع؟" }, a: { en: "We plan hooks and cut-downs so the same content works for organic feed and performance ad campaigns.", ar: "نخطط للخطافات والنسخ بحيث يعمل المحتوى نفسه للخلاصة العضوية وحملات الأداء المدفوعة." } },
     ],
     locIntro: {
-      en: "Big Story creates social ad content in {city} — vertical reels, cut-downs and short-form for TikTok, Instagram and YouTube Shorts. We batch a month of scroll-stopping content in a single shoot, edited and captioned for each platform.",
-      ar: "تصنع بيك ستوري محتوى إعلانات السوشيال في {city} — ريلز عمودية ونسخ قصيرة لتيك توك وإنستغرام ويوتيوب شورتس. نصور شهراً من المحتوى الموقف للتمرير في تصوير واحد، بمونتاج وتعليقات لكل منصة.",
+      en: "Big Story creates social ad content in the UAE — vertical reels, cut-downs and short-form for TikTok, Instagram and YouTube Shorts. We batch a month of scroll-stopping content in a single shoot, edited and captioned for each platform.",
+      ar: "تصنع بيك ستوري محتوى إعلانات السوشيال في الإمارات — ريلز عمودية ونسخ قصيرة لتيك توك وإنستغرام ويوتيوب شورتس. نصور شهراً من المحتوى الموقف للتمرير في تصوير واحد، بمونتاج وتعليقات لكل منصة.",
     },
     groundAngle: {
-      en: "For social content that means shooting fast and light in recognisable {city} settings that feel native to the feed.",
-      ar: "بالنسبة لمحتوى السوشيال يعني ذلك التصوير بسرعة وخفة في أماكن معروفة بـ {city} تبدو أصيلة على الخلاصة.",
+      en: "For social content that means shooting fast and light in recognisable the UAE settings that feel native to the feed.",
+      ar: "بالنسبة لمحتوى السوشيال يعني ذلك التصوير بسرعة وخفة في أماكن معروفة بـ the UAE تبدو أصيلة على الخلاصة.",
     },
     locFaqs: [
-      { q: { en: "Can you shoot a month of content in {city} in one day?", ar: "هل يمكنكم تصوير شهر من المحتوى في {city} في يوم واحد؟" }, a: { en: "Yes — a single batched shoot day in {city} typically produces 10–15 finished vertical pieces ready to schedule.", ar: "نعم — يوم تصوير مجمّع واحد في {city} ينتج عادة 10–15 قطعة عمودية نهائية جاهزة للجدولة." } },
-      { q: { en: "Do you offer recurring monthly packages?", ar: "هل تقدمون باقات شهرية متكررة؟" }, a: { en: "We run monthly content retainers for {city} brands that need a steady stream of cinematic social content.", ar: "ندير باقات محتوى شهرية لعلامات {city} التي تحتاج تدفقاً ثابتاً من محتوى سوشيال سينمائي." } },
+      { q: { en: "Can you shoot a month of content in the UAE in one day?", ar: "هل يمكنكم تصوير شهر من المحتوى في الإمارات في يوم واحد؟" }, a: { en: "Yes — a single batched shoot day in the UAE typically produces 10–15 finished vertical pieces ready to schedule.", ar: "نعم — يوم تصوير مجمّع واحد في الإمارات ينتج عادة 10–15 قطعة عمودية نهائية جاهزة للجدولة." } },
+      { q: { en: "Do you offer recurring monthly packages?", ar: "هل تقدمون باقات شهرية متكررة؟" }, a: { en: "We run monthly content retainers for the UAE brands that need a steady stream of cinematic social content.", ar: "ندير باقات محتوى شهرية لعلامات the UAE التي تحتاج تدفقاً ثابتاً من محتوى سوشيال سينمائي." } },
     ],
   },
   {
@@ -331,16 +331,16 @@ export const services: Service[] = [
       { q: { en: "Can you livestream the event?", ar: "هل يمكنكم بث الفعالية مباشرة؟" }, a: { en: "We provide live-switched multi-camera streaming to your platforms alongside the recorded highlight package.", ar: "نوفر بثاً مباشراً بكاميرات متعددة إلى منصاتكم إلى جانب باقة الملخص المسجلة." } },
     ],
     locIntro: {
-      en: "Big Story covers events in {city} — conferences, launches, galas and MICE — with multi-camera crews and highlight reels delivered in 48–72 hours. We brief before the day, capture every key moment and can teaser-cut on the night.",
-      ar: "تغطي بيك ستوري الفعاليات في {city} — مؤتمرات وإطلاقات وحفلات و MICE — بطواقم كاميرات متعددة وأفلام ملخصات تُسلّم خلال 48–72 ساعة. نأخذ الإحاطة قبل اليوم ونلتقط كل لحظة مهمة ويمكننا إعداد نسخة تشويقية في الليلة نفسها.",
+      en: "Big Story covers events in the UAE — conferences, launches, galas and MICE — with multi-camera crews and highlight reels delivered in 48–72 hours. We brief before the day, capture every key moment and can teaser-cut on the night.",
+      ar: "تغطي بيك ستوري الفعاليات في الإمارات — مؤتمرات وإطلاقات وحفلات و MICE — بطواقم كاميرات متعددة وأفلام ملخصات تُسلّم خلال 48–72 ساعة. نأخذ الإحاطة قبل اليوم ونلتقط كل لحظة مهمة ويمكننا إعداد نسخة تشويقية في الليلة نفسها.",
     },
     groundAngle: {
       en: "For event coverage that means knowing the venues, the load-in rules and the light across the emirate so nothing is missed on the day.",
       ar: "بالنسبة لتغطية الفعاليات يعني ذلك معرفة القاعات وقواعد الدخول والإضاءة عبر الإمارة حتى لا يفوتنا شيء في اليوم.",
     },
     locFaqs: [
-      { q: { en: "How quickly do you deliver reels after a {city} event?", ar: "ما سرعة تسليم الملخصات بعد فعالية في {city}؟" }, a: { en: "Highlight reels are delivered within 48–72 hours, with an optional same-night social teaser while your {city} event is live.", ar: "تُسلّم أفلام الملخصات خلال 48–72 ساعة، مع نسخة تشويقية اختيارية في نفس الليلة أثناء فعاليتكم في {city}." } },
-      { q: { en: "Can you provide a multi-camera crew in {city}?", ar: "هل يمكنكم توفير طاقم بكاميرات متعددة في {city}؟" }, a: { en: "Yes — we scale multi-camera crews to any {city} venue, from a single keynote to a multi-stage conference.", ar: "نعم — نوسّع طواقم الكاميرات المتعددة لأي قاعة في {city}، من كلمة واحدة إلى مؤتمر متعدد المنصات." } },
+      { q: { en: "How quickly do you deliver reels after a the UAE event?", ar: "ما سرعة تسليم الملخصات بعد فعالية في الإمارات؟" }, a: { en: "Highlight reels are delivered within 48–72 hours, with an optional same-night social teaser while your the UAE event is live.", ar: "تُسلّم أفلام الملخصات خلال 48–72 ساعة، مع نسخة تشويقية اختيارية في نفس الليلة أثناء فعاليتكم في الإمارات." } },
+      { q: { en: "Can you provide a multi-camera crew in the UAE?", ar: "هل يمكنكم توفير طاقم بكاميرات متعددة في الإمارات؟" }, a: { en: "Yes — we scale multi-camera crews to any the UAE venue, from a single keynote to a multi-stage conference.", ar: "نعم — نوسّع طواقم الكاميرات المتعددة لأي قاعة في الإمارات، من كلمة واحدة إلى مؤتمر متعدد المنصات." } },
     ],
   },
   {
@@ -379,16 +379,16 @@ export const services: Service[] = [
       { q: { en: "Do you handle printing too?", ar: "هل تتولون الطباعة أيضاً؟" }, a: { en: "We handle design, layout and file delivery. Printing can be arranged via our partner network in Al Quoz at cost — typically AED 3–8 per copy for short runs.", ar: "نتولى التصميم والتخطيط وتسليم الملفات. يمكن ترتيب الطباعة عبر شبكة شركائنا في القوز بتكلفة — عادة 3–8 دراهم للنسخة في الكميات القليلة." } },
     ],
     locIntro: {
-      en: "Big Story designs brochures in {city} — tri-fold A4, bi-fold corporate, digital flipbook and pitch decks. We integrate your shoot photography into print-ready collateral, delivered in 5–7 days.",
-      ar: "تصمم بيغ ستوري البروشورات في {city} — ثلاثي الطي A4، ثنائي الطي للشركات، كتب رقمية تفاعلية وعروض تقديمية. ندمج تصويركم في مواد جاهزة للطباعة، تُسلّم خلال 5–7 أيام.",
+      en: "Big Story designs brochures in the UAE — tri-fold A4, bi-fold corporate, digital flipbook and pitch decks. We integrate your shoot photography into print-ready collateral, delivered in 5–7 days.",
+      ar: "تصمم بيغ ستوري البروشورات في الإمارات — ثلاثي الطي A4، ثنائي الطي للشركات، كتب رقمية تفاعلية وعروض تقديمية. ندمج تصويركم في مواد جاهزة للطباعة، تُسلّم خلال 5–7 أيام.",
     },
     groundAngle: {
-      en: "For brochure design that means fast-turnaround studios in {city}, print partners in Al Quoz who can ship 100–10,000 copies within a week, and access to the same photographers and illustrators who shot your campaign.",
-      ar: "بالنسبة لتصميم البروشورات يعني ذلك استوديوهات سريعة التسليم في {city}، شركاء طباعة في القوز يمكنهم شحن 100–10,000 نسخة خلال أسبوع، والوصول إلى نفس المصورين والرسامين الذين صوّروا حملتكم.",
+      en: "For brochure design that means fast-turnaround studios in the UAE, print partners in Al Quoz who can ship 100–10,000 copies within a week, and access to the same photographers and illustrators who shot your campaign.",
+      ar: "بالنسبة لتصميم البروشورات يعني ذلك استوديوهات سريعة التسليم في الإمارات، شركاء طباعة في القوز يمكنهم شحن 100–10,000 نسخة خلال أسبوع، والوصول إلى نفس المصورين والرسامين الذين صوّروا حملتكم.",
     },
     locFaqs: [
-      { q: { en: "How fast can you deliver brochures in {city}?", ar: "ما سرعة تسليم البروشورات في {city}؟" }, a: { en: "Standard 5–7 working days from brief to print-ready. We work with {city}-based print partners who can ship within 48 hours for urgent pitches.", ar: "5–7 أيام عمل من الإحاطة إلى الجاهز للطباعة. نعمل مع شركاء طباعة في {city} يمكنهم الشحن خلال 48 ساعة للعروض العاجلة." } },
-      { q: { en: "Can brochures integrate with our {city} photography?", ar: "هل يمكن دمج البروشورات مع تصويرنا في {city}؟" }, a: { en: "Yes — Big Story shoots in {city} and the same archive feeds into your brochure design. No mismatched visuals between your film and your printed materials.", ar: "نعم — بيغ ستوري يصوّر في {city} ونفس الأرشيف يغذي تصميم البروشورات. لا توجد صور غير متطابقة بين فيلمكم ومطبوعاتكم." } },
+      { q: { en: "How fast can you deliver brochures in the UAE?", ar: "ما سرعة تسليم البروشورات في الإمارات؟" }, a: { en: "Standard 5–7 working days from brief to print-ready. We work with the UAE-based print partners who can ship within 48 hours for urgent pitches.", ar: "5–7 أيام عمل من الإحاطة إلى الجاهز للطباعة. نعمل مع شركاء طباعة في الإمارات يمكنهم الشحن خلال 48 ساعة للعروض العاجلة." } },
+      { q: { en: "Can brochures integrate with our the UAE photography?", ar: "هل يمكن دمج البروشورات مع تصويرنا في الإمارات؟" }, a: { en: "Yes — Big Story shoots in the UAE and the same archive feeds into your brochure design. No mismatched visuals between your film and your printed materials.", ar: "نعم — بيغ ستوري يصوّر في الإمارات ونفس الأرشيف يغذي تصميم البروشورات. لا توجد صور غير متطابقة بين فيلمكم ومطبوعاتكم." } },
     ],
   },
   {
@@ -425,8 +425,8 @@ export const services: Service[] = [
       { q: { en: "Can you produce Arabic-first documentaries?", ar: "هل يمكنكم إنتاج أفلام وثائقية بالعربية أولاً؟" }, a: { en: "Yes — Arabic script, interviews, voiceover and subtitles are all part of our production for government and local-brand work.", ar: "نعم — النص العربي والمقابلات والتعليق الصوتي والترجمات جزء من إنتاجنا لأعمال الجهات الحكومية والعلامات المحلية." } },
     ],
     locIntro: {
-      en: "Big Story produces documentaries in {city} — founder stories, CSR films and long-form brand journalism that earn trust by showing something real, told with cinematic craft and an honest edit.",
-      ar: "تنتج بيك ستوري أفلاماً وثائقية في {city} — قصص المؤسسين وأفلام المسؤولية المجتمعية والصحافة الوثائقية التي تكسب الثقة بإظهار شيء حقيقي، تُروى بحرفية سينمائية ومونتاج صادق.",
+      en: "Big Story produces documentaries in the UAE — founder stories, CSR films and long-form brand journalism that earn trust by showing something real, told with cinematic craft and an honest edit.",
+      ar: "تنتج بيك ستوري أفلاماً وثائقية في الإمارات — قصص المؤسسين وأفلام المسؤولية المجتمعية والصحافة الوثائقية التي تكسب الثقة بإظهار شيء حقيقي، تُروى بحرفية سينمائية ومونتاج صادق.",
     },
     groundAngle: {
       en: "For documentary that means filming on location across the emirate, following real people and process with the patience the form needs.",
@@ -434,7 +434,7 @@ export const services: Service[] = [
     },
     locFaqs: [
       { q: { en: "What makes a good brand documentary?", ar: "ما الذي يصنع فيلماً وثائقياً جيداً للعلامة؟" }, a: { en: "A real story honestly told — access, characters and a point of view, not a polished sales pitch.", ar: "قصة حقيقية تُروى بصدق — وصول وشخصيات ووجهة نظر، لا عرض مبيعات مصقول." } },
-      { q: { en: "How long does a documentary take in {city}?", ar: "كم يستغرق الفيلم الوثائقي في {city}؟" }, a: { en: "Long-form work runs longer than an ad — typically several weeks to months depending on access and scope.", ar: "العمل الطويل يستغرق أكثر من الإعلان — عادة عدة أسابيع إلى أشهر حسب الوصول والنطاق." } },
+      { q: { en: "How long does a documentary take in the UAE?", ar: "كم يستغرق الفيلم الوثائقي في الإمارات؟" }, a: { en: "Long-form work runs longer than an ad — typically several weeks to months depending on access and scope.", ar: "العمل الطويل يستغرق أكثر من الإعلان — عادة عدة أسابيع إلى أشهر حسب الوصول والنطاق." } },
     ],
   },
 

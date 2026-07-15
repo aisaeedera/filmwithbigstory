@@ -130,7 +130,16 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
             </div>
           </Reveal>
           <Reveal delay={100} className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            {["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Ras Al Khaimah", "Al Ain"].map((c) => (
+            {[
+              "Dubai",
+              "Abu Dhabi",
+              "Sharjah",
+              "Ajman",
+              "Umm Al Quwain",
+              "Ras Al Khaimah",
+              "Fujairah",
+              "Al Ain",
+            ].map((c) => (
               <span
                 key={c}
                 className="rounded-lg border border-[color:var(--color-line)] bg-[color:var(--color-elevated)] px-4 py-3 text-center text-sm text-[color:var(--color-muted)]"

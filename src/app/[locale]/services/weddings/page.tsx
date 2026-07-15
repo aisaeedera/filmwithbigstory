@@ -11,6 +11,7 @@ import CtaBand from "@/components/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema, articleSchema } from "@/components/JsonLd";
 import { SITE, waLink } from "@/lib/site";
+import UaeTravelSection from "@/components/UaeTravelSection";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -153,7 +154,7 @@ export default async function WeddingsPage({ params }: { params: Promise<{ local
               ? "خدمات تصوير الزفاف في دبي — باقات الصور والفيديو، تشويق نفس اليوم، البث المباشر، الألبومات المطبوعة."
               : "Wedding photography and videography in Dubai — photo + video packages, same-day teaser, live streaming, printed albums.",
             path,
-            areaServed: ["Dubai", "Abu Dhabi", "Sharjah"],
+            areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah", "Al Ain"],
           }),
           faqSchema(itemFaqs),
         ]}
@@ -384,6 +385,7 @@ export default async function WeddingsPage({ params }: { params: Promise<{ local
         </div>
       </Section>
 
+      <UaeTravelSection locale={locale} />
       <CtaBand
         locale={locale}
         heading={isAr ? "مستعد لمناقشة حفل زفافك؟" : "Ready to talk about your wedding?"}

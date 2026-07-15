@@ -11,6 +11,7 @@ import CtaBand from "@/components/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema, articleSchema } from "@/components/JsonLd";
 import { SITE, waLink } from "@/lib/site";
+import UaeTravelSection from "@/components/UaeTravelSection";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -175,7 +176,7 @@ export default async function CorporateVideoProductionUaePage({ params }: { para
               ? "خدمة إنتاج فيديو الشركات والعلامات في الإمارات من بيك ستوري — Brand Film من 12,000 درهم، Corporate Video من 8,000 درهم، تدرج ألوان سينمائي."
               : "Corporate video and brand film production in the UAE from Big Story — Brand Film from AED 12,000, Corporate Video from AED 8,000, cinema-grade colour grade.",
             path,
-            areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Ras Al Khaimah"],
+            areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah", "Al Ain"],
           }),
           faqSchema(itemFaqs),
         ]}
@@ -429,6 +430,7 @@ export default async function CorporateVideoProductionUaePage({ params }: { para
         </div>
       </Section>
 
+      <UaeTravelSection locale={locale} />
       <CtaBand
         locale={locale}
         heading={isAr ? "مستعد لمناقشة فيديو الشركات الخاص بكم؟" : "Ready to talk about your corporate video?"}

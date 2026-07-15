@@ -11,6 +11,7 @@ import CtaBand from "@/components/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema, articleSchema } from "@/components/JsonLd";
 import { SITE, waLink } from "@/lib/site";
+import UaeTravelSection from "@/components/UaeTravelSection";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -151,7 +152,7 @@ export default async function WeddingVideographyPage({ params }: { params: Promi
               ? "تصوير فيديو زفاف فقط في دبي — ريل 3 أو 8 دقائق + قصة حفل، درون اختياري، تشويق نفس اليوم."
               : "Video-only wedding coverage in Dubai — 3 or 8 min highlight reel + ceremony cut, drone add-on, same-day teaser.",
             path,
-            areaServed: ["Dubai", "Abu Dhabi", "Sharjah"],
+            areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah", "Al Ain"],
           }),
           faqSchema(itemFaqs),
         ]}
@@ -293,6 +294,7 @@ export default async function WeddingVideographyPage({ params }: { params: Promi
         </div>
       </Section>
 
+      <UaeTravelSection locale={locale} />
       <CtaBand
         locale={locale}
         heading={isAr ? "مستعد لتصوير فيديو زفافك؟" : "Ready to book your wedding videography?"}

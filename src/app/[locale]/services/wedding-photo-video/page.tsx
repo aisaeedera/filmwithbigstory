@@ -11,6 +11,7 @@ import CtaBand from "@/components/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema, articleSchema } from "@/components/JsonLd";
 import { SITE, waLink } from "@/lib/site";
+import UaeTravelSection from "@/components/UaeTravelSection";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -151,7 +152,7 @@ export default async function WeddingPhotoVideoPage({ params }: { params: Promis
               ? "باقة زفاف صور + فيديو في دبي — طاقم واحد، موقع واحد، فاتورة موحدة."
               : "Wedding photo + video bundle in Dubai — one crew, one venue, one consolidated invoice.",
             path,
-            areaServed: ["Dubai", "Abu Dhabi", "Sharjah"],
+            areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah", "Al Ain"],
           }),
           faqSchema(itemFaqs),
         ]}
@@ -337,6 +338,7 @@ export default async function WeddingPhotoVideoPage({ params }: { params: Promis
         </div>
       </Section>
 
+      <UaeTravelSection locale={locale} />
       <CtaBand
         locale={locale}
         heading={isAr ? "جاهز لحجز باقة الصور + الفيديو؟" : "Ready to book the photo + video bundle?"}

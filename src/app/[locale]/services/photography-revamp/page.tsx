@@ -11,6 +11,7 @@ import CtaBand from "@/components/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema, articleSchema } from "@/components/JsonLd";
 import { SITE, waLink } from "@/lib/site";
+import UaeTravelSection from "@/components/UaeTravelSection";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -152,7 +153,7 @@ export default async function PhotographyRevampPage({ params }: { params: Promis
               ? "سياسة مراجعة الصور في بيك ستوري — الخيار C الهجين الافتراضي، 3 جولات قائمة، رصيد إعادة تصوير 30٪."
               : "Big Story photography revision policy — Option C hybrid default, 3 list rounds, 30% reshoot credit.",
             path,
-            areaServed: ["Dubai", "Abu Dhabi", "Sharjah"],
+            areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah", "Al Ain"],
           }),
           faqSchema(itemFaqs),
         ]}
@@ -384,6 +385,7 @@ export default async function PhotographyRevampPage({ params }: { params: Promis
         </div>
       </Section>
 
+      <UaeTravelSection locale={locale} />
       <CtaBand
         locale={locale}
         heading={isAr ? "لديك أسئلة عن سياسة المراجعة؟" : "Questions about the revision policy?"}

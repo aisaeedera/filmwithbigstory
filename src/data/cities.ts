@@ -78,6 +78,28 @@ export const cities: City[] = [
     },
     areas: ["Al Ain Oasis", "Jebel Hafeet", "Al Ain heritage forts"],
   },
+  {
+    slug: "umm-al-quwain",
+    name: { en: "Umm Al Quwain", ar: "أم القيوين" },
+    order: 7,
+    note: { en: "the quiet coastal emirate", ar: "الإمارة الساحلية الهادئة" },
+    groundBase: {
+      en: "Umm Al Quwain is the UAE's quietest coastal emirate — the UAQ Free Trade Zone, long empty beaches and a relaxed permit process. A practical choice for projects that need water, sand and zero crowds.",
+      ar: "أم القيوين أكثر إمارات الساحل هدوءاً — المنطقة الحرة، وشواطئ طويلة شبه خالية، وعملية تصاريح مرنة. خيار عملي للمشاريع التي تحتاج ماءً ورملاً وغياب الزحام.",
+    },
+    areas: ["UAQ Free Trade Zone", "UAQ coastal areas"],
+  },
+  {
+    slug: "fujairah",
+    name: { en: "Fujairah", ar: "الفجيرة" },
+    order: 8,
+    note: { en: "the east-coast mountain-and-sea emirate", ar: "إمارة الساحل الشرقي بين الجبل والبحر" },
+    groundBase: {
+      en: "Fujairah mixes Hajar mountain valleys with the Indian Ocean coast — a distinctive east-coast look that breaks up the standard Gulf-city skyline. Suited to adventure, automotive and lifestyle shoots that need terrain and sea in one frame.",
+      ar: "تجمع الفجيرة بين وديان جبال حجر وساحل بحر العرب — مظهر مميز للساحل الشرقي يكسر أفق مدن الخليج المعتاد. تناسب تصويرات المغامرات والسيارات وأسلوب الحياة التي تحتاج تضاريس وبحراً في لقطة واحدة.",
+    },
+    areas: ["Fujairah City coast", "Hajar mountains", "Dibba"],
+  },
 ];
 
 export function getCity(slug: string): City | undefined {

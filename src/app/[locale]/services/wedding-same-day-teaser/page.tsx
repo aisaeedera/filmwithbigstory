@@ -11,6 +11,7 @@ import CtaBand from "@/components/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema, articleSchema } from "@/components/JsonLd";
 import { SITE, waLink } from "@/lib/site";
+import UaeTravelSection from "@/components/UaeTravelSection";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -151,7 +152,7 @@ export default async function WeddingSameDayTeaserPage({ params }: { params: Pro
               ? "تشويق زفاف 30–90 ثانية يُسلّم قبل 10 مساءً ليلة الزفاف. إضافة 4,500 درهم لحجز الصور + الفيديو أو الزفاف السينمائي."
               : "30–90 second wedding teaser delivered by 10pm on the wedding night. AED 4,500 add-on to photo + video or Cinematic Wedding.",
             path,
-            areaServed: ["Dubai", "Abu Dhabi", "Sharjah"],
+            areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah", "Al Ain"],
           }),
           faqSchema(itemFaqs),
         ]}
@@ -342,6 +343,7 @@ export default async function WeddingSameDayTeaserPage({ params }: { params: Pro
         </div>
       </Section>
 
+      <UaeTravelSection locale={locale} />
       <CtaBand
         locale={locale}
         heading={isAr ? "أضيفي تشويق نفس اليوم إلى حفل زفافك؟" : "Add the same-day teaser to your wedding?"}

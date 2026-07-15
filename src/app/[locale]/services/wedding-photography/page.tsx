@@ -11,6 +11,7 @@ import CtaBand from "@/components/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema, articleSchema } from "@/components/JsonLd";
 import { SITE, waLink } from "@/lib/site";
+import UaeTravelSection from "@/components/UaeTravelSection";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -151,7 +152,7 @@ export default async function WeddingPhotographyPage({ params }: { params: Promi
               ? "تصوير زفاف فوتوغرافي فقط في دبي — أربع باقات، 400–800 صورة معدلة، ألبوم مطبوع اختياري."
               : "Photo-only wedding coverage in Dubai — four packages, 400–800 edited images, optional printed album.",
             path,
-            areaServed: ["Dubai", "Abu Dhabi", "Sharjah"],
+            areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah", "Al Ain"],
           }),
           faqSchema(itemFaqs),
         ]}
@@ -348,6 +349,7 @@ export default async function WeddingPhotographyPage({ params }: { params: Promi
         </div>
       </Section>
 
+      <UaeTravelSection locale={locale} />
       <CtaBand
         locale={locale}
         heading={isAr ? "مستعد لحجز تصوير زفافك؟" : "Ready to book your wedding photography?"}

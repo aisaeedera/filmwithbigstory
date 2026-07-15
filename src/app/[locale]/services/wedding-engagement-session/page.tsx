@@ -11,6 +11,7 @@ import CtaBand from "@/components/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema, articleSchema } from "@/components/JsonLd";
 import { SITE, waLink } from "@/lib/site";
+import UaeTravelSection from "@/components/UaeTravelSection";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -150,7 +151,7 @@ export default async function WeddingEngagementSessionPage({ params }: { params:
               ? "جلسة تصوير خطوبة منظّمة نصف يوم في دبي — 3 ساعات، 80–150 صورة معدلة، مثالية لبطاقات حفظ التاريخ."
               : "Pre-wedding styled engagement session in Dubai — 3 hours, 80–150 edited images, perfect for save-the-date cards.",
             path,
-            areaServed: ["Dubai", "Abu Dhabi", "Sharjah"],
+            areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah", "Al Ain"],
           }),
           faqSchema(itemFaqs),
         ]}
@@ -344,6 +345,7 @@ export default async function WeddingEngagementSessionPage({ params }: { params:
         </div>
       </Section>
 
+      <UaeTravelSection locale={locale} />
       <CtaBand
         locale={locale}
         heading={isAr ? "جاهز لحجز جلسة الخطوبة؟" : "Ready to book your engagement session?"}

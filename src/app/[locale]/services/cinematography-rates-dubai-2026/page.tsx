@@ -19,6 +19,7 @@ import {
   authorReference,
   personSchema,
 } from "@/components/JsonLd";
+import UaeTravelSection from "@/components/UaeTravelSection";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -608,6 +609,7 @@ export default async function CinematographyRates2026Page({ params }: { params: 
         </div>
       </Section>
 
+      <UaeTravelSection locale={locale} />
       <CtaBand
         locale={locale}
         heading={isAr ? "هل لديك مشروع؟ دعنا نتحدث بالأرقام" : "Got a project? Let's talk in numbers."}

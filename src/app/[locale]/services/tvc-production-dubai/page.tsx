@@ -11,6 +11,7 @@ import CtaBand from "@/components/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema, articleSchema } from "@/components/JsonLd";
 import { SITE, waLink } from "@/lib/site";
+import UaeTravelSection from "@/components/UaeTravelSection";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -175,7 +176,7 @@ export default async function TvcProductionDubaiPage({ params }: { params: Promi
               ? "خدمة إنتاج الإعلانات التلفزيونية والتجارية في دبي من بيك ستوري — TVC جاهز للبث والسوشيال من 15,000 درهم. ARRI Alexa Mini + RED Komodo X."
               : "TVC and broadcast commercial production in Dubai from Big Story — broadcast- and social-ready TVC from AED 15,000. ARRI Alexa Mini + RED Komodo X.",
             path,
-            areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Riyadh", "Doha"],
+            areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah", "Al Ain"],
           }),
           faqSchema(itemFaqs),
         ]}
@@ -483,6 +484,7 @@ export default async function TvcProductionDubaiPage({ params }: { params: Promi
         </div>
       </Section>
 
+      <UaeTravelSection locale={locale} />
       <CtaBand
         locale={locale}
         heading={isAr ? "مستعد لمناقشة إعلانكم التلفزيوني القادم؟" : "Ready to talk about your next TVC?"}

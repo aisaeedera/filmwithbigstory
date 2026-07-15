@@ -11,6 +11,7 @@ import CtaBand from "@/components/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema, articleSchema } from "@/components/JsonLd";
 import { SITE, waLink } from "@/lib/site";
+import UaeTravelSection from "@/components/UaeTravelSection";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -160,7 +161,7 @@ export default async function CinematographyDubaiPage({ params }: { params: Prom
               ? "خدمات التصوير السينمائي الاحترافية في دبي — كاميرات RED وAlexa، طاقم خبير، من القوز إلى الصحراء."
               : "Professional cinematography services in Dubai — RED & Alexa cameras, expert crew, from Al Quoz to the desert.",
             path,
-            areaServed: ["Dubai", "Abu Dhabi", "Sharjah"],
+            areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah", "Al Ain"],
           }),
           faqSchema(itemFaqs),
         ]}
@@ -393,6 +394,7 @@ export default async function CinematographyDubaiPage({ params }: { params: Prom
         </div>
       </Section>
 
+      <UaeTravelSection locale={locale} />
       <CtaBand
         locale={locale}
         heading={isAr ? "مستعد لمناقشة مشروعك السينمائي؟" : "Ready to talk about your cinematography project?"}

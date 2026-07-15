@@ -11,6 +11,7 @@ import CtaBand from "@/components/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema, articleSchema } from "@/components/JsonLd";
 import { SITE, waLink } from "@/lib/site";
+import UaeTravelSection from "@/components/UaeTravelSection";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -168,7 +169,7 @@ export default async function CinematicWeddingPage({ params }: { params: Promise
               ? "باقة الزفاف السينمائي من بيك ستوري — RED Komodo X، مخرج فيلم مخصص، تشويق في نفس اليوم، فيلم 8–12 دقيقة بتدرج ألوان سينمائي."
               : "Big Story's Cinematic Wedding package in Dubai — RED Komodo X, dedicated film director, same-day teaser, 8–12 min cinema-grade colour-graded film. AED 18,500–35,000.",
             path,
-            areaServed: ["Dubai", "Abu Dhabi", "Sharjah"],
+            areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah", "Al Ain"],
           }),
           faqSchema(itemFaqs),
         ]}
@@ -397,6 +398,7 @@ export default async function CinematicWeddingPage({ params }: { params: Promise
         </div>
       </Section>
 
+      <UaeTravelSection locale={locale} />
       <CtaBand
         locale={locale}
         heading={isAr ? "مستعد لمناقشة زفافك السينمائي؟" : "Ready to talk about your Cinematic Wedding?"}

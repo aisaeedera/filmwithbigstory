@@ -11,6 +11,7 @@ import CtaBand from "@/components/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema, articleSchema } from "@/components/JsonLd";
 import { SITE, waLink } from "@/lib/site";
+import UaeTravelSection from "@/components/UaeTravelSection";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -152,7 +153,7 @@ export default async function VideoProductionPage({ params }: { params: Promise<
               ? "خمس باقات إنتاج فيديو في دبي — RED Komodo X، Sony FX3، تدرج ألوان DaVinci، فيديو لاسلكي Hollyland."
               : "Five video production packages in Dubai — RED Komodo X, Sony FX3, DaVinci colour grade, Hollyland wireless video.",
             path,
-            areaServed: ["Dubai", "Abu Dhabi", "Sharjah"],
+            areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah", "Al Ain"],
           }),
           faqSchema(itemFaqs),
         ]}
@@ -384,6 +385,7 @@ export default async function VideoProductionPage({ params }: { params: Promise<
         </div>
       </Section>
 
+      <UaeTravelSection locale={locale} />
       <CtaBand
         locale={locale}
         heading={isAr ? "جاهز لمناقشة إنتاج فيديوك؟" : "Ready to talk about your video production?"}
