@@ -124,8 +124,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
             <h2 className="mt-5 text-[clamp(2rem,4.5vw,3.25rem)]">{t(home.whereWeWork.h2, locale)}</h2>
             <p className="bs-lead mt-6">{t(home.whereWeWork.lead, locale)}</p>
             <div className="mt-8">
-              <Button href={localizedPath(locale, "/service-areas")} variant="ghost">
-                {t(ui.nav.exploreAreas, locale)}
+              <Button href={localizedPath(locale, "/services")} variant="ghost">
+                {t(ui.nav.allServices, locale)}
               </Button>
             </div>
           </Reveal>

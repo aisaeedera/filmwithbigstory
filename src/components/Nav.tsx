@@ -11,7 +11,7 @@ import { cx } from "@/lib/util";
 const links = [
   { key: "work", path: "/work" },
   { key: "services", path: "/services" },
-  { key: "serviceAreas", path: "/service-areas" },
+  { key: "pricing", path: "/pricing" },
   { key: "about", path: "/about" },
   { key: "contact", path: "/contact" },
 ] as const;

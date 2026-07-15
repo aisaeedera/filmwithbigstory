@@ -14,6 +14,19 @@ export const SITE = {
   geo: { lat: 25.2048, lng: 55.2708 },
   careersForm:
     "https://docs.google.com/forms/d/e/1FAIpQLSdvtBTHSBilw_ghQcgI7y0sACAbcsZhrmu7MlyVzPmWUr2Ueg/viewform",
+  // Option C: hidden iframe POST target — derived from `careersForm` by swapping `viewform` → `formResponse`.
+  // Saeed replaces `formResponse` URL + the placeholder `entry.XXXXXXXXXX` IDs below once the
+  // real Google Form exists. See lessons/CAREERS_GOOGLE_FORM_SETUP.md.
+  careersFormAction:
+    "https://docs.google.com/forms/d/e/1FAIpQLSdvtBTHSBilw_ghQcgI7y0sACAbcsZhrmu7MlyVzPmWUr2Ueg/formResponse",
+  careersFormFields: {
+    name: "entry.1111111111",
+    email: "entry.2222222222",
+    phone: "entry.3333333333",
+    role: "entry.4444444444",
+    note: "entry.5555555555",
+    locale: "entry.6666666666",
+  } as const,
   social: {
     instagram: "https://instagram.com/filmwithbigstory",
     instagramRed: "https://instagram.com/bigstory_red_rentals",

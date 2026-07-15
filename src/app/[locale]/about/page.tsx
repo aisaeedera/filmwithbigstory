@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { type Locale, t } from "@/lib/i18n";
+import { type Locale, localizedPath, t } from "@/lib/i18n";
 import { pageMeta } from "@/lib/meta";
 import { about, ui } from "@/data/copy";
 import { Section, Eyebrow } from "@/components/primitives";
@@ -53,19 +53,39 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         </div>
       </Section>
 
-      {/* TEAM — critical trust signal, Phase 2 photos */}
+      {/* TEAM — Saeed Salim + crew */}
       <Section>
         <Reveal>
           <Eyebrow>{t(about.team.eyebrow, locale)}</Eyebrow>
           <h2 className="mt-5 text-[clamp(1.8rem,4vw,2.75rem)]">{t(about.team.h2, locale)}</h2>
         </Reveal>
-        {/* TODO(client): replace with real founder/crew headshots + names — CLIENT_HANDOFF.md */}
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {[0, 1, 2, 3].map((i) => (
+          {/* Saeed Salim — founder */}
+          <Reveal delay={0} className="bs-card">
+            <div
+              className="aspect-square w-full rounded-lg border border-[color:var(--color-line)] bg-[color:var(--color-bg)] bg-gradient-to-br from-[color:var(--color-gold)]/20 to-[color:var(--color-bg)]"
+              aria-hidden="true"
+            />
+            <p className="bs-eyebrow mt-4">{locale === "ar" ? "مؤسس ومدير تصوير" : "Founder & DP"}</p>
+            <h3 className="mt-2 text-xl">Saeed Salim</h3>
+            <p className="mt-3 text-sm text-[color:var(--color-muted)]">
+              {locale === "ar"
+                ? "مؤسس بيك ستوري. RED Komodo و Alexa Mini LF — أكثر من 120 تصوير سينمائي في الإمارات."
+                : "Founder of Big Story. RED Komodo and Alexa Mini LF — 120+ UAE cinematic productions since 2019."}
+            </p>
+            <a
+              href={localizedPath(locale, "/about/saeed")}
+              className="mt-4 inline-block text-sm text-[color:var(--color-gold)] underline"
+            >
+              {locale === "ar" ? "الملف الكامل ←" : "Full profile →"}
+            </a>
+          </Reveal>
+          {/* Placeholder crew slots — keep simple placeholders per existing pattern */}
+          {[1, 2, 3].map((i) => (
             <Reveal key={i} delay={i * 70} className="bs-card">
               <div className="aspect-square w-full rounded-lg border border-[color:var(--color-line)] bg-[color:var(--color-bg)]" aria-hidden="true" />
               <p className="mt-4 text-sm text-[color:var(--color-muted)]">
-                {i === 0 ? t(about.team.note, locale) : " "}
+                {i === 1 ? t(about.team.note, locale) : " "}
               </p>
             </Reveal>
           ))}

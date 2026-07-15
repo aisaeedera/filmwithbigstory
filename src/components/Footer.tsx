@@ -7,7 +7,6 @@ import { SITE } from "@/lib/site";
 const explore = [
   { key: "work", path: "/work" },
   { key: "services", path: "/services" },
-  { key: "serviceAreas", path: "/service-areas" },
   { key: "about", path: "/about" },
   { key: "faqs", path: "/faqs" },
   { key: "careers", path: "/careers" },
@@ -83,6 +82,9 @@ export default function Footer({ locale }: { locale: Locale }) {
             </li>
             <li>
               <a href={SITE.partners.fibraHub} target="_blank" rel="noopener noreferrer" className="bs-gold-line">FibraHub</a>
+            </li>
+            <li>
+              <a href="https://sahabdevelopment.com" target="_blank" rel="noopener noreferrer" className="bs-gold-line">Sahab Development</a>
             </li>
           </ul>
         </div>

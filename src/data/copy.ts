@@ -9,6 +9,7 @@ export const ui = {
     about: { en: "About", ar: "من نحن" },
     contact: { en: "Contact", ar: "تواصل" },
     faqs: { en: "FAQs", ar: "الأسئلة الشائعة" },
+    pricing: { en: "Pricing", ar: "الأسعار" },
     careers: { en: "Careers", ar: "الوظائف" },
     startProject: { en: "Start a project", ar: "ابدأ مشروعاً" },
     startYourProject: { en: "Start your project", ar: "ابدأ مشروعك" },

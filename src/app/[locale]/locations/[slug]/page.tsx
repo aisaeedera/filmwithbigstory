@@ -1,171 +1,100 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { type Locale, locales, localizedPath, t } from "@/lib/i18n";
 import { pageMeta } from "@/lib/meta";
-import { locationPages, getLocation } from "@/data/locations";
-import { services } from "@/data/services";
-import { location as loc, ui } from "@/data/copy";
-import { fill } from "@/lib/util";
+import { servicesIndex as si, ui } from "@/data/copy";
 import { Section, Eyebrow } from "@/components/primitives";
 import Reveal from "@/components/Reveal";
-import Faq from "@/components/Faq";
 import CtaBand from "@/components/CtaBand";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema } from "@/components/JsonLd";
-import { waLink } from "@/lib/site";
+
+/* ------------------------------------------------------------------ *
+ * /locations/{slug} is RETIRED.
+ *
+ * The 48 generated geo-combination pages (8 services × 6 cities) were
+ * duplicate content (the same service rendered for each city with only
+ * city-specific filler swapped in). They created a duplicate-content
+ * footprint and confused customers.
+ *
+ * Big Story travels across the UAE — production services are not city-
+ * specific. We collapsed them into a single /services listing.
+ *
+ * This route is kept as a noindex stub so:
+ *   - inbound links 200 instead of 404
+ *   - users land on a helpful "go to /services" prompt
+ *   - search engines get a strong noindex signal to drop the URL
+ * ------------------------------------------------------------------ */
 
 export function generateStaticParams() {
-  return locales.flatMap((locale) => locationPages.map((l) => ({ locale, slug: l.slug })));
+  // Pre-render a single canonical placeholder per locale. We use
+  // `dynamicParams = false` below so EVERY /locations/* request 404s
+  // instead of triggering a server render — that's the cleanest
+  // retirement signal to Google.
+  return locales.map((locale) => ({ locale, slug: "_" }));
 }
+
+export const dynamicParams = false;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale; slug: string }> }): Promise<Metadata> {
   const { locale, slug } = await params;
-  const page = getLocation(slug);
-  if (!page) return {};
-  const { service, city } = page;
-  const cityName = t(city.name, locale);
-  const svcName = t(service.locName, locale);
-  const title = `${svcName} in ${cityName} | Big Story`;
-  const description = fill(t(service.locIntro, locale), { city: cityName }).slice(0, 300);
-  return pageMeta({ locale, title, description, path: `/locations/${slug}` });
+  // noindex every URL hit on this route — Google should drop the whole
+  // /locations/* tree from its index.
+  void slug;
+  return pageMeta({
+    locale,
+    title: locale === "ar" ? "خدمات الإنتاج في الإمارات | بيك ستوري" : "Production services across the UAE | Big Story",
+    description:
+      locale === "ar"
+        ? "خدمات الإنتاج لم تعد مقسمة حسب المدينة. اعرض كل الخدمات في صفحة واحدة."
+        : "Our production services are no longer split by city. See every service on a single page.",
+    path: "/services",
+    noindex: true,
+  });
 }
 
-export default async function LocationPage({ params }: { params: Promise<{ locale: Locale; slug: string }> }) {
-  const { locale, slug } = await params;
-  const page = getLocation(slug);
-  if (!page) notFound();
-  const { service, city } = page;
-  const cityName = t(city.name, locale);
-  const svcName = t(service.locName, locale);
-  const vars = { city: cityName };
-
-  const faqItems = service.locFaqs.map((f) => ({ q: fill(t(f.q, locale), vars), a: fill(t(f.a, locale), vars) }));
-  const otherServices = services.filter((s) => s.slug !== service.slug);
+export default async function LocationPage({ params: _params }: { params: Promise<{ locale: Locale; slug: string }> }) {
+  // Resolve locale so we can localize the prompt.
+  const { locale } = await _params;
 
   return (
     <>
-      <JsonLd
-        data={[
-          breadcrumbSchema(locale, [
-            { name: t(ui.breadcrumb.home, locale), path: "/" },
-            { name: t(ui.breadcrumb.serviceAreas, locale), path: "/service-areas" },
-            { name: `${svcName} · ${cityName}`, path: `/locations/${slug}` },
-          ]),
-          serviceSchema({
-            locale,
-            name: `${svcName} in ${cityName}`,
-            description: fill(t(service.locIntro, locale), vars),
-            path: `/locations/${slug}`,
-            areaServed: [t(city.name, "en")],
-          }),
-          faqSchema(faqItems),
-        ]}
-      />
-
       <Section>
         <Breadcrumbs
           locale={locale}
           items={[
             { name: t(ui.breadcrumb.home, locale), path: "/" },
-            { name: t(ui.breadcrumb.serviceAreas, locale), path: "/service-areas" },
-            { name: `${svcName} · ${cityName}` },
+            { name: t(ui.nav.services, locale), path: "/services" },
+            { name: locale === "ar" ? "صفحة منتهية" : "Retired page" },
           ]}
         />
         <Reveal>
-          <span className="bs-eyebrow">{svcName}</span>
-          <h1 className="mt-6 max-w-4xl text-[clamp(2.3rem,5.5vw,4rem)]">
-            {svcName} in {cityName}
+          <Eyebrow>{locale === "ar" ? "صفحة منتهية" : "Page retired"}</Eyebrow>
+          <h1 className="mt-6 max-w-3xl text-[clamp(2.2rem,5vw,3.5rem)]">
+            {locale === "ar"
+              ? "خدماتنا لم تعد مقسمة حسب المدينة"
+              : "Our services are no longer split by city"}
           </h1>
-          <p className="bs-lead mt-8 !max-w-3xl">{fill(t(service.locIntro, locale), vars)}</p>
+          <p className="bs-lead mt-8 !max-w-2xl">
+            {locale === "ar"
+              ? "ننتقل في مواقع التصوير عبر الإمارات، لذا فإن تقسيم خدماتنا حسب المدينة كان يخلق محتوى مكرراً ويشتت العملاء. كل خدمات الإنتاج لدينا أصبحت في صفحة واحدة."
+              : "We travel on location across the UAE, so splitting our services by city was creating duplicate content and confusing customers. Every production service now lives on a single page."}
+          </p>
           <div className="mt-9 flex flex-wrap gap-4">
-            <a href={waLink(`${svcName} — ${cityName}.`)} target="_blank" rel="noopener noreferrer" className="bs-btn bs-btn-gold">
+            <Link href={localizedPath(locale, "/services")} className="bs-btn bs-btn-gold">
+              {t(ui.nav.allServices, locale)}
+            </Link>
+            <Link href={localizedPath(locale, "/contact")} className="bs-btn bs-btn-ghost">
               {t(ui.nav.startYourProject, locale)}
-            </a>
-            <Link href={localizedPath(locale, `/services/${service.slug}`)} className="bs-btn bs-btn-ghost">
-              {t(service.short, locale)}
             </Link>
           </div>
         </Reveal>
       </Section>
 
-      {/* ON THE GROUND — unique local content */}
-      <Section alt>
-        <div className="grid gap-8 md:grid-cols-[0.7fr_1.3fr] md:items-start">
-          <Reveal>
-            <Eyebrow>{t(loc.onGround, locale)}</Eyebrow>
-          </Reveal>
-          <Reveal delay={80} className="bs-prose">
-            <p>{fill(t(city.groundBase, locale), vars)}</p>
-            <p>{fill(t(service.groundAngle, locale), vars)}</p>
-            <p className="text-sm text-[color:var(--color-muted)]">
-              {city.areas.join(" · ")}
-            </p>
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* WHAT WE CAN PRODUCE HERE */}
-      <Section>
-        <Reveal>
-          <Eyebrow>{t(loc.produceHere, locale)}</Eyebrow>
-        </Reveal>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {loc.produceCards.map((card, i) => (
-            <Reveal key={i} delay={i * 70} className="bs-card">
-              <h2 className="text-xl">{t(card.title, locale)}</h2>
-              <p className="mt-4 text-sm text-[color:var(--color-muted)]">{t(card.body, locale)}</p>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      {/* FAQ */}
-      <Section alt>
-        <Reveal>
-          <Eyebrow>{t(loc.frequentlyAsked, locale)}</Eyebrow>
-        </Reveal>
-        <div className="mt-8">
-          <Faq items={faqItems} />
-        </div>
-      </Section>
-
-      {/* RELATED */}
-      <Section>
-        <Reveal>
-          <Eyebrow>{t(loc.related, locale)}</Eyebrow>
-        </Reveal>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {loc.relatedCards.map((card, i) => (
-            <Reveal as="div" key={i} delay={i * 70}>
-              <Link href={localizedPath(locale, card.href)} className="bs-card bs-card-hover block h-full">
-                <h2 className="text-xl">{t(card.title, locale)}</h2>
-                <p className="mt-3 text-sm text-[color:var(--color-muted)]">{t(card.body, locale)}</p>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      {/* OTHER SERVICES IN THIS CITY — internal linking */}
-      <Section alt>
-        <Reveal>
-          <Eyebrow>{t(loc.otherServicesHere, locale)} {cityName}</Eyebrow>
-        </Reveal>
-        <div className="mt-8 flex flex-wrap gap-3">
-          {otherServices.map((s) => (
-            <Link
-              key={s.slug}
-              href={localizedPath(locale, `/locations/${s.slug}-${city.slug}`)}
-              className="rounded-full border border-[color:var(--color-line)] px-5 py-2.5 text-sm transition hover:border-[color:var(--color-gold)] hover:text-[color:var(--color-gold)]"
-            >
-              {t(s.locName, locale)}
-            </Link>
-          ))}
-        </div>
-      </Section>
-
-      <CtaBand locale={locale} heading={t(loc.finalH2, locale)} waContext={`${svcName} — ${cityName}.`} />
+      <CtaBand
+        locale={locale}
+        heading={t(si.finalH2, locale)}
+        waContext={locale === "ar" ? "زرت رابط موقع قديم." : "Hit a retired location URL."}
+      />
     </>
   );
 }
