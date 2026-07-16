@@ -188,6 +188,93 @@ const tiers = {
   ],
 };
 
+// Extras that go with any tier — add-on cards (photographer + extra videographer).
+// Pricing per PRICING.json v10 + Saeed 2026-07-16 sign-off.
+const extrasAddons = {
+  en: {
+    eyebrow: "Extras that go with any tier",
+    h2: "Build your own package — add a photographer or a second videographer",
+    lead: "Every tier ships with the cinema camera, the 1st AC, and the male-only crew. If you want full stills coverage on top of video, or a second videographer for multi-cam sync, add them below — they bolt onto any tier without re-quoting the whole package.",
+    cards: [
+      {
+        label: "+ADD-ON",
+        title: "Extra Photographer",
+        price: "+AED 2,500",
+        description:
+          "Their own camera + lenses. Full wedding stills coverage on top of the video team — 200 edited photos delivered in 7 days.",
+        bullets: [
+          "Dedicated stills operator (not pulled from the video team)",
+          "Owns kit: Sony A7R V (45MP) or comparable, 24–70 + 70–200 glass",
+          "200 edited photos, online gallery, 7-day turnaround",
+          "Same male-only rule — same crew on site, same venue walkthrough",
+          "Works alongside the 1st AC — no double-cover, no blocking conflicts",
+        ],
+        rationale:
+          "Pairs with Tier 1 or Tier 2 to give you a full photo + video package without booking a separate photo crew. Costs less than the standalone wedding-photography day rate (AED 6,000) because they share the venue, the lighting setup, and the run-of-show with the video team.",
+      },
+      {
+        label: "+ADD-ON",
+        title: "Extra Videographer",
+        price: "+AED 3,500",
+        description:
+          "Additional FX3 operator for true multi-cam. Multi-cam editing included, drone op coordinated — your cinematic edit gets a second angle on every key moment.",
+        bullets: [
+          "FX3 operator (separate body, separate angle)",
+          "Multi-cam editing in post — cuts to the second angle live, not B-roll filler",
+          "Drone operator coordinated if drone add-on is also booked",
+          "Sync via Hollyland wireless — no drift, no clap markers needed",
+          "Same male-only rule, same 1st AC discipline",
+        ],
+        rationale:
+          "Pairs with Tier 1 if you want true multi-cam cinema on a budget, or with Tier 2 if you want a third angle on the crane + the floor. Brings the cinematic-edit look of Tier 3 down to Tier 1 pricing when combined.",
+      },
+    ],
+    footnote:
+      "Add-ons are itemised separately on the quote so you see exactly what is bolted on. Both add-ons ship with the same male-only crew rule and 1st AC certification as the base tier.",
+  },
+  ar: {
+    eyebrow: "إضافات تناسب أي باقة",
+    h2: "ابنِ باقتك — أضف مصوراً فوتوغرافياً أو مصور فيديو ثانياً",
+    lead: "كل باقة تأتي مع الكاميرا السينمائية والمساعد الأول المعتمد وطاقم الذكور فقط. إذا أردت تغطية صور كاملة فوق الفيديو، أو مصور فيديو ثاني لتزامن متعدد الكاميرات، أضفهم أدناه — يُلحقون بأي باقة دون إعادة تسعير الباقة كاملة.",
+    cards: [
+      {
+        label: "+إضافة",
+        title: "مصور فوتوغرافي إضافي",
+        price: "+2,500 درهم",
+        description:
+          "كاميرته الخاصة وعدساته. تغطية صور زفاف كاملة فوق فريق الفيديو — 200 صورة معدلة تُسلَّم خلال 7 أيام.",
+        bullets: [
+          "مشغل صور ثابتة مخصص (لا يُسحب من فريق الفيديو)",
+          "يملك العدة: Sony A7R V (45MP) أو ما يعادله، عدسات 24–70 + 70–200",
+          "200 صورة معدلة، معرض إلكتروني، تسليم خلال 7 أيام",
+          "نفس قاعدة الذكور فقط — نفس الطاقم في الموقع، نفس استطلاع الموقع",
+          "يعمل جنباً إلى جنب مع المساعد الأول — بلا تغطية مزدوجة، بلا تعارض حجب",
+        ],
+        rationale:
+          "يُلحق بالباقتين 1 أو 2 ليمنحك باقة صور + فيديو كاملة دون حجز طاقم تصوير منفصل. يكلّف أقل من سعر يوم تصوير الزفاف المستقل (6,000 درهم) لأنهم يتشاركون الموقع والإعداد والجدول مع فريق الفيديو.",
+      },
+      {
+        label: "+إضافة",
+        title: "مصور فيديو إضافي",
+        price: "+3,500 درهم",
+        description:
+          "مشغل FX3 إضافي لتعدد كاميرات حقيقي. مونتاج متعدد الكاميرات مشمول، مشغل درون منسَّق — مونتاجك السينمائي يحصل على زاوية ثانية في كل لحظة رئيسية.",
+        bullets: [
+          "مشغل FX3 (جسم منفصل، زاوية منفصلة)",
+          "مونتاج متعدد الكاميرات في المونتاج — قص للزاوية الثانية مباشر، ليس حشو B-roll",
+          "مشغل درون منسَّق إذا كانت إضافة الدرون محجوزة أيضاً",
+          "تزامن عبر Hollyland لاسلكي — بلا انحراف، بلا حاجة لعلامات تزامن",
+          "نفس قاعدة الذكور فقط، نفس انضباط المساعد الأول",
+        ],
+        rationale:
+          "يُلحق بالباقة 1 إذا أردت سينما متعدد الكاميرات حقيقي بميزانية محدودة، أو بالباقة 2 إذا أردت زاوية ثالثة على الكرين والأرضية. ينقل مظهر المونتاج السينمائي للباقة 3 إلى تسعير الباقة 1 عند الجمع.",
+      },
+    ],
+    footnote:
+      "الإضافات مفصّلة بشكل منفصل في العرض لتعرف بالضبط ما أُلحق. كلتا الإضافتين تأتيان مع نفس قاعدة طاقم الذكور فقط وشهادة المساعد الأول كما في الباقة الأساسية.",
+  },
+};
+
 // UAE government majlis venues — FREE for UAE nationals, gov-provided.
 // Sources: Dubai Media Office, CDA, Focus Hi Dubai, Khaleej Times, Curly Tales, Dubai Municipality.
 // Sorted by reach + familiarity.
@@ -415,6 +502,7 @@ export default async function WeddingVideographyDubaiPage({ params }: { params: 
   const isAr = locale === "ar";
   const itemFaqs = isAr ? faqItems.ar : faqItems.en;
   const tiersList = isAr ? tiers.ar : tiers.en;
+  const extrasAddonsBlock = isAr ? extrasAddons.ar : extrasAddons.en;
   const majlisList = isAr ? majlisVenues.ar : majlisVenues.en;
   const diffRows = isAr ? differentiator.ar.rows : differentiator.en.rows;
   const streamCompare = isAr ? livestreamComparison.ar : livestreamComparison.en;
@@ -676,6 +764,45 @@ export default async function WeddingVideographyDubaiPage({ params }: { params: 
             </tbody>
           </table>
         </div>
+      </Section>
+
+      {/* EXTRAS THAT GO WITH ANY TIER — photographer + extra videographer add-ons */}
+      <Section alt id="add-ons">
+        <Reveal>
+          <Eyebrow>{extrasAddonsBlock.eyebrow}</Eyebrow>
+          <h2 className="mt-5 text-[clamp(1.8rem,4vw,2.75rem)]">{extrasAddonsBlock.h2}</h2>
+          <p className="bs-lead mt-6 !max-w-3xl">{extrasAddonsBlock.lead}</p>
+        </Reveal>
+        <div className="mt-12 grid gap-8 md:grid-cols-2">
+          {extrasAddonsBlock.cards.map((card, i) => (
+            <Reveal
+              key={i}
+              delay={i * 80}
+              className="bs-card flex flex-col ring-2 ring-[color:var(--color-accent)]/40"
+            >
+              <span className="bs-eyebrow !text-[color:var(--color-accent)] before:!bg-[color:var(--color-accent)]">
+                {card.label}
+              </span>
+              <h3 className="mt-4 text-2xl">{card.title}</h3>
+              <p className="bs-num mt-4 text-3xl text-[color:var(--color-accent)]">{card.price}</p>
+              <p className="mt-4 text-sm">{card.description}</p>
+              <ul className="mt-6 space-y-2 text-sm">
+                {card.bullets.map((b, j) => (
+                  <li key={j} className="flex gap-2">
+                    <span className="text-[color:var(--color-accent)]">✓</span>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 text-xs text-[color:var(--color-muted)] border-t border-[color:var(--color-line)] pt-4">
+                {card.rationale}
+              </p>
+            </Reveal>
+          ))}
+        </div>
+        <p className="mt-8 text-xs text-[color:var(--color-muted)]">
+          {extrasAddonsBlock.footnote}
+        </p>
       </Section>
 
       {/* GOVERNMENT MAJLIS VENUES */}

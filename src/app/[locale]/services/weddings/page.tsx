@@ -54,6 +54,90 @@ const COPY = {
   },
 };
 
+// Combined wedding package matrix — Photo + Video together.
+// Sources: PRICING.json v10 (`_wedding_services`, `photography_pricing_modular`,
+// `videography_pricing_modular`, `_wedding_crew_rates`) + Saeed 2026-07-16 sign-off.
+const weddingPackages = {
+  en: {
+    eyebrow: "Wedding packages — Photo + Video together",
+    h2: "The combined package matrix — pick by tier, not by service",
+    lead: "The four tiers below are what couples actually book. Each tier shows what comes in the video package, what comes in the photo package, and the total — no separate quotes, no math on your end. Add-ons (drone, same-day teaser, album) are itemised separately on every quote.",
+    headers: ["Tier", "Video", "Photo", "Total AED", "Best for"],
+    rows: [
+      {
+        tier: "Tier 1 — Solo Cinema",
+        video: "RED Komodo X + FX3 · single 1st AC shooter · 4 hours · 1–2 min highlight reel",
+        photo: "Single stills photographer · Sony A7R V · 200 edited photos · 7-day turnaround",
+        total: "8,000",
+        bestFor: "Civil nikah, small villa wedding, single-majlis event",
+      },
+      {
+        tier: "Tier 2 — Wedding Day",
+        video: "RED Komodo X (A-cam) + FX3 (B-cam) + crane · 2 operators · 8 hours · 3-min cinematic highlight + same-day teaser + live streaming",
+        photo: "Lead photographer + 2nd photographer · 500 edited photos · online gallery · 7-day turnaround",
+        total: "16,000",
+        bestFor: "Full-day wedding at one venue — majlis, hotel, or villa (most-booked tier)",
+        featured: true,
+      },
+      {
+        tier: "Tier 3 — Premium Production",
+        video: "RED + FX6 + full cinema crew (DOP + 1st AC + 2nd AC + crane op + grip) · 12 hours · 5-min cinematic · multi-location · live streaming",
+        photo: "Lead + 2nd photographer + drone-assisted stills · 800 edited photos · printed album credit",
+        total: "26,000+",
+        bestFor: "Two-day coverage, henna + wedding, multi-venue, government-majlis + hotel",
+      },
+      {
+        tier: "Tier 4 — Photo-only",
+        video: "—",
+        photo: "Lead + 2nd photographer · 600 edited photos · 30×30 cm lay-flat album included",
+        total: "9,500",
+        bestFor: "Couples who only want stills, want album credit, no video crew on site",
+      },
+    ],
+    footnote:
+      "Totals combine the videography tier (PRICING.json `_wedding_services`) and the photography pass-through (PRICING.json `photography_pricing_modular` + `_wedding_crew_rates`). Add-ons bolt on to any tier: same-day teaser +AED 4,500 · drone +AED 1,500 · extra photographer +AED 2,500 · extra videographer +AED 3,500 · printed album +AED 3,500.",
+  },
+  ar: {
+    eyebrow: "باقات الزفاف — الصور + الفيديو معاً",
+    h2: "مصفوفة الباقات المدمجة — اختر حسب الباقة، لا حسب الخدمة",
+    lead: "الباقات الأربع أدناه هي ما يحجزه الأزواج فعلياً. كل باقة تعرض ما يأتي في باقة الفيديو، وما يأتي في باقة الصور، والإجمالي — بلا عروض منفصلة، بلا حسابات من طرفك. الإضافات (درون، تشويق نفس اليوم، ألبوم) مفصّلة بشكل منفصل في كل عرض.",
+    headers: ["الباقة", "الفيديو", "الصور", "الإجمالي درهم", "الأنسب لـ"],
+    rows: [
+      {
+        tier: "الباقة 1 — سينما فردية",
+        video: "RED Komodo X + FX3 · مساعد أول واحد · 4 ساعات · ريل ملخص 1–2 دقيقة",
+        photo: "مصور ثابت واحد · Sony A7R V · 200 صورة معدلة · تسليم 7 أيام",
+        total: "8,000",
+        bestFor: "نكاح مدني، زفاف فيلا صغير، حدث في مجلس واحد",
+      },
+      {
+        tier: "الباقة 2 — يوم الزفاف",
+        video: "RED Komodo X (كاميرا رئيسية) + FX3 (ثانوية) + كرين · مشغّلان · 8 ساعات · ريل سينمائي 3 دقائق + تشويق نفس اليوم + بث مباشر",
+        photo: "مصور رئيسي + مصور ثانٍ · 500 صورة معدلة · معرض إلكتروني · تسليم 7 أيام",
+        total: "16,000",
+        bestFor: "زفاف يوم كامل في موقع واحد — مجلس، فندق، أو فيلا (الباقة الأكثر حجزاً)",
+        featured: true,
+      },
+      {
+        tier: "الباقة 3 — الإنتاج المتميز",
+        video: "RED + FX6 + طاقم سينمائي كامل (DOP + مساعد أول + مساعد ثانٍ + مشغل كرين + جريب) · 12 ساعة · ريل 5 دقائق · متعدد المواقع · بث مباشر",
+        photo: "مصور رئيسي + ثانٍ + مساعدة درون للصور · 800 صورة معدلة · رصيد ألبوم مطبوع",
+        total: "26,000+",
+        bestFor: "تغطية يومين، حناء + زفاف، عدة مواقع، مجلس حكومي + فندق",
+      },
+      {
+        tier: "الباقة 4 — صور فقط",
+        video: "—",
+        photo: "مصور رئيسي + ثانٍ · 600 صورة معدلة · ألبوم lay-flat 30×30 سم مشمول",
+        total: "9,500",
+        bestFor: "أزواج يريدون الصور فقط، رصيد ألبوم، بلا طاقم فيديو في الموقع",
+      },
+    ],
+    footnote:
+      "الإجماليات تجمع باقة التصوير (PRICING.json `_wedding_services`) وتمرير الصور (PRICING.json `photography_pricing_modular` + `_wedding_crew_rates`). الإضافات تُلحق بأي باقة: تشويق نفس اليوم +4,500 درهم · درون +1,500 درهم · مصور إضافي +2,500 درهم · مصور فيديو إضافي +3,500 درهم · ألبوم مطبوع +3,500 درهم.",
+  },
+};
+
 const faqItems = {
   en: [
     {
@@ -128,6 +212,7 @@ export default async function WeddingsPage({ params }: { params: Promise<{ local
   const isAr = locale === "ar";
 
   const itemFaqs = isAr ? faqItems.ar : faqItems.en;
+  const weddingPackagesBlock = isAr ? weddingPackages.ar : weddingPackages.en;
 
   return (
     <>
@@ -294,6 +379,65 @@ export default async function WeddingsPage({ params }: { params: Promise<{ local
             </Reveal>
           ))}
         </div>
+      </Section>
+
+      {/* COMBINED WEDDING PACKAGE MATRIX — Photo + Video */}
+      <Section alt id="package-matrix">
+        <Reveal>
+          <Eyebrow>{weddingPackagesBlock.eyebrow}</Eyebrow>
+          <h2 className="mt-5 text-[clamp(1.8rem,4vw,2.75rem)]">{weddingPackagesBlock.h2}</h2>
+          <p className="bs-lead mt-6 !max-w-3xl">{weddingPackagesBlock.lead}</p>
+        </Reveal>
+        <div className="mt-12 overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="border-b border-[color:var(--color-line)]">
+                {weddingPackagesBlock.headers.map((h, i) => (
+                  <th
+                    key={i}
+                    className={
+                      "py-4 pr-6 text-left text-sm font-medium " +
+                      (i === 0
+                        ? "text-[color:var(--color-muted)]"
+                        : i === weddingPackagesBlock.headers.length - 2
+                        ? "text-[color:var(--color-accent)]"
+                        : "text-[color:var(--color-muted)]")
+                    }
+                  >
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {weddingPackagesBlock.rows.map((row, i) => (
+                <tr
+                  key={i}
+                  className={
+                    "border-b border-[color:var(--color-line)] align-top " +
+                    (row.featured ? "bg-[color:var(--color-bg-alt)]/40" : "")
+                  }
+                >
+                  <td className="py-5 pr-6 text-sm font-medium">
+                    {row.tier}
+                    {row.featured && (
+                      <span className="ml-2 inline-block rounded-full bg-[color:var(--color-accent)]/10 px-2 py-0.5 text-[10px] uppercase tracking-wide text-[color:var(--color-accent)]">
+                        {isAr ? "الأكثر حجزاً" : "Most-booked"}
+                      </span>
+                    )}
+                  </td>
+                  <td className="py-5 pr-6 text-sm">{row.video}</td>
+                  <td className="py-5 pr-6 text-sm">{row.photo}</td>
+                  <td className="py-5 pr-6 text-sm font-semibold text-[color:var(--color-accent)] whitespace-nowrap">
+                    AED {row.total}
+                  </td>
+                  <td className="py-5 pr-6 text-xs text-[color:var(--color-muted)]">{row.bestFor}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-8 text-xs text-[color:var(--color-muted)]">{weddingPackagesBlock.footnote}</p>
       </Section>
 
       {/* WHAT GOES INTO A WEDDING SHOOT */}
