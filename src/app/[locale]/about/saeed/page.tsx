@@ -179,17 +179,9 @@ export default async function SaeedAuthorPage({ params }: { params: Promise<{ lo
           <h2 className="mt-5 text-[clamp(1.8rem,4vw,2.75rem)]">{t(COPY.links.title, locale)}</h2>
         </Reveal>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
-          <Link href={SITE.social.linkedin} target="_blank" rel="noopener noreferrer" className="bs-card bs-card-hover block">
-            <p className="bs-eyebrow">{t(COPY.links.linkedinLabel, locale)}</p>
-            <p className="mt-3 text-sm break-all">{SITE.social.linkedin}</p>
-          </Link>
           <Link href={`mailto:${SITE.email}`} className="bs-card bs-card-hover block">
             <p className="bs-eyebrow">{t(COPY.links.emailLabel, locale)}</p>
             <p className="mt-3 text-sm break-all">{SITE.email}</p>
-          </Link>
-          <Link href={SITE.social.instagram} target="_blank" rel="noopener noreferrer" className="bs-card bs-card-hover block">
-            <p className="bs-eyebrow">Instagram</p>
-            <p className="mt-3 text-sm break-all">{SITE.social.instagram}</p>
           </Link>
         </div>
       </Section>

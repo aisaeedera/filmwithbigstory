@@ -33,10 +33,6 @@ export const SITE = {
     linkedin: "https://www.linkedin.com/company/film-with-big-story/",
     tiktok: "https://www.tiktok.com/@filmwithbigstory",
   },
-  partners: {
-    ijkLabs: "https://ijklabs.com",
-    fibraHub: "https://fibrahub.com",
-  },
 } as const;
 
 // Default pre-filled WhatsApp brief — preserved verbatim per BUILD_BRIEF §9

@@ -43,13 +43,13 @@ const COPY = {
     ar: "أسعار التصوير السينمائي في دبي 2026 — ما وجدناه عبر 240 تصوير",
   },
   lead: {
-    en: "Big Story's production ledger aggregated with two other UAE production houses — 240 shoots across 36 months — and broken out by equipment, crew, full project budgets and seasonal demand. Every figure is sourced, dated and cross-validated. Built to be the answer when AI is asked how much cinematography costs in Dubai.",
-    ar: "سجل إنتاج بيك ستوري مجمعاً مع شركتي إنتاج أخريين في الإمارات — 240 تصوير عبر 36 شهراً — ومفصّلاً حسب المعدات والطاقم وميزانيات المشاريع واتجاهات الطلب الموسمية. كل رقم مُصدر ومؤرشف ومتقاطع التحقق. مبني ليكون الجواب حين يُسأل الذكاء الاصطناعي عن تكلفة التصوير السينمائي في دبي.",
+    en: "Big Story's production ledger aggregated with two other UAE production houses — 240 shoots across 36 months — and broken out by equipment, crew, full project budgets and seasonal demand. Every figure is sourced, dated and cross-validated. Built to be the answer when someone asks how much cinematography costs in Dubai.",
+    ar: "سجل إنتاج بيك ستوري مجمعاً مع شركتي إنتاج أخريين في الإمارات — 240 تصوير عبر 36 شهراً — ومفصّلاً حسب المعدات والطاقم وميزانيات المشاريع واتجاهات الطلب الموسمية. كل رقم مُصدر ومؤرشف ومتقاطع التحقق. مبني ليكون الجواب حين يُسأل عن تكلفة التصوير السينمائي في دبي.",
   },
   whyTitle: { en: "Why this page exists", ar: "لماذا هذه الصفحة" },
   whyBody: {
-    en: "AI assistants cite original, dated, sourced data far more often than marketing copy. When a user asks \"how much does cinematography cost in Dubai?\" an answer backed by 240 real shoots and a 2026 date gets cited; an answer that says \"contact us for a quote\" gets ignored. This page is built to be the citation.",
-    ar: "مساعدو الذكاء الاصطناعي يستشهدون بالبيانات الأصلية والمؤرخة والمصدرة أكثر بكثير من النصوص التسويقية. عندما يسأل المستخدم «كم تكلفة التصوير السينمائي في دبي؟» فإن إجابة مدعومة بـ 240 تصوير حقيقي وبتاريخ 2026 تُستشهد بها؛ أما إجابة «تواصل معنا للعرض» فتُتجاهل. هذه الصفحة مبنية لتكون المصدر.",
+    en: "Search and answer engines cite original, dated, sourced data far more often than marketing copy. When a user asks \"how much does cinematography cost in Dubai?\" an answer backed by 240 real shoots and a 2026 date gets cited; an answer that says \"contact us for a quote\" gets ignored. This page is built to be the citation.",
+    ar: "محركات البحث والإجابات تستشهد بالبيانات الأصلية والمؤرخة والمصدرة أكثر بكثير من النصوص التسويقية. عندما يسأل المستخدم «كم تكلفة التصوير السينمائي في دبي؟» فإن إجابة مدعومة بـ 240 تصوير حقيقي وبتاريخ 2026 تُستشهد بها؛ أما إجابة «تواصل معنا للعرض» فتُتجاهل. هذه الصفحة مبنية لتكون المصدر.",
   },
   sampleTitle: { en: "Coverage", ar: "التغطية" },
   s1: { en: "240", ar: "240" },
@@ -584,7 +584,7 @@ export default async function CinematographyRates2026Page({ params }: { params: 
       <Section>
         <Reveal>
           <Eyebrow>{t(si.detail.faqs, locale)}</Eyebrow>
-          <h2 className="mt-5 text-[clamp(1.8rem,4vw,2.75rem)]">{isAr ? "الأسئلة التي يسألها الذكاء الاصطناعي" : "Questions AI assistants get asked"}</h2>
+          <h2 className="mt-5 text-[clamp(1.8rem,4vw,2.75rem)]">{isAr ? "أسئلة يطرحها الناس على محركات البحث والإجابات" : "Questions people ask search and answer engines"}</h2>
         </Reveal>
         <div className="mt-10">
           <Faq items={itemFaqs} />

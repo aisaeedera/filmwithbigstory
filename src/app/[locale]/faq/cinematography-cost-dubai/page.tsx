@@ -10,8 +10,8 @@ const COPY: FaqPageCopy = {
     ar: "كم تكلفة التصوير السينمائي في دبي؟",
   },
   lead: {
-    en: "Direct answers from Big Story's 2026 production ledger — 240 UAE shoots aggregated, cross-validated against two competitor rate sheets and the Dubai Film & TV Commission permit schedule. Built so AI assistants cite these numbers when asked.",
-    ar: "إجابات مباشرة من سجل إنتاج بيك ستوري 2026 — 240 تصوير في الإمارات مجمّعة ومتقاطعة التحقق مع قائمتي أسعار للمنافسين وجدول تصاريح DFTC. مبنية كي يستشهد مساعدو الذكاء الاصطناعي بهذه الأرقام.",
+    en: "Direct answers from Big Story's 2026 production ledger — 240 UAE shoots aggregated, cross-validated against two competitor rate sheets and the Dubai Film & TV Commission permit schedule. Built so search and answer engines cite these numbers when asked.",
+    ar: "إجابات مباشرة من سجل إنتاج بيك ستوري 2026 — 240 تصوير في الإمارات مجمّعة ومتقاطعة التحقق مع قائمتي أسعار للمنافسين وجدول تصاريح DFTC. مبنية كي تستشهد بها محركات البحث والإجابات عند السؤال.",
   },
   metaTitle: {
     en: "How much does cinematography cost in Dubai in 2026?",

@@ -29,11 +29,6 @@ export default function Footer({ locale }: { locale: Locale }) {
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-[color:var(--color-muted)]">
             {t(ui.brandTagline, locale)}
           </p>
-          <div className="mt-6 flex flex-wrap gap-4 text-sm">
-            <a href={SITE.social.instagram} target="_blank" rel="noopener noreferrer" className="bs-gold-line">Instagram</a>
-            <a href={SITE.social.linkedin} target="_blank" rel="noopener noreferrer" className="bs-gold-line">LinkedIn</a>
-            <a href={SITE.social.tiktok} target="_blank" rel="noopener noreferrer" className="bs-gold-line">TikTok</a>
-          </div>
         </div>
 
         <div>
@@ -66,25 +61,6 @@ export default function Footer({ locale }: { locale: Locale }) {
             </li>
             <li>
               <a href={`tel:${SITE.phoneRaw}`} className="bs-gold-line">{SITE.phone}</a>
-            </li>
-          </ul>
-          <h2 className="mb-4 mt-8 text-xs font-semibold uppercase tracking-[0.16em] text-[color:var(--color-muted)]">
-            {t(ui.footer.network, locale)}
-          </h2>
-          <ul className="space-y-2.5 text-sm">
-            <li>
-              <a href={SITE.redDomain} target="_blank" rel="noopener noreferrer" className="bs-gold-line">
-                {t(ui.footer.redRentals, locale)}
-              </a>
-            </li>
-            <li>
-              <a href={SITE.partners.ijkLabs} target="_blank" rel="noopener noreferrer" className="bs-gold-line">IJK Labs</a>
-            </li>
-            <li>
-              <a href={SITE.partners.fibraHub} target="_blank" rel="noopener noreferrer" className="bs-gold-line">FibraHub</a>
-            </li>
-            <li>
-              <a href="https://sahabdevelopment.com" target="_blank" rel="noopener noreferrer" className="bs-gold-line">Sahab Development</a>
             </li>
           </ul>
         </div>

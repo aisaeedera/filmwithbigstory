@@ -25,6 +25,10 @@ export const ui = {
     en: "We reply within one business day. No obligation, no hard sell.",
     ar: "نرد خلال يوم عمل واحد. دون التزام ودون بيع مباشر.",
   },
+  notClearYet: {
+    en: "Not clear yet? Talk to us. We'll help shape the idea, make it practical, and show you the next step.",
+    ar: "لست متأكداً بعد؟ تحدّث إلينا. سنساعدك في صياغة الفكرة ونجعلها عملية ونريك الخطوة التالية.",
+  },
   brandTagline: {
     en: "Dubai-based film & video production across the UAE — brand films, commercials and content worth watching.",
     ar: "إنتاج أفلام وفيديو مقره دبي عبر الإمارات — أفلام تعريفية وإعلانات ومحتوى يستحق المشاهدة.",
@@ -283,11 +287,6 @@ export const about = {
       en: "Big Story combines cinema cameras, controlled lighting, production planning and post-production craft to help brands create films that feel intentional — not rushed, generic or disposable. A preproduction-first workflow and a lean, focused team mean every frame is deliberate.",
       ar: "تجمع بيك ستوري بين كاميرات السينما والإضاءة المحكومة وتخطيط الإنتاج وحرفية ما بعد الإنتاج لمساعدة العلامات على صنع أفلام تبدو مقصودة — لا متسرعة أو عامة أو قابلة للاستهلاك. سير عمل يتصدره ما قبل الإنتاج وفريق صغير مركّز يعنيان أن كل إطار متعمَّد.",
     },
-  },
-  team: {
-    eyebrow: { en: "The team", ar: "الفريق" },
-    h2: { en: "The people making your film.", ar: "الأشخاص الذين يصنعون فيلمك." },
-    note: { en: "Named founders and crew, with photos, publish in Phase 2. Ask to meet the team on your project call.", ar: "تُنشر أسماء المؤسسين والطاقم مع الصور في المرحلة الثانية. اطلب لقاء الفريق في مكالمة مشروعك." },
   },
   finalH2: { en: "Let's tell your story.", ar: "لنروِ قصتك." },
 } as const;

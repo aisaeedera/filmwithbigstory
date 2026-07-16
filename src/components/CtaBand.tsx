@@ -32,6 +32,7 @@ export default function CtaBand({
           </Button>
         </div>
         <p className="mt-6 text-sm text-[color:var(--color-muted)]">{t(ui.speedPromise, locale)}</p>
+        <p className="mt-3 text-sm text-[color:var(--color-muted)]">{t(ui.notClearYet, locale)}</p>
       </Reveal>
     </Section>
   );

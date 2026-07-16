@@ -50,7 +50,6 @@ export function GET() {
   lines.push("");
   lines.push(`## Related`);
   lines.push(`- RED Camera Rentals: ${SITE.redDomain}`);
-  lines.push(`- Instagram: ${SITE.social.instagram}`);
   lines.push("");
 
   return new Response(lines.join("\n"), {

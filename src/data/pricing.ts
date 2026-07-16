@@ -53,61 +53,6 @@ export type PricingCategory = {
 
 export const pricing: PricingCategory[] = [
   {
-    id: "red_komodo_x",
-    name: { en: "RED KOMODO-X Camera Rental", ar: "تأجير كاميرا RED KOMODO-X" },
-    blurb: {
-      en: "6K cinema camera packages rented by the day, with our own crew available. Rates drop for multi-day and long-term bookings.",
-      ar: "باقات كاميرا سينمائية بدقة 6K للإيجار اليومي، مع طاقمنا الخاص عند الطلب. تنخفض الأسعار للحجوزات متعددة الأيام وطويلة الأمد.",
-    },
-    modular: true,
-    notes: [
-      { en: "3+ consecutive days — 12% off the day rate.", ar: "3 أيام متتالية فأكثر — خصم 12٪ على السعر اليومي." },
-      { en: "10+ day / long-term bookings — 20% off the day rate.", ar: "حجوزات 10 أيام فأكثر / طويلة الأمد — خصم 20٪ على السعر اليومي." },
-    ],
-    modules: [
-      {
-        id: "komodo_brain",
-        name: { en: "KOMODO-X body (brain only)", ar: "جسم KOMODO-X (البودي فقط)" },
-        price: 900,
-        unit: "day",
-        desc: {
-          en: "The RED KOMODO-X camera body on its own — for productions that already have their own lenses, media and support gear.",
-          ar: "جسم كاميرا RED KOMODO-X وحده — للإنتاجات التي تمتلك عدساتها ووسائط التخزين ومعدات الدعم الخاصة بها.",
-        },
-      },
-      {
-        id: "komodo_cinema_kit",
-        name: { en: "Cinema kit", ar: "طقم السينما" },
-        price: 1400,
-        unit: "day",
-        desc: {
-          en: "Camera body plus a working cinema set-up — lens, monitor, media and essential support so you can shoot straight out of the case.",
-          ar: "جسم الكاميرا مع إعداد سينمائي جاهز — عدسة وشاشة ووسائط ودعم أساسي لتبدأ التصوير مباشرة.",
-        },
-      },
-      {
-        id: "komodo_full_bundle",
-        name: { en: "Full bundle", ar: "الحزمة الكاملة" },
-        price: 1800,
-        unit: "day",
-        desc: {
-          en: "Our complete KOMODO-X package — body, lenses, monitoring, media, power and support rig ready for a full production day.",
-          ar: "حزمة KOMODO-X الكاملة — جسم وعدسات ومراقبة ووسائط وطاقة وحامل دعم جاهزة ليوم إنتاج كامل.",
-        },
-      },
-      {
-        id: "komodo_first_ac",
-        name: { en: "1st AC / camera assistant", ar: "مساعد كاميرا أول" },
-        price: 900,
-        unit: "day",
-        desc: {
-          en: "An experienced first assistant camera to pull focus, manage media and run the camera department on set.",
-          ar: "مساعد كاميرا أول متمرّس لضبط التركيز وإدارة الوسائط وتشغيل قسم الكاميرا على الموقع.",
-        },
-      },
-    ],
-  },
-  {
     id: "big_story_services",
     name: { en: "Film & Video Production", ar: "إنتاج الأفلام والفيديو" },
     blurb: {
@@ -380,97 +325,6 @@ export const pricing: PricingCategory[] = [
     ],
   },
   {
-    id: "videography",
-    name: { en: "Videography & Crew", ar: "تصوير الفيديو والطاقم" },
-    blurb: {
-      en: "DOPs, camera operators and directors are freelancers — the rates below include their day rate. Add gear, talent and post-production as separate line items.",
-      ar: "المخرجون والمصورون مستقلون — الأسعار أدناه تشمل سعرهم اليومي. أضِف المعدات والمواهب والمونتاج كبنود مستقلة.",
-    },
-    modular: true,
-    modules: [
-      {
-        id: "videographer_half_day",
-        name: { en: "Videographer — half day (4h)", ar: "مصور فيديو — نصف يوم (4 ساعات)" },
-        price: 1500,
-        unit: "each",
-        desc: {
-          en: "Half-day shoot with one freelance videographer + camera kit. Up to 30 km travel within Dubai included.",
-          ar: "تصوير نصف يوم مع مصور فيديو مستقل + طقم كاميرا. حتى 30 كم سفر داخل دبي مشمول.",
-        },
-      },
-      {
-        id: "videographer_full_day",
-        name: { en: "Videographer — full day (8h)", ar: "مصور فيديو — يوم كامل (8 ساعات)" },
-        price: 2700,
-        unit: "each",
-        desc: {
-          en: "Full-day shoot with one freelance videographer + camera kit. 4K capable.",
-          ar: "تصوير يوم كامل مع مصور فيديو مستقل + طقم كاميرا. بدقة 4K.",
-        },
-      },
-      {
-        id: "director_day",
-        name: { en: "Director — full day", ar: "مخرج — يوم كامل" },
-        price: 1500,
-        unit: "each",
-        desc: {
-          en: "On-set creative direction for projects under AED 50K. Above AED 50K the director day rate is AED 3,500.",
-          ar: "إخراج إبداعي على الموقع لمشاريع أقل من AED 50K. فوق AED 50K يكون سعر المخرج اليومي AED 3,500.",
-        },
-      },
-      {
-        id: "sound_op_day",
-        name: { en: "Sound operator — full day", ar: "مشغل صوت — يوم كامل" },
-        price: 1500,
-        unit: "each",
-        desc: {
-          en: "On-set location sound recording — boom + wireless lavs + mixer + audio recordist.",
-          ar: "تسجيل صوت موقع — بوم + لاف لاسلكية + ميكسر + فني صوت.",
-        },
-      },
-      {
-        id: "editing_short",
-        name: { en: "Editing — short (60s social)", ar: "مونتاج — قصير (60 ثانية)" },
-        price: 1800,
-        unit: "each",
-        desc: {
-          en: "Edit of one short-form video up to 60 seconds. Includes 1 revision round.",
-          ar: "مونتاج فيديو قصير حتى 60 ثانية. يشمل جولة مراجعة واحدة.",
-        },
-      },
-      {
-        id: "editing_longform",
-        name: { en: "Editing — long-form (5 min)", ar: "مونتاج — طويل (5 دقائق)" },
-        price: 5500,
-        unit: "each",
-        desc: {
-          en: "Edit of a long-form video up to 5 minutes. Includes 1 revision round.",
-          ar: "مونتاج فيديو طويل حتى 5 دقائق. يشمل جولة مراجعة واحدة.",
-        },
-      },
-      {
-        id: "color_grade_short",
-        name: { en: "Color grading — short film", ar: "تصحيح ألوان — فيلم قصير" },
-        price: 4500,
-        unit: "each",
-        desc: {
-          en: "Cinematic color grading for a short film or campaign. Per-minute rate available for longer projects.",
-          ar: "تصحيح ألوان سينمائي لفيلم قصير أو حملة. سعر الدقيقة متاح للمشاريع الأطول.",
-        },
-      },
-      {
-        id: "subtitles_ar",
-        name: { en: "Arabic subtitles (per min)", ar: "ترجمة عربية (للدقيقة)" },
-        price: 60,
-        unit: "each",
-        desc: {
-          en: "Arabic subtitle creation per finished minute. English subtitles AED 40/minute.",
-          ar: "إنشاء ترجمة عربية للدقيقة النهائية. ترجمة إنجليزية AED 40/دقيقة.",
-        },
-      },
-    ],
-  },
-  {
     id: "podcast",
     name: { en: "Podcast Production", ar: "إنتاج البودكاست" },
     blurb: {
@@ -713,8 +567,8 @@ export const pricing: PricingCategory[] = [
     id: "analytics_cro",
     name: { en: "Analytics & CRO", ar: "التحليلات وتحسين التحويل" },
     blurb: {
-      en: "Measure what your site and content actually do, then improve it. Set-ups are one-off; retainers and heatmaps are monthly. CRO analyst + AI tooling delivers the work — no human 'SEO specialist' or 'CRO specialist' is retained.",
-      ar: "قِس ما يفعله موقعك ومحتواك فعلاً، ثم حسّنه. الإعدادات لمرة واحدة؛ الاشتراكات وخرائط الحرارة شهرية. محلل CRO + أدوات ذكاء اصطناعي تنفذ العمل — لا نُحتفظ بأخصائي سيو أو CRO بشري.",
+      en: "Measure what your site and content actually do, then improve it. Set-ups are one-off; retainers and heatmaps are monthly.",
+      ar: "قِس ما يفعله موقعك ومحتواك فعلاً، ثم حسّنه. الإعدادات لمرة واحدة؛ الاشتراكات وخرائط الحرارة شهرية.",
     },
     modular: true,
     modules: [
@@ -734,8 +588,8 @@ export const pricing: PricingCategory[] = [
         price: 500,
         unit: "month",
         desc: {
-          en: "Hotjar/Clarity subscription + 4h analyst review/month: scroll-depth, click maps, friction-point write-up (1-page PDF), suggestions email. AI-assisted analysis.",
-          ar: "اشتراك Hotjar/Clarity + 4 ساعات مراجعة من المحلل/شهرياً: خرائط التمرير والنقر، وثيقة نقاط الاحتكاك (PDF صفحة واحدة)، بريد اقتراحات. تحليل بمساعدة الذكاء الاصطناعي.",
+          en: "Hotjar/Clarity subscription + 4h analyst review/month: scroll-depth, click maps, friction-point write-up (1-page PDF), suggestions email.",
+          ar: "اشتراك Hotjar/Clarity + 4 ساعات مراجعة من المحلل/شهرياً: خرائط التمرير والنقر، وثيقة نقاط الاحتكاك (PDF صفحة واحدة)، بريد اقتراحات.",
         },
       },
       {
@@ -784,8 +638,8 @@ export const pricing: PricingCategory[] = [
         price: 2000,
         unit: "month",
         desc: {
-          en: "16h analyst review per month: 1 A/B test, conversion review across key pages, monthly experiment report, suggestions email. AI tooling + analyst.",
-          ar: "16 ساعة مراجعة من المحلّل شهرياً: اختبار A/B واحد، مراجعة تحويل للصفحات الرئيسية، تقرير تجارب شهري، بريد اقتراحات. أدوات ذكاء اصطناعي + محلّل.",
+          en: "16h analyst review per month: 1 A/B test, conversion review across key pages, monthly experiment report, suggestions email.",
+          ar: "16 ساعة مراجعة من المحلّل شهرياً: اختبار A/B واحد، مراجعة تحويل للصفحات الرئيسية، تقرير تجارب شهري، بريد اقتراحات.",
         },
       },
     ],
@@ -794,8 +648,8 @@ export const pricing: PricingCategory[] = [
     id: "copywriter",
     name: { en: "Copywriting & Content", ar: "كتابة المحتوى" },
     blurb: {
-      en: "Words that sell — in English and Arabic. AI-assisted drafting, human-reviewed. Pages, blog posts and captions priced individually so you only pay for what you need.",
-      ar: "كلمات تبيع — بالإنجليزية والعربية. صياغة بمساعدة الذكاء الاصطناعي، مراجعة بشرية. صفحات ومقالات ونصوص بسعر فردي لتدفع فقط مقابل ما تحتاجه.",
+      en: "Words that sell — in English and Arabic. Pages, blog posts and captions priced individually so you only pay for what you need.",
+      ar: "كلمات تبيع — بالإنجليزية والعربية. صفحات ومقالات ونصوص بسعر فردي لتدفع فقط مقابل ما تحتاجه.",
     },
     modular: true,
     modules: [
@@ -845,8 +699,8 @@ export const pricing: PricingCategory[] = [
         price: 350,
         unit: "each",
         desc: {
-          en: "An AI-assisted, SEO-aware English blog article — fast turnaround at a lower cost. ~800-1,200 words.",
-          ar: "مقال مدونة إنجليزي بمساعدة الذكاء الاصطناعي ومهيأ لمحركات البحث — تسليم سريع بتكلفة أقل. 800-1,200 كلمة.",
+          en: "An SEO-aware English blog article — fast turnaround at a lower cost. ~800-1,200 words.",
+          ar: "مقال مدونة إنجليزي مهيأ لمحركات البحث — تسليم سريع بتكلفة أقل. 800-1,200 كلمة.",
         },
       },
       {
@@ -855,8 +709,8 @@ export const pricing: PricingCategory[] = [
         price: 500,
         unit: "each",
         desc: {
-          en: "An AI-assisted, SEO-aware native Arabic blog article — fast turnaround at a lower cost.",
-          ar: "مقال مدونة عربي أصلي بمساعدة الذكاء الاصطناعي ومهيأ لمحركات البحث — تسليم سريع بتكلفة أقل.",
+          en: "An SEO-aware native Arabic blog article — fast turnaround at a lower cost.",
+          ar: "مقال مدونة عربي أصلي مهيأ لمحركات البحث — تسليم سريع بتكلفة أقل.",
         },
       },
       {
@@ -865,8 +719,8 @@ export const pricing: PricingCategory[] = [
         price: 1200,
         unit: "month",
         desc: {
-          en: "Four AI-assisted English blog posts a month — steady content for SEO at one efficient rate.",
-          ar: "أربعة مقالات مدونة إنجليزية بمساعدة الذكاء الاصطناعي شهرياً — محتوى متواصل لتحسين محركات البحث بسعر واحد فعّال.",
+          en: "Four English blog posts a month — steady content for SEO at one efficient rate.",
+          ar: "أربعة مقالات مدونة إنجليزية شهرياً — محتوى متواصل لتحسين محركات البحث بسعر واحد فعّال.",
         },
       },
       {
@@ -875,8 +729,8 @@ export const pricing: PricingCategory[] = [
         price: 1700,
         unit: "month",
         desc: {
-          en: "Four AI-assisted native Arabic blog posts a month — steady Arabic content for SEO at one efficient rate.",
-          ar: "أربعة مقالات مدونة عربية أصلية بمساعدة الذكاء الاصطناعي شهرياً — محتوى عربي متواصل لتحسين محركات البحث بسعر واحد فعّال.",
+          en: "Four native Arabic blog posts a month — steady Arabic content for SEO at one efficient rate.",
+          ar: "أربعة مقالات مدونة عربية أصلية شهرياً — محتوى عربي متواصل لتحسين محركات البحث بسعر واحد فعّال.",
         },
       },
       {
@@ -1063,8 +917,8 @@ export const pricing: PricingCategory[] = [
         price: 1500,
         unit: "month",
         desc: {
-          en: "8 GMB posts/month with captions, monthly photo refresh, review response within 24h, weekly Q&A seeding, monthly analytics report. AI-assisted drafting + human review.",
-          ar: "8 منشورات/شهرياً مع نصوص، تحديث صور شهري، رد على المراجعات خلال 24 ساعة، زرع أسئلة وأجوبة أسبوعياً، تقرير تحليلات شهري. صياغة بمساعدة الذكاء الاصطناعي + مراجعة بشرية.",
+          en: "8 GMB posts/month with captions, monthly photo refresh, review response within 24h, weekly Q&A seeding, monthly analytics report.",
+          ar: "8 منشورات/شهرياً مع نصوص، تحديث صور شهري، رد على المراجعات خلال 24 ساعة، زرع أسئلة وأجوبة أسبوعياً، تقرير تحليلات شهري.",
         },
       },
     ],
@@ -1073,8 +927,8 @@ export const pricing: PricingCategory[] = [
     id: "social_media_management",
     name: { en: "Social Media Management", ar: "إدارة وسائل التواصل" },
     blurb: {
-      en: "Monthly social media management — scheduling, community engagement, monthly analytics. Content creation (videos, photos, graphics) is billed separately as the content creation packages. AI-assisted drafting, human-approved.",
-      ar: "إدارة وسائل تواصل اجتماعي شهرية — جدولة، تفاعل مجتمعي، تحليلات شهرية. إنشاء المحتوى (فيديوهات، صور، تصاميم) يُفوتر منفصلاً كجزء من باقات صناعة المحتوى. صياغة بمساعدة الذكاء الاصطناعي، موافقة بشرية.",
+      en: "Monthly social media management — scheduling, community engagement, monthly analytics. Content creation (videos, photos, graphics) is billed separately as the content creation packages.",
+      ar: "إدارة وسائل تواصل اجتماعي شهرية — جدولة، تفاعل مجتمعي، تحليلات شهرية. إنشاء المحتوى (فيديوهات، صور، تصاميم) يُفوتر منفصلاً كجزء من باقات صناعة المحتوى.",
     },
     modular: true,
     modules: [
@@ -1112,41 +966,41 @@ export const pricing: PricingCategory[] = [
   },
   {
     id: "seo_retainer",
-    name: { en: "SEO Monthly Retainer (AI-led)", ar: "اشتراك SEO شهري (بقيادة الذكاء الاصطناعي)" },
+    name: { en: "SEO Monthly Retainer", ar: "اشتراك SEO شهري" },
     blurb: {
-      en: "AI-led SEO — we use AI tooling + 4-12 hours/month of analyst review to drive rankings. We do NOT retain a human 'SEO specialist' as a pass-through. Content production is billed separately as blog posts. Pricing reflects this AI advantage.",
-      ar: "سيو بقيادة الذكاء الاصطناعي — نستخدم أدوات الذكاء الاصطناعي + 4-12 ساعة/شهرياً من مراجعة المحلّل لتحسين التصنيفات. لا نُحتفظ بأخصائي سيو بشري كطرف ثالث. إنتاج المحتوى يُفوتر منفصلاً كمقالات مدونة. الأسعار تعكس هذه الميزة للذكاء الاصطناعي.",
+      en: "A lean SEO retainer — specialist tooling plus 4-12 hours/month of analyst review to drive rankings. Content production is billed separately as blog posts.",
+      ar: "اشتراك سيو مُقتصد — أدوات متخصصة بالإضافة إلى 4-12 ساعة/شهرياً من مراجعة المحلّل لتحسين التصنيفات. إنتاج المحتوى يُفوتر منفصلاً كمقالات مدونة.",
     },
     modular: true,
     modules: [
       {
         id: "ai_seo_starter",
-        name: { en: "AI SEO starter", ar: "سيو AI الأساسي" },
+        name: { en: "SEO starter", ar: "SEO الأساسي" },
         price: 500,
         unit: "month",
         desc: {
-          en: "AI SEO tool subscriptions + 4h analyst review/month: ranking report (top 10 keywords), 1-page opportunity doc, search-console insights, 30-min review call. Content production not included.",
-          ar: "اشتراكات أدوات سيو AI + 4 ساعات مراجعة محلّل/شهرياً: تقرير التصنيفات (أعلى 10 كلمات)، وثيقة فرص صفحة واحدة، رؤى Search Console، مكالمة مراجعة 30 دقيقة. إنتاج المحتوى غير مشمول.",
+          en: "4h analyst review/month: ranking report (top 10 keywords), 1-page opportunity doc, search-console insights, 30-min review call. Content production not included.",
+          ar: "4 ساعات مراجعة محلّل/شهرياً: تقرير التصنيفات (أعلى 10 كلمات)، وثيقة فرص صفحة واحدة، رؤى Search Console، مكالمة مراجعة 30 دقيقة. إنتاج المحتوى غير مشمول.",
         },
       },
       {
         id: "ai_seo_growth",
-        name: { en: "AI SEO growth", ar: "سيو AI نمو" },
+        name: { en: "SEO growth", ar: "SEO نمو" },
         price: 1000,
         unit: "month",
         desc: {
-          en: "AI SEO tool subscriptions + 8h analyst review/month: ranking report, competitor gap analysis, on-page audit (5 pages/month), 2-page opportunity doc, monthly strategy call.",
-          ar: "اشتراكات أدوات سيو AI + 8 ساعات مراجعة محلّل/شهرياً: تقرير التصنيفات، تحليل فجوات المنافسين، تدقيق على الصفحة (5 صفحات/شهر)، وثيقة فرص صفحتين، مكالمة استراتيجية شهرية.",
+          en: "8h analyst review/month: ranking report, competitor gap analysis, on-page audit (5 pages/month), 2-page opportunity doc, monthly strategy call.",
+          ar: "8 ساعات مراجعة محلّل/شهرياً: تقرير التصنيفات، تحليل فجوات المنافسين، تدقيق على الصفحة (5 صفحات/شهر)، وثيقة فرص صفحتين، مكالمة استراتيجية شهرية.",
         },
       },
       {
         id: "ai_seo_premium",
-        name: { en: "AI SEO premium (with 4 blog posts)", ar: "سيو AI متميز (مع 4 مقالات)" },
+        name: { en: "SEO premium (with 4 blog posts)", ar: "SEO متميز (مع 4 مقالات)" },
         price: 1500,
         unit: "month",
         desc: {
-          en: "AI SEO tooling + 12h analyst review + 4 AI-assisted blog posts/month: ranking report, on-page audit (10 pages/month), 3-page priority doc, schema/technical fixes, bi-weekly calls.",
-          ar: "أدوات سيو AI + 12 ساعة مراجعة محلّل + 4 مقالات بمساعدة AI/شهرياً: تقرير التصنيفات، تدقيق 10 صفحات/شهر، وثيقة أولويات 3 صفحات، إصلاحات schema/تقنية، مكالمات نصف شهرية.",
+          en: "12h analyst review + 4 blog posts/month: ranking report, on-page audit (10 pages/month), 3-page priority doc, schema/technical fixes, bi-weekly calls.",
+          ar: "12 ساعة مراجعة محلّل + 4 مقالات/شهرياً: تقرير التصنيفات، تدقيق 10 صفحات/شهر، وثيقة أولويات 3 صفحات، إصلاحات schema/تقنية، مكالمات نصف شهرية.",
         },
       },
     ],
@@ -1188,6 +1042,152 @@ export const pricing: PricingCategory[] = [
         desc: {
           en: "For new companies (0–12 months old) that need everything from scratch. 6 weeks from kickoff. Includes brand foundation (logo + identity + guidelines), a 5-page bilingual website (EN/AR), GMB profile setup with 50 photos and 2 videos, 2 brand videos (60s + 30s), 100+ product/service photos, 1 hero photo session for the website, brochure (digital), a 30-day launch content calendar and social profile setup with first 10 posts. Add-ons: extra brand videos AED 4,000 · podcast launch (3 episodes) AED 4,500 · first month content management AED 3,500. Example: restaurant grand opening; new consultancy launch; new retail brand launch; new service business launch.",
           ar: "للشركات الجديدة (0–12 شهراً) التي تحتاج كل شيء من الصفر. 6 أسابيع من الانطلاق. يشمل أساس العلامة (شعار + هوية + إرشادات)، وموقع ثنائي اللغة من 5 صفحات (EN/AR)، وإعداد الملف التجاري مع 50 صورة وفيديوهان، وفيديوهان تعريفيان (60 ثانية + 30 ثانية)، و+100 صورة منتج/خدمة، وجلسة تصوير رئيسية واحدة للموقع، وبروشور (رقمي)، و30 يوماً من تقويم محتوى الإطلاق، وإعداد حسابات السوشيال مع أول 10 منشورات. الإضافات: فيديوهات علامة إضافية 4,000 درهم · إطلاق بودكاست (3 حلقات) 4,500 درهم · إدارة محتوى الشهر الأول 3,500 درهم. أمثلة: افتتاح مطعم؛ إطلاق شركة استشارية جديدة؛ إطلاق علامة تجزئة جديدة؛ إطلاق شركة خدمات جديدة.",
+        },
+      },
+    ],
+  },
+  {
+    id: "videography",
+    name: { en: "Videography & Crew", ar: "تصوير الفيديو والطاقم" },
+    blurb: {
+      en: "DOPs, camera operators and directors are freelancers — the rates below include their day rate. Add gear, talent and post-production as separate line items.",
+      ar: "المخرجون والمصورون مستقلون — الأسعار أدناه تشمل سعرهم اليومي. أضِف المعدات والمواهب والمونتاج كبنود مستقلة.",
+    },
+    modular: true,
+    modules: [
+      {
+        id: "videographer_half_day",
+        name: { en: "Videographer — half day (4h)", ar: "مصور فيديو — نصف يوم (4 ساعات)" },
+        price: 1500,
+        unit: "each",
+        desc: {
+          en: "Half-day shoot with one freelance videographer + camera kit. Up to 30 km travel within Dubai included.",
+          ar: "تصوير نصف يوم مع مصور فيديو مستقل + طقم كاميرا. حتى 30 كم سفر داخل دبي مشمول.",
+        },
+      },
+      {
+        id: "videographer_full_day",
+        name: { en: "Videographer — full day (8h)", ar: "مصور فيديو — يوم كامل (8 ساعات)" },
+        price: 2700,
+        unit: "each",
+        desc: {
+          en: "Full-day shoot with one freelance videographer + camera kit. 4K capable.",
+          ar: "تصوير يوم كامل مع مصور فيديو مستقل + طقم كاميرا. بدقة 4K.",
+        },
+      },
+      {
+        id: "director_day",
+        name: { en: "Director — full day", ar: "مخرج — يوم كامل" },
+        price: 1500,
+        unit: "each",
+        desc: {
+          en: "On-set creative direction for projects under AED 50K. Above AED 50K the director day rate is AED 3,500.",
+          ar: "إخراج إبداعي على الموقع لمشاريع أقل من AED 50K. فوق AED 50K يكون سعر المخرج اليومي AED 3,500.",
+        },
+      },
+      {
+        id: "sound_op_day",
+        name: { en: "Sound operator — full day", ar: "مشغل صوت — يوم كامل" },
+        price: 1500,
+        unit: "each",
+        desc: {
+          en: "On-set location sound recording — boom + wireless lavs + mixer + audio recordist.",
+          ar: "تسجيل صوت موقع — بوم + لاف لاسلكية + ميكسر + فني صوت.",
+        },
+      },
+      {
+        id: "editing_short",
+        name: { en: "Editing — short (60s social)", ar: "مونتاج — قصير (60 ثانية)" },
+        price: 1800,
+        unit: "each",
+        desc: {
+          en: "Edit of one short-form video up to 60 seconds. Includes 1 revision round.",
+          ar: "مونتاج فيديو قصير حتى 60 ثانية. يشمل جولة مراجعة واحدة.",
+        },
+      },
+      {
+        id: "editing_longform",
+        name: { en: "Editing — long-form (5 min)", ar: "مونتاج — طويل (5 دقائق)" },
+        price: 5500,
+        unit: "each",
+        desc: {
+          en: "Edit of a long-form video up to 5 minutes. Includes 1 revision round.",
+          ar: "مونتاج فيديو طويل حتى 5 دقائق. يشمل جولة مراجعة واحدة.",
+        },
+      },
+      {
+        id: "color_grade_short",
+        name: { en: "Color grading — short film", ar: "تصحيح ألوان — فيلم قصير" },
+        price: 4500,
+        unit: "each",
+        desc: {
+          en: "Cinematic color grading for a short film or campaign. Per-minute rate available for longer projects.",
+          ar: "تصحيح ألوان سينمائي لفيلم قصير أو حملة. سعر الدقيقة متاح للمشاريع الأطول.",
+        },
+      },
+      {
+        id: "subtitles_ar",
+        name: { en: "Arabic subtitles (per min)", ar: "ترجمة عربية (للدقيقة)" },
+        price: 60,
+        unit: "each",
+        desc: {
+          en: "Arabic subtitle creation per finished minute. English subtitles AED 40/minute.",
+          ar: "إنشاء ترجمة عربية للدقيقة النهائية. ترجمة إنجليزية AED 40/دقيقة.",
+        },
+      },
+    ],
+  },
+  {
+    id: "red_komodo_x",
+    name: { en: "RED KOMODO-X Camera Rental", ar: "تأجير كاميرا RED KOMODO-X" },
+    blurb: {
+      en: "6K cinema camera packages rented by the day, with our own crew available. For rental bookings, see red.filmwithbigstory.com — rates drop for multi-day and long-term bookings.",
+      ar: "باقات كاميرا سينمائية بدقة 6K للإيجار اليومي، مع طاقمنا الخاص عند الطلب. للحجوزات راجع red.filmwithbigstory.com — تنخفض الأسعار للحجوزات متعددة الأيام وطويلة الأمد.",
+    },
+    modular: true,
+    notes: [
+      { en: "3+ consecutive days — 12% off the day rate.", ar: "3 أيام متتالية فأكثر — خصم 12٪ على السعر اليومي." },
+      { en: "10+ day / long-term bookings — 20% off the day rate.", ar: "حجوزات 10 أيام فأكثر / طويلة الأمد — خصم 20٪ على السعر اليومي." },
+    ],
+    modules: [
+      {
+        id: "komodo_brain",
+        name: { en: "KOMODO-X body (brain only)", ar: "جسم KOMODO-X (البودي فقط)" },
+        price: 900,
+        unit: "day",
+        desc: {
+          en: "The RED KOMODO-X camera body on its own — for productions that already have their own lenses, media and support gear.",
+          ar: "جسم كاميرا RED KOMODO-X وحده — للإنتاجات التي تمتلك عدساتها ووسائط التخزين ومعدات الدعم الخاصة بها.",
+        },
+      },
+      {
+        id: "komodo_cinema_kit",
+        name: { en: "Cinema kit", ar: "طقم السينما" },
+        price: 1400,
+        unit: "day",
+        desc: {
+          en: "Camera body plus a working cinema set-up — lens, monitor, media and essential support so you can shoot straight out of the case.",
+          ar: "جسم الكاميرا مع إعداد سينمائي جاهز — عدسة وشاشة ووسائط ودعم أساسي لتبدأ التصوير مباشرة.",
+        },
+      },
+      {
+        id: "komodo_full_bundle",
+        name: { en: "Full bundle", ar: "الحزمة الكاملة" },
+        price: 1800,
+        unit: "day",
+        desc: {
+          en: "Our complete KOMODO-X package — body, lenses, monitoring, media, power and support rig ready for a full production day.",
+          ar: "حزمة KOMODO-X الكاملة — جسم وعدسات ومراقبة ووسائط وطاقة وحامل دعم جاهزة ليوم إنتاج كامل.",
+        },
+      },
+      {
+        id: "komodo_first_ac",
+        name: { en: "1st AC / camera assistant", ar: "مساعد كاميرا أول" },
+        price: 900,
+        unit: "day",
+        desc: {
+          en: "An experienced first assistant camera to pull focus, manage media and run the camera department on set.",
+          ar: "مساعد كاميرا أول متمرّس لضبط التركيز وإدارة الوسائط وتشغيل قسم الكاميرا على الموقع.",
         },
       },
     ],
@@ -1250,8 +1250,8 @@ export const pricingCopy = {
     ar: "**المصورون والمصورون الفيديويون مستقلون.** سعرهم اليومي مشمول في الأسعار المعروضة على وحدات التصوير الفوتوغرافي والفيديو. تُسعَّر الدعائم والمعدات الإضافية والممثلون كبنود مستقلة لتدفع فقط مقابل ما تحتاجه.",
   },
   aiSeoNote: {
-    en: "**SEO is AI-led.** We use AI tooling + 4–12 hours per month of analyst review. We do **not** retain a human 'SEO specialist' as a pass-through — this is how our AED 500–1,500 monthly pricing is structured.",
-    ar: "**السيو بقيادة الذكاء الاصطناعي.** نستخدم أدوات الذكاء الاصطناعي + 4–12 ساعة/شهرياً من مراجعة المحلّل. **لا** نُحتفظ بأخصائي سيو بشري كطرف ثالث — هذا هو هيكل تسعيرنا الشهري AED 500–1,500.",
+    en: "**Lean SEO retainer.** Specialist tooling plus 4–12 hours per month of analyst review drives the work. This is how our AED 500–1,500 monthly pricing is structured.",
+    ar: "**اشتراك سيو مُقتصد.** أدوات متخصصة بالإضافة إلى 4–12 ساعة/شهرياً من مراجعة المحلّل تُنجز العمل. هذا هو هيكل تسعيرنا الشهري AED 500–1,500.",
   },
   faq: {
     eyebrow: { en: "Pricing questions", ar: "أسئلة عن الأسعار" },
@@ -1288,15 +1288,15 @@ export const pricingCopy = {
       {
         q: { en: "What does 'SEO monthly retainer' actually include?", ar: "ماذا يشمل 'اشتراك السيو الشهري' فعلياً؟" },
         a: {
-          en: "Our SEO retainers are AI-led. You get AI SEO tool subscriptions + 4, 8 or 12 hours of analyst review per month (depending on tier), plus ranking reports, search-console insights and on-page audits. Content production (blog posts) is billed separately. We do NOT retain a human 'SEO specialist' as a pass-through — that's why our pricing starts at AED 500/month rather than AED 8,000-15,000.",
-          ar: "اشتراكات السيو لدينا بقيادة الذكاء الاصطناعي. تحصل على اشتراكات أدوات سيو AI + 4 أو 8 أو 12 ساعة مراجعة محلّل شهرياً (حسب الباقة)، بالإضافة إلى تقارير التصنيفات، رؤى Search Console، وتدقيق على الصفحة. إنتاج المحتوى (مقالات المدونة) يُفوتر منفصلاً. لا نُحتفظ بأخصائي سيو بشري كطرف ثالث — لهذا يبدأ تسعيرنا من AED 500/شهر بدلاً من AED 8,000-15,000.",
+          en: "Our SEO retainers use specialist tooling plus 4, 8 or 12 hours of analyst review per month (depending on tier), with ranking reports, search-console insights and on-page audits. Content production (blog posts) is billed separately.",
+          ar: "اشتراكات السيو لدينا تستخدم أدوات متخصصة بالإضافة إلى 4 أو 8 أو 12 ساعة مراجعة محلّل شهرياً (حسب الباقة)، مع تقارير التصنيفات ورؤى Search Console وتدقيق على الصفحة. إنتاج المحتوى (مقالات المدونة) يُفوتر منفصلاً.",
         },
       },
       {
         q: { en: "What's included in the GMB monthly retainer?", ar: "ماذا يشمل الاشتراك الشهري للملف التجاري؟" },
         a: {
-          en: "8 GMB posts/month with captions, monthly photo refresh, review response within 24 hours, weekly Q&A seeding, monthly analytics report. AI-assisted drafting, human-reviewed. Suitable for businesses that already have the profile set up and want ongoing visibility.",
-          ar: "8 منشورات للملف شهرياً مع نصوص، تحديث صور شهري، رد على المراجعات خلال 24 ساعة، زرع أسئلة وأجوبة أسبوعياً، تقرير تحليلات شهري. صياغة بمساعدة الذكاء الاصطناعي مع مراجعة بشرية. مناسب للشركات التي لديها ملف جاهز وتريد حضوراً مستمراً.",
+          en: "8 GMB posts/month with captions, monthly photo refresh, review response within 24 hours, weekly Q&A seeding, monthly analytics report. Suitable for businesses that already have the profile set up and want ongoing visibility.",
+          ar: "8 منشورات للملف شهرياً مع نصوص، تحديث صور شهري، رد على المراجعات خلال 24 ساعة، زرع أسئلة وأجوبة أسبوعياً، تقرير تحليلات شهري. مناسب للشركات التي لديها ملف جاهز وتريد حضوراً مستمراً.",
         },
       },
       {

@@ -39,9 +39,6 @@ export function organizationSchema() {
       availableLanguage: ["en", "ar"],
     },
     sameAs: [
-      SITE.social.instagram,
-      SITE.social.linkedin,
-      SITE.social.tiktok,
       SITE.redDomain,
     ],
   };
@@ -69,7 +66,7 @@ export function localBusinessSchema() {
       longitude: SITE.geo.lng,
     },
     areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Ras Al Khaimah", "Al Ain"],
-    sameAs: [SITE.social.instagram, SITE.social.linkedin, SITE.social.tiktok],
+    sameAs: [SITE.redDomain],
   };
 }
 
@@ -205,10 +202,7 @@ export function personSchema(opts: { path?: string } = {}) {
     jobTitle: "Founder & Director of Photography",
     worksFor: { "@id": `${SITE.domain}/#organization` },
     url: `${SITE.domain}${opts.path ?? "/about/saeed"}`,
-    sameAs: [
-      "https://www.linkedin.com/in/bigstory",
-      "https://www.linkedin.com/company/film-with-big-story/",
-    ],
+    sameAs: [],
     knowsAbout: [
       "Cinematography",
       "Film production",

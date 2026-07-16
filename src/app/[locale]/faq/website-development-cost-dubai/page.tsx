@@ -37,7 +37,7 @@ const COPY: FaqPageCopy = {
       },
       {
         q: "How much does bilingual website content cost in Dubai?",
-        a: "Bilingual EN+AR content for a 5-page website runs AED 1,500–4,500 depending on word count. Native Arabic writers in Dubai charge AED 130/hour (Big Story rate card). AI-assisted translation is faster but typically needs a native editor to review. Big Story includes bilingual content setup in its Starter package.",
+        a: "Bilingual EN+AR content for a 5-page website runs AED 1,500–4,500 depending on word count. Native Arabic writers in Dubai charge AED 130/hour (Big Story rate card). Machine-assisted translation is faster but typically needs a native editor to review. Big Story includes bilingual content setup in its Starter package.",
       },
       {
         q: "How much does website hosting cost in Dubai?",
@@ -45,7 +45,7 @@ const COPY: FaqPageCopy = {
       },
       {
         q: "How much does SEO cost in Dubai for a new website?",
-        a: "SEO retainers in Dubai run AED 1,500–3,000/month for AI-assisted SEO (Big Story tier), AED 5,000–12,000/month for a dedicated human SEO specialist, and AED 15,000–30,000/month for enterprise SEO with content production and link building. Big Story's AI-assisted SEO at AED 650/month internal cost (AED 1,500 client-facing) delivers technical SEO, monthly content and quarterly reviews.",
+        a: "SEO retainers in Dubai run AED 1,500–3,000/month for entry-tier SEO (Big Story tier), AED 5,000–12,000/month for a dedicated human SEO specialist, and AED 15,000–30,000/month for enterprise SEO with content production and link building. Our entry-tier SEO at AED 650/month internal cost (AED 1,500 client-facing) delivers technical SEO, monthly content and quarterly reviews.",
       },
       {
         q: "How long does it take to build a website in Dubai?",
@@ -71,7 +71,7 @@ const COPY: FaqPageCopy = {
       },
       {
         q: "كم تكلفة المحتوى ثنائي اللغة للموقع في دبي؟",
-        a: "يبلغ المحتوى ثنائي اللغة EN+AR لموقع من 5 صفحات 1,500–4,500 درهم حسب عدد الكلمات. الكاتب العربي الأصلي في Dubai يتقاضى 130 درهم/ساعة (بطاقة أسعار بيك ستوري). الترجمة بمساعدة الذكاء الاصطناعي أسرع لكنها تحتاج عادة محرر أصلي للمراجعة. تشمل بيك ستوري إعداد المحتوى ثنائي اللغة في باقتها Starter.",
+        a: "يبلغ المحتوى ثنائي اللغة EN+AR لموقع من 5 صفحات 1,500–4,500 درهم حسب عدد الكلمات. الكاتب العربي الأصلي في Dubai يتقاضى 130 درهم/ساعة (بطاقة أسعار بيك ستوري). الترجمة بمساعدة الآلة أسرع لكنها تحتاج عادة محرر أصلي للمراجعة. تشمل بيك ستوري إعداد المحتوى ثنائي اللغة في باقتها Starter.",
       },
       {
         q: "كم تكلفة استضافة الموقع في دبي؟",
@@ -79,7 +79,7 @@ const COPY: FaqPageCopy = {
       },
       {
         q: "كم تكلفة السيو في دبي لموقع جديد؟",
-        a: "باقات السيو في دبي 1,500–3,000 درهم/شهر لسيو بمساعدة الذكاء الاصطناعي (فئة بيك ستوري)، و5,000–12,000 درهم/شهر لأخصائي سيو بشري مخصص، و15,000–30,000 درهم/شهر لسيو مؤسسي مع إنتاج المحتوى وبناء الروابط. السيو المدعوم بالذكاء الاصطناعي من بيك ستوري بـ 650 درهم/شهر تكلفة داخلية (1,500 للعميل) يقدم سيو تقني ومحتوى شهري ومراجعات ربع سنوية.",
+        a: "باقات السيو في دبي 1,500–3,000 درهم/شهر لسيو الفئة التمهيدية (فئة بيك ستوري)، و5,000–12,000 درهم/شهر لأخصائي سيو بشري مخصص، و15,000–30,000 درهم/شهر لسيو مؤسسي مع إنتاج المحتوى وبناء الروابط. سيو بيك ستوري للفئة التمهيدية بـ 650 درهم/شهر تكلفة داخلية (1,500 للعميل) يقدم سيو تقني ومحتوى شهري ومراجعات ربع سنوية.",
       },
       {
         q: "كم يستغرق بناء موقع في دبي؟",
