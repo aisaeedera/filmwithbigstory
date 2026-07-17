@@ -390,25 +390,6 @@ export const faqs = {
   finalH2: { en: "Let's tell your story.", ar: "لنروِ قصتك." },
 } as const;
 
-/* ---- CAREERS ---- */
-export const careers = {
-  meta: {
-    title: { en: "Careers | Film & Video Production Jobs in Dubai — Big Story", ar: "الوظائف | وظائف إنتاج الأفلام والفيديو في دبي — بيك ستوري" },
-    description: {
-      en: "Join Big Story, a Dubai film and video production studio. We're always interested in directors, DOPs, editors, producers and crew. Apply with your reel.",
-      ar: "انضم إلى بيك ستوري، استوديو إنتاج أفلام وفيديو في دبي. نهتم دائماً بالمخرجين ومديري التصوير والمونتيرين والمنتجين والطاقم. تقدّم مع عرض أعمالك.",
-    },
-  },
-  eyebrow: { en: "Careers", ar: "الوظائف" },
-  h1: { en: "Join the Big Story crew.", ar: "انضم إلى طاقم بيك ستوري." },
-  lead: {
-    en: "We're a small Dubai film studio that makes work worth watching, and we grow by adding people who genuinely care about the craft. Whether you're a director, DOP, editor, producer, gaffer or runner, we'd like to see your work. Apply through the link below and share your reel; we review every application and reply when there's a fit.",
-    ar: "نحن استوديو أفلام صغير في دبي يصنع أعمالاً تستحق المشاهدة، وننمو بإضافة أشخاص يهتمون فعلاً بالحرفة. سواء كنت مخرجاً أو مدير تصوير أو مونتيراً أو منتجاً أو فني إضاءة أو مساعداً، نود رؤية عملك. تقدّم عبر الرابط أدناه وشارك عرض أعمالك؛ نراجع كل طلب ونرد عند وجود تناسب.",
-  },
-  finalH2: { en: "Ready to apply?", ar: "مستعد للتقديم؟" },
-  applyNow: { en: "Apply now", ar: "قدّم الآن" },
-} as const;
-
 /* ---- LEGAL ---- */
 export const legal = {
   privacy: {

@@ -1,53 +1,31 @@
 import assert from "node:assert/strict";
-import { mkdtemp, readFile, rm } from "node:fs/promises";
-import os from "node:os";
-import path from "node:path";
 import test from "node:test";
-import { addCareerApplicant, getCareerApplicants } from "../src/lib/careers/storage.ts";
+import { CAREER_POSITIONS } from "../src/lib/careers/positions.ts";
+import { ROSTER, ROSTER_ROLES, ROSTER_ROLE_TITLES } from "../src/lib/careers/roster.ts";
 
-async function tempStorage() {
-  return mkdtemp(path.join(os.tmpdir(), "big-story-career-pool-"));
-}
+test("roster covers every CAREER_POSITIONS role exactly once", () => {
+  const rosterTitles = [...ROSTER_ROLE_TITLES].sort();
+  const positions = [...CAREER_POSITIONS].sort();
+  assert.equal(rosterTitles.length, CAREER_POSITIONS.length);
+  assert.deepEqual(rosterTitles, positions);
+  // No duplicates.
+  assert.equal(new Set(ROSTER_ROLE_TITLES).size, CAREER_POSITIONS.length);
+});
 
-test("career applicant is normalized and persisted to applicants.json", async () => {
-  const dir = await tempStorage();
-  try {
-    const applicant = await addCareerApplicant(
-      {
-        name: "  Layla Noor  ",
-        email: "LAYLA@EXAMPLE.COM",
-        phone: "+971 50 123 4567",
-        role: "DOP / Cinematographer",
-        note: "Available for freelance projects.",
-        locale: "en",
-      },
-      dir,
-    );
-
-    assert.equal(applicant.name, "Layla Noor");
-    assert.equal(applicant.email, "layla@example.com");
-    const stored = await getCareerApplicants(dir);
-    assert.equal(stored.length, 1);
-    assert.equal(stored[0].role, "DOP / Cinematographer");
-    const raw = JSON.parse(await readFile(path.join(dir, "applicants.json"), "utf8"));
-    assert.equal(raw[0].email, "layla@example.com");
-  } finally {
-    await rm(dir, { recursive: true, force: true });
+test("every roster role has EN + AR title and summary", () => {
+  for (const role of ROSTER_ROLES) {
+    assert.ok(role.title.length > 0, "missing title");
+    assert.ok(role.ar.trim().length > 0, `missing Arabic title for ${role.title}`);
+    assert.ok(role.summary.trim().length > 0, `missing summary for ${role.title}`);
+    assert.ok(role.summaryAr.trim().length > 0, `missing Arabic summary for ${role.title}`);
   }
 });
 
-test("career applicant rejects invalid email and unknown role", async () => {
-  const dir = await tempStorage();
-  try {
-    await assert.rejects(
-      addCareerApplicant({ name: "Test", email: "invalid", phone: "123", role: "1st AC", note: "", locale: "en" }, dir),
-      /INVALID_APPLICANT/,
-    );
-    await assert.rejects(
-      addCareerApplicant({ name: "Test", email: "test@example.com", phone: "123", role: "Unknown Role", note: "", locale: "en" }, dir),
-      /INVALID_POSITION/,
-    );
-  } finally {
-    await rm(dir, { recursive: true, force: true });
+test("every roster category has EN + AR heading and at least one role", () => {
+  assert.ok(ROSTER.length > 0, "roster has no categories");
+  for (const category of ROSTER) {
+    assert.ok(category.title.trim().length > 0, "missing category title");
+    assert.ok(category.titleAr.trim().length > 0, `missing Arabic title for ${category.title}`);
+    assert.ok(category.roles.length > 0, `empty category ${category.title}`);
   }
 });
