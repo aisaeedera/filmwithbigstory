@@ -13,6 +13,7 @@ const links = [
   { key: "services", path: "/services" },
   { key: "pricing", path: "/pricing" },
   { key: "about", path: "/about" },
+  { key: "clients", path: "/clients" },
   { key: "contact", path: "/contact" },
 ] as const;
 

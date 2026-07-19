@@ -19,6 +19,7 @@ const staticPaths: Entry[] = [
   { path: "/service-areas", priority: 0.8, changefreq: "monthly" },
   { path: "/faqs", priority: 0.6, changefreq: "monthly" },
   { path: "/careers", priority: 0.5, changefreq: "monthly" },
+  { path: "/clients", priority: 0.7, changefreq: "monthly" },
   { path: "/privacy-policy", priority: 0.2, changefreq: "yearly" },
   { path: "/terms-conditions", priority: 0.2, changefreq: "yearly" },
   { path: "/photo-finder/amal-wedding-2026", priority: 0.2, changefreq: "monthly" as const },

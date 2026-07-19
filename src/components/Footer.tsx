@@ -10,6 +10,7 @@ const explore = [
   { key: "about", path: "/about" },
   { key: "faqs", path: "/faqs" },
   { key: "careers", path: "/careers" },
+  { key: "clients", path: "/clients" },
   { key: "contact", path: "/contact" },
 ] as const;
 

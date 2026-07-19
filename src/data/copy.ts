@@ -11,6 +11,7 @@ export const ui = {
     faqs: { en: "FAQs", ar: "الأسئلة الشائعة" },
     pricing: { en: "Pricing", ar: "الأسعار" },
     careers: { en: "Careers", ar: "الوظائف" },
+    clients: { en: "Clients", ar: "العملاء" },
     startProject: { en: "Start a project", ar: "ابدأ مشروعاً" },
     startYourProject: { en: "Start your project", ar: "ابدأ مشروعك" },
     seeOurWork: { en: "See our work", ar: "شاهد أعمالنا" },
@@ -317,6 +318,72 @@ export const contact = {
     lead: {
       en: "No obligation, no hard sell — we reply within one business day. Tap below and a short brief opens in WhatsApp, already typed out. Just fill in the blanks and send. Or use the form and we'll email you back.",
       ar: "دون التزام ودون بيع مباشر — نرد خلال يوم عمل واحد. اضغط أدناه وسيفتح ملخص قصير في واتساب مكتوب مسبقاً. املأ الفراغات وأرسل. أو استخدم النموذج وسنراسلك عبر البريد.",
+    },
+  },
+  // 3-step brief wizard — bilingual copy per adaptation spec §4.3.
+  wizard: {
+    // Progress
+    progressLabel: { en: "Brief progress", ar: "تقدّم الملخص" },
+    stepLabel: { en: "Step {n} of {total}", ar: "الخطوة {n} من {total}" },
+    // Step questions / legends
+    q1: { en: "What do you need?", ar: "ماذا تحتاج؟" },
+    q2budget: { en: "What's the scale?", ar: "ما حجم المشروع؟" },
+    q2timeline: { en: "When?", ar: "متى؟" },
+    q3: { en: "Where do we send the reply?", ar: "إلى أين نرسل الرد؟" },
+    // Field labels
+    name: { en: "Name", ar: "الاسم" },
+    phone: { en: "Phone", ar: "رقم الهاتف" },
+    email: { en: "Email", ar: "البريد الإلكتروني" },
+    message: { en: "Message", ar: "الرسالة" },
+    company: { en: "Company", ar: "اسم الشركة" },
+    source: { en: "How did you hear about us?", ar: "كيف سمعت عنا؟" },
+    optional: { en: "optional", ar: "اختياري" },
+    // Navigation
+    next: { en: "Next", ar: "التالي" },
+    back: { en: "Back", ar: "رجوع" },
+    send: { en: "Send my brief", ar: "أرسل ملخصي" },
+    sending: { en: "Sending…", ar: "جارٍ الإرسال…" },
+    addDetails: { en: "Add details (optional)", ar: "أضف تفاصيل (اختياري)" },
+    messageHint: {
+      en: "Tell us anything else about the project (optional)",
+      ar: "أخبرنا أي شيء آخر عن المشروع (اختياري)",
+    },
+    // Success
+    successHead: { en: "Brief received", ar: "تم استلام ملخصك" },
+    successBody: {
+      en: "We reply within one business day. For a faster response, message us on WhatsApp.",
+      ar: "نرد خلال يوم عمل واحد. للاستجابة الأسرع، راسلنا على واتساب.",
+    },
+    successWhatsApp: { en: "Message us on WhatsApp", ar: "راسلنا على واتساب" },
+    sendAnother: { en: "Send another brief", ar: "أرسل ملخصاً آخر" },
+    // Privacy — {privacyPolicy} is the linked text below
+    privacy: {
+      en: "We use your details to reply to this inquiry only. See our {privacyPolicy}.",
+      ar: "نستخدم تفاصيلك للرد على هذا الاستفسار فقط. اطّلع على {privacyPolicy}.",
+    },
+    privacyPolicy: { en: "Privacy Policy", ar: "سياسة الخصوصية" },
+  },
+  // Validation + error copy
+  validation: {
+    // Error summary heading (role=alert)
+    summary: { en: "Please fix the following:", ar: "يرجى تصحيح ما يلي:" },
+    name: { en: "Please enter your name.", ar: "يرجى إدخال اسمك." },
+    email: { en: "Please enter a valid email address.", ar: "يرجى إدخال بريد إلكتروني صحيح." },
+    phone: {
+      en: "Please enter a valid UAE phone number (e.g. +971 5X XXX XXXX).",
+      ar: "يرجى إدخال رقم هاتف إماراتي صحيح (مثال: ‎+971 5X XXX XXXX).",
+    },
+    required: { en: "Please make a selection.", ar: "يرجى الاختيار." },
+    // Network / server failure (§9.4)
+    send: {
+      en: "Something went wrong sending your brief. Please try again, or WhatsApp us directly.",
+      ar: "حدث خطأ أثناء إرسال ملخصك. يرجى المحاولة مرة أخرى، أو راسلنا مباشرة على واتساب.",
+    },
+    whatsappBailout: { en: "WhatsApp us directly", ar: "راسلنا مباشرة على واتساب" },
+    // Turnstile load failure
+    turnstile: {
+      en: "Security check couldn't load. Please refresh, or WhatsApp us directly.",
+      ar: "تعذّر تحميل فحص الأمان. يرجى تحديث الصفحة، أو راسلنا مباشرة على واتساب.",
     },
   },
   finalH2: { en: "Let's make something worth watching.", ar: "لنصنع شيئاً يستحق المشاهدة." },
