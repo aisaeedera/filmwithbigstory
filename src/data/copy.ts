@@ -7,6 +7,7 @@ export const ui = {
     services: { en: "Services", ar: "الخدمات" },
     serviceAreas: { en: "Service Areas", ar: "مناطق الخدمة" },
     about: { en: "About", ar: "من نحن" },
+    howWeWork: { en: "How we work", ar: "كيف نعمل" },
     contact: { en: "Contact", ar: "تواصل" },
     faqs: { en: "FAQs", ar: "الأسئلة الشائعة" },
     pricing: { en: "Pricing", ar: "الأسعار" },
@@ -109,12 +110,17 @@ export const home = {
   },
   howWeWork: {
     eyebrow: { en: "How we work", ar: "كيف نعمل" },
-    h2: { en: "From idea to finished film.", ar: "من الفكرة إلى الفيلم المكتمل." },
+    h2: { en: "The film is made before the camera turns on.", ar: "الفيلم يُصنع قبل أن تدور الكاميرا." },
+    lead: {
+      en: "Most of our work happens on paper: a treatment, a locked script, a shot list, a call sheet. By shoot day the surprises are gone. Here is the short version.",
+      ar: "معظم عملنا يحدث على الورق: معالجة ونص نهائي وقائمة لقطات وورقة نداء. بحلول يوم التصوير تختفي المفاجآت. وهذه النسخة المختصرة.",
+    },
+    ctaLabel: { en: "See how we work", ar: "اطّلع على كيفية عملنا" },
     steps: [
-      { n: "01", title: { en: "Discover the story", ar: "اكتشف القصة" }, body: { en: "We understand the brand, audience, offer and message before a word is written.", ar: "نفهم العلامة والجمهور والعرض والرسالة قبل كتابة كلمة." } },
-      { n: "02", title: { en: "Plan the production", ar: "خطّط للإنتاج" }, body: { en: "Script, mood board, storyboard, shot list, schedule and crew plan — nothing left to chance.", ar: "نص ولوحة مزاج وقصة مصورة وقائمة لقطات وجدول وخطة طاقم — لا شيء متروك للصدفة." } },
-      { n: "03", title: { en: "Shoot with intention", ar: "صوّر بقصد" }, body: { en: "Cinematic lighting, camera movement, sound and direction on a controlled set.", ar: "إضاءة سينمائية وحركة كاميرا وصوت وإخراج على موقع محكوم." } },
-      { n: "04", title: { en: "Deliver for every platform", ar: "سلّم لكل منصة" }, body: { en: "Hero film, social cut-downs, ads and website assets — campaign-ready exports.", ar: "فيلم رئيسي ونسخ سوشيال وإعلانات وأصول موقع — نسخ جاهزة للحملات." } },
+      { n: "01", title: { en: "Discovery", ar: "الاكتشاف" }, body: { en: "We find the real problem under the brief and write it in one sentence both sides sign.", ar: "نجد المشكلة الحقيقية تحت الإيجاز، ونكتبها في جملة واحدة يوقّع عليها الطرفان." } },
+      { n: "02", title: { en: "Concept & treatment", ar: "الفكرة والمعالجة" }, body: { en: "One idea, written into a treatment everyone can read and react to before a camera is booked.", ar: "فكرة واحدة تُكتب في معالجة يقرأها الجميع ويتفاعلون معها قبل حجز أي كاميرا." } },
+      { n: "03", title: { en: "Pre-production planning", ar: "التخطيط لما قبل الإنتاج" }, body: { en: "Locked script, storyboard, shot list, lighting plan, call sheet. The shoot is solved on paper first.", ar: "نص نهائي وقصة مصورة وقائمة لقطات وخطة إضاءة وورقة نداء. يُحلّ التصوير على الورق أولاً." } },
+      { n: "04", title: { en: "Production, post & delivery", ar: "التصوير وما بعد الإنتاج والتسليم" }, body: { en: "We shoot the plan, cut a version one with colour and graphics in it, and deliver masters in every format.", ar: "نصوّر الخطة، ونركّب نسخة أولى بالألوان والغرافيك، ونسلّم نسخاً بكل صيغة." } },
     ],
   },
   whyUs: {
