@@ -8,6 +8,8 @@ import { ui } from "@/data/copy";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { JsonLd, organizationSchema, websiteSchema } from "@/components/JsonLd";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const dynamicParams = false;
 
@@ -52,6 +54,8 @@ export default async function LocaleLayout({
         <Nav locale={loc} />
         <main id="main">{children}</main>
         <Footer locale={loc} />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
