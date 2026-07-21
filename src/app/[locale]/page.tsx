@@ -154,11 +154,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
       {/* MARQUEE */}
       <Marquee items={locale === "ar" ? [...home.marquee.ar] : [...home.marquee.en]} />
 
-      {/* HOW WE WORK */}
+      {/* HOW WE WORK — teaser for the dedicated /how-we-work page */}
       <Section alt>
         <Reveal>
           <Eyebrow>{t(home.howWeWork.eyebrow, locale)}</Eyebrow>
           <h2 className="mt-5 text-[clamp(2rem,4.5vw,3.25rem)]">{t(home.howWeWork.h2, locale)}</h2>
+          <p className="bs-lead mt-6 max-w-3xl text-[color:var(--color-muted)]">{t(home.howWeWork.lead, locale)}</p>
         </Reveal>
         <div className="mt-12 grid gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-4">
           {home.howWeWork.steps.map((s, i) => (
@@ -168,6 +169,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
               <p className="mt-3 text-sm text-[color:var(--color-muted)]">{t(s.body, locale)}</p>
             </Reveal>
           ))}
+        </div>
+        <div className="mt-10">
+          <Button href={localizedPath(locale, "/how-we-work")} variant="ghost">
+            {t(home.howWeWork.ctaLabel, locale)}
+          </Button>
         </div>
       </Section>
 

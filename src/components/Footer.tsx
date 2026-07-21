@@ -8,6 +8,7 @@ const explore = [
   { key: "work", path: "/work" },
   { key: "services", path: "/services" },
   { key: "about", path: "/about" },
+  { key: "howWeWork", path: "/how-we-work" },
   { key: "faqs", path: "/faqs" },
   { key: "careers", path: "/careers" },
   { key: "clients", path: "/clients" },
