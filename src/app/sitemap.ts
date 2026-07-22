@@ -16,6 +16,7 @@ const staticPaths: Entry[] = [
   { path: "/work", priority: 0.8, changefreq: "weekly" },
   { path: "/about", priority: 0.7, changefreq: "monthly" },
   { path: "/how-we-work", priority: 0.75, changefreq: "monthly" },
+  { path: "/real-estate-video-production-dubai", priority: 0.9, changefreq: "monthly" as const },
   { path: "/contact", priority: 0.9, changefreq: "monthly" },
   { path: "/service-areas", priority: 0.8, changefreq: "monthly" },
   { path: "/faqs", priority: 0.6, changefreq: "monthly" },
