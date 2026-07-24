@@ -5,6 +5,7 @@ export const ui = {
   nav: {
     work: { en: "Work", ar: "الأعمال" },
     services: { en: "Services", ar: "الخدمات" },
+    websiteServices: { en: "Web", ar: "ويب" },
     serviceAreas: { en: "Service Areas", ar: "مناطق الخدمة" },
     about: { en: "About", ar: "من نحن" },
     howWeWork: { en: "How we work", ar: "كيف نعمل" },

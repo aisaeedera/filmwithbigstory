@@ -12,6 +12,7 @@ type Entry = { path: string; priority: number; changefreq: MetadataRoute.Sitemap
 const staticPaths: Entry[] = [
   { path: "/", priority: 1.0, changefreq: "weekly" },
   { path: "/services", priority: 0.9, changefreq: "monthly" },
+  { path: "/website-services", priority: 0.9, changefreq: "monthly" },
   { path: "/pricing", priority: 0.85, changefreq: "monthly" },
   { path: "/work", priority: 0.8, changefreq: "weekly" },
   { path: "/about", priority: 0.7, changefreq: "monthly" },

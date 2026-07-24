@@ -7,6 +7,7 @@ import { SITE } from "@/lib/site";
 const explore = [
   { key: "work", path: "/work" },
   { key: "services", path: "/services" },
+  { key: "websiteServices", path: "/website-services" },
   { key: "about", path: "/about" },
   { key: "howWeWork", path: "/how-we-work" },
   { key: "faqs", path: "/faqs" },
