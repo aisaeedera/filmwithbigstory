@@ -42,3 +42,28 @@ export function waLink(context?: string): string {
 }
 
 export const waBriefLink = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(WA_BRIEF_TEMPLATE)}`;
+
+// State-aware WhatsApp deep-link — pre-fills the selections the user has made
+// so far (service / budget / timeline) so nothing is lost if they bail to
+// WhatsApp mid-brief. Falls back to the static template when nothing is chosen.
+// Per adaptation spec §7.2.
+export function waBriefLinkFromState(state?: {
+  service?: string;
+  budget?: string;
+  timeline?: string;
+}): string {
+  if (!state || (!state.service && !state.budget && !state.timeline)) {
+    return waBriefLink;
+  }
+  const lines = [
+    "Hi Big Story, I'd like to start a project.",
+    "",
+    state.service ? `Project type: ${state.service}` : "Project type:",
+    state.budget ? `Budget: ${state.budget}` : "Budget:",
+    state.timeline ? `Timeline: ${state.timeline}` : "Timeline:",
+    "",
+    "Name:",
+    "About the project:",
+  ];
+  return `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
+}

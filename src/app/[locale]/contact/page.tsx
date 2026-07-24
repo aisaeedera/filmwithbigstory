@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { type Locale, t } from "@/lib/i18n";
 import { pageMeta } from "@/lib/meta";
 import { contact as c, ui } from "@/data/copy";
-import { SITE, waBriefLink } from "@/lib/site";
-import { Section, Eyebrow, Button } from "@/components/primitives";
+import { SITE } from "@/lib/site";
+import { Section, Eyebrow } from "@/components/primitives";
 import Reveal from "@/components/Reveal";
-import ContactForm from "@/components/ContactForm";
+import ContactBriefSection from "@/components/ContactBriefSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { JsonLd, breadcrumbSchema, localBusinessSchema } from "@/components/JsonLd";
 
@@ -18,7 +18,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   const { locale } = await params;
 
   const cards = [
-    { tag: t(c.cards.email.tag, locale), value: SITE.email, body: t(c.cards.email.body, locale), href: `mailto:${SITE.email}` },
+    { tag: t(c.cards.email.tag, locale), value: SITE.email, body: t(c.cards.email.body, locale), href: `mailto:${SITE.email}?subject=Project%20brief` },
     { tag: t(c.cards.whatsapp.tag, locale), value: SITE.phone, body: t(c.cards.whatsapp.body, locale), href: `https://wa.me/${SITE.whatsapp}` },
     { tag: t(c.cards.studio.tag, locale), value: t(c.cards.studio.value, locale), body: t(c.cards.studio.body, locale), href: undefined },
   ];
@@ -65,20 +65,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
       </Section>
 
       <Section alt>
-        <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr]">
-          <Reveal>
-            <Eyebrow>{t(c.brief.eyebrow, locale)}</Eyebrow>
-            <h2 className="mt-5 text-[clamp(1.9rem,4vw,2.75rem)]">{t(c.brief.h2, locale)}</h2>
-            <p className="bs-lead mt-6 !max-w-none">{t(c.brief.lead, locale)}</p>
-            <div className="mt-8">
-              <Button href={waBriefLink} variant="gold" external>{t(ui.ctaWhatsApp, locale)}</Button>
-            </div>
-            <p className="mt-6 text-sm text-[color:var(--color-muted)]">{t(ui.speedPromise, locale)}</p>
-          </Reveal>
-          <Reveal delay={100}>
-            <ContactForm locale={locale} />
-          </Reveal>
-        </div>
+        <ContactBriefSection locale={locale} />
       </Section>
     </>
   );
