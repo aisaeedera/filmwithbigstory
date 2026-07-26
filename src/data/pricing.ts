@@ -38,6 +38,12 @@ export type PricingModule = {
   unit: PriceUnit;
   /** Full description shown in the module modal. */
   desc?: L;
+  /**
+   * When true, the module is kept in the catalogue (data intact) but hidden
+   * from all public pricing rendering: the tool tables, the quote map, and
+   * the OfferCatalog schema. Saeed can flip it back off to re-surface later.
+   */
+  hidden?: boolean;
 };
 
 export type PricingCategory = {
@@ -52,6 +58,47 @@ export type PricingCategory = {
 };
 
 export const pricing: PricingCategory[] = [
+  {
+    id: "solution_packages",
+    name: { en: "Solution Packages", ar: "باقات الحلول" },
+    blurb: {
+      en: "Three fixed-scope solutions for the most common moments — refreshing an established brand, launching a new product, or starting a brand from scratch. Each is a starting price; we scope to your brief.",
+      ar: "ثلاث باقات بنطاق ثابت لأهم اللحظات — تجديد علامة قائمة، إطلاق منتج جديد، أو بناء علامة من الصفر. كل باقة سعر بداية؛ نُحدّد النطاق حسب موجزك.",
+    },
+    modular: false,
+    modules: [
+      {
+        id: "pkg_company_revamp",
+        name: { en: "Company Media Revamp", ar: "تجديد الصورة الإعلامية للشركة" },
+        price: 18000,
+        unit: "from",
+        desc: {
+          en: "For established companies (3+ years) whose existing website, photos and videos no longer reflect the brand. 4 weeks from kickoff. Includes brand audit + competitive review, new visual identity direction, full photoshoot (1–2 days, 100–150 final images), 1 hero brand film (60–90s), 5 short social videos, website refresh (5–7 key pages), updated GMB profile (photos + posts) and a brand guidelines document (lite). Add-ons: extra shoot day AED 3,500 · extra video AED 3,000 · brochure combined AED 1,500 · extra website page AED 500. Example: real estate companies upgrading listings; medical practices refreshing patient-facing brand.",
+          ar: "للشركات القائمة (+3 سنوات) التي لم يعد موقعها وصورها وفيديوهاتها يعكس علامتها. 4 أسابيع من الانطلاق. يشمل تدقيق العلامة ومراجعة المنافسين، واتجاه هوية بصرية جديد، وتصوير كامل (1–2 يوم، 100–150 صورة نهائية)، وفيلم علامة رئيسي واحد (60–90 ثانية)، و5 فيديوهات سوشيال قصيرة، وتجديد الموقع (5–7 صفحات رئيسية)، وتحديث الملف التجاري (صور + منشورات)، ووثيقة إرشادات العلامة (مبسطة). الإضافات: يوم تصوير إضافي 3,500 درهم · فيديو إضافي 3,000 درهم · بروشور طباعة+رقمي 1,500 درهم · صفحة موقع إضافية 500 درهم. أمثلة: شركات عقارية تحدّث قوائمها؛ عيادات طبية تجدد علامتها أمام المرضى.",
+        },
+      },
+      {
+        id: "pkg_product_launch",
+        name: { en: "New Product Launch", ar: "إطلاق منتج جديد" },
+        price: 12000,
+        unit: "from",
+        desc: {
+          en: "For companies launching a specific new product or service that needs its own dedicated campaign. 3 weeks from kickoff. Includes product photoshoot (40–80 final images, hero + lifestyle), 1 TVC-grade hero video (30–60s), 3 social cut variations (15–30s each), a landing or product page on your website, 5 social posts with EN + AR captions, an email announcement template and 3 paid-ad creative variations. Add-ons: extra SKU AED 2,500 · Arabic voiceover AED 1,500 · influencer UGC coordination AED 3,500. Example: F&B menu item launch; SaaS feature announcement; automotive new model; real estate new development.",
+          ar: "للشركات التي تُطلق منتجاً أو خدمة محددة تحتاج حملتها الخاصة. 3 أسابيع من الانطلاق. يشمل تصوير المنتج (40–80 صورة نهائية، رئيسية ولايف ستايل)، وفيديو إعلاني رئيسي واحد (30–60 ثانية)، و3 نسخ سوشيال (15–30 ثانية لكل منها)، وصفحة هبوط أو منتج على موقعك، و5 منشورات سوشيال بنصوص EN + AR، وقالب إعلان بريدي، و3 نسخ إبداعية للمدفوع. الإضافات: SKU إضافي 2,500 درهم · تعليق عربي 1,500 درهم · تنسيق UGC مع مؤثرين 3,500 درهم. أمثلة: إطلاق عنصر قائمة في مطعم؛ إعلان ميزة في SaaS؛ طراز سيارات جديد؛ تطوير عقاري جديد.",
+        },
+      },
+      {
+        id: "pkg_new_company",
+        name: { en: "New Company Launch", ar: "إطلاق شركة جديدة" },
+        price: 22000,
+        unit: "from",
+        desc: {
+          en: "For new companies (0–12 months old) that need everything from scratch. 6 weeks from kickoff. Includes brand foundation (logo + identity + guidelines), a 5-page bilingual website (EN/AR), GMB profile setup with 50 photos and 2 videos, 2 brand videos (60s + 30s), 100+ product/service photos, 1 hero photo session for the website, brochure (digital), a 30-day launch content calendar and social profile setup with first 10 posts. Add-ons: extra brand videos AED 4,000 · podcast launch (3 episodes) AED 4,500 · first month content management AED 3,500. Example: restaurant grand opening; new consultancy launch; new retail brand launch; new service business launch.",
+          ar: "للشركات الجديدة (0–12 شهراً) التي تحتاج كل شيء من الصفر. 6 أسابيع من الانطلاق. يشمل أساس العلامة (شعار + هوية + إرشادات)، وموقع ثنائي اللغة من 5 صفحات (EN/AR)، وإعداد الملف التجاري مع 50 صورة وفيديوهان، وفيديوهان تعريفيان (60 ثانية + 30 ثانية)، و+100 صورة منتج/خدمة، وجلسة تصوير رئيسية واحدة للموقع، وبروشور (رقمي)، و30 يوماً من تقويم محتوى الإطلاق، وإعداد حسابات السوشيال مع أول 10 منشورات. الإضافات: فيديوهات علامة إضافية 4,000 درهم · إطلاق بودكاست (3 حلقات) 4,500 درهم · إدارة محتوى الشهر الأول 3,500 درهم. أمثلة: افتتاح مطعم؛ إطلاق شركة استشارية جديدة؛ إطلاق علامة تجزئة جديدة؛ إطلاق شركة خدمات جديدة.",
+        },
+      },
+    ],
+  },
   {
     id: "big_story_services",
     name: { en: "Film & Video Production", ar: "إنتاج الأفلام والفيديو" },
@@ -150,6 +197,7 @@ export const pricing: PricingCategory[] = [
           en: "Print-ready three-panel brochure design, laid out for a standard tri-fold format.",
           ar: "تصميم بروشور من ثلاث لوحات جاهز للطباعة بتنسيق ثلاثي الطي القياسي.",
         },
+        hidden: true,
       },
       {
         id: "brochure_design_bi_fold",
@@ -160,6 +208,7 @@ export const pricing: PricingCategory[] = [
           en: "Print-ready two-panel brochure design with more room for imagery and copy.",
           ar: "تصميم بروشور من لوحتين جاهز للطباعة مع مساحة أكبر للصور والنصوص.",
         },
+        hidden: true,
       },
       {
         id: "brochure_design_digital",
@@ -170,6 +219,7 @@ export const pricing: PricingCategory[] = [
           en: "A screen-first, shareable PDF brochure optimised for email and web.",
           ar: "بروشور PDF قابل للمشاركة مصمم للشاشة ومهيأ للبريد والويب.",
         },
+        hidden: true,
       },
       {
         id: "brochure_design_pitch_deck",
@@ -180,6 +230,7 @@ export const pricing: PricingCategory[] = [
           en: "An investor- or client-ready pitch deck — designed slides that carry a clear narrative.",
           ar: "عرض تقديمي جاهز للمستثمرين أو العملاء — شرائح مصممة تحمل سرداً واضحاً.",
         },
+        hidden: true,
       },
       {
         id: "print_short_run",
@@ -190,6 +241,7 @@ export const pricing: PricingCategory[] = [
           en: "Short-run physical printing, priced per copy. Final price depends on stock, finish and quantity.",
           ar: "طباعة ورقية بكميات صغيرة، بسعر للنسخة. يعتمد السعر النهائي على نوع الورق والتشطيب والكمية.",
         },
+        hidden: true,
       },
       {
         id: "brochure_print_pkg",
@@ -200,6 +252,7 @@ export const pricing: PricingCategory[] = [
           en: "Design-plus-print bundle for a printed brochure run.",
           ar: "باقة تصميم مع طباعة لدفعة بروشور مطبوعة.",
         },
+        hidden: true,
       },
       {
         id: "brochure_digital_pkg",
@@ -210,6 +263,7 @@ export const pricing: PricingCategory[] = [
           en: "Design bundle for a digital-only brochure.",
           ar: "باقة تصميم لبروشور رقمي فقط.",
         },
+        hidden: true,
       },
       {
         id: "brochure_combined_pkg",
@@ -220,6 +274,7 @@ export const pricing: PricingCategory[] = [
           en: "Combined package covering both a printed and a digital version of your brochure.",
           ar: "باقة مجمّعة تشمل نسخة مطبوعة وأخرى رقمية من البروشور.",
         },
+        hidden: true,
       },
     ],
   },
@@ -1001,47 +1056,6 @@ export const pricing: PricingCategory[] = [
         desc: {
           en: "12h analyst review + 4 blog posts/month: ranking report, on-page audit (10 pages/month), 3-page priority doc, schema/technical fixes, bi-weekly calls.",
           ar: "12 ساعة مراجعة محلّل + 4 مقالات/شهرياً: تقرير التصنيفات، تدقيق 10 صفحات/شهر، وثيقة أولويات 3 صفحات، إصلاحات schema/تقنية، مكالمات نصف شهرية.",
-        },
-      },
-    ],
-  },
-  {
-    id: "solution_packages",
-    name: { en: "Solution Packages", ar: "باقات الحلول" },
-    blurb: {
-      en: "Three fixed-scope solutions for the most common moments — refreshing an established brand, launching a new product, or starting a brand from scratch. Each is a starting price; we scope to your brief.",
-      ar: "ثلاث باقات بنطاق ثابت لأهم اللحظات — تجديد علامة قائمة، إطلاق منتج جديد، أو بناء علامة من الصفر. كل باقة سعر بداية؛ نُحدّد النطاق حسب موجزك.",
-    },
-    modular: false,
-    modules: [
-      {
-        id: "pkg_company_revamp",
-        name: { en: "Company Media Revamp", ar: "تجديد الصورة الإعلامية للشركة" },
-        price: 18000,
-        unit: "from",
-        desc: {
-          en: "For established companies (3+ years) whose existing website, photos and videos no longer reflect the brand. 4 weeks from kickoff. Includes brand audit + competitive review, new visual identity direction, full photoshoot (1–2 days, 100–150 final images), 1 hero brand film (60–90s), 5 short social videos, website refresh (5–7 key pages), updated GMB profile (photos + posts) and a brand guidelines document (lite). Add-ons: extra shoot day AED 3,500 · extra video AED 3,000 · brochure combined AED 1,500 · extra website page AED 500. Example: real estate companies upgrading listings; medical practices refreshing patient-facing brand.",
-          ar: "للشركات القائمة (+3 سنوات) التي لم يعد موقعها وصورها وفيديوهاتها يعكس علامتها. 4 أسابيع من الانطلاق. يشمل تدقيق العلامة ومراجعة المنافسين، واتجاه هوية بصرية جديد، وتصوير كامل (1–2 يوم، 100–150 صورة نهائية)، وفيلم علامة رئيسي واحد (60–90 ثانية)، و5 فيديوهات سوشيال قصيرة، وتجديد الموقع (5–7 صفحات رئيسية)، وتحديث الملف التجاري (صور + منشورات)، ووثيقة إرشادات العلامة (مبسطة). الإضافات: يوم تصوير إضافي 3,500 درهم · فيديو إضافي 3,000 درهم · بروشور طباعة+رقمي 1,500 درهم · صفحة موقع إضافية 500 درهم. أمثلة: شركات عقارية تحدّث قوائمها؛ عيادات طبية تجدد علامتها أمام المرضى.",
-        },
-      },
-      {
-        id: "pkg_product_launch",
-        name: { en: "New Product Launch", ar: "إطلاق منتج جديد" },
-        price: 12000,
-        unit: "from",
-        desc: {
-          en: "For companies launching a specific new product or service that needs its own dedicated campaign. 3 weeks from kickoff. Includes product photoshoot (40–80 final images, hero + lifestyle), 1 TVC-grade hero video (30–60s), 3 social cut variations (15–30s each), a landing or product page on your website, 5 social posts with EN + AR captions, an email announcement template and 3 paid-ad creative variations. Add-ons: extra SKU AED 2,500 · Arabic voiceover AED 1,500 · influencer UGC coordination AED 3,500. Example: F&B menu item launch; SaaS feature announcement; automotive new model; real estate new development.",
-          ar: "للشركات التي تُطلق منتجاً أو خدمة محددة تحتاج حملتها الخاصة. 3 أسابيع من الانطلاق. يشمل تصوير المنتج (40–80 صورة نهائية، رئيسية ولايف ستايل)، وفيديو إعلاني رئيسي واحد (30–60 ثانية)، و3 نسخ سوشيال (15–30 ثانية لكل منها)، وصفحة هبوط أو منتج على موقعك، و5 منشورات سوشيال بنصوص EN + AR، وقالب إعلان بريدي، و3 نسخ إبداعية للمدفوع. الإضافات: SKU إضافي 2,500 درهم · تعليق عربي 1,500 درهم · تنسيق UGC مع مؤثرين 3,500 درهم. أمثلة: إطلاق عنصر قائمة في مطعم؛ إعلان ميزة في SaaS؛ طراز سيارات جديد؛ تطوير عقاري جديد.",
-        },
-      },
-      {
-        id: "pkg_new_company",
-        name: { en: "New Company Launch", ar: "إطلاق شركة جديدة" },
-        price: 22000,
-        unit: "from",
-        desc: {
-          en: "For new companies (0–12 months old) that need everything from scratch. 6 weeks from kickoff. Includes brand foundation (logo + identity + guidelines), a 5-page bilingual website (EN/AR), GMB profile setup with 50 photos and 2 videos, 2 brand videos (60s + 30s), 100+ product/service photos, 1 hero photo session for the website, brochure (digital), a 30-day launch content calendar and social profile setup with first 10 posts. Add-ons: extra brand videos AED 4,000 · podcast launch (3 episodes) AED 4,500 · first month content management AED 3,500. Example: restaurant grand opening; new consultancy launch; new retail brand launch; new service business launch.",
-          ar: "للشركات الجديدة (0–12 شهراً) التي تحتاج كل شيء من الصفر. 6 أسابيع من الانطلاق. يشمل أساس العلامة (شعار + هوية + إرشادات)، وموقع ثنائي اللغة من 5 صفحات (EN/AR)، وإعداد الملف التجاري مع 50 صورة وفيديوهان، وفيديوهان تعريفيان (60 ثانية + 30 ثانية)، و+100 صورة منتج/خدمة، وجلسة تصوير رئيسية واحدة للموقع، وبروشور (رقمي)، و30 يوماً من تقويم محتوى الإطلاق، وإعداد حسابات السوشيال مع أول 10 منشورات. الإضافات: فيديوهات علامة إضافية 4,000 درهم · إطلاق بودكاست (3 حلقات) 4,500 درهم · إدارة محتوى الشهر الأول 3,500 درهم. أمثلة: افتتاح مطعم؛ إطلاق شركة استشارية جديدة؛ إطلاق علامة تجزئة جديدة؛ إطلاق شركة خدمات جديدة.",
         },
       },
     ],

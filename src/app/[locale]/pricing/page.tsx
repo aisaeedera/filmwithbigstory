@@ -28,7 +28,7 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
     path: "/pricing",
     categories: pricing.map((cat) => ({
       name: t(cat.name, locale),
-      offers: cat.modules.map((m) => ({ name: t(m.name, locale), price: m.price, from: m.unit === "from" })),
+      offers: cat.modules.filter((m) => !m.hidden).map((m) => ({ name: t(m.name, locale), price: m.price, from: m.unit === "from" })),
     })),
   });
 

@@ -102,7 +102,7 @@ function Modal({
 /* ---- main tool ---- */
 
 const allModules: Record<string, PricingModule> = Object.fromEntries(
-  pricing.flatMap((cat) => cat.modules.map((m) => [m.id, m]))
+  pricing.flatMap((cat) => cat.modules.filter((m) => !m.hidden).map((m) => [m.id, m]))
 );
 
 export default function PricingTool({ locale }: { locale: Locale }) {
@@ -209,7 +209,7 @@ export default function PricingTool({ locale }: { locale: Locale }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {cat.modules.map((m) => {
+                  {cat.modules.filter((m) => !m.hidden).map((m) => {
                     const n = qty[m.id] ?? 0;
                     return (
                       <tr

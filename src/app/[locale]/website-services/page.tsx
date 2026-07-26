@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { type Locale, localizedPath, t } from "@/lib/i18n";
 import { pageMeta } from "@/lib/meta";
 import { ui } from "@/data/copy";
@@ -7,6 +8,7 @@ import { Section, Eyebrow, Button } from "@/components/primitives";
 import Reveal from "@/components/Reveal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { JsonLd, breadcrumbSchema, serviceSchema, faqSchema } from "@/components/JsonLd";
+import { webServices } from "@/data/web-services";
 
 /* ---- Page copy (English primary, Arabic mirrors) ---- */
 const copy = {
@@ -54,31 +56,22 @@ const copy = {
     eyebrow: { en: "Our process", ar: "عمليتنا" },
     h2: { en: "How it works", ar: "كيف يعمل" },
     steps: [
-      { en: "Source and qualify the lead", ar: "تحديد المؤهل للعميل" },
-      { en: "Audit the current website for ranking, design, mobile, speed, and conversion", ar: "تدقيق الموقع الحالي للترتيب والتصميم والجوال والسرعة والتحويل" },
-      { en: "Get initial written permission from the client", ar: "الحصول على إذن كتابي مبدئي من العميل" },
-      { en: "Research the business, industry, competitors, and buyer psychology", ar: "البحث في العمل والصناعة والمنافسين وعلم نفس المشتري" },
-      { en: "Design the homepage concept directly in code", ar: "تصميم مفهوم الصفحة الرئيسية مباشرة في الكود" },
-      { en: "Big Story runs internal visual QA", ar: "بيك ستوري يجري ضمان جودة بصري داخلي" },
-      { en: "Share a live Vercel preview with the client", ar: "مشاركة معاينة Vercel مباشرة مع العميل" },
-      { en: "Client reviews and comments", ar: "العميل يراجع ويعلق" },
-      { en: "Develop remaining pages after approval, then full QA", ar: "تطوير الصفحات المتبقية بعد الموافقة، ثم ضمان جودة كامل" },
-      { en: "Client buys only if happy. Deploy after agreement.", ar: "العميل يشتري فقط إذا كان راضياً. النشر بعد الاتفاق." },
+      { en: "You approve a free homepage concept, with no payment.", ar: "توافق على مفهوم مجاني للصفحة الرئيسية، دون أي دفع." },
+      { en: "We research your business, your competitors, and your buyers.", ar: "نبحث في عملك ومنافسيك وعملائك." },
+      { en: "We design three homepage directions directly in code.", ar: "نصمم ثلاثة اتجاهات للصفحة الرئيسية مباشرة في الكود." },
+      { en: "You review the live preview and pick the one you want.", ar: "تراجع المعاينة المباشرة وتختار الاتجاه الذي تريده." },
+      { en: "We develop the full site with your feedback.", ar: "نطور الموقع الكامل مع ملاحظاتك." },
+      { en: "We run quality checks and launch on your domain.", ar: "نجري فحوصات الجودة ونطلق الموقع على نطاقك." },
     ],
   },
   services: {
     eyebrow: { en: "What we deliver", ar: "ما نقدمه" },
     h2: { en: "Services", ar: "الخدمات" },
-    items: [
-      { en: "Strategy and research", ar: "الاستراتيجية والبحث" },
-      { en: "Homepage concept design", ar: "تصميم مفهوم الصفحة الرئيسية" },
-      { en: "Full website development", ar: "تطوير موقع كامل" },
-      { en: "Mobile UX optimization", ar: "تحسين تجربة المستخدم على الجوال" },
-      { en: "SEO and local search", ar: "تحسين محركات البحث والبحث المحلي" },
-      { en: "Core Web Vitals and performance", ar: "مؤشرات الويب الأساسية والأداء" },
-      { en: "Conversion optimization", ar: "تحسين التحويل" },
-      { en: "Quality assurance and launch", ar: "ضمان الجودة والإطلاق" },
-    ],
+    lead: {
+      en: "Each service below has its own page, written for Dubai search and Dubai buyers. Explore any of them to see how we approach it, what you get, and the questions buyers ask.",
+      ar: "لكل خدمة أدناه صفحتها الخاصة، مكتوبة لبحث دبي ومشتري دبي. استكشف أي منها لترى كيف نتعامل معها، وما تحصل عليه، والأسئلة التي يطرحها المشترون.",
+    },
+    learnMore: { en: "Learn more", ar: "اعرف المزيد" },
   },
   industries: {
     eyebrow: { en: "Who we build for", ar: "لمن نبني" },
@@ -240,14 +233,25 @@ export default async function WebsiteServicesPage({ params }: { params: Promise<
         <Reveal>
           <Eyebrow>{t(copy.services.eyebrow, locale)}</Eyebrow>
           <h2 className="mt-5 text-[clamp(2rem,4.5vw,3.25rem)]">{t(copy.services.h2, locale)}</h2>
+          <p className="bs-lead mt-6 !max-w-2xl">{t(copy.services.lead, locale)}</p>
         </Reveal>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {copy.services.items.map((item, i) => (
-            <Reveal key={i} delay={(i % 4) * 50} className="bs-card">
-              <div className="flex items-start gap-3">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--color-gold)]" aria-hidden="true" />
-                <p className="text-sm leading-relaxed text-[color:var(--color-ink)]">{t(item, locale)}</p>
-              </div>
+          {webServices.map((svc, i) => (
+            <Reveal as="div" key={svc.slug} delay={(i % 4) * 50}>
+              <Link
+                href={localizedPath(locale, `/website-services/${svc.slug}`)}
+                className="bs-card bs-card-hover flex h-full flex-col"
+              >
+                <span className="bs-num">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="mt-4 text-lg leading-snug">{t(svc.breadcrumb, locale)}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-[color:var(--color-muted)]">
+                  {t(svc.meta.description, locale)}
+                </p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm text-[color:var(--color-gold)]">
+                  {t(copy.services.learnMore, locale)}
+                  <span aria-hidden="true">→</span>
+                </span>
+              </Link>
             </Reveal>
           ))}
         </div>
