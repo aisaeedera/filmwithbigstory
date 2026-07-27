@@ -144,6 +144,62 @@ export default async function CareersPage({ params }: { params: Promise<{ locale
         </Reveal>
       </Section>
 
+      <Section id="apply-wedding" className="!bg-[color:var(--color-bg)]">
+        <Reveal>
+          <div className="grid items-end gap-8 lg:grid-cols-[minmax(0,1fr)_260px]">
+            <div>
+              <Eyebrow>{isAr ? "طاقم الأعراس · منفصل" : "Wedding Production Crew · Separate"}</Eyebrow>
+              <h2 className="mt-6 text-[clamp(2rem,4vw,3.4rem)]">{isAr ? "طاقم أعراس إماراتي، منفصل تماماً." : "Emirati wedding production crew, kept separate."}</h2>
+              <p className="bs-lead mt-6 !max-w-3xl">{isAr ? "هذه السجلات مخصصة فقط لطاقم أعراس إماراتي وتُدار بنموذجين منفصلين. إن لم تكن مهتماً بأعراس الإمارات، استخدم النموذج العام أعلاه. التقديم لا يعني حجزاً ولا توظيفاً دائماً." : "These rosters are specifically for Emirati wedding production crews and run as two separate forms. If you are not interested in working weddings in the UAE, use the general roster above. Applying is not a confirmed booking, nor permanent employment."}</p>
+            </div>
+            <div className="border-s border-[color:var(--color-gold)] ps-6">
+              <p className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.14em] text-[color:var(--color-gold)]">{isAr ? "نموذجان منفصلان" : "Two separate forms"}</p>
+              <p className="mt-3 text-sm text-[color:var(--color-muted)]">{isAr ? "نموذج للرجال والعام، ونموذج نسائي مستقل." : "One form for male/general crew, one for female-only crew."}</p>
+            </div>
+          </div>
+
+          <div className="mt-12 grid gap-5 md:grid-cols-2">
+            <article className="bs-card flex h-full flex-col gap-6 border-t-2 border-t-[color:var(--color-gold)]/0">
+              <div>
+                <p className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.14em] text-[color:var(--color-gold)]">{isAr ? "نموذج ٠١" : "Form 01"}</p>
+                <h3 className="mt-3 text-2xl md:text-3xl">{isAr ? "طاقم الأعراس للرجال / العام" : "Male / General Wedding Crew"}</h3>
+                <p className="mt-3 text-sm text-[color:var(--color-muted)]">{isAr ? "للرجال والطاقم العام في الإمارات. يستقبل التصوير والإضاءة والصوت والتنسيق والمنتجين والمصورين والمونتيرات ومساعدي الإنتاج وما شابه ذلك." : "For male and general UAE-based wedding production crew: camera operators, lighting, sound, runners, producers, photographers, editors, assistant directors and similar production roles."}</p>
+              </div>
+              <p className="mt-auto text-xs text-[color:var(--color-muted)]">{isAr ? "نموذج عام، لا حاجة لتسجيل دخول." : "Public form, no sign-in required to fill it in."}</p>
+              <a
+                href={SITE.careersFormWeddingMale}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={isAr ? "افتح نموذج طاقم أعراس الرجال، يفتح في تبويب جديد" : "Open the male / general wedding crew application form, opens in a new tab"}
+                className="bs-btn bs-btn-gold w-full"
+              >
+                {isAr ? "قدّم كطاقم أعراس عام" : "Apply as male / general wedding crew"}
+              </a>
+            </article>
+
+            <article className="bs-card flex h-full flex-col gap-6 border-t-2 border-t-[color:var(--color-gold)]/0" style={{ borderTopColor: "var(--color-gold)" }}>
+              <div>
+                <p className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.14em] text-[color:var(--color-gold)]">{isAr ? "نموذج ٠٢" : "Form 02"}</p>
+                <h3 className="mt-3 text-2xl md:text-3xl">{isAr ? "طاقم الأعراس النسائي فقط" : "Female-Only Wedding Crew"}</h3>
+                <p className="mt-3 text-sm text-[color:var(--color-muted)]">{isAr ? "للإناث في الإمارات فقط، منفصل تماماً عن نموذج الرجال. يستقبل نفس أدوار الإنتاج لمصوّرات ومنتجات وفنيات صوت وصورة على الأعراس النسائية." : "For UAE-based female crew only, kept entirely separate from the male roster. Covers the same production roles (camera, lighting, sound, runners, producers, editors) specifically for female-only wedding productions."}</p>
+              </div>
+              <p className="mt-auto text-xs text-[color:var(--color-muted)]">{isAr ? "نموذج نسائي مستقل، لا حاجة لتسجيل دخول." : "Independent female-only form, no sign-in required to fill it in."}</p>
+              <a
+                href={SITE.careersFormWeddingFemale}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={isAr ? "افتح نموذج طاقم أعراس نسائي فقط، يفتح في تبويب جديد" : "Open the female-only wedding crew application form, opens in a new tab"}
+                className="bs-btn bs-btn-gold w-full"
+              >
+                {isAr ? "قدّم كطاقم أعراس نسائي فقط" : "Apply as female-only wedding crew"}
+              </a>
+            </article>
+          </div>
+
+          <p className="mt-8 max-w-3xl text-sm text-[color:var(--color-muted)]">{isAr ? "يبني فريق بيك ستوري سجلات موثوقة للمواهب الحرة في الإمارات. التقديم لأي من النموذجين لا يضمن توظيفاً ولا حجزاً، ونتواصل مع المستقلين المناسبين مشروعاً تلو الآخر." : "Big Story is gradually building trusted freelance rosters across the UAE. Applying to either wedding form is not a confirmed booking and does not imply permanent employment. We reach out only when a project, shoot or backup call matches the freelancer in question."}</p>
+        </Reveal>
+      </Section>
+
       <Section alt>
         <Eyebrow>{isAr ? "أسئلة شائعة" : "FAQ"}</Eyebrow>
         <div className="mt-8 divide-y divide-[color:var(--color-line)] border-y border-[color:var(--color-line)]">{faqItems.map((item) => <details key={item.q} className="py-5"><summary className="cursor-pointer font-medium">{item.q}</summary><p className="mt-3 max-w-3xl text-[color:var(--color-muted)]">{item.a}</p></details>)}</div>

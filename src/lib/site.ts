@@ -16,6 +16,15 @@ export const SITE = {
   // Google sign-in because it has a file-upload question (portfolio/reel/CV).
   careersForm:
     "https://docs.google.com/forms/d/e/1FAIpQLSdvtBTHSBilw_ghQcgI7y0sACAbcsZhrmu7MlyVzPmWUr2Ueg/viewform",
+  // Wedding production crew rosters — kept SEPARATE from the general
+  // freelance form (careersForm). The general form is for camera/production/post
+  // + on-screen talent across TVC, real estate, brand, etc. The wedding forms
+  // are for Emirati wedding production crews split by male/general vs female-only.
+  // These are public Google Forms — no mandatory sign-in to fill them out.
+  careersFormWeddingMale:
+    "https://docs.google.com/forms/d/e/1FAIpQLSeUyLFHd24LJ47yFFmVOFOSCRmxPGIoXsdsUbm2snGwvarzxQ/viewform",
+  careersFormWeddingFemale:
+    "https://docs.google.com/forms/d/e/1FAIpQLSevpxaQcihkpUKctfmNtcJd7pC1tYacl-sfRrGYON0bZIO_NQ/viewform",
   social: {
     instagram: "https://instagram.com/filmwithbigstory",
     instagramRed: "https://instagram.com/bigstory_red_rentals",
