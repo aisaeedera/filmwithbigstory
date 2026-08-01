@@ -142,7 +142,7 @@ export default async function CinematographyDubaiPage({ params }: { params: Prom
         data={[
           breadcrumbSchema(locale, [
             { name: t(ui.breadcrumb.home, locale), path: "/" },
-            { name: t(ui.nav.services, locale), path: "/services" },
+            { name: t(ui.nav.mediaProduction, locale), path: "/media-production" },
             { name: t(COPY.h1, locale), path },
           ]),
           articleSchema({
@@ -172,7 +172,7 @@ export default async function CinematographyDubaiPage({ params }: { params: Prom
           locale={locale}
           items={[
             { name: t(ui.breadcrumb.home, locale), path: "/" },
-            { name: t(ui.nav.services, locale), path: "/services" },
+            { name: t(ui.nav.mediaProduction, locale), path: "/media-production" },
             { name: t(COPY.h1, locale) },
           ]}
         />

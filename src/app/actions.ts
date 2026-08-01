@@ -3,7 +3,13 @@
 import { SITE } from "@/lib/site";
 import { isLocale, type Locale } from "@/lib/i18n";
 import { contact } from "@/data/copy";
-import { MAX, validateBrief, type BriefFieldError } from "@/lib/contact";
+import {
+  MAX,
+  validateBrief,
+  validateMediaInquiry,
+  type BriefFieldError,
+  type MediaInquiryFieldError,
+} from "@/lib/contact";
 
 export type FieldErrors = Partial<Record<BriefFieldError, string>>;
 
@@ -60,6 +66,93 @@ async function verifyTurnstile(token: string, secret: string, ip?: string): Prom
   } catch {
     return false;
   }
+}
+
+/* ------------------------------------------------------------------ */
+/* Shared durable delivery                                             */
+/*                                                                     */
+/* Extracted verbatim from submitBrief so the media production inquiry */
+/* reuses the SAME proven rails rather than inventing a new endpoint.  */
+/* No URL here is new: Resend plus the two env-configured webhooks.    */
+/* ------------------------------------------------------------------ */
+
+type DeliveryOutcome = "delivered" | "no-rail" | "failed";
+
+async function deliverLead(opts: {
+  subject: string;
+  summary: string;
+  replyTo?: string;
+  payload: Record<string, unknown>;
+  /** Short tag used in server logs only. */
+  tag: string;
+}): Promise<DeliveryOutcome> {
+  const resendKey = process.env.RESEND_API_KEY;
+  const inbox = process.env.LEAD_INBOX || SITE.email;
+  const webhookUrl = process.env.LEAD_WEBHOOK_URL;
+  const crmUrl = process.env.CRM_WEBHOOK_URL;
+
+  const attempts: Promise<boolean>[] = [];
+
+  if (resendKey) {
+    attempts.push(
+      (async () => {
+        try {
+          const res = await fetch("https://api.resend.com/emails", {
+            method: "POST",
+            headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
+            body: JSON.stringify({
+              from: "Big Story Website <brief@filmwithbigstory.com>",
+              to: [inbox],
+              reply_to: opts.replyTo,
+              subject: opts.subject,
+              text: opts.summary,
+            }),
+          });
+          return res.ok;
+        } catch {
+          return false;
+        }
+      })()
+    );
+  }
+
+  if (webhookUrl) attempts.push(postJson(webhookUrl, opts.payload, process.env.LEAD_WEBHOOK_TOKEN));
+  if (crmUrl) attempts.push(postJson(crmUrl, opts.payload, process.env.CRM_WEBHOOK_TOKEN));
+
+  if (attempts.length === 0) {
+    // No delivery configured at all — do NOT fake success (would lose the lead).
+    console.error(
+      `[${opts.tag}] no delivery rail configured (RESEND_API_KEY / LEAD_WEBHOOK_URL / CRM_WEBHOOK_URL all unset) — lead not deliverable`
+    );
+    return "no-rail";
+  }
+
+  const results = await Promise.all(attempts);
+  if (!results.some(Boolean)) {
+    console.error(`[${opts.tag}] all configured delivery rails failed`);
+    return "failed";
+  }
+  if (results.some((r) => !r)) {
+    // Partial failure — lead is safe (at least one rail succeeded) but flag it.
+    console.warn(`[${opts.tag}] partial delivery — one or more rails failed`);
+  }
+  return "delivered";
+}
+
+/** Turnstile gate shared by both forms. Returns an error string when blocked. */
+async function turnstileGate(data: Record<string, string>, failMessage: string): Promise<string | null> {
+  const tsSite = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+  const tsSecret = process.env.TURNSTILE_SECRET_KEY;
+  if (tsSite && tsSecret) {
+    const token = data["cf-turnstile-response"];
+    const ok = token ? await verifyTurnstile(token, tsSecret) : false;
+    return ok ? null : failMessage;
+  }
+  if (tsSite || tsSecret) {
+    console.error("[brief] Turnstile misconfigured — only one key set; failing closed");
+    return failMessage;
+  }
+  return null;
 }
 
 export async function submitBrief(_prev: FormState, formData: FormData): Promise<FormState> {
@@ -130,36 +223,6 @@ export async function submitBrief(_prev: FormState, formData: FormData): Promise
   // A real lead is only reported as "sent" when at least one durable rail
   // confirms delivery. The old console.info fallback silently swallowed leads —
   // that is data loss and is removed. Env-configured only; no invented URLs.
-  const resendKey = process.env.RESEND_API_KEY;
-  const inbox = process.env.LEAD_INBOX || SITE.email;
-  const webhookUrl = process.env.LEAD_WEBHOOK_URL;
-  const crmUrl = process.env.CRM_WEBHOOK_URL;
-
-  const attempts: Promise<boolean>[] = [];
-
-  if (resendKey) {
-    attempts.push(
-      (async () => {
-        try {
-          const res = await fetch("https://api.resend.com/emails", {
-            method: "POST",
-            headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
-            body: JSON.stringify({
-              from: "Big Story Website <brief@filmwithbigstory.com>",
-              to: [inbox],
-              reply_to: data.email,
-              subject: `New project brief — ${data.name} (${data.service})`,
-              text: summary,
-            }),
-          });
-          return res.ok;
-        } catch {
-          return false;
-        }
-      })()
-    );
-  }
-
   const leadPayload = {
     name: data.name,
     email: data.email,
@@ -173,28 +236,130 @@ export async function submitBrief(_prev: FormState, formData: FormData): Promise
     locale,
   };
 
-  if (webhookUrl) attempts.push(postJson(webhookUrl, leadPayload, process.env.LEAD_WEBHOOK_TOKEN));
-  if (crmUrl) attempts.push(postJson(crmUrl, leadPayload, process.env.CRM_WEBHOOK_TOKEN));
-
   const selection = { service: data.service, budget: data.budget, timeline: data.timeline };
 
-  if (attempts.length === 0) {
-    // No delivery configured at all — do NOT fake success (would lose the lead).
-    console.error("[brief] no delivery rail configured (RESEND_API_KEY / LEAD_WEBHOOK_URL / CRM_WEBHOOK_URL all unset) — lead not deliverable");
+  const outcome = await deliverLead({
+    tag: "brief",
+    subject: `New project brief — ${data.name} (${data.service})`,
+    summary,
+    replyTo: data.email,
+    payload: leadPayload,
+  });
+
+  if (outcome !== "delivered") {
     return { ok: false, error: pick(v.send, locale), selection };
   }
 
-  const results = await Promise.all(attempts);
-  const delivered = results.some(Boolean);
+  return { ok: true, message: pick(contact.wizard.successBody, locale), selection };
+}
 
-  if (!delivered) {
-    console.error("[brief] all configured delivery rails failed");
-    return { ok: false, error: pick(v.send, locale), selection };
+/* ================================================================== *
+ * MEDIA PRODUCTION INQUIRY                                            *
+ *                                                                     *
+ * A separate action for the /media-production silo. It reuses the     *
+ * exact delivery rails above; it does not introduce a new endpoint,   *
+ * a new provider or a new credential. It has no budget field, because *
+ * the silo's price gate forbids rendering any currency figure.        *
+ *                                                                     *
+ * Failure handling matches submitBrief: if no rail is configured, or  *
+ * every configured rail fails, this returns an error. It never        *
+ * reports success for a lead that was not delivered.                  *
+ * ================================================================== */
+
+export type MediaFieldErrors = Partial<Record<MediaInquiryFieldError, string>>;
+
+export type MediaFormState = {
+  ok: boolean;
+  error?: string;
+  message?: string;
+  fieldErrors?: MediaFieldErrors;
+  /** Non-PII selections echoed back for the success card's WhatsApp handoff. */
+  selection?: { projectType?: string; stage?: string; timeline?: string };
+};
+
+export async function submitMediaInquiry(
+  _prev: MediaFormState,
+  formData: FormData
+): Promise<MediaFormState> {
+  const locale = localeFrom(formData);
+  const v = contact.validation;
+
+  // Honeypot — mirror submitBrief: return the success shape so a bot cannot
+  // fingerprint the trap, drop the submission, log a non-PII marker.
+  if (formData.get("company_url")) {
+    console.warn("[media-inquiry] honeypot tripped — dropped (spam)");
+    return { ok: true, message: pick(contact.wizard.successBody, locale) };
   }
 
-  if (results.some((r) => !r)) {
-    // Partial failure — lead is safe (at least one rail succeeded) but flag it.
-    console.warn("[brief] partial delivery — one or more rails failed");
+  const data: Record<string, string> = {};
+  for (const [k, val] of formData.entries()) {
+    if (typeof val === "string") data[k] = val.trim();
+  }
+
+  const blocked = await turnstileGate(data, pick(v.send, locale));
+  if (blocked) return { ok: false, error: blocked };
+
+  const { fieldErrors, normalizedPhone, sanitizedStage } = validateMediaInquiry(data, {
+    name: pick(v.name, locale),
+    email: pick(v.email, locale),
+    phone: pick(v.phone, locale),
+    required: pick(v.required, locale),
+  });
+
+  if ((data.company && data.company.length > MAX.company) || (data.message && data.message.length > MAX.message)) {
+    return { ok: false, error: pick(v.send, locale) };
+  }
+
+  const selection = {
+    projectType: data.projectType,
+    stage: sanitizedStage,
+    timeline: data.mediaTimeline,
+  };
+
+  if (Object.keys(fieldErrors).length > 0) {
+    return { ok: false, fieldErrors, selection };
+  }
+
+  const phone = normalizedPhone ?? data.phone;
+  const pageContext = data.pageContext || "media-production";
+
+  const summary = [
+    `New media production inquiry from ${data.name}`,
+    `Email: ${data.email}`,
+    `Phone: ${phone}`,
+    data.company ? `Company: ${data.company}` : null,
+    `Project type: ${data.projectType}`,
+    sanitizedStage ? `Stage: ${sanitizedStage}` : null,
+    `Timeline: ${data.mediaTimeline}`,
+    `Page: ${pageContext}`,
+    "",
+    data.message || "(no message)",
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  const outcome = await deliverLead({
+    tag: "media-inquiry",
+    subject: `New media production inquiry — ${data.name} (${data.projectType})`,
+    summary,
+    replyTo: data.email,
+    payload: {
+      form: "media-production-inquiry",
+      name: data.name,
+      email: data.email,
+      phone,
+      company: data.company || undefined,
+      projectType: data.projectType,
+      stage: sanitizedStage,
+      timeline: data.mediaTimeline,
+      message: data.message ? data.message.slice(0, 200) : undefined,
+      pageContext,
+      locale,
+    },
+  });
+
+  if (outcome !== "delivered") {
+    return { ok: false, error: pick(v.send, locale), selection };
   }
 
   return { ok: true, message: pick(contact.wizard.successBody, locale), selection };

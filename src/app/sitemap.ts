@@ -12,7 +12,13 @@ type Entry = { path: string; priority: number; changefreq: MetadataRoute.Sitemap
 
 const staticPaths: Entry[] = [
   { path: "/", priority: 1.0, changefreq: "weekly" },
-  { path: "/services", priority: 0.9, changefreq: "monthly" },
+  // Media Production silo (2026-08-01). /services now 308s here, so it is
+  // deliberately absent from the sitemap: redirect targets are listed, sources
+  // are not.
+  { path: "/media-production", priority: 0.9, changefreq: "monthly" },
+  { path: "/media-production/company-media-revamp", priority: 0.85, changefreq: "monthly" as const },
+  { path: "/media-production/new-product-launch", priority: 0.85, changefreq: "monthly" as const },
+  { path: "/media-production/new-company-launch", priority: 0.85, changefreq: "monthly" as const },
   { path: "/website-services", priority: 0.9, changefreq: "monthly" },
   { path: "/pricing", priority: 0.85, changefreq: "monthly" },
   { path: "/work", priority: 0.8, changefreq: "weekly" },

@@ -166,5 +166,111 @@ export function hasErrors(result: ValidationResult): boolean {
   return Object.keys(result.fieldErrors).length > 0;
 }
 
+/* ------------------------------------------------------------------ */
+/* MEDIA PRODUCTION INQUIRY                                            */
+/*                                                                     */
+/* A separate, narrower option set for the /media-production silo.     */
+/* It deliberately has NO budget category: the silo's price gate       */
+/* forbids rendering any currency figure, and the site-wide BUDGETS    */
+/* labels contain AED ranges. Timelines here are stated in weeks and   */
+/* months only. See MEDIA_PRODUCTION_CONTENT_ARCHITECTURE.md §7.       */
+/* ------------------------------------------------------------------ */
+
+export const MEDIA_PROJECT_TYPES: Record<Locale, readonly string[]> = {
+  en: ["Company media revamp", "New product launch", "New company launch", "Not sure yet"],
+  ar: ["تجديد محتوى الشركة", "إطلاق منتج جديد", "إطلاق شركة جديدة", "غير متأكد بعد"],
+};
+
+export const MEDIA_STAGES: Record<Locale, readonly string[]> = {
+  en: ["Just exploring", "Comparing production partners", "Ready to plan dates", "Approved and scheduling"],
+  ar: ["أستكشف فقط", "أقارن بين شركاء الإنتاج", "جاهز لتحديد المواعيد", "معتمد وجارٍ الجدولة"],
+};
+
+export const MEDIA_TIMELINES: Record<Locale, readonly string[]> = {
+  en: ["Within 4 weeks", "1 to 2 months", "2 to 3 months", "3 months or more", "Not fixed yet"],
+  ar: ["خلال 4 أسابيع", "شهر إلى شهرين", "شهران إلى 3 أشهر", "3 أشهر أو أكثر", "غير محدد بعد"],
+};
+
+export type MediaCategoryKey = "projectType" | "stage" | "mediaTimeline";
+
+const MEDIA_CATEGORY_OPTIONS: Record<MediaCategoryKey, Record<Locale, readonly string[]>> = {
+  projectType: MEDIA_PROJECT_TYPES,
+  stage: MEDIA_STAGES,
+  mediaTimeline: MEDIA_TIMELINES,
+};
+
+const MEDIA_ALLOWLIST: Record<MediaCategoryKey, ReadonlySet<string>> = {
+  projectType: new Set([...MEDIA_PROJECT_TYPES.en, ...MEDIA_PROJECT_TYPES.ar]),
+  stage: new Set([...MEDIA_STAGES.en, ...MEDIA_STAGES.ar]),
+  mediaTimeline: new Set([...MEDIA_TIMELINES.en, ...MEDIA_TIMELINES.ar]),
+};
+
+export function isAllowedMediaValue(category: MediaCategoryKey, value: string): boolean {
+  return MEDIA_ALLOWLIST[category].has(value);
+}
+
+export function mediaOptionsFor(category: MediaCategoryKey, locale: Locale): readonly string[] {
+  return MEDIA_CATEGORY_OPTIONS[category][locale];
+}
+
+export type MediaInquiryFieldError = "name" | "phone" | "email" | "projectType" | "mediaTimeline";
+
+export type MediaInquiryInput = {
+  name?: string;
+  phone?: string;
+  email?: string;
+  projectType?: string;
+  stage?: string;
+  mediaTimeline?: string;
+  message?: string;
+  company?: string;
+  /** Which silo page the inquiry came from. Free text, never rendered back. */
+  pageContext?: string;
+};
+
+export type MediaValidationResult = {
+  fieldErrors: Partial<Record<MediaInquiryFieldError, string>>;
+  normalizedPhone?: string;
+  /** `stage` echoed back only when it is a known value; otherwise dropped. */
+  sanitizedStage?: string;
+};
+
+/**
+ * Pure validation for the media production inquiry. `stage` is optional by
+ * design: it is progressively disclosed and a reader may legitimately skip it.
+ */
+export function validateMediaInquiry(
+  data: MediaInquiryInput,
+  msg: ValidationMessages
+): MediaValidationResult {
+  const fieldErrors: Partial<Record<MediaInquiryFieldError, string>> = {};
+
+  const name = (data.name ?? "").trim();
+  if (!name || name.length > MAX.name) fieldErrors.name = msg.name;
+
+  const email = (data.email ?? "").trim();
+  if (!email || !isValidEmail(email)) fieldErrors.email = msg.email;
+
+  const phone = (data.phone ?? "").trim();
+  const normalizedPhone = normalizeUaePhone(phone);
+  if (!phone || !normalizedPhone) fieldErrors.phone = msg.phone;
+
+  for (const cat of ["projectType", "mediaTimeline"] as const) {
+    const v = (data[cat] ?? "").trim();
+    if (!v || !isAllowedMediaValue(cat, v)) fieldErrors[cat] = msg.required;
+  }
+
+  // `stage` is optional (it is progressively disclosed and may be skipped), but
+  // an unknown value is dropped rather than trusted.
+  const stage = (data.stage ?? "").trim();
+  const sanitizedStage = stage && isAllowedMediaValue("stage", stage) ? stage : undefined;
+
+  return { fieldErrors, normalizedPhone: normalizedPhone ?? undefined, sanitizedStage };
+}
+
+export function hasMediaErrors(result: MediaValidationResult): boolean {
+  return Object.keys(result.fieldErrors).length > 0;
+}
+
 // Re-export the bilingual value type for convenience in consumers.
 export type { L };

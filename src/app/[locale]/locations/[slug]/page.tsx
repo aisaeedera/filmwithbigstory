@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
       locale === "ar"
         ? "خدمات الإنتاج لم تعد مقسمة حسب المدينة. اعرض كل الخدمات في صفحة واحدة."
         : "Our production services are no longer split by city. See every service on a single page.",
-    path: "/services",
+    path: "/media-production",
     noindex: true,
   });
 }
@@ -63,7 +63,7 @@ export default async function LocationPage({ params: _params }: { params: Promis
           locale={locale}
           items={[
             { name: t(ui.breadcrumb.home, locale), path: "/" },
-            { name: t(ui.nav.services, locale), path: "/services" },
+            { name: t(ui.nav.mediaProduction, locale), path: "/media-production" },
             { name: locale === "ar" ? "صفحة منتهية" : "Retired page" },
           ]}
         />
@@ -80,7 +80,7 @@ export default async function LocationPage({ params: _params }: { params: Promis
               : "We travel on location across the UAE, so splitting our services by city was creating duplicate content and confusing customers. Every production service now lives on a single page."}
           </p>
           <div className="mt-9 flex flex-wrap gap-4">
-            <Link href={localizedPath(locale, "/services")} className="bs-btn bs-btn-gold">
+            <Link href={localizedPath(locale, "/media-production")} className="bs-btn bs-btn-gold">
               {t(ui.nav.allServices, locale)}
             </Link>
             <Link href={localizedPath(locale, "/contact")} className="bs-btn bs-btn-ghost">

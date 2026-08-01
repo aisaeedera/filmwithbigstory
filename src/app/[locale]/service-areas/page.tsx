@@ -103,7 +103,7 @@ export default async function ServiceAreasPage({ params }: { params: Promise<{ l
           </h2>
           <div className="mt-8">
             <a
-              href={localizedPath(locale, "/services")}
+              href={localizedPath(locale, "/media-production")}
               className="bs-btn bs-btn-gold"
             >
               {t({ en: "See all services", ar: "كل الخدمات" }, locale)}

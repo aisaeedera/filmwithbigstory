@@ -729,20 +729,367 @@
   }
 }
 
-/* Skip link */
+/* ============================================================
+   MEDIA PRODUCTION SILO
+   Editorial-cinema art direction. Existing tokens only.
+   No gradients, no imagery, no icon set. Logical properties
+   throughout so the Arabic RTL rendering needs no overrides.
+   ============================================================ */
+@layer components {
+  /* ---- Index rows (the signature component) ---- */
+  .bs-mp-rows {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-block-start: 1px solid var(--color-line);
+  }
+
+  .bs-mp-row-item {
+    border-block-end: 1px solid var(--color-line);
+  }
+
+  .bs-mp-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: 1rem 1.25rem;
+    padding-block: 1.5rem;
+    transition: background 0.3s var(--ease-out), padding-inline 0.3s var(--ease-out);
+  }
+
+  .bs-mp-row:hover,
+  .bs-mp-row:focus-visible {
+    background: var(--color-elevated);
+    padding-inline: 1rem;
+  }
+
+  .bs-mp-row-index {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.14em;
+    color: var(--color-gold);
+    padding-block-start: 0.45rem;
+  }
+
+  .bs-mp-row-body {
+    display: block;
+    min-width: 0;
+  }
+
+  .bs-mp-row-title {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 3vw, 1.9rem);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--color-ink);
+  }
+
+  [dir="rtl"] .bs-mp-row-title {
+    font-family: var(--font-arabic-display);
+    letter-spacing: 0;
+    line-height: 1.4;
+  }
+
+  .bs-mp-row-desc {
+    display: block;
+    margin-block-start: 0.5rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--color-muted);
+    max-width: 52ch;
+  }
+
+  .bs-mp-row-cue {
+    grid-column: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-gold);
+  }
+
+  [dir="rtl"] .bs-mp-row-cue {
+    font-family: var(--font-arabic);
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .bs-mp-row-arrow {
+    transition: transform 0.25s var(--ease-out);
+  }
+
+  .bs-mp-row:hover .bs-mp-row-arrow,
+  .bs-mp-row:focus-visible .bs-mp-row-arrow {
+    transform: translateX(4px);
+  }
+
+  [dir="rtl"] .bs-mp-row:hover .bs-mp-row-arrow,
+  [dir="rtl"] .bs-mp-row:focus-visible .bs-mp-row-arrow {
+    transform: scaleX(-1) translateX(4px);
+  }
+
+  @media (min-width: 768px) {
+    .bs-mp-row {
+      grid-template-columns: 4rem minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 2rem;
+      padding-block: 1.9rem;
+    }
+    .bs-mp-row-index {
+      font-size: 0.95rem;
+      padding-block-start: 0;
+    }
+    .bs-mp-row-cue {
+      grid-column: 3;
+      justify-self: end;
+      white-space: nowrap;
+    }
+  }
+
+  /* ---- Slate ---- */
+  .bs-mp-slate {
+    position: relative;
+    border: 1px solid var(--color-line);
+    border-radius: 14px;
+    background: var(--color-elevated);
+    padding: clamp(1.75rem, 3.5vw, 2.75rem);
+    padding-block-start: clamp(2.25rem, 4vw, 3rem);
+  }
+
+  .bs-mp-slate-label {
+    position: absolute;
+    inset-block-start: -0.6rem;
+    inset-inline-start: clamp(1.5rem, 3vw, 2.25rem);
+    background: var(--color-bg);
+    padding-inline: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-gold);
+  }
+
+  .bs-section-alt .bs-mp-slate-label {
+    background: var(--color-bg-alt);
+  }
+
+  [dir="rtl"] .bs-mp-slate-label {
+    font-family: var(--font-arabic);
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .bs-mp-scope-placeholder {
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 3vw, 1.85rem);
+    line-height: 1.25;
+    color: var(--color-ink);
+    max-width: 26ch;
+  }
+
+  [dir="rtl"] .bs-mp-scope-placeholder {
+    font-family: var(--font-arabic-display);
+    line-height: 1.5;
+  }
+
+  .bs-mp-scope-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+  }
+
+  .bs-mp-scope-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding-block: 0.85rem;
+    border-block-end: 1px solid var(--color-line);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .bs-mp-scope-item:last-child {
+    border-block-end: 0;
+    padding-block-end: 0;
+  }
+
+  .bs-mp-scope-tick {
+    margin-block-start: 0.6rem;
+    height: 1px;
+    width: 0.85rem;
+    flex-shrink: 0;
+    background: var(--color-gold);
+  }
+
+  .bs-mp-scope-label {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    color: var(--color-gold);
+    min-width: 9rem;
+  }
+
+  .bs-mp-scope-body {
+    color: color-mix(in srgb, var(--color-ink) 86%, transparent);
+  }
+
+  .bs-mp-scope-figure {
+    margin-inline-start: auto;
+    font-family: var(--font-mono);
+    color: var(--color-ink);
+  }
+
+  @media (min-width: 768px) {
+    /* Two columns so the slate does not run as one very long thin list at
+       desktop width. The trailing hairline is dropped per column, not per item. */
+    .bs-mp-scope-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 3rem;
+    }
+  }
+
+  /* ---- Numbered stages ---- */
+  .bs-mp-stages {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+    border-block-start: 1px solid var(--color-line);
+  }
+
+  .bs-mp-stage {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1.25rem;
+    padding-block: 1.75rem;
+    border-block-end: 1px solid var(--color-line);
+  }
+
+  .bs-mp-stage-n {
+    font-family: var(--font-mono);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    line-height: 1;
+    color: color-mix(in srgb, var(--color-gold) 70%, transparent);
+  }
+
+  @media (min-width: 768px) {
+    .bs-mp-stages {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 3.5rem;
+    }
+    .bs-mp-stage {
+      gap: 2rem;
+    }
+  }
+
+  /* ---- Signal list (the problem block) ---- */
+  .bs-mp-signals {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .bs-mp-signals li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding-block: 0.7rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--color-ink) 84%, transparent);
+    border-block-end: 1px solid var(--color-line);
+  }
+
+  .bs-mp-signals li::before {
+    content: "";
+    margin-block-start: 0.65rem;
+    height: 1px;
+    width: 0.85rem;
+    flex-shrink: 0;
+    background: var(--color-gold);
+  }
+
+  /* Anchor targets in this silo sit under the 68px sticky header, so give the
+     in-page jumps room to land clear of it. */
+  #project-inquiry,
+  #faq {
+    scroll-margin-block-start: 5rem;
+  }
+
+  /* ---- Sticky mobile CTA ---- */
+  .bs-mp-sticky {
+    position: fixed;
+    inset-inline: 0;
+    inset-block-end: 0;
+    z-index: 40;
+    padding: 0.75rem clamp(1rem, 4vw, 1.5rem);
+    padding-block-end: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+    background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+    backdrop-filter: blur(10px);
+    border-block-start: 1px solid var(--color-line);
+    transition: transform 0.3s var(--ease-out), opacity 0.3s var(--ease-out);
+  }
+
+  /* Held back while the hero CTA is still on screen, so the two never read as
+     a duplicated button. JS adds this class; without JS the bar just shows. */
+  .bs-mp-sticky.is-away {
+    transform: translateY(110%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .bs-mp-sticky-btn {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .bs-mp-sticky {
+      display: none;
+    }
+  }
+
+  /* Reserve room below the footer so the sticky bar can never cover the last
+     row of legal links. Scoped with :has() so only pages that actually render
+     the bar are affected; browsers without :has() simply skip the rule. */
+  body:has(.bs-mp-sticky) footer {
+    padding-block-end: 5rem;
+  }
+
+  @media (min-width: 768px) {
+    body:has(.bs-mp-sticky) footer {
+      padding-block-end: 0;
+    }
+  }
+}
+
+/* Skip link.
+   Hidden by moving it up out of view with a transform rather than off-canvas
+   with `left: -9999px`. The old approach expanded the document scroll width by
+   ~10,000px on every RTL page (documentElement.scrollWidth measured 11439 at a
+   1440px viewport), which is the same trap the wizard honeypot already avoids.
+   A transform never contributes to scroll width, and logical properties keep
+   the focused position correct in both directions. */
 .bs-skip {
   position: absolute;
-  left: -9999px;
-  top: 0;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  transform: translateY(-200%);
   z-index: 100;
   background: var(--color-gold);
   color: #08080a;
   padding: 0.75rem 1.25rem;
-  border-radius: 0 0 8px 0;
+  border-end-end-radius: 8px;
   font-weight: 600;
 }
 .bs-skip:focus {
-  left: 0;
+  transform: translateY(0);
 }
 
 /* Invitation demo — subtle "motion" shimmer for animated samples.

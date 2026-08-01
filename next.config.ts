@@ -30,6 +30,11 @@ const nextConfig: NextConfig = {
       { source: "/camera-rental-:path(.*)", destination: "https://red.filmwithbigstory.com/", permanent: true },
       { source: "/search", destination: "/", permanent: true },
       ...invitationRedirects,
+      // Services hub renamed to the Media Production silo (2026-08-13).
+      // Exact path match only, so child routes (/services/tvc-production-dubai,
+      // /services/[slug], ...) are untouched and still return 200.
+      { source: "/services", destination: "/media-production", permanent: true },
+      { source: "/ar/services", destination: "/ar/media-production", permanent: true },
     ];
   },
   async headers() {

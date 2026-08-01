@@ -12,7 +12,8 @@
     "test:contact-wizard": "node --test --experimental-strip-types tests/contact-wizard.test.ts",
     "test:careers-wedding": "node --test --experimental-strip-types tests/careers-wedding.test.ts",
     "test:invitations": "node --test --experimental-strip-types tests/invitations.test.ts",
-    "test": "npm run test:photo-finder && npm run test:careers && npm run test:careers-wedding && npm run test:contact-wizard && npm run test:invitations"
+    "test:media-production": "node --test --experimental-strip-types tests/media-production.test.ts",
+    "test": "npm run test:photo-finder && npm run test:careers && npm run test:careers-wedding && npm run test:contact-wizard && npm run test:invitations && npm run test:media-production"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

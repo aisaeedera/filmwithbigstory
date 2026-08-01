@@ -55,7 +55,7 @@ export default async function ServiceDetail({ params }: { params: Promise<{ loca
         data={[
           breadcrumbSchema(locale, [
             { name: t(ui.breadcrumb.home, locale), path: "/" },
-            { name: t(ui.nav.services, locale), path: "/services" },
+            { name: t(ui.nav.mediaProduction, locale), path: "/media-production" },
             { name: t(s.name, locale), path: `/services/${slug}` },
           ]),
           serviceSchema({ locale, name: t(s.name, locale), description: t(s.lead, locale), path: `/services/${slug}`, areaServed }),
@@ -68,7 +68,7 @@ export default async function ServiceDetail({ params }: { params: Promise<{ loca
           locale={locale}
           items={[
             { name: t(ui.breadcrumb.home, locale), path: "/" },
-            { name: t(ui.nav.services, locale), path: "/services" },
+            { name: t(ui.nav.mediaProduction, locale), path: "/media-production" },
             { name: t(s.name, locale) },
           ]}
         />
@@ -262,7 +262,7 @@ function GuideDetail({ locale, guide }: { locale: Locale; guide: Guide }) {
         data={[
           breadcrumbSchema(locale, [
             { name: t(ui.breadcrumb.home, locale), path: "/" },
-            { name: t(ui.nav.services, locale), path: "/services" },
+            { name: t(ui.nav.mediaProduction, locale), path: "/media-production" },
             { name: t(guide.h1, locale), path },
           ]),
           articleSchema,
@@ -275,7 +275,7 @@ function GuideDetail({ locale, guide }: { locale: Locale; guide: Guide }) {
           locale={locale}
           items={[
             { name: t(ui.breadcrumb.home, locale), path: "/" },
-            { name: t(ui.nav.services, locale), path: "/services" },
+            { name: t(ui.nav.mediaProduction, locale), path: "/media-production" },
             { name: t(guide.h1, locale) },
           ]}
         />
@@ -285,7 +285,7 @@ function GuideDetail({ locale, guide }: { locale: Locale; guide: Guide }) {
           <p className="bs-lead mt-8 !max-w-2xl">{t(guide.lead, locale)}</p>
           <div className="mt-9 flex flex-wrap gap-4">
             <Button href={localizedPath(locale, "/contact")} variant="gold">{t(ui.nav.startYourProject, locale)}</Button>
-            <Button href={localizedPath(locale, "/services")} variant="ghost">{t(ui.nav.allServices, locale)}</Button>
+            <Button href={localizedPath(locale, "/media-production")} variant="ghost">{t(ui.nav.allServices, locale)}</Button>
           </div>
         </Reveal>
       </Section>

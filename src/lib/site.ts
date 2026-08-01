@@ -108,3 +108,27 @@ export function waBriefLinkFromSubmission(data: BriefSubmission): string {
   ];
   return `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
 }
+
+// State-aware WhatsApp bailout for the /media-production inquiry form.
+// Deliberately carries NO budget line: the media production silo must never
+// render a currency figure, and that includes the pre-filled message body.
+export function waMediaLinkFromState(state?: {
+  projectType?: string;
+  stage?: string;
+  timeline?: string;
+}): string {
+  if (!state || (!state.projectType && !state.stage && !state.timeline)) {
+    return waLink("I read your media production page and would like to start a project.");
+  }
+  const lines = [
+    "Hi Big Story, I'd like to start a media production project.",
+    "",
+    state.projectType ? `Project type: ${state.projectType}` : "Project type:",
+    state.stage ? `Where we are: ${state.stage}` : null,
+    state.timeline ? `Timeline: ${state.timeline}` : "Timeline:",
+    "",
+    "Name:",
+    "About the project:",
+  ].filter(Boolean) as string[];
+  return `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
+}

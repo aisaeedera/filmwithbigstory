@@ -83,7 +83,7 @@ export default function UaeTravelSection({ locale }: { locale: Locale }) {
         ))}
       </div>
       <div className="mt-10 flex justify-center">
-        <Button href={localizedPath(locale, "/services")} variant="ghost">
+        <Button href={localizedPath(locale, "/media-production")} variant="ghost">
           {t(COPY.cta, locale)}
         </Button>
       </div>

@@ -5,6 +5,9 @@ export const ui = {
   nav: {
     work: { en: "Work", ar: "الأعمال" },
     services: { en: "Services", ar: "الخدمات" },
+    // The /services hub became /media-production on 2026-08-01. This label is
+    // used in the nav, the footer and every /services/* breadcrumb.
+    mediaProduction: { en: "Media Production", ar: "الإنتاج الإعلامي" },
     websiteServices: { en: "Web", ar: "ويب" },
     serviceAreas: { en: "Service Areas", ar: "مناطق الخدمة" },
     about: { en: "About", ar: "من نحن" },
@@ -448,7 +451,7 @@ export const location = {
   frequentlyAsked: { en: "Frequently asked", ar: "أسئلة شائعة" },
   related: { en: "Related production pages", ar: "صفحات إنتاج ذات صلة" },
   relatedCards: [
-    { title: { en: "Film production services", ar: "خدمات إنتاج الأفلام" }, body: { en: "See the full range of what we produce, from concept to final cut.", ar: "شاهد المدى الكامل لما ننتجه، من الفكرة إلى النسخة النهائية." }, href: "/services" },
+    { title: { en: "Film production services", ar: "خدمات إنتاج الأفلام" }, body: { en: "See the full range of what we produce, from concept to final cut.", ar: "شاهد المدى الكامل لما ننتجه، من الفكرة إلى النسخة النهائية." }, href: "/media-production" },
     { title: { en: "Our approach & concepts", ar: "نهجنا ومفاهيمنا" }, body: { en: "How we shape a story before the camera rolls.", ar: "كيف نصوغ قصة قبل أن تدور الكاميرا." }, href: "/work" },
     { title: { en: "Start a project", ar: "ابدأ مشروعاً" }, body: { en: "Tell us about your film and get a fast, friendly reply.", ar: "أخبرنا عن فيلمك واحصل على رد سريع وودود." }, href: "/contact" },
   ],

@@ -134,7 +134,7 @@ export default async function VideoProductionPage({ params }: { params: Promise<
         data={[
           breadcrumbSchema(locale, [
             { name: t(ui.breadcrumb.home, locale), path: "/" },
-            { name: t(ui.nav.services, locale), path: "/services" },
+            { name: t(ui.nav.mediaProduction, locale), path: "/media-production" },
             { name: t(COPY.h1, locale), path },
           ]),
           articleSchema({
@@ -164,7 +164,7 @@ export default async function VideoProductionPage({ params }: { params: Promise<
           locale={locale}
           items={[
             { name: t(ui.breadcrumb.home, locale), path: "/" },
-            { name: t(ui.nav.services, locale), path: "/services" },
+            { name: t(ui.nav.mediaProduction, locale), path: "/media-production" },
             { name: t(COPY.h1, locale) },
           ]}
         />

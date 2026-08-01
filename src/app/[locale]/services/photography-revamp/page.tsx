@@ -134,7 +134,7 @@ export default async function PhotographyRevampPage({ params }: { params: Promis
         data={[
           breadcrumbSchema(locale, [
             { name: t(ui.breadcrumb.home, locale), path: "/" },
-            { name: t(ui.nav.services, locale), path: "/services" },
+            { name: t(ui.nav.mediaProduction, locale), path: "/media-production" },
             { name: t(COPY.h1, locale), path },
           ]),
           articleSchema({
@@ -164,7 +164,7 @@ export default async function PhotographyRevampPage({ params }: { params: Promis
           locale={locale}
           items={[
             { name: t(ui.breadcrumb.home, locale), path: "/" },
-            { name: t(ui.nav.services, locale), path: "/services" },
+            { name: t(ui.nav.mediaProduction, locale), path: "/media-production" },
             { name: t(COPY.h1, locale) },
           ]}
         />
