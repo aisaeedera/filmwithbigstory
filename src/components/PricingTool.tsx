@@ -160,7 +160,7 @@ export default function PricingTool({ locale }: { locale: Locale }) {
     <>
       {/* Category tables */}
       <div className="mt-14 space-y-16 pb-40">
-        {pricing.map((cat) => (
+        {pricing.filter((cat) => cat.modules.some((m) => !m.hidden)).map((cat) => (
           <section key={cat.id} aria-labelledby={`cat-${cat.id}`}>
             <div className="flex flex-wrap items-center gap-3">
               <h2 id={`cat-${cat.id}`} className="text-[clamp(1.6rem,3.5vw,2.5rem)]">
