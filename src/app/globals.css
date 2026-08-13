@@ -198,6 +198,17 @@
     transform: translateY(-2px);
   }
 
+  /* WhatsApp handoff button — green, prominent, on the success screen. */
+  .bs-btn-whatsapp {
+    background: #25d366;
+    color: #06281a;
+  }
+
+  .bs-btn-whatsapp:hover {
+    background: #1fb855;
+    transform: translateY(-2px);
+  }
+
   .bs-gold-line {
     background-image: linear-gradient(currentColor, currentColor);
     background-size: 0% 1px;
@@ -480,6 +491,20 @@
     outline-offset: 3px;
   }
 
+  /* Company/Freelancer toggle chips — taller cards with a title + subtitle. */
+  .bs-chip:has(.bs-chip-sub) {
+    flex-direction: column;
+    gap: 0.25rem;
+    min-height: 72px;
+    padding: 0.85rem 1.1rem;
+  }
+
+  .bs-chip-sub {
+    font-size: 0.78rem;
+    font-weight: 400;
+    opacity: 0.8;
+  }
+
   /* Text fields */
   .bs-field {
     display: flex;
@@ -718,4 +743,34 @@
 }
 .bs-skip:focus {
   left: 0;
+}
+
+/* Invitation demo — subtle "motion" shimmer for animated samples.
+   Purely decorative; disabled under prefers-reduced-motion. */
+.bs-inv-shimmer {
+  position: relative;
+}
+.bs-inv-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 40%,
+    color-mix(in srgb, var(--color-gold) 22%, transparent) 50%,
+    transparent 60%
+  );
+  background-size: 250% 100%;
+  animation: bs-inv-sweep 3.6s ease-in-out infinite;
+}
+@keyframes bs-inv-sweep {
+  0% { background-position: 150% 0; }
+  60%, 100% { background-position: -50% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bs-inv-shimmer::after {
+    animation: none;
+    display: none;
+  }
 }

@@ -12,6 +12,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema, articleSchema } from "@/components/JsonLd";
 import { SITE, waLink } from "@/lib/site";
 import UaeTravelSection from "@/components/UaeTravelSection";
+import WeddingInvitationModule from "@/components/invitations/WeddingInvitationModule";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -349,6 +350,7 @@ export default async function WeddingPhotographyPage({ params }: { params: Promi
         </div>
       </Section>
 
+      <WeddingInvitationModule locale={locale} variant="compact" alt />
       <UaeTravelSection locale={locale} />
       <CtaBand
         locale={locale}

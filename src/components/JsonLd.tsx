@@ -39,7 +39,8 @@ export function organizationSchema() {
       availableLanguage: ["en", "ar"],
     },
     sameAs: [
-      SITE.redDomain,
+      "https://www.instagram.com/bigstory_red_rentals/",
+      "https://www.linkedin.com/company/big-story-film-production",
     ],
   };
 }
@@ -66,7 +67,7 @@ export function localBusinessSchema() {
       longitude: SITE.geo.lng,
     },
     areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Ras Al Khaimah", "Al Ain"],
-    sameAs: [SITE.redDomain],
+    sameAs: ["https://www.instagram.com/bigstory_red_rentals/", "https://www.linkedin.com/company/big-story-film-production"],
   };
 }
 

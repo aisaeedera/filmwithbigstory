@@ -27,7 +27,7 @@ export default function CtaBand({
           <Button href={waLink(waContext)} variant="gold" external>
             {t(ui.nav.startYourProject, locale)}
           </Button>
-          <Button href={`mailto:${"hi@filmwithbigstory.com"}`} variant="ghost">
+          <Button href={`mailto:hi@filmwithbigstory.com?subject=${encodeURIComponent("Website enquiry - Big Story")}&body=${encodeURIComponent("Hi Saeed,\n\nI'd like to discuss a website project.\n\nCompany name:\nWhat you need:\nBudget range:\nTimeline:\n")}`} variant="ghost">
             {t(ui.emailUs, locale)}
           </Button>
         </div>

@@ -6,7 +6,7 @@ import { submitBrief, type FormState } from "@/app/actions";
 import { localizedPath, type Locale } from "@/lib/i18n";
 import { fill } from "@/lib/util";
 import { contact } from "@/data/copy";
-import { waBriefLinkFromState } from "@/lib/site";
+import { waBriefLinkFromState, waBriefLinkFromSubmission } from "@/lib/site";
 import {
   optionsFor,
   isValidEmail,
@@ -149,6 +149,34 @@ function FieldError({ id, message }: { id: string; message?: string }) {
 }
 
 /* ------------------------------------------------------------------ */
+/* Single-question input step                                          */
+/* ------------------------------------------------------------------ */
+
+function SingleInputStep({
+  fieldId,
+  label,
+  error,
+  children,
+}: {
+  fieldId: string;
+  label: string;
+  error?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="bs-step-stack">
+      <div className="bs-field">
+        <label htmlFor={fieldId} className="bs-label">
+          {label}
+        </label>
+        {children}
+        <FieldError id={`${fieldId}-error`} message={error} />
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* Wizard                                                              */
 /* ------------------------------------------------------------------ */
 
@@ -172,8 +200,9 @@ export default function ContactWizard({ locale, selection, onSelectionChange }: 
   const summaryRef = useRef<HTMLDivElement>(null);
   const stepHeadingRef = useRef<HTMLParagraphElement>(null);
   const successRef = useRef<HTMLHeadingElement>(null);
+  const activeInputRef = useRef<HTMLInputElement | null>(null);
 
-  const total = 3;
+  const total = 6;
   const showSuccess = state.ok && !dismissed;
 
   // Merge server-returned field errors into the local error map.
@@ -182,9 +211,14 @@ export default function ContactWizard({ locale, selection, onSelectionChange }: 
   }, [state]);
 
   // If the server bounced back to us with validation errors, make sure we are
-  // on step 3 so the user sees them.
+  // on the right contact sub-step so the user sees them. Jump to the earliest
+  // invalid contact field, or fall back to the review step.
   useEffect(() => {
-    if (state.fieldErrors && Object.keys(state.fieldErrors).length > 0) setStep(3);
+    if (!state.fieldErrors || Object.keys(state.fieldErrors).length === 0) return;
+    if (state.fieldErrors.name) setStep(3);
+    else if (state.fieldErrors.email) setStep(4);
+    else if (state.fieldErrors.phone) setStep(5);
+    else setStep(6);
   }, [state]);
 
   // Move focus to the success heading when it renders (a11y announcement).
@@ -202,6 +236,15 @@ export default function ContactWizard({ locale, selection, onSelectionChange }: 
     if (!showSuccess) stepHeadingRef.current?.focus();
   }, [step, showSuccess]);
 
+  // Auto-focus the single input on each contact sub-step.
+  useEffect(() => {
+    if (step >= 3 && step <= 5) {
+      // Defer so the freshly-unhidden input is focusable.
+      const t = setTimeout(() => activeInputRef.current?.focus(), 0);
+      return () => clearTimeout(t);
+    }
+  }, [step]);
+
   const msg = {
     name: v.name[locale],
     email: v.email[locale],
@@ -217,7 +260,7 @@ export default function ContactWizard({ locale, selection, onSelectionChange }: 
   // React state — otherwise a corrected value keeps computing from stale state.
   function computeError(field: TextField, valueOverride?: string): string | undefined {
     const val = (valueOverride ?? fieldValue(field)).trim();
-    if (field === "name") return val && val.length <= MAX.name ? undefined : msg.name;
+    if (field === "name") return val && val.length >= 2 && val.length <= MAX.name ? undefined : msg.name;
     if (field === "email") return isValidEmail(val) ? undefined : msg.email;
     return normalizeUaePhone(val) ? undefined : msg.phone;
   }
@@ -251,18 +294,45 @@ export default function ContactWizard({ locale, selection, onSelectionChange }: 
     return Boolean(selection.budget && selection.timeline);
   }
 
+  function stepFieldComplete(): boolean {
+    if (step === 3) return !computeError("name");
+    if (step === 4) return !computeError("email");
+    if (step === 5) return !computeError("phone");
+    return true; // step 6 (company optional) always advances
+  }
+
+  function validateCurrentStep(): boolean {
+    if (step === 3) {
+      const e = computeError("name");
+      setFieldError("name", e);
+      return !e;
+    }
+    if (step === 4) {
+      const e = computeError("email");
+      setFieldError("email", e);
+      return !e;
+    }
+    if (step === 5) {
+      const e = computeError("phone");
+      setFieldError("phone", e);
+      return !e;
+    }
+    return true;
+  }
+
   function goNext() {
     if (step === 1 && !step1Complete()) return;
     if (step === 2 && !step2Complete()) return;
+    if (step >= 3 && step <= 5 && !validateCurrentStep()) return;
     setStep((s) => Math.min(total, s + 1));
   }
   function goBack() {
     setStep((s) => Math.max(1, s - 1));
   }
 
-  function validateStep3(): FieldErrorMap {
+  function validateAllContact(): FieldErrorMap {
     const next: FieldErrorMap = {};
-    (["name", "phone", "email"] as TextField[]).forEach((f) => {
+    (["name", "email", "phone"] as TextField[]).forEach((f) => {
       const e = computeError(f);
       if (e) next[f] = e;
     });
@@ -270,19 +340,16 @@ export default function ContactWizard({ locale, selection, onSelectionChange }: 
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    // Guard against an accidental submit (e.g. Enter on a chip) before step 3.
+    // Guard against an accidental submit (e.g. Enter on a chip) before the review step.
     if (step !== total) {
       e.preventDefault();
       goNext();
       return;
     }
-    const stepErrors = validateStep3();
-    // Deterministically REPLACE the three step-3 field errors (set the ones that
-    // are still invalid, clear the ones now resolved) while preserving any other
-    // errors — e.g. server-returned categorical errors for service/budget/timeline.
+    const stepErrors = validateAllContact();
     setErrors((prev) => {
       const next = { ...prev };
-      (["name", "phone", "email"] as const).forEach((f) => {
+      (["name", "email", "phone"] as const).forEach((f) => {
         if (stepErrors[f]) next[f] = stepErrors[f];
         else delete next[f];
       });
@@ -310,6 +377,17 @@ export default function ContactWizard({ locale, selection, onSelectionChange }: 
     onSelectionChange({});
   }
 
+  // WhatsApp handoff link built from the full submission (all fields).
+  const waSuccessHref = waBriefLinkFromSubmission({
+    name,
+    company,
+    email,
+    phone,
+    service: selection.service,
+    budget: selection.budget,
+    timeline: selection.timeline,
+  });
+
   const waHref = waBriefLinkFromState(selection);
 
   /* ---------------- Success ---------------- */
@@ -325,10 +403,10 @@ export default function ContactWizard({ locale, selection, onSelectionChange }: 
         </h3>
         <p className="bs-success-body">{w.successBody[locale]}</p>
         <a
-          href={waBriefLinkFromState(state.selection ?? selection)}
+          href={waSuccessHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="bs-btn bs-btn-gold"
+          className="bs-btn bs-btn-whatsapp"
         >
           {w.successWhatsApp[locale]}
         </a>
@@ -340,8 +418,20 @@ export default function ContactWizard({ locale, selection, onSelectionChange }: 
   }
 
   /* ---------------- Wizard form ---------------- */
-  const activeErrors = (["name", "phone", "email"] as const).filter((f) => errors[f]);
-  const stepLegend = step === 1 ? w.q1[locale] : step === 2 ? w.q2budget[locale] : w.q3[locale];
+  const activeErrors = (["name", "email", "phone"] as const).filter((f) => errors[f]);
+  const stepLegend =
+    step === 1 ? w.q1[locale]
+    : step === 2 ? w.q2budget[locale]
+    : step === 3 ? w.qName[locale]
+    : step === 4 ? w.qEmail[locale]
+    : step === 5 ? w.qPhone[locale]
+    : w.reviewHeading[locale];
+
+  const nameId = `${uid}-name`;
+  const emailId = `${uid}-email`;
+  const phoneId = `${uid}-phone`;
+  const companyId = `${uid}-company`;
+  const messageId = `${uid}-message`;
 
   return (
     <form action={formAction} onSubmit={handleSubmit} className="bs-wizard" noValidate>
@@ -383,8 +473,101 @@ export default function ContactWizard({ locale, selection, onSelectionChange }: 
         />
       </div>
 
-      {/* Step 3 — contact */}
-      <div hidden={step !== 3} className="bs-step-stack">
+      {/* Step 3 — name only */}
+      <div hidden={step !== 3}>
+        <SingleInputStep fieldId={nameId} label={`${w.name[locale]} *`} error={errors.name}>
+          <input
+            ref={activeInputRef}
+            id={nameId}
+            name="name"
+            type="text"
+            autoComplete="name"
+            maxLength={MAX.name}
+            required
+            value={name}
+            onChange={(e) => {
+              const val = e.target.value;
+              setName(val);
+              if (errors.name) setFieldError("name", computeError("name", val));
+            }}
+            onBlur={() => handleBlur("name")}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                goNext();
+              }
+            }}
+            aria-invalid={errors.name ? true : undefined}
+            aria-describedby={errors.name ? `${nameId}-error` : undefined}
+            className="bs-input"
+          />
+        </SingleInputStep>
+      </div>
+
+      {/* Step 4 — email only */}
+      <div hidden={step !== 4}>
+        <SingleInputStep fieldId={emailId} label={`${w.email[locale]} *`} error={errors.email}>
+          <input
+            ref={activeInputRef}
+            id={emailId}
+            name="email"
+            type="email"
+            inputMode="email"
+            autoComplete="email"
+            required
+            value={email}
+            onChange={(e) => {
+              const val = e.target.value;
+              setEmail(val);
+              if (errors.email) setFieldError("email", computeError("email", val));
+            }}
+            onBlur={() => handleBlur("email")}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                goNext();
+              }
+            }}
+            aria-invalid={errors.email ? true : undefined}
+            aria-describedby={errors.email ? `${emailId}-error` : undefined}
+            className="bs-input"
+          />
+        </SingleInputStep>
+      </div>
+
+      {/* Step 5 — phone/WhatsApp only */}
+      <div hidden={step !== 5}>
+        <SingleInputStep fieldId={phoneId} label={`${w.phone[locale]} *`} error={errors.phone}>
+          <input
+            ref={activeInputRef}
+            id={phoneId}
+            name="phone"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            required
+            value={phone}
+            onChange={(e) => {
+              const val = e.target.value;
+              setPhone(val);
+              if (errors.phone) setFieldError("phone", computeError("phone", val));
+            }}
+            onBlur={() => handleBlur("phone")}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                goNext();
+              }
+            }}
+            aria-invalid={errors.phone ? true : undefined}
+            aria-describedby={errors.phone ? `${phoneId}-error` : undefined}
+            className="bs-input"
+          />
+        </SingleInputStep>
+      </div>
+
+      {/* Step 6 — company (optional) + message + source + review + submit */}
+      <div hidden={step !== 6} className="bs-step-stack">
         {/* Network / server error banner */}
         {state.error && (
           <div role="alert" className="bs-error-banner">
@@ -413,129 +596,64 @@ export default function ContactWizard({ locale, selection, onSelectionChange }: 
           </div>
         )}
 
-        <fieldset className="bs-fieldset">
-          <legend className="bs-legend">{w.q3[locale]}</legend>
+        <p className="bs-success-body" style={{ marginBottom: "1rem" }}>{w.reviewBody[locale]}</p>
 
-          <div className="bs-field">
-            <label htmlFor={`${uid}-name`} className="bs-label">
-              {w.name[locale]} <span aria-hidden="true">*</span>
-            </label>
-            <input
-              id={`${uid}-name`}
-              name="name"
-              type="text"
-              autoComplete="name"
-              maxLength={MAX.name}
-              required
-              value={name}
-              onChange={(e) => {
-                const val = e.target.value;
-                setName(val);
-                if (errors.name) setFieldError("name", computeError("name", val));
-              }}
-              onBlur={() => handleBlur("name")}
-              aria-invalid={errors.name ? true : undefined}
-              aria-describedby={errors.name ? `${uid}-name-error` : undefined}
-              className="bs-input"
-            />
-            <FieldError id={`${uid}-name-error`} message={errors.name} />
-          </div>
+        {/* Review summary — all answers */}
+        <div className="bs-details" style={{ display: "block" }}>
+          <ul className="bs-review-list" style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            <li><strong>{w.q1[locale]}:</strong> {selection.service ?? "—"}</li>
+            <li><strong>{w.q2budget[locale]}:</strong> {selection.budget ?? "—"}</li>
+            <li><strong>{w.q2timeline[locale]}:</strong> {selection.timeline ?? "—"}</li>
+            <li><strong>{w.name[locale]}:</strong> {name || "—"}</li>
+            <li><strong>{w.email[locale]}:</strong> {email || "—"}</li>
+            <li><strong>{w.phone[locale]}:</strong> {phone || "—"}</li>
+          </ul>
+        </div>
 
-          <div className="bs-field">
-            <label htmlFor={`${uid}-phone`} className="bs-label">
-              {w.phone[locale]} <span aria-hidden="true">*</span>
-            </label>
-            <input
-              id={`${uid}-phone`}
-              name="phone"
-              type="tel"
-              inputMode="tel"
-              autoComplete="tel"
-              required
-              value={phone}
-              onChange={(e) => {
-                const val = e.target.value;
-                setPhone(val);
-                if (errors.phone) setFieldError("phone", computeError("phone", val));
-              }}
-              onBlur={() => handleBlur("phone")}
-              aria-invalid={errors.phone ? true : undefined}
-              aria-describedby={errors.phone ? `${uid}-phone-error` : undefined}
-              className="bs-input"
-            />
-            <FieldError id={`${uid}-phone-error`} message={errors.phone} />
-          </div>
+        {/* Company (optional) */}
+        <div className="bs-field">
+          <label htmlFor={companyId} className="bs-label">
+            {w.company[locale]}{" "}
+            <span className="bs-optional">({w.optional[locale]})</span>
+          </label>
+          <input
+            id={companyId}
+            name="company"
+            type="text"
+            autoComplete="organization"
+            maxLength={MAX.company}
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            className="bs-input"
+          />
+        </div>
 
-          <div className="bs-field">
-            <label htmlFor={`${uid}-email`} className="bs-label">
-              {w.email[locale]} <span aria-hidden="true">*</span>
-            </label>
-            <input
-              id={`${uid}-email`}
-              name="email"
-              type="email"
-              inputMode="email"
-              autoComplete="email"
-              required
-              value={email}
-              onChange={(e) => {
-                const val = e.target.value;
-                setEmail(val);
-                if (errors.email) setFieldError("email", computeError("email", val));
-              }}
-              onBlur={() => handleBlur("email")}
-              aria-invalid={errors.email ? true : undefined}
-              aria-describedby={errors.email ? `${uid}-email-error` : undefined}
-              className="bs-input"
-            />
-            <FieldError id={`${uid}-email-error`} message={errors.email} />
-          </div>
+        {/* Message (optional) */}
+        <div className="bs-field">
+          <label htmlFor={messageId} className="bs-label">
+            {w.message[locale]}{" "}
+            <span className="bs-optional">({w.optional[locale]})</span>
+          </label>
+          <textarea
+            id={messageId}
+            name="message"
+            rows={4}
+            maxLength={MAX.message}
+            placeholder={w.messageHint[locale]}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            className="bs-input"
+          />
+        </div>
 
-          <div className="bs-field">
-            <label htmlFor={`${uid}-message`} className="bs-label">
-              {w.message[locale]}{" "}
-              <span className="bs-optional">({w.optional[locale]})</span>
-            </label>
-            <textarea
-              id={`${uid}-message`}
-              name="message"
-              rows={4}
-              maxLength={MAX.message}
-              placeholder={w.messageHint[locale]}
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              className="bs-input"
-            />
-          </div>
-        </fieldset>
-
-        <details className="bs-details">
-          <summary className="bs-summary">{w.addDetails[locale]}</summary>
-          <div className="bs-details-body">
-            <div className="bs-field">
-              <label htmlFor={`${uid}-company`} className="bs-label">
-                {w.company[locale]} <span className="bs-optional">({w.optional[locale]})</span>
-              </label>
-              <input
-                id={`${uid}-company`}
-                name="company"
-                type="text"
-                autoComplete="organization"
-                maxLength={MAX.company}
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
-                className="bs-input"
-              />
-            </div>
-            <ChipGroup
-              name="source"
-              legend={w.source[locale]}
-              options={optionsFor("source", locale)}
-              value={source}
-              onSelect={(val) => updateSelection("source", val)}
-            />
-          </div>
-        </details>
+        {/* How did you hear about us? */}
+        <ChipGroup
+          name="source"
+          legend={w.source[locale]}
+          options={optionsFor("source", locale)}
+          value={source}
+          onSelect={(val) => updateSelection("source", val)}
+        />
 
         <Turnstile locale={locale} />
 
@@ -567,7 +685,11 @@ export default function ContactWizard({ locale, selection, onSelectionChange }: 
           <button
             type="button"
             onClick={goNext}
-            disabled={(step === 1 && !step1Complete()) || (step === 2 && !step2Complete())}
+            disabled={
+              (step === 1 && !step1Complete()) ||
+              (step === 2 && !step2Complete()) ||
+              (step >= 3 && step <= 5 && !stepFieldComplete())
+            }
             className="bs-btn bs-btn-gold"
           >
             {w.next[locale]} <span aria-hidden="true" className="bs-arrow">→</span>

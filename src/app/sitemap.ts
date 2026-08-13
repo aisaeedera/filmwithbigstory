@@ -4,6 +4,7 @@ import { localizedPath } from "@/lib/i18n";
 import { serviceSlugs, guideSlugs } from "@/data/services";
 import { locationSlugs } from "@/data/locations";
 import { caseStudySlugs } from "@/data/work";
+import { invitationServiceSlugs, HUB_SLUG } from "@/data/invitations";
 
 const LASTMOD = "2026-07-14";
 
@@ -62,6 +63,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Dedicated SEO service pages (2026-07-15) — high-value search wedges
     { path: "/services/corporate-video-production-uae", priority: 0.9, changefreq: "monthly" as const },
     { path: "/services/tvc-production-dubai", priority: 0.9, changefreq: "monthly" as const },
+    // Arabic-first digital-invitation cluster: hub + 15 service pages + filterable
+    // gallery. The noindex /invitation-designs/[slug] demo routes are intentionally
+    // excluded (architecture §3 — gallery is the indexable surface, not 64 pages).
+    ...invitationServiceSlugs.map((s) => ({
+      path: `/services/${s}`,
+      priority: s === HUB_SLUG ? 0.9 : 0.8,
+      changefreq: "monthly" as const,
+    })),
+    { path: "/invitation-designs", priority: 0.8, changefreq: "weekly" as const },
     ...caseStudySlugs.map((s) => ({ path: `/work/${s}`, priority: 0.7, changefreq: "monthly" as const })),
     ...locationSlugs.map((s) => ({ path: `/locations/${s}`, priority: 0.75, changefreq: "monthly" as const })),
   ];

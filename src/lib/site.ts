@@ -76,3 +76,35 @@ export function waBriefLinkFromState(state?: {
   ];
   return `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
 }
+
+// Full-form WhatsApp deep-link — pre-fills EVERYTHING the user just submitted
+// (type, name, company, service, budget, timeline, email, phone) so the
+// handoff from the success screen carries the complete brief into the chat.
+// Mirrors the message format the client requested.
+export type BriefSubmission = {
+  bookingType?: "company" | "freelancer" | null;
+  name?: string;
+  company?: string;
+  email?: string;
+  phone?: string;
+  service?: string;
+  budget?: string;
+  timeline?: string;
+};
+
+export function waBriefLinkFromSubmission(data: BriefSubmission): string {
+  const name = (data.name ?? "").trim();
+  const company = (data.company ?? "").trim();
+  const lines = [
+    "Hi Saeed, I'd like to discuss:",
+    "",
+    `Service: ${data.service ?? ""}`,
+    `Budget: ${data.budget ?? ""}`,
+    `Timeline: ${data.timeline ?? ""}`,
+    `Name: ${name || company}`,
+    `Company: ${company || "N/A"}`,
+    `Email: ${data.email ?? ""}`,
+    `Phone: ${data.phone ?? ""}`,
+  ];
+  return `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
+}

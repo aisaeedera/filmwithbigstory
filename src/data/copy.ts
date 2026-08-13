@@ -327,18 +327,36 @@ export const contact = {
       ar: "دون التزام ودون بيع مباشر — نرد خلال يوم عمل واحد. اضغط أدناه وسيفتح ملخص قصير في واتساب مكتوب مسبقاً. املأ الفراغات وأرسل. أو استخدم النموذج وسنراسلك عبر البريد.",
     },
   },
-  // 3-step brief wizard — bilingual copy per adaptation spec §4.3.
+  // 4-step brief wizard — bilingual copy per adaptation spec §4.3.
+  // Step 0 is a Company/Freelancer toggle (RED Rental pattern); the three
+  // original steps (service, budget/timeline, contact details) follow.
   wizard: {
     // Progress
     progressLabel: { en: "Brief progress", ar: "تقدّم الملخص" },
     stepLabel: { en: "Step {n} of {total}", ar: "الخطوة {n} من {total}" },
+    // Step 0 — Company or Freelancer toggle
+    q0: { en: "Are you a company or a freelancer?", ar: "هل أنت شركة أم مستقل؟" },
+    typeCompany: { en: "Company", ar: "شركة" },
+    typeCompanySub: { en: "A business, studio or agency", ar: "شركة أو استوديو أو وكالة" },
+    typeFreelancer: { en: "Freelancer", ar: "مستقل" },
+    typeFreelancerSub: { en: "Booking for yourself", ar: "تحجز لنفسك" },
     // Step questions / legends
     q1: { en: "What do you need?", ar: "ماذا تحتاج؟" },
     q2budget: { en: "What's the scale?", ar: "ما حجم المشروع؟" },
     q2timeline: { en: "When?", ar: "متى؟" },
     q3: { en: "Where do we send the reply?", ar: "إلى أين نرسل الرد؟" },
+    // One-question-per-screen sub-step headings (contact details split)
+    qName: { en: "What's your name?", ar: "ما اسمك؟" },
+    qEmail: { en: "What's your email?", ar: "ما بريدك الإلكتروني؟" },
+    qPhone: { en: "What's your phone or WhatsApp?", ar: "ما رقم هاتفك أو واتساب؟" },
+    qCompany: { en: "Company name?", ar: "اسم الشركة؟" },
+    reviewHeading: { en: "Quick review", ar: "مراجعة سريعة" },
+    reviewBody: { en: "Make sure everything looks right, then send.", ar: "تأكد أن كل شيء صحيح، ثم أرسل." },
+    skip: { en: "Skip", ar: "تخطّي" },
     // Field labels
     name: { en: "Name", ar: "الاسم" },
+    companyName: { en: "Company name", ar: "اسم الشركة" },
+    yourName: { en: "Your name", ar: "اسمك" },
     phone: { en: "Phone", ar: "رقم الهاتف" },
     email: { en: "Email", ar: "البريد الإلكتروني" },
     message: { en: "Message", ar: "الرسالة" },

@@ -4,6 +4,7 @@ import { type Locale, localizedPath, t } from "@/lib/i18n";
 import { pageMeta } from "@/lib/meta";
 import { servicesIndex as si, ui } from "@/data/copy";
 import { services } from "@/data/services";
+import { invitationUi, HUB_SLUG, GALLERY_PATH } from "@/data/invitations";
 import { Section, Eyebrow } from "@/components/primitives";
 import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
@@ -96,6 +97,24 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
             </Reveal>
           ))}
         </ul>
+      </Section>
+
+      {/* DIGITAL INVITATIONS CLUSTER */}
+      <Section>
+        <Reveal className="bs-card flex flex-col items-start justify-between gap-6 p-10 md:flex-row md:items-center">
+          <div>
+            <Eyebrow>{t(invitationUi.clusterLabel, locale)}</Eyebrow>
+            <p className="mt-4 max-w-2xl text-base text-[color:var(--color-ink)]">{t(invitationUi.hubCta, locale)}</p>
+          </div>
+          <div className="flex shrink-0 flex-wrap gap-3">
+            <Link href={localizedPath(locale, `/services/${HUB_SLUG}`)} className="bs-btn bs-btn-gold">
+              {t(invitationUi.hubAnchor, locale)}
+            </Link>
+            <Link href={localizedPath(locale, GALLERY_PATH)} className="bs-btn bs-btn-ghost">
+              {t(invitationUi.galleryAnchor, locale)}
+            </Link>
+          </div>
+        </Reveal>
       </Section>
 
       <CtaBand locale={locale} heading={t(si.finalH2, locale)} waContext={locale === "ar" ? "زرت صفحة الخدمات." : "Saw your services page."} />
