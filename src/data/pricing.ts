@@ -72,6 +72,9 @@ export const pricing: PricingCategory[] = [
         name: { en: "Company Media Revamp", ar: "تجديد الصورة الإعلامية للشركة" },
         price: 18000,
         unit: "from",
+        // M01 — HOLD: component cost evidence incomplete (2026-08-13).
+        // Keep data intact; hidden from public pricing until approved.
+        hidden: true,
         desc: {
           en: "For established companies (3+ years) whose existing website, photos and videos no longer reflect the brand. 4 weeks from kickoff. Includes brand audit + competitive review, new visual identity direction, full photoshoot (1–2 days, 100–150 final images), 1 hero brand film (60–90s), 5 short social videos, website refresh (5–7 key pages), updated GMB profile (photos + posts) and a brand guidelines document (lite). Add-ons: extra shoot day AED 3,500 · extra video AED 3,000 · brochure combined AED 1,500 · extra website page AED 500. Example: real estate companies upgrading listings; medical practices refreshing patient-facing brand.",
           ar: "للشركات القائمة (+3 سنوات) التي لم يعد موقعها وصورها وفيديوهاتها يعكس علامتها. 4 أسابيع من الانطلاق. يشمل تدقيق العلامة ومراجعة المنافسين، واتجاه هوية بصرية جديد، وتصوير كامل (1–2 يوم، 100–150 صورة نهائية)، وفيلم علامة رئيسي واحد (60–90 ثانية)، و5 فيديوهات سوشيال قصيرة، وتجديد الموقع (5–7 صفحات رئيسية)، وتحديث الملف التجاري (صور + منشورات)، ووثيقة إرشادات العلامة (مبسطة). الإضافات: يوم تصوير إضافي 3,500 درهم · فيديو إضافي 3,000 درهم · بروشور طباعة+رقمي 1,500 درهم · صفحة موقع إضافية 500 درهم. أمثلة: شركات عقارية تحدّث قوائمها؛ عيادات طبية تجدد علامتها أمام المرضى.",
@@ -82,6 +85,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "New Product Launch", ar: "إطلاق منتج جديد" },
         price: 12000,
         unit: "from",
+        // M02 — HOLD: component cost evidence incomplete (2026-08-13).
+        hidden: true,
         desc: {
           en: "For companies launching a specific new product or service that needs its own dedicated campaign. 3 weeks from kickoff. Includes product photoshoot (40–80 final images, hero + lifestyle), 1 TVC-grade hero video (30–60s), 3 social cut variations (15–30s each), a landing or product page on your website, 5 social posts with EN + AR captions, an email announcement template and 3 paid-ad creative variations. Add-ons: extra SKU AED 2,500 · Arabic voiceover AED 1,500 · influencer UGC coordination AED 3,500. Example: F&B menu item launch; SaaS feature announcement; automotive new model; real estate new development.",
           ar: "للشركات التي تُطلق منتجاً أو خدمة محددة تحتاج حملتها الخاصة. 3 أسابيع من الانطلاق. يشمل تصوير المنتج (40–80 صورة نهائية، رئيسية ولايف ستايل)، وفيديو إعلاني رئيسي واحد (30–60 ثانية)، و3 نسخ سوشيال (15–30 ثانية لكل منها)، وصفحة هبوط أو منتج على موقعك، و5 منشورات سوشيال بنصوص EN + AR، وقالب إعلان بريدي، و3 نسخ إبداعية للمدفوع. الإضافات: SKU إضافي 2,500 درهم · تعليق عربي 1,500 درهم · تنسيق UGC مع مؤثرين 3,500 درهم. أمثلة: إطلاق عنصر قائمة في مطعم؛ إعلان ميزة في SaaS؛ طراز سيارات جديد؛ تطوير عقاري جديد.",
@@ -92,6 +97,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "New Company Launch", ar: "إطلاق شركة جديدة" },
         price: 22000,
         unit: "from",
+        // M03 — HOLD: component cost evidence incomplete (2026-08-13).
+        hidden: true,
         desc: {
           en: "For new companies (0–12 months old) that need everything from scratch. 6 weeks from kickoff. Includes brand foundation (logo + identity + guidelines), a 5-page bilingual website (EN/AR), GMB profile setup with 50 photos and 2 videos, 2 brand videos (60s + 30s), 100+ product/service photos, 1 hero photo session for the website, brochure (digital), a 30-day launch content calendar and social profile setup with first 10 posts. Add-ons: extra brand videos AED 4,000 · podcast launch (3 episodes) AED 4,500 · first month content management AED 3,500. Example: restaurant grand opening; new consultancy launch; new retail brand launch; new service business launch.",
           ar: "للشركات الجديدة (0–12 شهراً) التي تحتاج كل شيء من الصفر. 6 أسابيع من الانطلاق. يشمل أساس العلامة (شعار + هوية + إرشادات)، وموقع ثنائي اللغة من 5 صفحات (EN/AR)، وإعداد الملف التجاري مع 50 صورة وفيديوهان، وفيديوهان تعريفيان (60 ثانية + 30 ثانية)، و+100 صورة منتج/خدمة، وجلسة تصوير رئيسية واحدة للموقع، وبروشور (رقمي)، و30 يوماً من تقويم محتوى الإطلاق، وإعداد حسابات السوشيال مع أول 10 منشورات. الإضافات: فيديوهات علامة إضافية 4,000 درهم · إطلاق بودكاست (3 حلقات) 4,500 درهم · إدارة محتوى الشهر الأول 3,500 درهم. أمثلة: افتتاح مطعم؛ إطلاق شركة استشارية جديدة؛ إطلاق علامة تجزئة جديدة؛ إطلاق شركة خدمات جديدة.",
@@ -113,6 +120,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "TVC & commercial", ar: "إعلان تلفزيوني وتجاري" },
         price: 15000,
         unit: "from",
+        // M05 — HOLD: not yet costed / requires evidence (2026-08-13).
+        hidden: true,
         desc: {
           en: "A broadcast- and social-ready commercial — concept, script, cast, cinematic shoot and full post-production.",
           ar: "إعلان جاهز للبث والسوشيال — فكرة ونص وممثلون وتصوير سينمائي ومونتاج كامل.",
@@ -123,6 +132,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Brand film", ar: "فيلم تعريفي للعلامة" },
         price: 12000,
         unit: "from",
+        // M05 — HOLD: not yet costed / requires evidence (2026-08-13).
+        hidden: true,
         desc: {
           en: "A story-driven film that captures who your brand is and why it matters — built to be watched to the end.",
           ar: "فيلم قائم على القصة يجسّد هوية علامتك وسبب أهميتها — مصمم ليُشاهَد حتى النهاية.",
@@ -153,6 +164,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Social content shoot", ar: "تصوير محتوى السوشيال" },
         price: 3500,
         unit: "day",
+        // M06 — HOLD: social cuts / post production not yet costed (2026-08-13).
+        hidden: true,
         desc: {
           en: "A full shoot day producing short-form content batched for the feed — reels, verticals and cut-downs.",
           ar: "يوم تصوير كامل ينتج محتوى قصيراً مُجمَّعاً للخلاصة — ريلز وفيديوهات عمودية ونسخ مختصرة.",
@@ -183,6 +196,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Edit-only (your footage)", ar: "مونتاج فقط (لقطاتك)" },
         price: 2500,
         unit: "each",
+        // M06 — HOLD: social cuts / post production not yet costed (2026-08-13).
+        hidden: true,
         desc: {
           en: "If you already have footage and need a professional edit. Up to 60s final cut + 1 revision round. Useful for repackaging existing shoots into new edits.",
           ar: "إذا كانت لديك لقطات بالفعل وتحتاج مونتاجاً احترافياً. حتى 60 ثانية + جولة مراجعة واحدة. مفيد لإعادة صياغة تصوير موجود في مونتاج جديد.",
@@ -332,6 +347,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Props & styling — basic", ar: "دعائم وتنسيق — أساسي" },
         price: 400,
         unit: "each",
+        // M16 — HOLD: talent / props / location / rights — not yet costed (2026-08-13).
+        hidden: true,
         desc: {
           en: "Light prop sourcing for a single shoot — food, product styling, simple backgrounds. Quoted per shoot.",
           ar: "توفير دعائم خفيفة لتصوير واحد — طعام، تنسيق منتج، خلفيات بسيطة. يُسعَّر لكل تصوير.",
@@ -342,6 +359,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Props & styling — extended", ar: "دعائم وتنسيق — موسّع" },
         price: 1200,
         unit: "each",
+        // M16 — HOLD: talent / props / location / rights — not yet costed (2026-08-13).
+        hidden: true,
         desc: {
           en: "Full prop and styling for a multi-day shoot — location dressing, set build, wardrobe sourcing.",
           ar: "دعائم وتنسيق كاملين لتصوير متعدد الأيام — تجهيز الموقع، بناء المجموعة، توفير الملابس.",
@@ -352,6 +371,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Drone (half day)", ar: "درون (نصف يوم)" },
         price: 1200,
         unit: "each",
+        // M14 — HOLD: drone / aerial — compliance/operations gates (2026-08-13).
+        hidden: true,
         desc: {
           en: "Licensed drone operator + drone. Useful for real estate, events, location shoots. 4K footage delivered.",
           ar: "مشغل درون مرخص + درون. مفيد للعقارات والفعاليات وتصوير المواقع. لقطات 4K مُسلَّمة.",
@@ -362,6 +383,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Actor / talent — half day", ar: "ممثل / موهبة — نصف يوم" },
         price: 900,
         unit: "each",
+        // M16 — HOLD: talent / props / location / rights — not yet costed (2026-08-13).
+        hidden: true,
         desc: {
           en: "Supporting talent via our casting partner. Principal/lead talent AED 1,500-3,000 extra. AED 200 admin fee applies.",
           ar: "موهبة داعمة عبر شريك الكاستنج لدينا. الموهبة الرئيسية AED 1,500-3,000 إضافية. تُطبق رسوم إدارية AED 200.",
@@ -372,6 +395,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Makeup artist — half day", ar: "خبير مكياج — نصف يوم" },
         price: 800,
         unit: "each",
+        // M16 — HOLD: talent / props / location / rights — not yet costed (2026-08-13).
+        hidden: true,
         desc: {
           en: "On-set hair and makeup for one or two talent. Full day AED 1,500.",
           ar: "شعر ومكياج في الموقع لموهبة أو اثنتين. يوم كامل AED 1,500.",
@@ -393,6 +418,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Episode — audio only (per ep)", ar: "حلقة — صوت فقط (لكل حلقة)" },
         price: 1200,
         unit: "each",
+        // M09 — HOLD: podcast / series — internal planning only (2026-08-13).
+        hidden: true,
         desc: {
           en: "Finished audio-only episode (MP3 + WAV masters, EN show notes, chapter markers, 3 vertical audio clips, 1-page analytics report within 7 days). 60-min episode. Studio rental extra.",
           ar: "حلقة نهائية صوتية فقط (ماستر MP3 + WAV، ملاحظات إنجليزية، فصول، 3 مقاطع صوتية عمودية، تقرير تحليلات صفحة واحدة خلال 7 أيام). حلقة 60 دقيقة. إيجار الاستوديو إضافي.",
@@ -403,6 +430,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Episode — video podcast (per ep)", ar: "حلقة — بودكاست فيديو (لكل حلقة)" },
         price: 2200,
         unit: "each",
+        // M09 — HOLD: podcast / series — internal planning only (2026-08-13).
+        hidden: true,
         desc: {
           en: "Finished episode with audio + 1-2 camera video edit (1080p, MP4). Includes 3 vertical video clips + 3 audiograms.",
           ar: "حلقة نهائية مع مونتاج صوت + فيديو 1-2 كاميرا (1080p، MP4). يشمل 3 مقاطع فيديو عمودية + 3 audiograms.",
@@ -413,6 +442,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Season — 8 episodes, audio", ar: "موسم — 8 حلقات، صوت" },
         price: 8000,
         unit: "each",
+        // M09 — HOLD: podcast / series — internal planning only (2026-08-13).
+        hidden: true,
         desc: {
           en: "Eight audio-only episodes bundled. AED 1,000/episode — locks in your season production schedule.",
           ar: "ثماني حلقات صوتية في باقة. AED 1,000/حلقة — يضمن جدول إنتاج الموسم.",
@@ -423,6 +454,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Season — 8 episodes, video", ar: "موسم — 8 حلقات، فيديو" },
         price: 15000,
         unit: "each",
+        // M09 — HOLD: podcast / series — internal planning only (2026-08-13).
+        hidden: true,
         desc: {
           en: "Eight video-podcast episodes bundled. AED 1,875/episode.",
           ar: "ثماني حلقات بودكاست فيديو في باقة. AED 1,875/حلقة.",
@@ -433,6 +466,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Studio rental (per hour)", ar: "إيجار استوديو (للساعة)" },
         price: 250,
         unit: "each",
+        // M09 — HOLD: podcast / series — internal planning only (2026-08-13).
+        hidden: true,
         desc: {
           en: "Hourly podcast studio — Shure SM7dB mics, Rodecaster interface, acoustically treated room, in Business Bay.",
           ar: "استوديو بودكاست بالساعة — ميكروفونات Shure SM7dB، واجهة Rodecaster، غرفة معالجة صوتياً، في Business Bay.",
@@ -490,6 +525,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Enterprise — annual content partnership", ar: "المؤسسات — شراكة محتوى سنوية" },
         price: 180000,
         unit: "each",
+        // M19 — HOLD: annual partnership — not yet costed (2026-08-13).
+        hidden: true,
         desc: {
           en: "An ongoing annual content partnership — quarterly content strategy + 1 dedicated shoot day per month + ongoing social/GMB + monthly analytics + dedicated producer. Scoped per client.",
           ar: "شراكة محتوى سنوية مستمرة — استراتيجية محتوى ربع سنوية + يوم تصوير مخصص شهرياً + إدارة مستمرة للسوشيال/الملف التجاري + تحليلات شهرية + منتج مخصص. يُحدَّد النطاق لكل عميل.",
@@ -611,6 +648,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Monthly content bundle — 15 assets", ar: "باقة محتوى شهرية — 15 أصل" },
         price: 6500,
         unit: "month",
+        // M18 — HOLD: ongoing content — not yet costed (2026-08-13).
+        hidden: true,
         desc: {
           en: "A bundled month of content — fifteen mixed assets (videos + carousels + photos + captions) produced in one efficient shoot cycle.",
           ar: "شهر كامل من المحتوى — خمسة عشر أصلاً متنوعاً (فيديو + كاروسيل + صور + نصوص) في دورة تصوير واحدة فعّالة.",
@@ -941,6 +980,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Starter — GMB setup + photos", ar: "الأساسية — إعداد الملف + الصور" },
         price: 3500,
         unit: "each",
+        // M17 — HOLD: launch essentials campaign — not yet costed (2026-08-13).
+        hidden: true,
         desc: {
           en: "Profile setup and verification, profile + cover photo shoot, logo + branding alignment, 15 photos of your interior / exterior, categories + services + attributes, Q&A seeded with 5 common questions, and your first 5 posts with captions.",
           ar: "إعداد وتوثيق الملف، تصوير صورة الملف وصورة الغلاف، محاذاة الشعار والهوية، 15 صورة للموقع الداخلي/الخارجي، فئات وخدمات وخصائص، أسئلة وأجوبة مزروعة بـ5 أسئلة شائعة، وأول 5 منشورات مع نصوص.",
@@ -951,6 +992,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Growth — Starter + video + virtual tour", ar: "النمو — الأساسية + فيديو + جولة افتراضية" },
         price: 8500,
         unit: "each",
+        // M17 — HOLD: launch essentials campaign — not yet costed (2026-08-13).
+        hidden: true,
         desc: {
           en: "Everything in Starter, plus 30 photos, 2 short videos (30–60s) for GMB posts, a 10–15 photo virtual tour, 15 posts over 60 days, review response strategy + templates, a 4-hour on-site photo shoot and a 2-hour on-site video shoot.",
           ar: "كل ما في الأساسية، إضافة إلى 30 صورة، وفيديوهان قصيران (30–60 ثانية) لمنشورات الملف، وجولة افتراضية من 10–15 صورة، و15 منشوراً على مدى 60 يوماً، واستراتيجية ونماذج للرد على المراجعات، وتصوير في موقعك لمدة 4 ساعات وفيديو لمدة ساعتين.",
@@ -961,6 +1004,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Premium — Growth + TVC hero + monthly content", ar: "المتميزة — النمو + فيديو إعلاني + محتوى شهري" },
         price: 18000,
         unit: "each",
+        // M17 — HOLD: launch essentials campaign — not yet costed (2026-08-13).
+        hidden: true,
         desc: {
           en: "Everything in Growth, plus a 15-second TVC-grade hero video for paid promotion, 8 monthly UGC/social posts, 6 monthly videos (mix of talking-head + lifestyle), a monthly analytics report, ongoing review management, a full-day on-site photo + video shoot, and a quarterly content strategy call.",
           ar: "كل ما في النمو، إضافة إلى فيديو إعلاني 15 ثانية بجودة تلفزيونية للمدفوع، و8 منشورات UGC/سوشيال شهرياً، و6 فيديوهات شهرياً (مزيج talking head + لايف ستايل)، وتقرير تحليلات شهري، وإدارة مستمرة للمراجعات، ويوم تصوير كامل في موقعك، ومكالمة استراتيجية محتوى ربع سنوية.",
@@ -971,6 +1016,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "GMB monthly retainer (post-setup)", ar: "اشتراك الملف التجاري الشهري (بعد الإعداد)" },
         price: 1500,
         unit: "month",
+        // M17 — HOLD: launch essentials campaign — not yet costed (2026-08-13).
+        hidden: true,
         desc: {
           en: "8 GMB posts/month with captions, monthly photo refresh, review response within 24h, weekly Q&A seeding, monthly analytics report.",
           ar: "8 منشورات/شهرياً مع نصوص، تحديث صور شهري، رد على المراجعات خلال 24 ساعة، زرع أسئلة وأجوبة أسبوعياً، تقرير تحليلات شهري.",
@@ -992,6 +1039,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Management starter — 12 posts/mo", ar: "إدارة أساسية — 12 منشور شهرياً" },
         price: 2500,
         unit: "month",
+        // M18 — HOLD: ongoing content — not yet costed (2026-08-13).
+        hidden: true,
         desc: {
           en: "12 posts/month across 3 platforms, captions, hashtag research, monthly analytics report. Content creation billed separately.",
           ar: "12 منشور شهرياً عبر 3 منصات، نصوص، بحث عن الهاشتاج، تقرير تحليلات شهري. إنشاء المحتوى يُفوتر منفصلاً.",
@@ -1002,6 +1051,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Management growth — 20 posts/mo", ar: "إدارة نمو — 20 منشور شهرياً" },
         price: 4500,
         unit: "month",
+        // M18 — HOLD: ongoing content — not yet costed (2026-08-13).
+        hidden: true,
         desc: {
           en: "20 posts/month across 4 platforms, 4 short videos, community management (comments within 24h), competitor tracking, bi-weekly analytics.",
           ar: "20 منشور شهرياً عبر 4 منصات، 4 فيديوهات قصيرة، إدارة مجتمعية (تعليقات خلال 24 ساعة)، تتبع المنافسين، تحليلات نصف شهرية.",
@@ -1012,6 +1063,8 @@ export const pricing: PricingCategory[] = [
         name: { en: "Management premium — 30 posts/mo", ar: "إدارة متميزة — 30 منشور شهرياً" },
         price: 8000,
         unit: "month",
+        // M18 — HOLD: ongoing content — not yet costed (2026-08-13).
+        hidden: true,
         desc: {
           en: "30 posts/month across 5 platforms, 10 short videos, community management, influencer outreach coordination, weekly analytics, monthly strategy call.",
           ar: "30 منشور شهرياً عبر 5 منصات، 10 فيديوهات قصيرة، إدارة مجتمعية، تنسيق مع المؤثرين، تحليلات أسبوعية، مكالمة استراتيجية شهرية.",
