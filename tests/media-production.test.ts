@@ -33,6 +33,7 @@ import {
   hasMediaErrors,
 } from "../src/lib/contact.ts";
 import { waMediaLinkFromState } from "../src/lib/site.ts";
+import { switchLocalePath } from "../src/lib/i18n.ts";
 import { services } from "../src/data/services.ts";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -45,6 +46,26 @@ const FORM = "src/components/MediaInquiryForm.tsx";
 const UI = "src/components/MediaProductionUi.tsx";
 
 const SILO_SOURCES = [HUB_PAGE, SERVICE_PAGE, DATA, FORM, UI];
+
+test("language switch replaces either locale prefix without nesting", () => {
+  assert.equal(switchLocalePath("ar", "/en/services/groom-wedding-services"), "/ar/services/groom-wedding-services");
+  assert.equal(switchLocalePath("ar", "/services/groom-wedding-services"), "/ar/services/groom-wedding-services");
+  assert.equal(switchLocalePath("en", "/ar/services/groom-wedding-services"), "/services/groom-wedding-services");
+  assert.equal(switchLocalePath("en", "/ar"), "/");
+});
+
+test("language switches use native anchors so locale changes trigger a clean document navigation", () => {
+  const nav = read("src/components/Nav.tsx");
+  assert.equal(nav.match(/<a href=\{switchHref\}/g)?.length, 2);
+  assert.ok(!nav.includes("<Link href={switchHref}"));
+});
+
+test("Vercel observability scripts render only on Vercel, not in local production QA", () => {
+  const layout = read("src/app/[locale]/layout.tsx");
+  assert.ok(layout.includes("process.env.VERCEL"));
+  assert.ok(layout.includes("<Analytics />"));
+  assert.ok(layout.includes("<SpeedInsights />"));
+});
 
 /**
  * Strip comments. The price gate and the truthfulness rules are documented in

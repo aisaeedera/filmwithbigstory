@@ -1,0 +1,28 @@
+{
+  "en": {
+    "url": "http://127.0.0.1:3101/services/groom-wedding-services",
+    "lang": "en-AE",
+    "dir": "ltr",
+    "switchHref": "/ar/services/groom-wedding-services"
+  },
+  "ar": {
+    "url": "http://127.0.0.1:3101/ar/services/groom-wedding-services",
+    "lang": "ar-AE",
+    "dir": "rtl",
+    "switchHref": "/services/groom-wedding-services"
+  },
+  "roundTripUrl": "http://127.0.0.1:3101/services/groom-wedding-services",
+  "mobileEn": {
+    "url": "http://127.0.0.1:3101/services/groom-wedding-services",
+    "clientWidth": 390,
+    "scrollWidth": 390
+  },
+  "mobileAr": {
+    "url": "http://127.0.0.1:3101/ar/services/groom-wedding-services",
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "dir": "rtl"
+  },
+  "consoleErrors": [],
+  "pageErrors": []
+}

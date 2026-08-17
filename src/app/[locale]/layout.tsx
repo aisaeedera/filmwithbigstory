@@ -54,8 +54,12 @@ export default async function LocaleLayout({
         <Nav locale={loc} />
         <main id="main">{children}</main>
         <Footer locale={loc} />
-        <Analytics />
-        <SpeedInsights />
+        {process.env.VERCEL ? (
+          <>
+            <Analytics />
+            <SpeedInsights />
+          </>
+        ) : null}
       </body>
     </html>
   );

@@ -1,0 +1,47 @@
+{
+  "source": "/Users/aiagentmacbookprom1max/Bigstory/website/clients/filmwithbigstory/react-site/src/app/[locale]/services/groom-wedding-services/page.tsx",
+  "line_count": 493,
+  "stage1": {
+    "result": "PASS",
+    "hit_line_counts": {
+      "universal_or_superiority": 0,
+      "booking_history_or_readiness": 0,
+      "performance_or_operational_outcome": 0,
+      "blocked_lane_or_scope": 0,
+      "client_price_or_sale": 0
+    },
+    "total_category_line_hits": 0,
+    "hits": {
+      "universal_or_superiority": [],
+      "booking_history_or_readiness": [],
+      "performance_or_operational_outcome": [],
+      "blocked_lane_or_scope": [],
+      "client_price_or_sale": []
+    }
+  },
+  "stage2": {
+    "result": "FAIL",
+    "required_markers": {
+      "en_staged_label": false,
+      "ar_staged_label": false,
+      "not_client_wedding": false,
+      "adult_cast_only": false,
+      "participation_not_publication": false,
+      "separate_public_portfolio_choice": false,
+      "no_minor": false,
+      "no_drone": false,
+      "no_female_or_aqd_authorization": false
+    },
+    "missing": [
+      "en_staged_label",
+      "ar_staged_label",
+      "not_client_wedding",
+      "adult_cast_only",
+      "participation_not_publication",
+      "separate_public_portfolio_choice",
+      "no_minor",
+      "no_drone",
+      "no_female_or_aqd_authorization"
+    ]
+  }
+}

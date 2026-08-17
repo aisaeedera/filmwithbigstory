@@ -21,6 +21,13 @@ export function localizedPath(locale: Locale, path: string): string {
   return clean || "/";
 }
 
+// Switch a route to the target locale after removing any current locale prefix.
+// English is canonical at the root, but Next may expose an internal /en pathname.
+export function switchLocalePath(targetLocale: Locale, pathname: string): string {
+  const clean = pathname.replace(/^\/(?:en|ar)(?=\/|$)/, "") || "/";
+  return localizedPath(targetLocale, clean);
+}
+
 // hreflang alternates for a given clean path (no locale prefix)
 export function alternates(path: string) {
   return {

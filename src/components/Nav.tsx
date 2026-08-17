@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { Locale } from "@/lib/i18n";
-import { localizedPath, t } from "@/lib/i18n";
+import { localizedPath, switchLocalePath, t } from "@/lib/i18n";
 import { ui } from "@/data/copy";
 import { cx } from "@/lib/util";
 
@@ -47,10 +47,10 @@ export default function Nav({ locale }: { locale: Locale }) {
     };
   }, [open]);
 
-  // Build the alternate-locale URL for the current path
+  // Build the alternate-locale URL for the current path.
+  // Normalize either /en or /ar because Next can expose the internal /en prefix.
   const other: Locale = locale === "ar" ? "en" : "ar";
-  const stripped = pathname.replace(/^\/ar(?=\/|$)/, "") || "/";
-  const switchHref = localizedPath(other, stripped);
+  const switchHref = switchLocalePath(other, pathname);
 
   const isActive = (path: string) => {
     const full = localizedPath(locale, path);
@@ -87,9 +87,9 @@ export default function Nav({ locale }: { locale: Locale }) {
               {t(ui.nav[l.key], locale)}
             </Link>
           ))}
-          <Link href={switchHref} className="text-sm text-[color:var(--color-muted)] hover:text-[color:var(--color-ink)]" hrefLang={other}>
+          <a href={switchHref} className="text-sm text-[color:var(--color-muted)] hover:text-[color:var(--color-ink)]" hrefLang={other}>
             {t(ui.nav.langSwitch, locale)}
-          </Link>
+          </a>
           <Link href={localizedPath(locale, "/contact")} className="bs-btn bs-btn-ghost !px-5 !py-2.5 text-sm">
             {t(ui.nav.startProject, locale)}
           </Link>
@@ -122,9 +122,9 @@ export default function Nav({ locale }: { locale: Locale }) {
                 {t(ui.nav[l.key], locale)}
               </Link>
             ))}
-            <Link href={switchHref} className="py-3 text-[color:var(--color-muted)]" hrefLang={other}>
+            <a href={switchHref} className="py-3 text-[color:var(--color-muted)]" hrefLang={other}>
               {t(ui.nav.langSwitch, locale)}
-            </Link>
+            </a>
             <Link href={localizedPath(locale, "/contact")} className="bs-btn bs-btn-gold mt-4">
               {t(ui.nav.startProject, locale)}
             </Link>

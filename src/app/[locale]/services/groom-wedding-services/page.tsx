@@ -13,17 +13,33 @@ import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema, articleSchema } fro
 import { SITE, waLink } from "@/lib/site";
 import UaeTravelSection from "@/components/UaeTravelSection";
 
+/*
+ * Groom wedding services page, remediated 2026-08-17 (kanban t_0cac4210).
+ * Claims and scope controls applied, source only, no deploy:
+ * - Strategy audit WEDDING_WORKSTREAM_AUDIT_2026-07-31.md section 5.11
+ * - Production sign-off section 8 first-lane matrix (one Recommended + one
+ *   Enhanced scope, both unpriced, no a-la-carte menu)
+ * - Compliance claim matrix C01-C20 (COMPLIANCE_QA_MALE_WEDDING_READINESS_
+ *   MICRO_DEMO_RELEASE_CLAIMS_GATE_2026-07-31.md)
+ * Removed per those controls: historical-stats claims, absolute crew
+ * quantifiers, market-gap and competitor-practice comparisons,
+ * crane-by-default promises, availability windows and date holds, and all
+ * closed-lane content (aerial, women's lane, contract-signing ceremony,
+ * traditional-performance specialty, dignitary protocol). No capability-demo
+ * asset is referenced because Compliance placement gates remain closed.
+ */
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params;
   const isAr = locale === "ar";
   return pageMeta({
     locale,
     title: isAr
-      ? "تصوير العريس وأفراح الرجال في دبي | بيك ستوري، طاقم رجالي بالكامل"
-      : "Groom Wedding Photography & Videography Dubai | All-Male Crew | Big Story",
+      ? "خدمات تصوير العريس والأفراح الرجالية في دبي | طاقم رجالي | بيك ستوري"
+      : "Groom Wedding Services Dubai & UAE | Male Crew | Big Story",
     description: isAr
-      ? "تصوير العريس وأفراح الرجال في الإمارات، طاقم رجالي بالكامل، تحضير العريس، صور البورتريه، جلسات الصحاب، تغطية الأعياد الرجالية، وغيرها من خدمات تصوير الأفراح الرجالية في دبي."
-      : "Groom and male-only wedding coverage in Dubai and the UAE. All-male crew for gender-segregated weddings, groom preparation, groomsmen and Al-Ayyala, male hall coverage. Cinema filtration, crane included.",
+      ? "تصوير العريس والأفراح الرجالية في دبي والإمارات. تحضير العريس وتغطية قاعة الرجال بطاقم رجالي، نطاق موصى به ونطاق موسّع، والتسعير لكل فعالية بعد دراسة يومكم."
+      : "Groom and male-only wedding coverage in Dubai and the UAE. Groom preparation and wedding-day male hall coverage by a male crew, one Recommended and one Enhanced scope, quoted per event.",
     path: "/services/groom-wedding-services",
   });
 }
@@ -31,257 +47,218 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
 const COPY = {
   eyebrow: { en: "Groom & Male Wedding Coverage", ar: "تصوير العريس والأفراح الرجالية" },
   h1: {
-    en: "Groom Wedding Services in Dubai, the male-only coverage the UAE market was missing",
-    ar: "خدمات تصوير العريس في دبي، تغطية الأفراح الرجالية التي كان سوق الإمارات يفتقدها",
+    en: "Groom wedding services in Dubai and the UAE, a male crew for male-only celebrations",
+    ar: "خدمات تصوير العريس في دبي والإمارات، طاقم رجالي للأعراس والفعاليات الرجالية",
   },
   lead: {
-    en: "Big Story shoots groom preparation, groom portraits, groomsmen and family groups, male-only pre-wedding sessions, and full wedding-day male hall coverage across Dubai, Abu Dhabi and the wider UAE. Every booking is crewed by an all-male team, because many UAE weddings are gender-segregated and female crew cannot film male-only events. Cinema filtration (Black Mist, Pro-Mist), a crane on every shoot, and VIP protocol for elders and dignitaries are standard. Male weddings only. Female coverage is coming soon.",
-    ar: "تصوّر بيك ستوري تحضير العريس، صور البورتريه، جلسات الصحاب والعائلة، الجلسات ما قبل الزفاف للرجال فقط، وتغطية قاعة الرجال في يوم الزفاف عبر دبي وأبوظبي وبقية الإمارات. كل حجز يؤديه طاقم رجالي بالكامل، لأن كثيراً من حفلات الزفاف في الإمارات منفصلة بين الجنسين ولا يمكن لطاقم نسائي تصوير فعاليات رجالية فقط. ترشيح سينمائي (Black Mist، Pro-Mist)، رافع (كرين) في كل تصوير، وبروتوكول VIP لكبار السن والشخصيات المهمة هي معيار. أعمال زفاف رجالية فقط. تغطية نسائية قريباً.",
+    en: "Big Story covers groom preparation and wedding-day male hall coverage across Dubai, Abu Dhabi and the wider UAE. The crew for this service is male, which matters for celebrations where the male hall is filmed by men. Each project is scoped in writing before anything is locked: one event day, one agreed coverage plan, and a clear list of deliverables.",
+    ar: "تغطي بيك ستوري تحضير العريس وتغطية قاعة الرجال في يوم الزفاف عبر دبي وأبوظبي وبقية الإمارات. طاقم هذه الخدمة رجالي، وهذا مهم في الاحتفالات التي تُصوَّر فيها قاعة الرجال بطاقم رجالي. يُحدَّد نطاق كل مشروع كتابياً قبل تثبيت أي شيء: يوم فعالية واحد، خطة تغطية متفق عليها، وقائمة مخرجات واضحة.",
   },
-  statsHeading: { en: "Groom wedding coverage in the UAE, by the numbers", ar: "تغطية زفاف العريس في الإمارات، بالأرقام" },
-  statsBody: {
-    en: "Data from Big Story's 2025, 2026 male-only wedding bookings across Dubai, Abu Dhabi, Sharjah and the Northern Emirates. The male wedding niche is underserved in UAE search and almost no studio fields a dedicated all-male crew. Every figure below is sourced from our production ledger.",
-    ar: "بيانات من حجوزات الزفاف الرجالي فقط لدى بيك ستوري في 2025 و2026 عبر دبي وأبوظبي والشارقة والإمارات الشمالية. زاوية زفاف العريس غير مخدومة في البحث الإماراتي وتقريباً لا يوجد استوديو لديه طاقم رجالي مخصص بالكامل. كل رقم أدناه من سجل الإنتاج لدينا.",
-  },
-  stat1: { en: "100% male crew", ar: "طاقم رجالي 100٪" },
-  stat1Label: { en: "Every groom and male-hall booking is crewed only by men, essential for gender-segregated weddings", ar: "كل حجز لعريس أو قاعة رجال يؤديه طاقم رجالي فقط، أساسي للأعراس المنفصلة بين الجنسين" },
-  stat2: { en: "5 modules", ar: "5 وحدات" },
-  stat2Label: { en: "Groom prep, portraits, groomsmen and family, male pre-wedding shoot, wedding-day male hall coverage", ar: "تحضير العريس، بورتريه، الصحاب والعائلة، تصوير ما قبل الزفاف للرجال، تغطية قاعة الرجال يوم الزفاف" },
-  stat3: { en: "Crane + filtration", ar: "كرين + ترشيح" },
-  stat3Label: { en: "Crane included on every groom shoot, Black Mist and Pro-Mist cinema filtration for a film look", ar: "كرين مشمول في كل تصوير عريس، ترشيح سينمائي Black Mist وPro-Mist لمظهر فيلم" },
-  stat4: { en: "Al-Ayyala specialty", ar: "تخصص الأعياد والأيالة" },
-  stat4Label: { en: "Specialty coverage of Al-Ayyala and harbiya traditional male dance performances, the cultural moment of the wedding", ar: "تغطية مخصصة لرقصة الأيالة والحربية التقليدية للرجال، لحظة الزفاف الثقافية" },
 };
 
-// The five service modules. Keep these in the order mp-producer scoped.
-const modules = {
+// What the coverage includes. Aligned to the Production first-lane boundary:
+// groom preparation + wedding-day male hall coverage on one event day.
+const coverage = {
   en: [
     {
       n: "01",
       title: "Groom Preparation",
-      body: "The hours before the groom walks in. Bisht being draped over the kandura, ghutra and agal being set, mukhalat being applied, the barber finishing the line-up, the brothers and father helping with the cloak. Shot close and cinematic in the majlis or hotel suite, with natural window light and controlled fill so the fabric, the gold thread and the perfume bottle all read on camera. This is the calm before the celebration and it is where the groom's film actually begins.",
-      tags: ["bisht", "kandura", "mukhalat", "ghutra", "agal", "grooming", "barber"],
+      body: "The hours before the groom walks in. The bisht being draped over the kandura, the ghutra and agal being set, mukhalat being applied, the barber finishing the line-up, the brothers and father helping with the cloak. Filmed close and cinematic in the majlis or hotel suite, working with natural window light and controlled fill so the fabric, the gold thread and the perfume bottle are framed with care. This is the calm before the celebration, and it is where the groom's film begins.",
+      tags: ["bisht", "kandura", "mukhalat", "ghutra", "agal", "majlis", "barber"],
     },
     {
       n: "02",
-      title: "Groom Portrait Session",
-      body: "A dedicated groom portrait session, usually golden hour, usually solo. We shoot on cinema cameras with Black Mist and Pro-Mist filtration to soften highlights and lift the shadow rolloff, the same filtration used on narrative film sets. The look is a groom who reads as the hero of his own day, not a guest being photographed. Bisht, kandura and watch details are framed the way a menswear campaign would frame them. The output is a set of stills and a short portrait reel built for the groom's own family and social.",
-      tags: ["golden hour", "Black Mist", "Pro-Mist", "portrait reel", "menswear framing"],
+      title: "Wedding-Day Male Hall Coverage",
+      body: "Full coverage of the male hall on the wedding day. The entrance, the Marhaba receiving line, the seating of elders, the food service, the performances, the celebration. Filmed with a multi-camera crew working to a camera plan agreed in advance, with filming that stays discreet and respectful around elders and guests, coordinated with your planner. This is the backbone of a male wedding film, and it is where the full day is captured.",
+      tags: ["entrance", "Marhaba", "elders", "male hall", "multi-camera", "discreet"],
     },
     {
       n: "03",
-      title: "Groomsmen and Family Groups",
-      body: "The groomsmen, the brothers, the father, the uncles, the grandfather. Group portraits done properly, with everyone in frame, everyone in focus, the ghutra sitting right. This is also where Al-Ayyala happens, the traditional male dance performance with sticks, drums and synchronised movement, and it is the cultural moment of a UAE wedding. We cover it with multiple cameras, a crane for the wide, and tight safe angles for the close detail. Harbiya, the other major male performance form, is covered the same way.",
-      tags: ["groomsmen", "father", "brothers", "Al-Ayyala", "harbiya", "family groups", "crane"],
-    },
-    {
-      n: "04",
-      title: "Male-Only Pre-Wedding Shoot",
-      body: "A pre-wedding shoot for the groom, solo or with the groomsmen, before the wedding weekend. Three location flavours: desert (dunes, golden light, the kandura against sand), urban (Downtown Dubai, DIFC, the architectural backdrops that read as modern UAE), and heritage (Al Fahidi, restored forts, the old Dubai aesthetic). Shot cinematic with filtration, delivered as a short reel and a set of stills. This is the content the groom posts in the days running up to the wedding.",
-      tags: ["desert", "urban", "heritage", "pre-wedding", "reel", "Downtown Dubai", "DIFC", "Al Fahidi"],
-    },
-    {
-      n: "05",
-      title: "Wedding Day Male Hall Coverage",
-      body: "Full coverage of the male hall on the wedding day. The entrance, the Marhaba receiving line, the seating of elders and dignitaries, the food service, the performances, the celebration. Multi-camera, crane for the wide, and discrete close cameras for reaction and detail. VIP protocol is standard, we know how to film around elders and officials without being in the way. This is the backbone of a male wedding film and it is where the full day is captured.",
-      tags: ["entrance", "Marhaba", "VIP protocol", "elders", "dignitaries", "male hall", "multi-camera"],
+      title: "The Film You Take Home",
+      body: "One 3 to 5 minute highlight film, one 15 to 20 minute key-event film where your programme supports it, and one 15-second vertical cut for social. Colour, sound and two revision rounds are included. The Enhanced scope adds a longer 5 to 7 minute highlight and an additional vertical cut, with revision rounds agreed at scoping. Delivery is private, for the family, and any public use is a separate written choice you make.",
+      tags: ["highlight film", "key-event film", "vertical cut", "colour", "sound", "private delivery"],
     },
   ],
   ar: [
     {
       n: "01",
       title: "تحضير العريس",
-      body: "الساعات التي تسبق دخول العريس. وضع البشت فوق الكندورة، ضبط الغترة والعقال، وضع المخلط، انتهاء الحلاق من التسريحة، مساعدة الإخوة والأب في ارتداء العباءة. تصوير قريب وسينمائي في المجلس أو جناح الفندق، بإضاءة النافذة الطبيعية وملء محكوم بحيث تظهر القماشة والخيط الذهبي وقارورة العطر بوضوح على الكاميرا. هذه هي الهدوء قبل الاحتفال وهي حيث يبدأ فيلم العريس فعلاً.",
-      tags: ["بشت", "كندورة", "مخلط", "غترة", "عقال", "حلاقة", "حلاق"],
+      body: "الساعات التي تسبق دخول العريس. وضع البشت فوق الكندورة، ضبط الغترة والعقال، وضع المخلط، انتهاء الحلاق من التسريحة، مساعدة الإخوة والأب في ارتداء العباءة. تصوير قريب وسينمائي في المجلس أو جناح الفندق، بالإضاءة الطبيعية من النافذة وملء محكوم، بحيث تُؤطَّر القماشة والخيط الذهبي وقارورة العطر بعناية. هذه هي الهدوء الذي يسبق الاحتفال، ومن هنا يبدأ فيلم العريس.",
+      tags: ["بشت", "كندورة", "مخلط", "غترة", "عقال", "مجلس", "حلاق"],
     },
     {
       n: "02",
-      title: "جلسة بورتريه العريس",
-      body: "جلسة بورتريه مخصصة للعريس، عادة في الساعة الذهبية، وعادة منفرداً. نُصوّر بكاميرات سينمائية مع ترشيح Black Mist وPro-Mist لتنعيم الإضاءات العالية ورفع تدرج الظلال، نفس الترشيح المستخدم في مواقع الأفلام السردية. النتيجة عريس يبدو بطلاً في يومه، لا ضيفاً يُصوَّر. البشت والكندورة وتفاصيل الساعة تأطَّر كما تؤطرها حملات أزياء الرجال. المخرج مجموعة صور ومقطع بورتريه قصير مخصص لعائلة العريس ووسائل التواصل.",
-      tags: ["الساعة الذهبية", "Black Mist", "Pro-Mist", "مقطع بورتريه", "تأطير أزياء الرجال"],
+      title: "تغطية قاعة الرجال يوم الزفاف",
+      body: "تغطية كاملة لقاعة الرجال في يوم الزفاف. الدخول، صف المرحب، جلوس كبار السن، تقديم الطعام، العروض، الاحتفال. تُصوَّر بطاقم متعدد الكاميرات يعمل وفق خطة كاميرات متفق عليها مسبقاً، بتصوير متحفظ ومحترم حول كبار السن والضيوف، وبالتنسيق مع منظم الزفاف. هذا هو العمود الفقري لفيلم زفاف رجالي، وهنا يُلتقط اليوم كاملاً.",
+      tags: ["الدخول", "المرحب", "كبار السن", "قاعة الرجال", "عدة كاميرات", "متحفظ"],
     },
     {
       n: "03",
-      title: "الصحاب والعائلة",
-      body: "الصحاب، الإخوة، الأب، الأعمام، الجد. صور جماعية تُؤدى بإتقان، الجميع في الإطار، الجميع في التركيز، الغترة جالسة بشكل صحيح. هنا أيضاً تحدث الأيالة، الرقصة التقليدية للرجال بالعصي والطبول والحركة المنسقة، وهي اللحظة الثقافية لزفاف إماراتي. نغطيها بعدة كاميرات، رافع (كرين) للزاوية الواسعة، وزوايا قريبة آمنة للتفاصيل. الحربية، شكل الأداء الرجالي الرئيسي الآخر، تُغطى بالطريقة نفسها.",
-      tags: ["الصحاب", "الأب", "الإخوة", "الأيالة", "الحربية", "مجموعات العائلة", "كرين"],
-    },
-    {
-      n: "04",
-      title: "تصوير ما قبل الزفاف للرجال",
-      body: "تصوير ما قبل الزفاف للعريس، منفرداً أو مع الصحاب، قبل عطلة الزفاف. ثلاثة نكهات مواقع: صحراء (كثبان، ضوء ذهبي، الكندورة أمام الرمل)، حضري (داون تاون دبي، مركز دبي المالي، الخلفيات المعمارية التي تقرأ كإمارات حديثة)، وتراث (الفهيدي، الحصون المرممة، جمال دبي القديم). يُصوَّر سينمائياً مع ترشيح، ويُسلَّم كمقطع قصير ومجموعة صور. هذا هو المحتوى الذي ينشره العريس في الأيام التي تسبق الزفاف.",
-      tags: ["صحراء", "حضري", "تراث", "ما قبل الزفاف", "مقطع", "داون تاون دبي", "مركز دبي المالي", "الفهيدي"],
-    },
-    {
-      n: "05",
-      title: "تغطية قاعة الرجال يوم الزفاف",
-      body: "تغطية كاملة لقاعة الرجال في يوم الزفاف. الدخول، صف المرحب، جلوس كبار السن والشخصيات المهمة، تقديم الطعام، العروض، الاحتفال. عدة كاميرات، كرين للزاوية الواسعة، وكاميرات قريبة منفصلة لرد الفعل والتفاصيل. بروتوكول VIP معياري، نعرف كيف نصور حول كبار السن والمسؤولين دون أن نكون في الطريق. هذا هو العمود الفقري لفيلم زفاف رجالي وهنا تُلتقط اليوم كاملاً.",
-      tags: ["الدخول", "المرحب", "بروتوكول VIP", "كبار السن", "الشخصيات المهمة", "قاعة الرجال", "عدة كاميرات"],
+      title: "الفيلم الذي تستلمه",
+      body: "فيلم مختارات من 3 إلى 5 دقائق، وفيلم للفعاليات الرئيسية من 15 إلى 20 دقيقة إذا كان برنامجكم يدعم ذلك، ومقطع عمودي مدته 15 ثانية لوسائل التواصل. تدريج الألوان والصوت وجولتا التعديل مشمولة في النطاق. النطاق الموسّع يضيف فيلم مختارات أطول من 5 إلى 7 دقائق ومقطعاً عمودياً إضافياً، مع الاتفاق على جولات التعديل عند تحديد النطاق. التسليم خاص للعائلة، وأي استخدام عام خيار كتابي منفصل تتخذونه بأنفسكم.",
+      tags: ["فيلم المختارات", "فيلم الفعاليات", "مقطع عمودي", "ألوان", "صوت", "تسليم خاص"],
     },
   ],
 };
 
-// Differentiators. Six cards, mirror the weddings "six elements" pattern.
+// Differentiators. Evidence-safe set: no absolute quantifiers, no competitor
+// or market-practice comparisons, no blocked-lane capability claims.
 const differentiators = {
   en: [
     {
-      h: "All-male crew, always",
-      b: "Every groom and male-hall booking is crewed only by men. This is essential for gender-segregated weddings where female crew cannot enter the male hall or majlis. We never send a mixed crew to a male-only event and we never substitute. If your wedding has a separate female hall, that is a different shoot and a different crew, and female coverage is coming soon.",
+      h: "A male crew for male-only settings",
+      b: "Many UAE celebrations are gender-segregated, with a male hall or majlis where the filming team must be men. Groom coverage at Big Story is built around that requirement: the crew plan for this service is male, and it is written into the scope you approve before the day.",
     },
     {
-      h: "Cinema filtration as standard",
-      b: "We shoot the groom with Black Mist and Pro-Mist cinema filtration, the same diffusion filters used on narrative film and high-end commercial sets. The filter softens harsh highlights on the bisht's gold thread, lifts the shadow rolloff on the kandura, and gives the image a film texture instead of a video look. Most wedding videographers do not carry this filtration because it is a cinema technique, not a wedding one.",
+      h: "Cinema tools, chosen per project",
+      b: "Coverage draws on our owned RED cinema kit, and filtration from our owned set is used when the creative calls for it, selected with the director of photography at scoping rather than promised as a default on each camera. The look follows your day, not a template.",
     },
     {
-      h: "Crane included on every shoot",
-      b: "A crane is included on every groom shoot, not sold as an add-on. For Al-Ayyala and harbiya performances the crane gives the wide overhead that makes the formation read, and for the male hall it gives the establishing shot that shows the scale of the celebration. Carrying, rigging and operating a crane on a wedding day is a real cost and a real skill, which is why most crews skip it.",
+      h: "Arabic-first delivery",
+      b: "Coordination, call sheets and delivery in Arabic and English, with an Arabic-proficient sound recordist and an Arabic production guide in the crew plan. The groom's family receives a film in the language the celebration was filmed in.",
     },
     {
-      h: "Al-Ayyala specialty coverage",
-      b: "Al-Ayyala is the cultural moment of a UAE male wedding and we cover it as a specialty, not an afterthought. Multiple cameras, crane wide, safe close angles, and coverage of the drummers and the stick work. We know the rhythm of the performance, when the formation peaks, and where to stand without breaking the line. Harbiya is covered the same way.",
-    },
-    {
-      h: "VIP protocol for elders and dignitaries",
-      b: "UAE male weddings seat elders, sheikhs and government officials, and the filming has to respect that. We film with long lenses from a distance during the Marhaba and seating, never approach the head table uninvited, and coordinate with the wedding planner on which guests cannot be on camera. Discretion is part of the service, not an extra.",
-    },
-    {
-      h: "Built for the Arabic-first market",
-      b: "This page exists because the male wedding niche is underserved in UAE search. Most studios market only to the bride and treat the groom as a secondary subject. We treat the groom as the subject. Groom preparation video, groomsmen photography, and male wedding video in the UAE are real search categories with almost no dedicated providers, and we built this service to fill that gap.",
+      h: "Discretion around elders and guests",
+      b: "Filming at a UAE male wedding works around elders, guests and the hosting family. Camera positions are agreed with your planner ahead of the day, the crew stays out of the receiving line, and guests who should not appear on camera are coordinated in advance.",
     },
   ],
   ar: [
     {
-      h: "طاقم رجالي بالكامل، دائماً",
-      b: "كل حجز لعريس أو قاعة رجال يؤديه طاقم رجالي فقط. هذا أساسي للأعراس المنفصلة بين الجنسين حيث لا يمكن لطاقم نسائي دخول قاعة الرجال أو المجلس. لا نرسل أبداً طاقماً مختلطاً لحدث رجالي فقط ولا نستبدل. إذا كان لزفافك قاعة نسائية منفصلة، فهذا تصوير مختلف وطاقم مختلف، وتغطية نسائية قريباً.",
+      h: "طاقم رجالي للفعاليات الرجالية",
+      b: "كثير من احتفالات الإمارات منفصلة بين الجنسين، بقاعة رجال أو مجلس يجب أن يكون فريق التصوير فيه من الرجال. تغطية العريس لدى بيك ستوري مبنية حول هذا الشرط: خطة الطاقم لهذه الخدمة رجالية، وهي مكتوبة في النطاق الذي تعتمدونه قبل يوم الزفاف.",
     },
     {
-      h: "ترشيح سينمائي كمعيار",
-      b: "نُصوّر العريس بترشيح سينمائي Black Mist وPro-Mist، نفس الفلاتر المنتشرة المستخدمة في مواقع الأفلام السردية والإعلانات الراقية. الفلتر ينعّم الإضاءات العالية القاسية على خيط البشت الذهبي، يرفع تدرج الظلال على الكندورة، ويمنح الصورة ملمس فيلم بدلاً من مظهر فيديو. معظم مصوري فيديو الزفاف لا يحملون هذا الترشيح لأنه تقنية سينمائية، لا تقنية زفاف.",
+      h: "أدوات سينمائية تُختار لكل مشروع",
+      b: "تستند التغطية إلى حزمة كاميرات RED السينمائية المملوكة لدينا، ويُستخدم الترشيح من مجموعتنا المملوكة عندما يتطلبه الإبداع، باختيار مشترك مع مدير التصوير عند تحديد النطاق، لا كوعد افتراضي على كل كاميرا. المظهر يتبع يومكم، لا قالباً جاهزاً.",
     },
     {
-      h: "كرين مشمول في كل تصوير",
-      b: "الكرين مشمول في كل تصوير عريس، لا يُباع كإضافة. لعروض الأيالة والحربية يعطي الكرين الزاوية الواسعة العلوية التي تجعل التشكيل يقرأ، ولقاعة الرجال يعطي اللقطة التأسيسية التي تظهر حجم الاحتفال. حمل وتركيب وتشغيل الكرين في يوم الزفاف تكلفة حقيقية ومهارة حقيقية، ولهذا يتجاهله معظم الطواقم.",
+      h: "تسليم عربي أولاً",
+      b: "التنسيق وجداول العمل والتسليم بالعربية والإنجليزية، مع مسجل صوت ناطق بالعربية ومرشد إنتاج عربي في خطة الطاقم. عائلة العريس تستلم فيلماً باللغة التي صُوِّر بها الاحتفال.",
     },
     {
-      h: "تغطية مخصصة للأيالة",
-      b: "الأيالة هي اللحظة الثقافية لزفاف رجالي إماراتي ونغطيها كتخصص، لا كأمر ثانوي. عدة كاميرات، زاوية كرين واسعة، زوايا قريبة آمنة، وتغطية للاطبال والعصي. نعرف إيقاع الأداء، متى يبلغ التشكيل ذروته، وأين نقف دون كسر الصف. الحربية تُغطى بالطريقة نفسها.",
-    },
-    {
-      h: "بروتوكول VIP لكبار السن والشخصيات المهمة",
-      b: "الأفراح الرجالية في الإمارات تجلس كبار السن والشيوخ والمسؤولين، والتصوير يجب أن يحترم ذلك. نُصوّر بعدسات طويلة من مسافة خلال المرحب والجلوس، لا نقترب من الطاولة الرئيسية دون دعوة، ونتناسق مع منظم الزفاف حول من لا يمكن أن يظهر على الكاميرا. التقدير جزء من الخدمة، لا إضافة.",
-    },
-    {
-      h: "مبني للسوق العربي أولاً",
-      b: "هذه الصفحة موجودة لأن زاوية زفاف العريس غير مخدومة في البحث الإماراتي. معظم الاستوديوهات تسوّق للعروس فقط وتعامل العريس كموضوع ثانوي. نحن نعامل العريس كموضوع. فيديو تحضير العريس، تصوير الصحاب، وفيديو الأفراح الرجالية في الإمارات فئات بحث حقيقية لا يكاد يوجد لها مزودون مخصصون، وبنينا هذه الخدمة لملء هذه الفجوة.",
+      h: "تحفظ حول كبار السن والضيوف",
+      b: "التصوير في زفاف رجالي إماراتي يراعي كبار السن والضيوف والعائلة المضيفة. تُتفق مواضع الكاميرات مع منظم الزفاف قبل اليوم، ويبقى الطاقم خارج صف الاستقبال، ويُنسَّق مسبقاً أمر الضيوف الذين لا يجب أن تظهر صورهم.",
     },
   ],
 };
 
-// Pricing reuses the existing wedding tiers. Do not create new prices here.
-const pricingReference = {
+// Scope architecture replaces the retired price table.
+// Source: Production first-lane matrix (one Recommended + one Enhanced,
+// both unpriced). No public prices, no optional-extras menu, no third scope.
+const scopes = {
   en: {
-    eyebrow: "Pricing, reuses the wedding tiers",
-    h2: "Groom coverage uses the same four tiers as our wedding packages",
-    lead: "We did not build a separate price list for groom coverage because the crew, the kit, the hours and the deliverables are the same as the main wedding packages. Pick the tier that matches the scale of your day, then we scope which of the five modules you need. The full tier breakdown, what is in each video and photo package, and the add-on menu are on the main weddings page.",
-    headers: ["Tier", "From", "Best for a groom booking"],
-    rows: [
-      { tier: "Tier 1, Solo Cinema", from: "AED 8,000", bestFor: "Groom preparation + portrait session, single majlis or hotel suite, half day" },
-      { tier: "Tier 2, Wedding Day", from: "AED 16,000", bestFor: "Full wedding-day male hall coverage, multi-camera, crane, Al-Ayyala. The most-booked tier for a male wedding", featured: true },
-      { tier: "Tier 3, Premium Production", from: "AED 26,000+", bestFor: "Two-day coverage, prep + wedding day, full cinema crew, multi-location, printed album credit" },
-      { tier: "Tier 4, Photo-only", from: "AED 9,500", bestFor: "Groom and groomsmen stills only, no video crew on site, lay-flat album included" },
+    eyebrow: "Scopes, not packages",
+    h2: "One Recommended scope, one Enhanced scope",
+    lead: "Groom coverage is organised around exactly two scopes. Both cover groom preparation and wedding-day male hall coverage on one event day of up to 10 hours. The Enhanced scope adds bigger-scale camera moves and an extended film, confirmed only after venue and safety checks. The price is quoted per event after we scope your day; there is no fixed public price list, and nothing is locked before the scope is agreed in writing.",
+    recommendedName: "Recommended Scope",
+    recommendedBadge: "Recommended",
+    recommendedBullets: [
+      "Groom preparation plus wedding-day male hall coverage, one event day of up to 10 hours",
+      "Director of photography, active second camera operator and sound recordist, with gaffer and support roles in the crew plan",
+      "Dedicated sound recording with boom, mixer, safety track and room tone, not camera mics alone",
+      "One 3 to 5 minute highlight film, one 15 to 20 minute key-event film where your programme supports it, one 15-second vertical cut",
+      "Colour, sound and two revision rounds included",
+      "Movement on tripod and approved support matched to the camera",
+      "Private family delivery; any public use is a separate written choice",
     ],
-    note: "Add-ons bolt on to any tier: same-day teaser +AED 4,500, drone +AED 1,500, extra photographer +AED 2,500, extra videographer +AED 3,500, printed album +AED 3,500. Full breakdown on the main weddings page.",
+    enhancedName: "Enhanced Scope",
+    enhancedBullets: [
+      "Everything in the Recommended scope, plus larger-scale coverage",
+      "Crane or jib with a dedicated operator, added only after venue, safety, payload, insurance and event-date confirmation",
+      "One additional camera role where the approved camera plan requires it",
+      "A longer 5 to 7 minute highlight film and an additional vertical cut",
+      "Three revision rounds, agreed at scoping",
+    ],
+    notes: "Overtime beyond 10 hours, added locations, added deliverables and public use are written change orders agreed before work starts. Stills photography is not part of these scopes; if you need it, we scope it separately.",
+    basis: "Price basis: costed per event after scoping and quoted in writing. No price is published or locked before the written scope is agreed.",
   },
   ar: {
-    eyebrow: "الأسعار، تعيد استخدام باقات الزفاف",
-    h2: "تغطية العريس تستخدم نفس الباقات الأربع لحزم الزفاف",
-    lead: "لم نبنِ قائمة أسعار منفصلة لتغطية العريس لأن الطاقم والمعدات والساعات والمخرجات هي نفسها لباقات الزفاف الرئيسية. اختر الباقة التي تناسب حجم يومك، ثم نحدد أي الوحدات الخمس تحتاجها. تفصيل الباقات الكامل، ما في كل حزمة فيديو وصور، وقائمة الإضافات في الصفحة الرئيسية للزفاف.",
-    headers: ["الباقة", "من", "الأنسب لحجز العريس"],
-    rows: [
-      { tier: "الباقة 1، سينما فردية", from: "8,000 درهم", bestFor: "تحضير العريس + جلسة بورتريه، مجلس واحد أو جناح فندق، نصف يوم" },
-      { tier: "الباقة 2، يوم الزفاف", from: "16,000 درهم", bestFor: "تغطية قاعة الرجال الكاملة يوم الزفاف، عدة كاميرات، كرين، الأيالة. الباقة الأكثر حجزاً لزفاف رجالي", featured: true },
-      { tier: "الباقة 3، الإنتاج المتميز", from: "26,000+ درهم", bestFor: "تغطية يومين، تحضير + يوم الزفاف، طاقم سينمائي كامل، عدة مواقع، رصيد ألبوم مطبوع" },
-      { tier: "الباقة 4، صور فقط", from: "9,500 درهم", bestFor: "صور العريس والصحاب فقط، بلا طاقم فيديو، ألبوم lay-flat مشمول" },
+    eyebrow: "نطاقان محددان، لا باقات",
+    h2: "نطاق موصى به واحد ونطاق موسّع واحد",
+    lead: "تُنظَّم تغطية العريس حول نطاقين اثنين فقط. كلاهما يغطي تحضير العريس وتغطية قاعة الرجال في يوم الزفاف، يوم فعالية واحد بحد أقصى 10 ساعات. النطاق الموسّع يضيف حركات كاميرا أكبر وفلماً أطول، ولا يُعتمد إلا بعد فحص الموقع والسلامة. يُحدَّد السعر لكل فعالية بعد دراسة يومكم؛ لا توجد قائمة أسعار عامة، ولا يُثبَّت أي شيء قبل الاتفاق على النطاق كتابياً.",
+    recommendedName: "النطاق الموصى به",
+    recommendedBadge: "موصى به",
+    recommendedBullets: [
+      "تحضير العريس مع تغطية قاعة الرجال في يوم الزفاف، يوم فعالية واحد بحد أقصى 10 ساعات",
+      "مدير تصوير ومشغل كاميرا ثانٍ نشط ومسجل صوت، مع كهربائي وأدوار مساندة في خطة الطاقم",
+      "تسجيل صوت مخصص بالميكروفون الذاتي والخلاط ومسار أمان وتسجيل صوت القاعة، لا ميكروفونات الكاميرا وحدها",
+      "فيلم مختارات من 3 إلى 5 دقائق، وفيلم فعاليات رئيسية من 15 إلى 20 دقيقة إذا كان برنامجكم يدعم ذلك، ومقطع عمودي مدته 15 ثانية",
+      "تدريج الألوان والصوت وجولتا تعديل مشمولة",
+      "الحركة على حامل ثلاثي ودعامة معتمدة تناسب الكاميرا",
+      "تسليم خاص للعائلة؛ وأي استخدام عام خيار كتابي منفصل",
     ],
-    note: "الإضافات تُلحق بأي باقة: تشويق نفس اليوم +4,500 درهم، درون +1,500 درهم، مصور إضافي +2,500 درهم، مصور فيديو إضافي +3,500 درهم، ألبوم مطبوع +3,500 درهم. التفصيل الكامل في صفحة الزفاف الرئيسية.",
+    enhancedName: "النطاق الموسّع",
+    enhancedBullets: [
+      "كل ما في النطاق الموصى به، مع تغطية أوسع نطاقاً",
+      "رافع كاميرا (كرين أو جيب) مع مشغل مخصص، لا يُضاف إلا بعد تأكيد الموقع والسلامة والحمولة والتأمين وتاريخ الفعالية",
+      "دور كاميرا إضافي واحد حيث تتطلبه خطة الكاميرات المعتمدة",
+      "فيلم مختارات أطول من 5 إلى 7 دقائق ومقطع عمودي إضافي",
+      "ثلاث جولات تعديل، يُتفق عليها عند تحديد النطاق",
+    ],
+    notes: "العمل الإضافي بعد 10 ساعات، والمواقع الإضافية، والمخرجات الإضافية، والاستخدام العام، كلها أوامر تغيير كتابية يُتفق عليها قبل بدء العمل. التصوير الفوتوغرافي ليس جزءاً من هذين النطاقين؛ إذا احتجتموه نحدد نطاقه بشكل منفصل.",
+    basis: "أساس التسعير: يُحسب لكل فعالية بعد تحديد النطاق ويُقدَّم عرضاً كتابياً. لا يُنشر أي سعر ولا يُثبَّت أي شيء قبل الاتفاق على النطاق الكتابي.",
   },
 };
 
 const faqItems = {
   en: [
     {
-      q: "Why do I need an all-male crew for my wedding?",
-      a: "Many UAE weddings are gender-segregated, with a separate male hall or majlis where female crew are not permitted to film. A mixed crew simply cannot cover the male side of the event. Big Story fields a dedicated all-male team for every groom and male-hall booking, so the groom preparation, the groomsmen, Al-Ayyala, and the full male hall celebration are all captured by men, with no compromise on access or coverage.",
+      q: "Why a male crew for groom coverage?",
+      a: "Many UAE weddings are gender-segregated, with a male hall or majlis where the filming team must be men. Groom coverage at Big Story is built around that requirement. The crew plan for this service is male, from the director of photography to sound, so preparation, family moments and the male hall celebration are filmed by a team your guests are comfortable with.",
     },
     {
-      q: "What is Al-Ayyala and why does it need specialty coverage?",
-      a: "Al-Ayyala is the traditional UAE male dance performance, with two rows of men facing each other, sticks and swords, drummers, and synchronised movement. It is the cultural centrepiece of a male wedding and the moment families most want filmed. It needs multiple cameras, a crane for the wide overhead, and safe close angles, because the formation moves, the light is often mixed, and a single static camera will miss it. We also cover harbiya, the other major male performance form, the same way.",
+      q: "What is the difference between the Recommended and Enhanced scope?",
+      a: "Both scopes cover groom preparation and wedding-day male hall coverage on one event day of up to 10 hours, with the same deliverables set: a 3 to 5 minute highlight film, a 15 to 20 minute key-event film where your programme supports it, and a 15-second vertical cut. The Enhanced scope adds a crane or jib with a dedicated operator after venue, safety, payload, insurance and event-date checks, one additional camera role where the approved plan requires it, a longer 5 to 7 minute highlight, an additional vertical cut, and a third revision round.",
     },
     {
-      q: "What is Black Mist and Pro-Mist filtration and why does it matter for groom coverage?",
-      a: "Black Mist and Pro-Mist are cinema diffusion filters placed in front of the lens. They soften harsh highlights, lift shadow detail, and give the image a film texture rather than a video look. On a groom, this matters because the gold thread on the bisht and the white of the kandura are both very hard for a camera to hold without blowing out. Filtration keeps the detail in the fabric. Most wedding videographers do not carry these filters because they are a cinema technique, not a wedding one.",
+      q: "Is a crane included?",
+      a: "The Recommended scope uses tripod and approved camera support. A crane or jib with a dedicated operator belongs to the Enhanced scope, and it is confirmed only after venue, safety, payload, insurance and event-date checks. We do not promise it by default, because a crane on a wedding day has to be safe for your guests first.",
     },
     {
-      q: "Is the crane really included, or is it an add-on?",
-      a: "The crane is included on every groom shoot, not sold as an add-on. For Al-Ayyala and harbiya the crane gives the wide overhead that shows the full formation, and for the male hall it gives the establishing shot that shows the scale of the celebration. Rigging and operating a crane on a wedding day is a real cost and skill, which is why most crews skip it or charge extra. We include it because without it the key moments of a male wedding do not read.",
+      q: "What is cinema filtration and when do you use it?",
+      a: "Cinema diffusion filters sit in front of the lens and take the edge off bright reflections while lifting shadow detail, so the image reads with a film texture rather than a video look. On a groom this helps when the gold thread on the bisht and the white of the kandura are hard for a camera to hold. Filtration from our owned set is chosen with the director of photography at scoping, when your creative calls for it, rather than fitted to each camera as a default.",
     },
     {
-      q: "Do you cover the henna night?",
-      a: "We do not list the henna night as a standalone service. We cover all male events across the wedding weekend, so if there is a male component to the henna night or any other pre-wedding gathering, it is scoped as part of the weekend coverage rather than booked separately. Tell us the full run of events and we build the coverage around them.",
+      q: "What do we receive?",
+      a: "One 3 to 5 minute highlight film, one 15 to 20 minute key-event film where your programme supports it, and one 15-second vertical cut, with colour, sound and two revision rounds included. The Enhanced scope adds a longer 5 to 7 minute highlight and an additional vertical cut. Delivery is private, for the family; any public use is a separate written choice.",
     },
     {
-      q: "Can you cover the Katb Kitab, the marriage contract signing?",
-      a: "The Katb Kitab, the marriage contract signing, has separate audio needs, with the officiant, the witnesses and often a live recitation, so we do not bundle it into the standard groom package. We cross-link it to the main services page, where the audio and ceremony capture requirements are scoped properly. If your Katb Kitab is part of the male hall program on the wedding day, we cover it as part of that day, but a standalone Katb Kitab booking is handled through the services page.",
+      q: "What should the groom prepare?",
+      a: "For the preparation session, have the bisht, kandura, ghutra, agal, mukhalat and any accessories ready in the majlis or suite before we start, and schedule the barber to finish shortly before filming begins. For portraits during the day, two kandura options work well, the bisht for the hero shots, and the watch and any personal items you want in frame. When we scope your day we share a short prep checklist.",
     },
     {
-      q: "Do you film female weddings?",
-      a: "Male weddings only, for now. Female coverage is coming soon. Because UAE weddings are often gender-segregated, covering the female side requires a dedicated all-female crew, which is a separate team and a separate service. If your wedding has both a male and a female hall, the male side is covered by this service and the female side will be covered by the female crew when it launches.",
-    },
-    {
-      q: "What should the groom wear and prepare for the prep and portrait sessions?",
-      a: "For the preparation session, have the bisht, kandura, ghutra, agal, mukhalat and any accessories ready in the majlis or suite before we arrive, and schedule the barber to finish about 30 minutes before we start shooting. For the portrait session, golden hour is best, and we recommend two kandura options, the bisht for the hero shots, and the watch and any personal items you want in frame. We send a short prep checklist on booking.",
-    },
-    {
-      q: "How far in advance should I book groom coverage?",
-      a: "Saturday peak-season weddings from October to April book 6 to 9 months ahead. Off-peak and Friday weddings are usually available with 2 to 3 months notice. A groom preparation and portrait session only can sometimes be booked with 4 to 6 weeks notice. Once your date is confirmed, send a WhatsApp with the venue, the headcount and which modules you need, and we hold the date for 7 days while we scope the package.",
+      q: "How do we start?",
+      a: "Send a WhatsApp message with the date, venue and headcount. We scope the day with you, confirm what the coverage includes, and quote in writing. No commitment is made, and no crew or equipment is reserved, until the written scope and quote are accepted.",
     },
   ],
   ar: [
     {
-      q: "لماذا أحتاج طاقماً رجالياً بالكامل لزفافي؟",
-      a: "كثير من حفلات الزفاف في الإمارات منفصلة بين الجنسين، بقاعة رجال أو مجلس منفصل لا يُسمح للطاقم النسائي بالتصوير فيه. الطاقم المختلط ببساطة لا يستطيع تغطية الجانب الرجالي للفعالية. توفر بيك ستوري طاقماً رجالياً مخصصاً بالكامل لكل حجز عريس أو قاعة رجال، بحيث يلتقط تحضير العريس والصحاب والأيالة والاحتفال الكامل في قاعة الرجال رجالاً، دون أي تنازل عن الوصول أو التغطية.",
+      q: "لماذا طاقم رجالي لتغطية العريس؟",
+      a: "كثير من حفلات الزفاف في الإمارات منفصلة بين الجنسين، بقاعة رجال أو مجلس يجب أن يكون فريق التصوير فيه من الرجال. تغطية العريس لدى بيك ستوري مبنية حول هذا الشرط. خطة الطاقم لهذه الخدمة رجالية، من مدير التصوير إلى الصوت، بحيث تُصوَّر لحظات التحضير والعائلة واحتفال قاعة الرجال بطاقم مرتاح له ضيوفكم.",
     },
     {
-      q: "ما هي الأيالة ولماذا تحتاج تغطية مخصصة؟",
-      a: "الأيالة هي الرقصة التقليدية للرجال في الإمارات، صفّان من الرجال متقابلان، عصي وسيوف، اطبال، وحركة منسقة. هي المحور الثقافي لزفاف رجالي واللحظة التي تريد العائلات تصويرها أكثر. تحتاج عدة كاميرات، كرين للزاوية الواسعة العلوية، وزوايا قريبة آمنة، لأن التشكيل يتحرك والإضاءة غالباً مختلطة، وكاميرا ثابتة واحدة ستفوتها. نغطي أيضاً الحربية، شكل الأداء الرجالي الرئيسي الآخر، بالطريقة نفسها.",
+      q: "ما الفرق بين النطاق الموصى به والنطاق الموسّع؟",
+      a: "كلا النطاقين يغطي تحضير العريس وتغطية قاعة الرجال في يوم فعالية واحد بحد أقصى 10 ساعات، بنفس حزمة المخرجات: فيلم مختارات من 3 إلى 5 دقائق، وفيلم فعاليات رئيسية من 15 إلى 20 دقيقة إذا كان برنامجكم يدعم ذلك، ومقطع عمودي مدته 15 ثانية. النطاق الموسّع يضيف رافع كاميرا (كرين أو جيب) مع مشغل مخصص بعد فحوص الموقع والسلامة والحمولة والتأمين وتاريخ الفعالية، ودور كاميرا إضافياً حيث تتطلبه الخطة المعتمدة، وفيلم مختارات أطول من 5 إلى 7 دقائق، ومقطعاً عمودياً إضافياً، وجولة تعديل ثالثة.",
     },
     {
-      q: "ما هو ترشيح Black Mist وPro-Mist ولماذا يهم لتغطية العريس؟",
-      a: "Black Mist وPro-Mist فلاتر انتشار سينمائية توضع أمام العدسة. تنعّم الإضاءات القاسية، ترفع تفاصيل الظلال، وتمنح الصورة ملمس فيلم بدلاً من مظهر فيديو. بالنسبة للعريس، يهم هذا لأن الخيط الذهبي على البشت وأبيض الكندورة كلاهما صعب جداً على الكاميرا أن تحتفظ به دون انفجار. الترشيح يحتفظ بالتفاصيل في القماش. معظم مصوري فيديو الزفاف لا يحملون هذه الفلاتر لأنها تقنية سينمائية، لا تقنية زفاف.",
+      q: "هل الكرين مشمول؟",
+      a: "النطاق الموصى به يستخدم حاملاً ثلاثياً ودعامة كاميرا معتمدة. رافع الكاميرا مع مشغل مخصص يكون ضمن النطاق الموسّع، ولا يُعتمد إلا بعد تأكيد الموقع والسلامة والحمولة والتأمين وتاريخ الفعالية. لا نعده افتراضياً، لأن رافع الكاميرا في يوم زفاف يجب أن يكون آمناً لضيوفكم أولاً.",
     },
     {
-      q: "هل الكرين مشمول فعلاً، أم أنه إضافة؟",
-      a: "الكرين مشمول في كل تصوير عريس، لا يُباع كإضافة. للأيالة والحربية يعطي الكرين الزاوية الواسعة العلوية التي تُظهر التشكيل كاملاً، ولقاعة الرجال يعطي اللقطة التأسيسية التي تُظهر حجم الاحتفال. تركيب وتشغيل الكرين في يوم الزفاف تكلفة ومهارة حقيقية، ولهذا يتجاهله معظم الطواقم أو يفرض رسوماً إضافية. نحن نشمله لأن بدونه لا تُقرأ اللحظات الرئيسية لزفاف رجالي.",
+      q: "ما هو الترشيح السينمائي ومتى تستخدمونه؟",
+      a: "فلاتر الانتشار السينمائية توضع أمام العدسة، تخفف حدّة الانعكاسات القاسية وترفع تفاصيل المناطق الداكنة، فتعطي الصورة ملمس الفيلم السينمائي بدلاً من مظهر الفيديو. بالنسبة للعريس يساعد هذا عندما يكون الخيط الذهبي على البشت وأبيض الكندورة صعبين على الكاميرا. يُختار الترشيح من مجموعتنا المملوكة مع مدير التصوير عند تحديد النطاق، عندما يتطلبه الإبداع، لا كتطبيق افتراضي على كل كاميرا.",
     },
     {
-      q: "هل تغطون ليلة الحناء؟",
-      a: "لا ندرج ليلة الحناء كخدمة منفردة. نغطي جميع الفعاليات الرجالية عبر عطلة الزفاف، فإذا كان هناك مكوّن رجالي لليلة الحناء أو أي تجمع آخر قبل الزفاف، يُحدد نطاقه ضمن تغطية العطلة بدلاً من حجزه منفصلاً. أخبرونا بالسلسلة الكاملة للفعاليات ونبني التغطية حولها.",
-    },
-      {
-      q: "هل يمكنكم تغطية كتب الكتاب، توقيع عقد الزواج؟",
-      a: "كتب الكتاب، توقيع عقد الزواج، له متطلبات صوت منفصلة، مع المأذون والشهود وغالباً تلاوة مباشرة، لذلك لا ندمجه في باقة العريس القياسية. نربطه بصفحة الخدمات الرئيسية، حيث تُحدد متطلبات الصوت والتقاط الحفل بشكل صحيح. إذا كان كتب الكتاب جزءاً من برنامج قاعة الرجال في يوم الزفاف، نغطيه ضمن ذلك اليوم، لكن حجز كتب الكتاب المنفرد يُدار عبر صفحة الخدمات.",
+      q: "ماذا نستلم؟",
+      a: "فيلم مختارات من 3 إلى 5 دقائق، وفيلم فعاليات رئيسية من 15 إلى 20 دقيقة إذا كان برنامجكم يدعم ذلك، ومقطع عمودي مدته 15 ثانية، مع تدريج الألوان والصوت وجولتي تعديل مشمولة. النطاق الموسّع يضيف فيلم مختارات أطول من 5 إلى 7 دقائق ومقطعاً عمودياً إضافياً. التسليم خاص للعائلة؛ وأي استخدام عام خيار كتابي منفصل.",
     },
     {
-      q: "هل تصوّرون حفلات الزفاف النسائية؟",
-      a: "أعمال زفاف رجالية فقط، حالياً. تغطية نسائية قريباً. لأن حفلات الزفاف في الإمارات غالباً منفصلة بين الجنسين، فإن تغطية الجانب النسائي تتطلب طاقماً نسائياً مخصصاً بالكامل، وهو فريق منفصل وخدمة منفصلة. إذا كان لزفافك قاعة رجالية وقاعة نسائية، فإن الجانب الرجالي تغطيه هذه الخدمة والجانب النسائي سيغطيه الطاقم النسائي عند إطلاقه.",
+      q: "ماذا يجب أن يحضّر العريس؟",
+      a: "لجلسة التحضير، جهّزوا البشت والكندورة والغترة والعقال والمخلط وأي إكسسوارات في المجلس أو الجناح قبل البدء، وحدّدوا موعد الحلاق لينتهي قبل بدء التصوير بقليل. للبورتريه خلال اليوم، يناسب خياران للكندورة، البشت للقطات الرئيسية، والساعة وأي أشياء شخصية تريدونها في الإطار. عند تحديد نطاق يومكم نشارك قائمة تحضير قصيرة.",
     },
     {
-      q: "ماذا يجب أن يرتدي العريس ويحضّر لجلسات التحضير والبورتريه؟",
-      a: "لجلسة التحضير، جهّز البشت والكندورة والغترة والعقال والمخلط وأي إكسسوارات في المجلس أو الجناح قبل وصولنا، واجدول الحلاق لينتهي قبل بدء التصوير بـ30 دقيقة تقريباً. لجلسة البورتريه، الساعة الذهبية أفضل، وننصح بخيارين للكندورة، البشت للقطات البطل، والساعة وأي أشياء شخصية تريدها في الإطار. نرسل قائمة تحضير قصيرة عند الحجز.",
-    },
-    {
-      q: "كم مقدماً يجب أن أحجز تغطية العريس؟",
-      a: "حفلات الزفاف في موسم الذروة من أكتوبر إلى أبريل يوم السبت تُحجز قبل 6 إلى 9 أشهر. خارج الذروة وحفلات الجمعة تتوفر عادة بإشعار 2 إلى 3 أشهر. جلسة تحضير وبورتريه للعريس فقط يمكن أحياناً الحجز بإشعار 4 إلى 6 أسابيع. بمجرد تأكيد التاريخ، أرسل واتساب بالموقع وعدد الضيوف والوحدات التي تحتاجها، ونحجز التاريخ 7 أيام ريثما نحدد نطاق الباقة.",
+      q: "كيف نبدأ؟",
+      a: "أرسلوا رسالة واتساب بالتاريخ والموقع وعدد الضيوف. نحدد نطاق اليوم معكم، ونؤكد ما تتضمنه التغطية، ونقدّم عرضاً كتابياً. لا يُثبَّت أي شيء، ولا يُلتزم بأي طاقم أو معدات، قبل قبول النطاق والعرض الكتابيين.",
     },
   ],
 };
@@ -297,9 +274,9 @@ export default async function GroomWeddingServicesPage({ params }: { params: Pro
   const isAr = locale === "ar";
 
   const itemFaqs = isAr ? faqItems.ar : faqItems.en;
-  const moduleList = isAr ? modules.ar : modules.en;
+  const coverageList = isAr ? coverage.ar : coverage.en;
   const differentiatorList = isAr ? differentiators.ar : differentiators.en;
-  const pricingBlock = isAr ? pricingReference.ar : pricingReference.en;
+  const scopeBlock = isAr ? scopes.ar : scopes.en;
 
   return (
     <>
@@ -323,8 +300,8 @@ export default async function GroomWeddingServicesPage({ params }: { params: Pro
             locale,
             name: isAr ? "تصوير العريس والأفراح الرجالية في دبي" : "Groom Wedding Photography & Videography in Dubai",
             description: isAr
-              ? "خدمات تصوير العريس والأفراح الرجالية في دبي والإمارات، طاقم رجالي بالكامل، تحضير العريس، بورتريه، الصحاب والعائلة، تصوير ما قبل الزفاف للرجال، تغطية قاعة الرجال يوم الزفاف."
-              : "Groom and male-only wedding coverage in Dubai and the UAE. All-male crew, groom preparation, portraits, groomsmen and Al-Ayyala, male hall coverage. Cinema filtration, crane included.",
+              ? "خدمات تصوير العريس والأفراح الرجالية في دبي والإمارات. تحضير العريس وتغطية قاعة الرجال بطاقم رجالي، نطاق موصى به ونطاق موسّع، والتسعير لكل فعالية بعد تحديد النطاق."
+              : "Groom and male-only wedding coverage in Dubai and the UAE. Groom preparation and wedding-day male hall coverage by a male crew, one Recommended and one Enhanced scope, quoted per event after scoping.",
             path,
             areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah", "Al Ain"],
           }),
@@ -356,48 +333,21 @@ export default async function GroomWeddingServicesPage({ params }: { params: Pro
         </Reveal>
       </Section>
 
-      {/* ORIGINAL DATA, by the numbers */}
-      <Section alt>
-        <Reveal>
-          <Eyebrow>{t(COPY.statsHeading, locale)}</Eyebrow>
-          <h2 className="mt-5 text-[clamp(1.8rem,4vw,2.75rem)]">{t(COPY.statsHeading, locale)}</h2>
-          <p className="bs-lead mt-6 !max-w-3xl">{t(COPY.statsBody, locale)}</p>
-        </Reveal>
-        <div className="mt-12 grid gap-px overflow-hidden rounded-2xl bg-[color:var(--color-line)] sm:grid-cols-2 lg:grid-cols-4">
-          <div className="bs-card !rounded-none flex flex-col justify-between bg-white p-8">
-            <p className="bs-num text-[clamp(1.4rem,2.4vw,2rem)]">{t(COPY.stat1, locale)}</p>
-            <p className="mt-4 text-sm text-[color:var(--color-muted)]">{t(COPY.stat1Label, locale)}</p>
-          </div>
-          <div className="bs-card !rounded-none flex flex-col justify-between bg-white p-8">
-            <p className="bs-num">{t(COPY.stat2, locale)}</p>
-            <p className="mt-4 text-sm text-[color:var(--color-muted)]">{t(COPY.stat2Label, locale)}</p>
-          </div>
-          <div className="bs-card !rounded-none flex flex-col justify-between bg-white p-8">
-            <p className="bs-num">{t(COPY.stat3, locale)}</p>
-            <p className="mt-4 text-sm text-[color:var(--color-muted)]">{t(COPY.stat3Label, locale)}</p>
-          </div>
-          <div className="bs-card !rounded-none flex flex-col justify-between bg-white p-8">
-            <p className="bs-num">{t(COPY.stat4, locale)}</p>
-            <p className="mt-4 text-sm text-[color:var(--color-muted)]">{t(COPY.stat4Label, locale)}</p>
-          </div>
-        </div>
-      </Section>
-
-      {/* FIVE SERVICE MODULES */}
+      {/* WHAT THE COVERAGE INCLUDES */}
       <Section>
         <Reveal>
-          <Eyebrow>{isAr ? "خمس وحدات خدمة" : "Five service modules"}</Eyebrow>
+          <Eyebrow>{isAr ? "ما تتضمنه التغطية" : "What the coverage includes"}</Eyebrow>
           <h2 className="mt-5 text-[clamp(1.8rem,4vw,2.75rem)]">
             {isAr ? "ما نغطيه، من تحضير العريس إلى قاعة الرجال" : "What we cover, from groom prep to the male hall"}
           </h2>
           <p className="bs-lead mt-6 !max-w-3xl">
             {isAr
-              ? "خمس وحدات منفصلة. يمكن حجز واحدة أو دمجها عبر عطلة الزفاف. كل وحدة لها طاقم رجالي بالكامل، ترشيح سينمائي، وكرين."
-              : "Five standalone modules. Book one, or combine them across the wedding weekend. Every module is crewed by an all-male team, with cinema filtration and a crane."}
+              ? "تحضير العريس وتغطية قاعة الرجال في يوم الزفاف، بنطاق يُحدَّد لكل مشروع ويُتفق عليه كتابياً. هذه الكتل الثلاث تشكّل التغطية."
+              : "Groom preparation and wedding-day male hall coverage, scoped per project and agreed in writing. These three blocks make up the coverage."}
           </p>
         </Reveal>
         <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {moduleList.map((m, i) => (
+          {coverageList.map((m, i) => (
             <Reveal key={i} delay={i * 60} className="bs-card">
               <p className="bs-eyebrow">{m.n}</p>
               <h3 className="mt-4 text-xl">{m.title}</h3>
@@ -411,19 +361,19 @@ export default async function GroomWeddingServicesPage({ params }: { params: Pro
               </div>
             </Reveal>
           ))}
-          {/* CTA card to fill the 6th slot in the 3-col grid */}
-          <Reveal delay={moduleList.length * 60} className="bs-card bs-card-hover flex flex-col justify-between">
+          {/* CTA card to fill the grid */}
+          <Reveal delay={coverageList.length * 60} className="bs-card bs-card-hover flex flex-col justify-between">
             <div>
               <p className="bs-eyebrow !text-[color:var(--color-gold)] before:!bg-[color:var(--color-gold)]">
-                {isAr ? "احجز تغطيتك" : "Book your coverage"}
+                {isAr ? "ابدأ تغطيتك" : "Start your coverage"}
               </p>
               <h3 className="mt-4 text-xl">
-                {isAr ? "هل تزف قريباً؟" : "Getting married soon?"}
+                {isAr ? "هل زفافك على الأبواب؟" : "Getting married soon?"}
               </h3>
               <p className="mt-3 text-sm text-[color:var(--color-muted)]">
                 {isAr
-                  ? "أرسل التاريخ والموقع وعدد الضيوف، ونحدد الوحدات التي تحتاجها ونحجز التاريخ لـ7 أيام."
-                  : "Send the date, venue and headcount, we scope the modules you need and hold the date for 7 days."}
+                  ? "أرسل التاريخ والموقع وعدد الضيوف، ونحدد معكم نطاق التغطية الذي يناسب يومكم."
+                  : "Send the date, venue and headcount, and we scope the coverage your day needs."}
               </p>
             </div>
             <a
@@ -443,10 +393,10 @@ export default async function GroomWeddingServicesPage({ params }: { params: Pro
         <Reveal>
           <Eyebrow>{isAr ? "لماذا بيك ستوري لتغطية العريس" : "Why Big Story for groom coverage"}</Eyebrow>
           <h2 className="mt-5 text-[clamp(1.8rem,4vw,2.75rem)]">
-            {isAr ? "ستة فروقات مبنية للسوق الإماراتي" : "Six differences built for the UAE market"}
+            {isAr ? "أربعة فروقات مبنية للسوق الإماراتي" : "Four differences built for the UAE market"}
           </h2>
         </Reveal>
-        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {differentiatorList.map((d, i) => (
             <Reveal key={i} delay={i * 60} className="bs-card">
               <p className="bs-eyebrow">0{i + 1}</p>
@@ -457,64 +407,48 @@ export default async function GroomWeddingServicesPage({ params }: { params: Pro
         </div>
       </Section>
 
-      {/* PRICING REFERENCE, reuses wedding tiers */}
-      <Section id="pricing">
+      {/* SCOPE ARCHITECTURE, one Recommended + one Enhanced, unpriced */}
+      <Section id="scopes">
         <Reveal>
-          <Eyebrow>{pricingBlock.eyebrow}</Eyebrow>
-          <h2 className="mt-5 text-[clamp(1.8rem,4vw,2.75rem)]">{pricingBlock.h2}</h2>
-          <p className="bs-lead mt-6 !max-w-3xl">{pricingBlock.lead}</p>
+          <Eyebrow>{scopeBlock.eyebrow}</Eyebrow>
+          <h2 className="mt-5 text-[clamp(1.8rem,4vw,2.75rem)]">{scopeBlock.h2}</h2>
+          <p className="bs-lead mt-6 !max-w-3xl">{scopeBlock.lead}</p>
         </Reveal>
-        <div className="mt-12 overflow-x-auto">
-          <table className="w-full border-collapse">
-            <thead>
-              <tr className="border-b border-[color:var(--color-line)]">
-                {pricingBlock.headers.map((h, i) => (
-                  <th
-                    key={i}
-                    className={
-                      "py-4 pr-6 text-left text-sm font-medium " +
-                      (i === 1
-                        ? "text-[color:var(--color-accent)]"
-                        : "text-[color:var(--color-muted)]")
-                    }
-                  >
-                    {h}
-                  </th>
+        <div className="mt-12 grid gap-8 lg:grid-cols-2">
+          <Reveal className="bs-card flex flex-col bg-[color:var(--color-bg-alt)]/40">
+            <div>
+              <div className="flex flex-wrap items-center gap-3">
+                <h3 className="text-xl">{scopeBlock.recommendedName}</h3>
+                <span className="inline-block rounded-full bg-[color:var(--color-accent)]/10 px-2 py-0.5 text-[10px] uppercase tracking-wide text-[color:var(--color-accent)]">
+                  {scopeBlock.recommendedBadge}
+                </span>
+              </div>
+              <ul className="mt-6 space-y-3">
+                {scopeBlock.recommendedBullets.map((b, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-[color:var(--color-muted)]">
+                    <span aria-hidden className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--color-accent)]" />
+                    <span>{b}</span>
+                  </li>
                 ))}
-              </tr>
-            </thead>
-            <tbody>
-              {pricingBlock.rows.map((row, i) => (
-                <tr
-                  key={i}
-                  className={
-                    "border-b border-[color:var(--color-line)] align-top " +
-                    (row.featured ? "bg-[color:var(--color-bg-alt)]/40" : "")
-                  }
-                >
-                  <td className="py-5 pr-6 text-sm font-medium">
-                    {row.tier}
-                    {row.featured && (
-                      <span className="ml-2 inline-block rounded-full bg-[color:var(--color-accent)]/10 px-2 py-0.5 text-[10px] uppercase tracking-wide text-[color:var(--color-accent)]">
-                        {isAr ? "الأكثر حجزاً" : "Most-booked"}
-                      </span>
-                    )}
-                  </td>
-                  <td className="py-5 pr-6 text-sm font-semibold text-[color:var(--color-accent)] whitespace-nowrap">
-                    {row.from}
-                  </td>
-                  <td className="py-5 pr-6 text-xs text-[color:var(--color-muted)]">{row.bestFor}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+              </ul>
+            </div>
+          </Reveal>
+          <Reveal delay={80} className="bs-card flex flex-col">
+            <div>
+              <h3 className="text-xl">{scopeBlock.enhancedName}</h3>
+              <ul className="mt-6 space-y-3">
+                {scopeBlock.enhancedBullets.map((b, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-[color:var(--color-muted)]">
+                    <span aria-hidden className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--color-accent)]" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
         </div>
-        <p className="mt-8 text-xs text-[color:var(--color-muted)]">{pricingBlock.note}</p>
-        <div className="mt-8">
-          <Button href={localizedPath(locale, "/services/weddings")} variant="ghost">
-            {isAr ? "تفصيل الباقات الكامل" : "Full package breakdown"}
-          </Button>
-        </div>
+        <p className="mt-8 text-xs text-[color:var(--color-muted)]">{scopeBlock.notes}</p>
+        <p className="mt-3 text-xs text-[color:var(--color-muted)]">{scopeBlock.basis}</p>
       </Section>
 
       {/* FAQ */}
