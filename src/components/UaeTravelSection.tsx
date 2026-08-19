@@ -73,10 +73,10 @@ export default function UaeTravelSection({ locale }: { locale: Locale }) {
             key={row.emirate}
             className="bs-card !rounded-none flex flex-col gap-2 bg-white p-6"
           >
-            <p className="text-base font-medium text-[color:var(--color-ink)]">
+            <p className="text-base font-medium text-neutral-900">
               {isAr ? toArEmirate(row.emirate) : row.emirate}
             </p>
-            <p className="text-sm leading-relaxed text-[color:var(--color-muted)]">
+            <p className="text-sm leading-relaxed text-neutral-600">
               {isAr ? toArCities(row.cities) : row.cities}
             </p>
           </div>
