@@ -100,8 +100,35 @@ async function logVenueSearch(venue: string, placeId: string, celebrationType: s
       }),
     });
   } catch {
-    // Silent fail — logging is best-effort
+    // Silent fail
   }
+}
+
+/** Load Google Maps script and return a promise */
+function loadGoogleMapsScript(): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if (typeof window === "undefined") return reject(new Error("No window"));
+    if (window.google?.maps?.places) return resolve();
+
+    const existing = document.getElementById("google-maps-script") as HTMLScriptElement | null;
+    if (existing) {
+      existing.addEventListener("load", () => resolve());
+      existing.addEventListener("error", () => reject(new Error("Script load failed")));
+      return;
+    }
+
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+    if (!apiKey) return reject(new Error("No API key"));
+
+    const script = document.createElement("script");
+    script.id = "google-maps-script";
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+    script.async = true;
+    script.defer = true;
+    script.addEventListener("load", () => resolve());
+    script.addEventListener("error", () => reject(new Error("Script load failed")));
+    document.head.appendChild(script);
+  });
 }
 
 function VenueAutocomplete({
@@ -115,77 +142,62 @@ function VenueAutocomplete({
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const onSelectRef = useRef(onSelect);
-  const [loaded, setLoaded] = useState(false);
+  const initRef = useRef(false);
 
-  // Keep callback ref current without re-running effect
   useEffect(() => {
     onSelectRef.current = onSelect;
   }, [onSelect]);
 
-  // Load Google Maps script once
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (!inputRef.current || initRef.current) return;
 
-    // Already loaded
-    if (window.google?.maps?.places) {
-      setLoaded(true);
-      return;
+    let cancelled = false;
+
+    async function init() {
+      try {
+        await loadGoogleMapsScript();
+        if (cancelled || !inputRef.current || !window.google?.maps?.places) return;
+
+        const autocomplete = new window.google.maps.places.Autocomplete(inputRef.current, {
+          types: ["establishment"],
+          fields: ["name", "place_id", "formatted_address", "address_components"],
+          componentRestrictions: { country: ["ae", "sa", "om", "bh", "qa", "kw"] },
+        });
+
+        autocomplete.addListener("place_changed", () => {
+          const place = autocomplete.getPlace();
+          if (place.name) {
+            const display = place.formatted_address
+              ? `${place.name}, ${place.formatted_address}`
+              : place.name;
+            onSelectRef.current(display, place.place_id || "");
+          }
+        });
+
+        initRef.current = true;
+      } catch (err) {
+        console.error("Google Maps autocomplete init failed:", err);
+      }
     }
 
-    const existingScript = document.getElementById("google-maps-script") as HTMLScriptElement | null;
+    init();
 
-    if (existingScript) {
-      // Script exists but may not be loaded yet
-      if (window.google?.maps?.places) {
-        setLoaded(true);
-      } else {
-        existingScript.addEventListener("load", () => setLoaded(true));
-      }
-      return;
-    }
-
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-    if (!apiKey) return;
-
-    const script = document.createElement("script");
-    script.id = "google-maps-script";
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
-    script.async = true;
-    script.defer = true;
-    script.addEventListener("load", () => setLoaded(true));
-    document.head.appendChild(script);
-  }, []);
-
-  // Init autocomplete once script is loaded and input is available
-  useEffect(() => {
-    if (!loaded || !inputRef.current || !window.google?.maps?.places) return;
-
-    const autocomplete = new window.google.maps.places.Autocomplete(inputRef.current, {
-      types: ["establishment"],
-      fields: ["name", "place_id", "formatted_address", "address_components"],
-      componentRestrictions: { country: ["ae", "sa", "om", "bh", "qa", "kw"] },
-    });
-
-    autocomplete.addListener("place_changed", () => {
-      const place = autocomplete.getPlace();
-      if (place.name) {
-        const display = place.formatted_address
-          ? `${place.name}, ${place.formatted_address}`
-          : place.name;
-        onSelectRef.current(display, place.place_id || "");
-      }
-    });
-  }, [loaded]);
+    return () => {
+      cancelled = true;
+    };
+  }, []); // Run once on mount
 
   return (
-    <input
-      ref={inputRef}
-      type="text"
-      defaultValue={value}
-      placeholder={label("Search venue name...", "ابحث عن اسم المكان...", locale)}
-      className="bs-input w-full"
-      autoComplete="off"
-    />
+    <div className="relative">
+      <input
+        ref={inputRef}
+        type="text"
+        defaultValue={value}
+        placeholder={label("Search venue name...", "ابحث عن اسم المكان...", locale)}
+        className="bs-input w-full"
+        autoComplete="off"
+      />
+    </div>
   );
 }
 
@@ -211,9 +223,8 @@ export default function WeddingIntakeForm({
 
   const handleVenueSelect = useCallback((venue: string, placeId: string) => {
     setData((prev) => ({ ...prev, venue, venuePlaceId: placeId }));
-    // Log to venue database
-    logVenueSearch(venue, placeId, data.celebrationType || "unknown");
-  }, [data.celebrationType]);
+    logVenueSearch(venue, placeId, "unknown");
+  }, []);
 
   function next() {
     if (step === 4 && data.celebrationType === "katb-kitab" && !data.katbSetting) return;
