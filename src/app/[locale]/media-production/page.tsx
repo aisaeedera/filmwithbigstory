@@ -127,6 +127,28 @@ export default async function MediaProductionHub({ params }: { params: Promise<{
         </Reveal>
       </Section>
 
+      {/* ---------- WEDDINGS ---------- */}
+      <Section>
+        <Reveal>
+          <Eyebrow>{t({ en: "Weddings", ar: "الأفراح" }, locale)}</Eyebrow>
+          <h2 className="mt-5 max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)]">{t({ en: "Wedding production in the UAE.", ar: "إنتاج الأفراح في الإمارات." }, locale)}</h2>
+          <p className="bs-lead mt-6 !max-w-2xl">
+            {t({
+              en: "Full wedding coverage for groom celebrations: film, photography, LED walls, livestream and social cuts, planned and delivered by one crew.",
+              ar: "تغطية شاملة لاحتفالات العريس: فيلم وتصوير فوتوغرافي وجدران LED وبث مباشر ومقاطع سوشيال، يخطط لها وينفذها طاقم واحد.",
+            }, locale)}
+          </p>
+        </Reveal>
+        <Reveal delay={80} className="mt-10">
+          <Link href={localizedPath(locale, "/services/groom-wedding-services")} className="bs-btn bs-btn-gold">
+            {t({ en: "See wedding packages", ar: "شاهد باقات الأفراح" }, locale)}
+          </Link>
+          <Link href={localizedPath(locale, "/wedding-quotation")} className="bs-btn bs-btn-ghost ml-4">
+            {t({ en: "Get a quotation", ar: "احصل على عرض سعر" }, locale)}
+          </Link>
+        </Reveal>
+      </Section>
+
       {/* ---------- PROCESS ---------- */}
       <Section alt>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start">

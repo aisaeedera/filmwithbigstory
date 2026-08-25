@@ -12,6 +12,7 @@ export const ui = {
     serviceAreas: { en: "Service Areas", ar: "مناطق الخدمة" },
     about: { en: "About", ar: "من نحن" },
     howWeWork: { en: "How we work", ar: "كيف نعمل" },
+    weddings: { en: "Weddings", ar: "الأفراح" },
     contact: { en: "Contact", ar: "تواصل" },
     faqs: { en: "FAQs", ar: "الأسئلة الشائعة" },
     pricing: { en: "Pricing", ar: "الأسعار" },

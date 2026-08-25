@@ -12,9 +12,9 @@ const links = [
   { key: "work", path: "/work" },
   { key: "mediaProduction", path: "/media-production" },
   { key: "websiteServices", path: "/website-services" },
+  { key: "weddings", path: "/services/groom-wedding-services" },
   { key: "pricing", path: "/pricing" },
   { key: "about", path: "/about" },
-  { key: "howWeWork", path: "/how-we-work" },
   { key: "clients", path: "/clients" },
   { key: "contact", path: "/contact" },
 ] as const;
