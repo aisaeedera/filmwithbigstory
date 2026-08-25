@@ -6,7 +6,7 @@
  * Passes data to WeddingQuotationWizard on completion.
  */
 
-import { useState } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import type { Locale } from "@/lib/i18n";
 
 export interface WeddingIntakeData {
@@ -38,6 +38,79 @@ function label(en: string, ar: string, locale: Locale): string {
   return locale === "ar" ? ar : en;
 }
 
+function VenueAutocomplete({
+  locale,
+  value,
+  onSelect,
+}: {
+  locale: Locale;
+  value: string;
+  onSelect: (venue: string, placeId: string) => void;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
+
+  useEffect(() => {
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+    if (!apiKey) return;
+
+    // Load Google Maps script
+    const existingScript = document.getElementById("google-maps-script");
+    if (!existingScript) {
+      const script = document.createElement("script");
+      script.id = "google-maps-script";
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+
+      script.onload = () => initAutocomplete();
+    } else {
+      initAutocomplete();
+    }
+
+    function initAutocomplete() {
+      if (!inputRef.current || !window.google?.maps?.places) return;
+
+      const autocomplete = new google.maps.places.Autocomplete(inputRef.current, {
+        types: ["establishment"],
+        fields: ["name", "place_id", "formatted_address"],
+        componentRestrictions: { country: ["ae", "sa", "om", "bh", "qa", "kw"] },
+      });
+
+      autocomplete.addListener("place_changed", () => {
+        const place = autocomplete.getPlace();
+        if (place.name) {
+          const display = place.formatted_address
+            ? `${place.name}, ${place.formatted_address}`
+            : place.name;
+          onSelect(display, place.place_id || "");
+        }
+      });
+
+      autocompleteRef.current = autocomplete;
+    }
+
+    return () => {
+      // Cleanup listener if needed
+    };
+  }, [onSelect]);
+
+  return (
+    <input
+      ref={inputRef}
+      type="text"
+      defaultValue={value}
+      placeholder={label(
+        "Search venue name...",
+        "ابحث عن اسم المكان...",
+        locale
+      )}
+      className="bs-input w-full"
+    />
+  );
+}
+
 export default function WeddingIntakeForm({
   locale,
   onComplete,
@@ -56,6 +129,10 @@ export default function WeddingIntakeForm({
   function update(field: keyof WeddingIntakeData, value: string) {
     setData((prev) => ({ ...prev, [field]: value }));
   }
+
+  const handleVenueSelect = useCallback((venue: string, placeId: string) => {
+    setData((prev) => ({ ...prev, venue, venuePlaceId: placeId }));
+  }, []);
 
   function next() {
     if (step < 4) setStep(step + 1);
@@ -136,7 +213,7 @@ export default function WeddingIntakeForm({
         </section>
       )}
 
-      {/* Step 3: Venue with Google Maps */}
+      {/* Step 3: Venue with Google Maps Autocomplete */}
       {step === 3 && (
         <section className="mt-6">
           <h2 className="text-[clamp(1.7rem,3vw,2.5rem)]">
@@ -150,28 +227,18 @@ export default function WeddingIntakeForm({
             )}
           </p>
           <div className="mt-6">
-            <input
-              type="text"
+            <VenueAutocomplete
+              locale={locale}
               value={data.venue}
-              onChange={(e) => update("venue", e.target.value)}
-              placeholder={label("Search venue or type name...", "ابحث عن المكان أو اكتب الاسم...", locale)}
-              className="bs-input w-full"
+              onSelect={handleVenueSelect}
             />
             <p className="mt-2 text-xs text-[color:var(--color-muted)]">
               {label(
-                "e.g. Atlantis The Palm, Madinat Jumeirah, Ritz-Carlton DIFC",
-                "مثال: أتلانتس النخلة، مدينة جميرا، ريتز كارلتون مركز دبي المالي",
+                "Start typing to search venues in the UAE",
+                "ابدأ الكتابة للبحث عن المواقع في الإمارات",
                 locale
               )}
             </p>
-            {/* Google Maps integration placeholder — will be connected later */}
-            <div className="mt-4 rounded-xl border border-dashed border-[color:var(--color-line)] p-6 text-center text-sm text-[color:var(--color-muted)]">
-              {label(
-                "Venue search with map coming soon",
-                "البحث عن المواقع مع الخريطة قريباً",
-                locale
-              )}
-            </div>
           </div>
         </section>
       )}
