@@ -45,8 +45,10 @@ export default async function WeddingQuotationPage({ params }: { params: Promise
         <Eyebrow>{isAr ? "عرض الزفاف" : "Wedding quotation"}</Eyebrow>
         <h1 className="mt-5 max-w-4xl text-[clamp(2.4rem,5.5vw,4rem)] leading-[1.05]">{isAr ? "أنشئ نطاق زفافك للمراجعة" : "Build your wedding scope for review"}</h1>
         <p className="bs-lead mt-6 max-w-3xl">{isAr ? "تجربة داخلية محكومة: نراجع التوفر والطاقم والموقع والسعر قبل أي دفع أو حجز." : "A controlled internal experience: Big Story reviews availability, crew, venue and pricing before any payment or booking."}</p>
+        <div className="mt-10">
+          <WeddingQuotationFlow locale={locale} />
+        </div>
       </Section>
-      <Section alt><WeddingQuotationFlow locale={locale} /></Section>
     </>
   );
 }
