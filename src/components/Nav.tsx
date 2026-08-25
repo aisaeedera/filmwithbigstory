@@ -9,13 +9,10 @@ import { ui } from "@/data/copy";
 import { cx } from "@/lib/util";
 
 const links = [
-  { key: "work", path: "/work" },
   { key: "mediaProduction", path: "/media-production" },
-  { key: "websiteServices", path: "/website-services" },
   { key: "weddings", path: "/weddings" },
   { key: "pricing", path: "/pricing" },
   { key: "about", path: "/about" },
-  { key: "clients", path: "/clients" },
   { key: "contact", path: "/contact" },
 ] as const;
 

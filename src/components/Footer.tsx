@@ -4,22 +4,39 @@ import { localizedPath, t } from "@/lib/i18n";
 import { ui } from "@/data/copy";
 import { SITE } from "@/lib/site";
 
-const explore = [
-  { key: "work", path: "/work" },
-  { key: "mediaProduction", path: "/media-production" },
-  { key: "websiteServices", path: "/website-services" },
-  { key: "about", path: "/about" },
-  { key: "howWeWork", path: "/how-we-work" },
-  { key: "faqs", path: "/faqs" },
-  { key: "careers", path: "/careers" },
-  { key: "clients", path: "/clients" },
-  { key: "contact", path: "/contact" },
+const footerSections = [
+  {
+    heading: { en: "Services", ar: "الخدمات" },
+    links: [
+      { key: "mediaProduction", path: "/media-production" },
+      { key: "websiteServices", path: "/website-services" },
+      { key: "weddings", path: "/weddings" },
+      { key: "pricing", path: "/pricing" },
+    ],
+  },
+  {
+    heading: { en: "Company", ar: "الشركة" },
+    links: [
+      { key: "about", path: "/about" },
+      { key: "howWeWork", path: "/how-we-work" },
+      { key: "clients", path: "/clients" },
+      { key: "careers", path: "/careers" },
+    ],
+  },
+  {
+    heading: { en: "Resources", ar: "الموارد" },
+    links: [
+      { key: "work", path: "/work" },
+      { key: "faqs", path: "/faqs" },
+      { key: "contact", path: "/contact" },
+    ],
+  },
 ] as const;
 
 export default function Footer({ locale }: { locale: Locale }) {
   return (
     <footer className="border-t border-[color:var(--color-line)] bg-[color:var(--color-bg-alt)]">
-      <div className="bs-shell grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div className="bs-shell grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <Link href={localizedPath(locale, "/")} className="inline-flex items-center gap-2">
             <span className="font-[family-name:var(--font-display)] text-2xl font-semibold">
@@ -34,39 +51,22 @@ export default function Footer({ locale }: { locale: Locale }) {
           </p>
         </div>
 
-        <div>
-          <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-[color:var(--color-muted)]">
-            {t(ui.footer.explore, locale)}
-          </h2>
-          <ul className="space-y-2.5 text-sm">
-            {explore.map((l) => (
-              <li key={l.key}>
-                <Link href={localizedPath(locale, l.path)} className="bs-gold-line">
-                  {t(ui.nav[l.key], locale)}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-[color:var(--color-muted)]">
-            {t(ui.footer.getInTouch, locale)}
-          </h2>
-          <ul className="space-y-2.5 text-sm">
-            <li>
-              <a href={`mailto:${SITE.email}`} className="bs-gold-line">{SITE.email}</a>
-            </li>
-            <li>
-              <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer" className="bs-gold-line">
-                WhatsApp {SITE.phone}
-              </a>
-            </li>
-            <li>
-              <a href={`tel:${SITE.phoneRaw}`} className="bs-gold-line">{SITE.phone}</a>
-            </li>
-          </ul>
-        </div>
+        {footerSections.map((section) => (
+          <div key={t(section.heading, locale)}>
+            <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-[color:var(--color-muted)]">
+              {t(section.heading, locale)}
+            </h2>
+            <ul className="space-y-2.5 text-sm">
+              {section.links.map((l) => (
+                <li key={l.key}>
+                  <Link href={localizedPath(locale, l.path)} className="bs-gold-line">
+                    {t(ui.nav[l.key], locale)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
 
       <div className="border-t border-[color:var(--color-line)]">
