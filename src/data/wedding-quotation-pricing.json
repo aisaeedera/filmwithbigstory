@@ -1,0 +1,110 @@
+{
+  "schema_id": "bigstory.media.wedding.pricing_export.v1",
+  "export_version": "2.0.0",
+  "source_package_version": "2.0.0",
+  "effective_date": "2026-08-25",
+  "release_status": "LIVE",
+  "approval_status": "APPROVED",
+  "client_price_released": true,
+  "packages": {
+    "basic": {
+      "price_aed": 16000,
+      "crew": "1 videographer + 1 photographer",
+      "photos": 30,
+      "crane": false,
+      "videos": ["highlight only"],
+      "delivery_days": 28,
+      "revisions": 1
+    },
+    "silver": {
+      "price_aed": 26500,
+      "crew": "1 videographer + 1 photographer",
+      "photos": 50,
+      "crane": true,
+      "videos": ["highlight", "ceremony edit"],
+      "delivery_days": 21,
+      "revisions": 1
+    },
+    "gold": {
+      "price_aed": 31500,
+      "crew": "2 videographers + 1 photographer",
+      "photos": 100,
+      "crane": true,
+      "videos": ["highlight", "key-event film", "1 social cut"],
+      "delivery_days": 14,
+      "revisions": 2
+    },
+    "platinum": {
+      "price_aed": 36500,
+      "crew": "2 videographers + 2 photographers",
+      "photos": 150,
+      "crane": true,
+      "videos": ["highlight", "extended film", "3 social cuts"],
+      "delivery_days": 7,
+      "revisions": 3
+    }
+  },
+  "common_included": [
+    "8 hours coverage",
+    "Director / ATEM switcher",
+    "PA system",
+    "YouTube livestream",
+    "QR photo sharing + 2 display screens",
+    "Cloud delivery",
+    "All original camera files",
+    "60-day client access"
+  ],
+  "addons": {
+    "extra_hour": {
+      "label_en": "Extra coverage hour",
+      "label_ar": "ساعة تغطية إضافية",
+      "tier_pricing": {
+        "basic": 750,
+        "silver": 750,
+        "gold": 900,
+        "platinum": 1100
+      }
+    },
+    "additional_photographer": {
+      "label_en": "Additional photographer",
+      "label_ar": "مصور فوتوغرافي إضافي",
+      "price_aed": 1000
+    },
+    "additional_videographer": {
+      "label_en": "Additional videographer (no livestream)",
+      "label_ar": "مصور فيديو إضافي (بدون بث مباشر)",
+      "price_aed": 1000
+    },
+    "additional_videographer_livestream": {
+      "label_en": "Additional videographer with livestream",
+      "label_ar": "مصور فيديو إضافي مع بث مباشر",
+      "price_aed": 1420
+    },
+    "same_day_teaser": {
+      "label_en": "Same-day teaser",
+      "label_ar": "إعلان تشويقي في نفس اليوم",
+      "price_aed": 2500
+    },
+    "onsite_photo_editor": {
+      "label_en": "On-site photo editor",
+      "label_ar": "محرر صور في الموقع",
+      "price_aed": 1500
+    },
+    "onsite_video_editor": {
+      "label_en": "On-site video editor",
+      "label_ar": "محرر فيديو في الموقع",
+      "price_aed": 2000
+    },
+    "led_wall_small": {
+      "label_en": "LED wall 2m × 2.5m",
+      "label_ar": "جدار LED ٢م × ٢٫٥م",
+      "price_aed": 3500
+    },
+    "led_wall_large": {
+      "label_en": "LED wall 2.5m × 3m",
+      "label_ar": "جدار LED ٢٫٥م × ٣م",
+      "price_aed": 5500
+    }
+  },
+  "source_sha256": "57b3069bae48715dfe08a9d4ed4d553330b4b9bb3ba30e44a0accf0c7f63102b"
+}

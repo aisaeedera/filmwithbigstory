@@ -260,6 +260,9 @@ export default async function WeddingsPage({ params }: { params: Promise<{ local
           <h1 className="mt-6 max-w-5xl text-[clamp(2.4rem,5.5vw,4rem)] leading-[1.05]">{t(COPY.h1, locale)}</h1>
           <p className="bs-lead mt-8 !max-w-3xl">{t(COPY.lead, locale)}</p>
           <div className="mt-9 flex flex-wrap gap-4">
+            <Button href={localizedPath(locale, "/wedding-quotation")}>
+              {isAr ? "أنشئ عرض زفافك" : "Build your wedding quotation"}
+            </Button>
             <a href={waLink(isAr ? "مهتم بتصوير الزفاف في دبي." : "Interested in wedding photography and videography in Dubai.")} target="_blank" rel="noopener noreferrer" className="bs-btn bs-btn-gold">
               {t(ui.nav.startYourProject, locale)}
             </a>
