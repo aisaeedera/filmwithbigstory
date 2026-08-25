@@ -140,7 +140,7 @@ export default async function MediaProductionHub({ params }: { params: Promise<{
           </p>
         </Reveal>
         <Reveal delay={80} className="mt-10">
-          <Link href={localizedPath(locale, "/services/groom-wedding-services")} className="bs-btn bs-btn-gold">
+          <Link href={localizedPath(locale, "/weddings")} className="bs-btn bs-btn-gold">
             {t({ en: "See wedding packages", ar: "شاهد باقات الأفراح" }, locale)}
           </Link>
           <Link href={localizedPath(locale, "/wedding-quotation")} className="bs-btn bs-btn-ghost ml-4">

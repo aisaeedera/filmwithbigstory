@@ -12,7 +12,7 @@ const links = [
   { key: "work", path: "/work" },
   { key: "mediaProduction", path: "/media-production" },
   { key: "websiteServices", path: "/website-services" },
-  { key: "weddings", path: "/services/groom-wedding-services" },
+  { key: "weddings", path: "/weddings" },
   { key: "pricing", path: "/pricing" },
   { key: "about", path: "/about" },
   { key: "clients", path: "/clients" },
