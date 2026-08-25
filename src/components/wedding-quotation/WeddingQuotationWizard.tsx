@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { Locale } from "@/lib/i18n";
+import type { WeddingIntakeData } from "./WeddingIntakeForm";
 import pricing from "@/data/wedding-quotation-pricing.json";
 
 type PackageId = "silver" | "gold" | "platinum";
@@ -92,7 +93,7 @@ function formatAed(amount: number): string {
   return `AED ${amount.toLocaleString("en-AE")}`;
 }
 
-export default function WeddingQuotationWizard({ locale }: { locale: Locale }) {
+export default function WeddingQuotationWizard({ locale, intakeData }: { locale: Locale; intakeData?: WeddingIntakeData }) {
   const isAr = locale === "ar";
   const [step, setStep] = useState(1);
   const [tier, setTier] = useState<PackageId | null>(null);
