@@ -15,7 +15,7 @@ export interface WeddingIntakeData {
   venuePlaceId?: string;
   quotingFor: string;
   celebrationType: string;
-  katbSetting?: string; // "male" | "female" | "both" — only for Katb Kitab
+  katbSetting?: string;
 }
 
 const QUOTING_FOR = [
@@ -86,6 +86,24 @@ function label(en: string, ar: string, locale: Locale): string {
   return locale === "ar" ? ar : en;
 }
 
+/** Log venue search to our API for building the venue database */
+async function logVenueSearch(venue: string, placeId: string, celebrationType: string) {
+  try {
+    await fetch("/api/venue-search", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        venue,
+        placeId,
+        celebrationType,
+        timestamp: new Date().toISOString(),
+      }),
+    });
+  } catch {
+    // Silent fail — logging is best-effort
+  }
+}
+
 function VenueAutocomplete({
   locale,
   value,
@@ -96,44 +114,68 @@ function VenueAutocomplete({
   onSelect: (venue: string, placeId: string) => void;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const autocompleteRef = useRef<google.maps.places.Autocomplete | null>(null);
+  const onSelectRef = useRef(onSelect);
+  const [loaded, setLoaded] = useState(false);
 
+  // Keep callback ref current without re-running effect
   useEffect(() => {
+    onSelectRef.current = onSelect;
+  }, [onSelect]);
+
+  // Load Google Maps script once
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // Already loaded
+    if (window.google?.maps?.places) {
+      setLoaded(true);
+      return;
+    }
+
+    const existingScript = document.getElementById("google-maps-script") as HTMLScriptElement | null;
+
+    if (existingScript) {
+      // Script exists but may not be loaded yet
+      if (window.google?.maps?.places) {
+        setLoaded(true);
+      } else {
+        existingScript.addEventListener("load", () => setLoaded(true));
+      }
+      return;
+    }
+
     const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
     if (!apiKey) return;
 
-    const existingScript = document.getElementById("google-maps-script");
-    if (!existingScript) {
-      const script = document.createElement("script");
-      script.id = "google-maps-script";
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
-      script.async = true;
-      script.defer = true;
-      document.head.appendChild(script);
-      script.onload = () => initAutocomplete();
-    } else {
-      initAutocomplete();
-    }
+    const script = document.createElement("script");
+    script.id = "google-maps-script";
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+    script.async = true;
+    script.defer = true;
+    script.addEventListener("load", () => setLoaded(true));
+    document.head.appendChild(script);
+  }, []);
 
-    function initAutocomplete() {
-      if (!inputRef.current || !window.google?.maps?.places) return;
-      const autocomplete = new google.maps.places.Autocomplete(inputRef.current, {
-        types: ["establishment"],
-        fields: ["name", "place_id", "formatted_address"],
-        componentRestrictions: { country: ["ae", "sa", "om", "bh", "qa", "kw"] },
-      });
-      autocomplete.addListener("place_changed", () => {
-        const place = autocomplete.getPlace();
-        if (place.name) {
-          const display = place.formatted_address
-            ? `${place.name}, ${place.formatted_address}`
-            : place.name;
-          onSelect(display, place.place_id || "");
-        }
-      });
-      autocompleteRef.current = autocomplete;
-    }
-  }, [onSelect]);
+  // Init autocomplete once script is loaded and input is available
+  useEffect(() => {
+    if (!loaded || !inputRef.current || !window.google?.maps?.places) return;
+
+    const autocomplete = new window.google.maps.places.Autocomplete(inputRef.current, {
+      types: ["establishment"],
+      fields: ["name", "place_id", "formatted_address", "address_components"],
+      componentRestrictions: { country: ["ae", "sa", "om", "bh", "qa", "kw"] },
+    });
+
+    autocomplete.addListener("place_changed", () => {
+      const place = autocomplete.getPlace();
+      if (place.name) {
+        const display = place.formatted_address
+          ? `${place.name}, ${place.formatted_address}`
+          : place.name;
+        onSelectRef.current(display, place.place_id || "");
+      }
+    });
+  }, [loaded]);
 
   return (
     <input
@@ -142,6 +184,7 @@ function VenueAutocomplete({
       defaultValue={value}
       placeholder={label("Search venue name...", "ابحث عن اسم المكان...", locale)}
       className="bs-input w-full"
+      autoComplete="off"
     />
   );
 }
@@ -168,10 +211,11 @@ export default function WeddingIntakeForm({
 
   const handleVenueSelect = useCallback((venue: string, placeId: string) => {
     setData((prev) => ({ ...prev, venue, venuePlaceId: placeId }));
-  }, []);
+    // Log to venue database
+    logVenueSearch(venue, placeId, data.celebrationType || "unknown");
+  }, [data.celebrationType]);
 
   function next() {
-    // If Katb Kitab and no sub-option selected yet, stay on step 4
     if (step === 4 && data.celebrationType === "katb-kitab" && !data.katbSetting) return;
     if (step < 4) setStep(step + 1);
     else onComplete(data);
@@ -296,7 +340,6 @@ export default function WeddingIntakeForm({
                     type="button"
                     onClick={() => {
                       update("celebrationType", type.value);
-                      // Reset katbSetting if switching away from katb-kitab
                       if (type.value !== "katb-kitab") {
                         setData((prev) => ({ ...prev, katbSetting: undefined }));
                       }
@@ -311,7 +354,6 @@ export default function WeddingIntakeForm({
                     <p className="mt-1 text-xs text-[color:var(--color-muted)]">{keywords}</p>
                   </button>
 
-                  {/* Katb Kitab sub-options */}
                   {type.hasSubOptions && data.celebrationType === "katb-kitab" && (
                     <div className="mt-3 ml-4 flex flex-wrap gap-2">
                       {KATB_SETTINGS.map((setting) => (
