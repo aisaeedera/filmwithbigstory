@@ -284,7 +284,7 @@ export default async function GroomWeddingServicesPage({ params }: { params: Pro
         data={[
           breadcrumbSchema(locale, [
             { name: t(ui.breadcrumb.home, locale), path: "/" },
-            { name: t(ui.nav.services, locale), path: "/services" },
+            { name: t(ui.nav.weddings, locale), path: "/weddings" },
             { name: t(COPY.h1, locale), path },
           ]),
           articleSchema({
@@ -314,7 +314,7 @@ export default async function GroomWeddingServicesPage({ params }: { params: Pro
           locale={locale}
           items={[
             { name: t(ui.breadcrumb.home, locale), path: "/" },
-            { name: t(ui.nav.services, locale), path: "/services" },
+            { name: t(ui.nav.weddings, locale), path: "/weddings" },
             { name: t(COPY.h1, locale) },
           ]}
         />

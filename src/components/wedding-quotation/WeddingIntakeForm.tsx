@@ -12,9 +12,19 @@ import type { Locale } from "@/lib/i18n";
 export interface WeddingIntakeData {
   eventDate: string;
   venue: string;
-  guestCount: string;
+  venuePlaceId?: string;
+  quotingFor: string;
   celebrationType: string;
 }
+
+const QUOTING_FOR = [
+  { en: "I am the groom", ar: "أنا العريس", icon: "🤵" },
+  { en: "I am the bride", ar: "أنا العروس", icon: "👰" },
+  { en: "Family of the groom", ar: "عائلة العريس", icon: "👨‍👩‍👦" },
+  { en: "Family of the bride", ar: "عائلة العروس", icon: "👨‍👩‍👧" },
+  { en: "Wedding planner", ar: "منظم أفراح", icon: "📋" },
+  { en: "Other", ar: "أخرى", icon: "💬" },
+];
 
 const CELEBRATION_TYPES = [
   { en: "Groom preparation + male hall", ar: "تحضير العريس + قاعة الرجال" },
@@ -22,15 +32,6 @@ const CELEBRATION_TYPES = [
   { en: "Katb Kitab ceremony", ar: "حفل عقد القران" },
   { en: "Engagement ceremony", ar: "حفل خطوبة" },
   { en: "Other", ar: "أخرى" },
-];
-
-const GUEST_RANGES = [
-  { en: "Under 50", ar: "أقل من 50" },
-  { en: "50–100", ar: "50–100" },
-  { en: "100–200", ar: "100–200" },
-  { en: "200–300", ar: "200–300" },
-  { en: "300–500", ar: "300–500" },
-  { en: "500+", ar: "500+" },
 ];
 
 function label(en: string, ar: string, locale: Locale): string {
@@ -48,7 +49,7 @@ export default function WeddingIntakeForm({
   const [data, setData] = useState<WeddingIntakeData>({
     eventDate: "",
     venue: "",
-    guestCount: "",
+    quotingFor: "",
     celebrationType: "",
   });
 
@@ -66,9 +67,9 @@ export default function WeddingIntakeForm({
   }
 
   const canContinue =
-    step === 1 ? Boolean(data.eventDate) :
-    step === 2 ? Boolean(data.venue) :
-    step === 3 ? Boolean(data.guestCount) :
+    step === 1 ? Boolean(data.quotingFor) :
+    step === 2 ? Boolean(data.eventDate) :
+    step === 3 ? Boolean(data.venue) :
     step === 4 ? Boolean(data.celebrationType) :
     false;
 
@@ -76,8 +77,44 @@ export default function WeddingIntakeForm({
     <div className="mx-auto max-w-2xl">
       <p className="bs-eyebrow">{label(`Step ${step} of 4`, `الخطوة ${step} من ٤`, locale)}</p>
 
-      {/* Step 1: Event date */}
+      {/* Step 1: Who are you quoting for? */}
       {step === 1 && (
+        <section className="mt-6">
+          <h2 className="text-[clamp(1.7rem,3vw,2.5rem)]">
+            {label("Who are you quoting for?", "من أجل من عرض الأسعار؟", locale)}
+          </h2>
+          <p className="mt-4 text-[color:var(--color-muted)]">
+            {label(
+              "This helps us personalise your experience. We will address you accordingly.",
+              "هذا يساعدنا على تخصيص تجربتك. سنتعامل معك وفقاً لذلك.",
+              locale
+            )}
+          </p>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            {QUOTING_FOR.map((type) => {
+              const val = label(type.en, type.ar, locale);
+              return (
+                <button
+                  key={type.en}
+                  type="button"
+                  onClick={() => update("quotingFor", type.en)}
+                  className={`flex items-center gap-3 rounded-xl border px-4 py-3 text-left transition ${
+                    data.quotingFor === type.en
+                      ? "border-[color:var(--color-gold)] bg-[color:var(--color-gold)]/5"
+                      : "border-[color:var(--color-line)] hover:border-[color:var(--color-muted)]"
+                  }`}
+                >
+                  <span className="text-2xl">{type.icon}</span>
+                  <span className="text-sm font-medium">{val}</span>
+                </button>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
+      {/* Step 2: Event date */}
+      {step === 2 && (
         <section className="mt-6">
           <h2 className="text-[clamp(1.7rem,3vw,2.5rem)]">
             {label("When is the event?", "متى الحفل؟", locale)}
@@ -99,56 +136,42 @@ export default function WeddingIntakeForm({
         </section>
       )}
 
-      {/* Step 2: Venue */}
-      {step === 2 && (
+      {/* Step 3: Venue with Google Maps */}
+      {step === 3 && (
         <section className="mt-6">
           <h2 className="text-[clamp(1.7rem,3vw,2.5rem)]">
             {label("Where is the event?", "أين الحفل؟", locale)}
           </h2>
           <p className="mt-4 text-[color:var(--color-muted)]">
             {label(
-              "Hotel name, hall name, or area. If not decided, write the area or city.",
-              "اسم الفندق أو القاعة أو المنطقة. إذا لم يُقرر، اكتب المنطقة أو المدينة.",
+              "Search for a venue or type the name and area.",
+              "ابحث عن المكان أو اكتب الاسم والمنطقة.",
               locale
             )}
           </p>
-          <input
-            type="text"
-            value={data.venue}
-            onChange={(e) => update("venue", e.target.value)}
-            placeholder={label("e.g. Atlantis The Palm, Dubai", "مثال: أتلانتس النخلة، دبي", locale)}
-            className="mt-6 bs-input w-full"
-          />
-        </section>
-      )}
-
-      {/* Step 3: Guest count */}
-      {step === 3 && (
-        <section className="mt-6">
-          <h2 className="text-[clamp(1.7rem,3vw,2.5rem)]">
-            {label("How many guests?", "كم عدد الضيوف؟", locale)}
-          </h2>
-          <p className="mt-4 text-[color:var(--color-muted)]">
-            {label(
-              "An estimate is fine. This helps us plan crew and equipment.",
-              "التقدير كافٍ. هذا يساعدنا في تخطيط الطاقم والمعدات.",
-              locale
-            )}
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            {GUEST_RANGES.map((range) => {
-              const val = label(range.en, range.ar, locale);
-              return (
-                <button
-                  key={range.en}
-                  type="button"
-                  onClick={() => update("guestCount", range.en)}
-                  className={`bs-chip ${data.guestCount === range.en ? "bs-chip-active" : ""}`}
-                >
-                  {val}
-                </button>
-              );
-            })}
+          <div className="mt-6">
+            <input
+              type="text"
+              value={data.venue}
+              onChange={(e) => update("venue", e.target.value)}
+              placeholder={label("Search venue or type name...", "ابحث عن المكان أو اكتب الاسم...", locale)}
+              className="bs-input w-full"
+            />
+            <p className="mt-2 text-xs text-[color:var(--color-muted)]">
+              {label(
+                "e.g. Atlantis The Palm, Madinat Jumeirah, Ritz-Carlton DIFC",
+                "مثال: أتلانتس النخلة، مدينة جميرا، ريتز كارلتون مركز دبي المالي",
+                locale
+              )}
+            </p>
+            {/* Google Maps integration placeholder — will be connected later */}
+            <div className="mt-4 rounded-xl border border-dashed border-[color:var(--color-line)] p-6 text-center text-sm text-[color:var(--color-muted)]">
+              {label(
+                "Venue search with map coming soon",
+                "البحث عن المواقع مع الخريطة قريباً",
+                locale
+              )}
+            </div>
           </div>
         </section>
       )}

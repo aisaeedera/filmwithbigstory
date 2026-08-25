@@ -132,7 +132,7 @@ export default async function WeddingEngagementSessionPage({ params }: { params:
         data={[
           breadcrumbSchema(locale, [
             { name: t(ui.breadcrumb.home, locale), path: "/" },
-            { name: t(ui.nav.mediaProduction, locale), path: "/media-production" },
+            { name: t(ui.nav.weddings, locale), path: "/weddings" },
             { name: t(COPY.h1, locale), path },
           ]),
           articleSchema({
@@ -162,7 +162,7 @@ export default async function WeddingEngagementSessionPage({ params }: { params:
           locale={locale}
           items={[
             { name: t(ui.breadcrumb.home, locale), path: "/" },
-            { name: t(ui.nav.mediaProduction, locale), path: "/media-production" },
+            { name: t(ui.nav.weddings, locale), path: "/weddings" },
             { name: t(COPY.h1, locale) },
           ]}
         />

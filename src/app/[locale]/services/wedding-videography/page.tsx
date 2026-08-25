@@ -134,7 +134,7 @@ export default async function WeddingVideographyPage({ params }: { params: Promi
         data={[
           breadcrumbSchema(locale, [
             { name: t(ui.breadcrumb.home, locale), path: "/" },
-            { name: t(ui.nav.mediaProduction, locale), path: "/media-production" },
+            { name: t(ui.nav.weddings, locale), path: "/weddings" },
             { name: t(COPY.h1, locale), path },
           ]),
           articleSchema({
@@ -164,7 +164,7 @@ export default async function WeddingVideographyPage({ params }: { params: Promi
           locale={locale}
           items={[
             { name: t(ui.breadcrumb.home, locale), path: "/" },
-            { name: t(ui.nav.mediaProduction, locale), path: "/media-production" },
+            { name: t(ui.nav.weddings, locale), path: "/weddings" },
             { name: t(COPY.h1, locale) },
           ]}
         />
