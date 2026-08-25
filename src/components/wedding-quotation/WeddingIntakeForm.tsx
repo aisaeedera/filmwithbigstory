@@ -15,6 +15,7 @@ export interface WeddingIntakeData {
   venuePlaceId?: string;
   quotingFor: string;
   celebrationType: string;
+  katbSetting?: string; // "male" | "female" | "both" — only for Katb Kitab
 }
 
 const QUOTING_FOR = [
@@ -27,11 +28,58 @@ const QUOTING_FOR = [
 ];
 
 const CELEBRATION_TYPES = [
-  { en: "Groom preparation + male hall", ar: "تحضير العريس + قاعة الرجال" },
-  { en: "Full wedding (both halls)", ar: "زفاف كامل (كلا القاعتين)" },
-  { en: "Katb Kitab ceremony", ar: "حفل عقد القران" },
-  { en: "Engagement ceremony", ar: "حفل خطوبة" },
-  { en: "Other", ar: "أخرى" },
+  {
+    en: "Groom wedding",
+    ar: "عريس",
+    keywords: {
+      en: "Male crew · Groom preparation · Bisht & kandura · Male hall coverage · Multi-camera · Highlight film",
+      ar: "طاقم رجالي · تحضير العريس · بشت وكندورة · تغطية قاعة الرجال · كاميرات متعددة · فيلم ملخص",
+    },
+    value: "groom-wedding",
+  },
+  {
+    en: "Bride wedding",
+    ar: "عروس",
+    keywords: {
+      en: "Female crew available · Bride preparation · Dress & makeup · Female hall coverage · Highlight film",
+      ar: "طاقم نسائي متاح · تحضير العروس · فستان ومكياج · تغطية قاعة النساء · فيلم ملخص",
+    },
+    value: "bride-wedding",
+  },
+  {
+    en: "Katb Kitab ceremony",
+    ar: "عقد قران",
+    keywords: {
+      en: "Islamic marriage contract · Shorter coverage · Formal & intimate",
+      ar: "عقد القران · تغطية أقصر · رسمي وحميم",
+    },
+    value: "katb-kitab",
+    hasSubOptions: true,
+  },
+  {
+    en: "Engagement ceremony",
+    ar: "خطوبة",
+    keywords: {
+      en: "Ring exchange · Celebration coverage · Photography & video",
+      ar: "تبادل الخواتم · تغطية الاحتفال · تصوير وفيديو",
+    },
+    value: "engagement",
+  },
+  {
+    en: "Other",
+    ar: "أخرى",
+    keywords: {
+      en: "Henna night · Milka · Custom celebration",
+      ar: "ليلة الحناء · ملكة · احتفال مخصص",
+    },
+    value: "other",
+  },
+];
+
+const KATB_SETTINGS = [
+  { en: "Male section only", ar: "قسم الرجال فقط", value: "male" },
+  { en: "Female section only", ar: "قسم النساء فقط", value: "female" },
+  { en: "Both sections", ar: "كلا القسمين", value: "both" },
 ];
 
 function label(en: string, ar: string, locale: Locale): string {
@@ -54,7 +102,6 @@ function VenueAutocomplete({
     const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
     if (!apiKey) return;
 
-    // Load Google Maps script
     const existingScript = document.getElementById("google-maps-script");
     if (!existingScript) {
       const script = document.createElement("script");
@@ -63,7 +110,6 @@ function VenueAutocomplete({
       script.async = true;
       script.defer = true;
       document.head.appendChild(script);
-
       script.onload = () => initAutocomplete();
     } else {
       initAutocomplete();
@@ -71,13 +117,11 @@ function VenueAutocomplete({
 
     function initAutocomplete() {
       if (!inputRef.current || !window.google?.maps?.places) return;
-
       const autocomplete = new google.maps.places.Autocomplete(inputRef.current, {
         types: ["establishment"],
         fields: ["name", "place_id", "formatted_address"],
         componentRestrictions: { country: ["ae", "sa", "om", "bh", "qa", "kw"] },
       });
-
       autocomplete.addListener("place_changed", () => {
         const place = autocomplete.getPlace();
         if (place.name) {
@@ -87,13 +131,8 @@ function VenueAutocomplete({
           onSelect(display, place.place_id || "");
         }
       });
-
       autocompleteRef.current = autocomplete;
     }
-
-    return () => {
-      // Cleanup listener if needed
-    };
   }, [onSelect]);
 
   return (
@@ -101,11 +140,7 @@ function VenueAutocomplete({
       ref={inputRef}
       type="text"
       defaultValue={value}
-      placeholder={label(
-        "Search venue name...",
-        "ابحث عن اسم المكان...",
-        locale
-      )}
+      placeholder={label("Search venue name...", "ابحث عن اسم المكان...", locale)}
       className="bs-input w-full"
     />
   );
@@ -124,6 +159,7 @@ export default function WeddingIntakeForm({
     venue: "",
     quotingFor: "",
     celebrationType: "",
+    katbSetting: undefined,
   });
 
   function update(field: keyof WeddingIntakeData, value: string) {
@@ -135,6 +171,8 @@ export default function WeddingIntakeForm({
   }, []);
 
   function next() {
+    // If Katb Kitab and no sub-option selected yet, stay on step 4
+    if (step === 4 && data.celebrationType === "katb-kitab" && !data.katbSetting) return;
     if (step < 4) setStep(step + 1);
     else onComplete(data);
   }
@@ -147,7 +185,7 @@ export default function WeddingIntakeForm({
     step === 1 ? Boolean(data.quotingFor) :
     step === 2 ? Boolean(data.eventDate) :
     step === 3 ? Boolean(data.venue) :
-    step === 4 ? Boolean(data.celebrationType) :
+    step === 4 ? Boolean(data.celebrationType) && (data.celebrationType !== "katb-kitab" || Boolean(data.katbSetting)) :
     false;
 
   return (
@@ -227,17 +265,9 @@ export default function WeddingIntakeForm({
             )}
           </p>
           <div className="mt-6">
-            <VenueAutocomplete
-              locale={locale}
-              value={data.venue}
-              onSelect={handleVenueSelect}
-            />
+            <VenueAutocomplete locale={locale} value={data.venue} onSelect={handleVenueSelect} />
             <p className="mt-2 text-xs text-[color:var(--color-muted)]">
-              {label(
-                "Start typing to search venues in the UAE",
-                "ابدأ الكتابة للبحث عن المواقع في الإمارات",
-                locale
-              )}
+              {label("Start typing to search venues in the UAE", "ابدأ الكتابة للبحث عن المواقع في الإمارات", locale)}
             </p>
           </div>
         </section>
@@ -256,18 +286,51 @@ export default function WeddingIntakeForm({
               locale
             )}
           </p>
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-6 grid gap-3">
             {CELEBRATION_TYPES.map((type) => {
-              const val = label(type.en, type.ar, locale);
+              const title = label(type.en, type.ar, locale);
+              const keywords = label(type.keywords.en, type.keywords.ar, locale);
               return (
-                <button
-                  key={type.en}
-                  type="button"
-                  onClick={() => update("celebrationType", type.en)}
-                  className={`bs-chip ${data.celebrationType === type.en ? "bs-chip-active" : ""}`}
-                >
-                  {val}
-                </button>
+                <div key={type.value}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      update("celebrationType", type.value);
+                      // Reset katbSetting if switching away from katb-kitab
+                      if (type.value !== "katb-kitab") {
+                        setData((prev) => ({ ...prev, katbSetting: undefined }));
+                      }
+                    }}
+                    className={`w-full rounded-xl border px-5 py-4 text-left transition ${
+                      data.celebrationType === type.value
+                        ? "border-[color:var(--color-gold)] bg-[color:var(--color-gold)]/5"
+                        : "border-[color:var(--color-line)] hover:border-[color:var(--color-muted)]"
+                    }`}
+                  >
+                    <span className="text-sm font-medium">{title}</span>
+                    <p className="mt-1 text-xs text-[color:var(--color-muted)]">{keywords}</p>
+                  </button>
+
+                  {/* Katb Kitab sub-options */}
+                  {type.hasSubOptions && data.celebrationType === "katb-kitab" && (
+                    <div className="mt-3 ml-4 flex flex-wrap gap-2">
+                      {KATB_SETTINGS.map((setting) => (
+                        <button
+                          key={setting.value}
+                          type="button"
+                          onClick={() => update("katbSetting", setting.value)}
+                          className={`rounded-lg border px-4 py-2 text-xs font-medium transition ${
+                            data.katbSetting === setting.value
+                              ? "border-[color:var(--color-gold)] bg-[color:var(--color-gold)]/10 text-[color:var(--color-gold)]"
+                              : "border-[color:var(--color-line)] text-[color:var(--color-muted)] hover:border-[color:var(--color-muted)]"
+                          }`}
+                        >
+                          {label(setting.en, setting.ar, locale)}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               );
             })}
           </div>
@@ -276,20 +339,10 @@ export default function WeddingIntakeForm({
 
       {/* Navigation */}
       <div className="mt-10 flex flex-wrap gap-4">
-        <button
-          type="button"
-          className="bs-btn bs-btn-ghost"
-          onClick={back}
-          disabled={step === 1}
-        >
+        <button type="button" className="bs-btn bs-btn-ghost" onClick={back} disabled={step === 1}>
           {label("Back", "رجوع", locale)}
         </button>
-        <button
-          type="button"
-          className="bs-btn bs-btn-gold"
-          onClick={next}
-          disabled={!canContinue}
-        >
+        <button type="button" className="bs-btn bs-btn-gold" onClick={next} disabled={!canContinue}>
           {step < 4
             ? label("Continue", "متابعة", locale)
             : label("Build my quotation", "أنشئ عرض الأسعار", locale)}
