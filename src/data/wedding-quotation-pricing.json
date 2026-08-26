@@ -1,21 +1,14 @@
 {
   "schema_id": "bigstory.media.wedding.pricing_export.v1",
-  "export_version": "2.0.0",
-  "source_package_version": "2.0.0",
-  "effective_date": "2026-08-25",
+  "export_version": "1.1.0",
+  "source_package_version": "1.1.0",
+  "effective_date": "2026-08-26",
   "release_status": "LIVE",
   "approval_status": "APPROVED",
   "client_price_released": true,
+  "authority_sha256": "847e774624fc075a48a4229664e578265ec57c5ac24a7d755e17c81a0cd4b48c",
+  "brief_sha256": "ead98bfdcab1563ffa4246806883802a9981c73bc82e9bd5c61b442eb7f49981",
   "packages": {
-    "basic": {
-      "price_aed": 16000,
-      "crew": "1 videographer + 1 photographer",
-      "photos": 30,
-      "crane": false,
-      "videos": ["highlight only"],
-      "delivery_days": 28,
-      "revisions": 1
-    },
     "silver": {
       "price_aed": 26500,
       "crew": "1 videographer + 1 photographer",
@@ -27,6 +20,8 @@
     },
     "gold": {
       "price_aed": 31500,
+      "name_en": "Gold — Cinematic Wedding Story",
+      "name_ar": "ذهبية — قصة زفاف سينمائية",
       "crew": "2 videographers + 1 photographer",
       "photos": 100,
       "crane": true,
@@ -48,22 +43,30 @@
     "8 hours coverage",
     "Director / ATEM switcher",
     "PA system",
-    "YouTube livestream",
-    "QR photo sharing + 2 display screens",
+    "YouTube livestream at released 1080p",
+    "QR photo sharing + 2 display-only QR screens",
     "Cloud delivery",
     "All original camera files",
     "60-day client access"
   ],
   "addons": {
-    "extra_hour": {
-      "label_en": "Extra coverage hour",
-      "label_ar": "ساعة تغطية إضافية",
-      "tier_pricing": {
-        "basic": 750,
-        "silver": 750,
-        "gold": 900,
-        "platinum": 1100
-      }
+    "photo_edit_25": {
+      "label_en": "+25 edited photos",
+      "label_ar": "+٢٥ صورة معدلة",
+      "sku": "PHOTO-EDIT-25",
+      "price_aed": 500
+    },
+    "photo_edit_50": {
+      "label_en": "+50 edited photos",
+      "label_ar": "+٥٠ صورة معدلة",
+      "sku": "PHOTO-EDIT-50",
+      "price_aed": 900
+    },
+    "photo_edit_100": {
+      "label_en": "+100 edited photos",
+      "label_ar": "+١٠٠ صورة معدلة",
+      "sku": "PHOTO-EDIT-100",
+      "price_aed": 1700
     },
     "additional_photographer": {
       "label_en": "Additional photographer",
@@ -106,5 +109,5 @@
       "price_aed": 5500
     }
   },
-  "source_sha256": "57b3069bae48715dfe08a9d4ed4d553330b4b9bb3ba30e44a0accf0c7f63102b"
+  "source_sha256": "ead98bfdcab1563ffa4246806883802a9981c73bc82e9bd5c61b442eb7f49981"
 }

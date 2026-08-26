@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
     ...pageMeta({
     locale,
     title: isAr ? "عرض أسعار الزفاف | بيك ستوري" : "Wedding quotation | Big Story",
-    description: isAr ? "أنشئ نطاق زفاف رجالي للمراجعة لدى بيك ستوري." : "Build a UAE male-wedding scope for Big Story review.",
+    description: isAr ? "أنشئ نطاق زفافك للمراجعة لدى بيك ستوري." : "Build your wedding scope for Big Story review.",
     path: "/wedding-quotation",
       noindex: true,
     }),
@@ -35,7 +35,7 @@ export default async function WeddingQuotationPage({ params }: { params: Promise
         serviceSchema({
           locale,
           name: isAr ? "عرض أسعار الزفاف" : "Wedding quotation",
-          description: isAr ? "نطاق زفاف رجالي للمراجعة لدى بيك ستوري." : "A UAE male-wedding scope for Big Story review.",
+          description: isAr ? "نطاق زفاف للمراجعة لدى بيك ستوري." : "A wedding scope for Big Story review.",
           path,
           areaServed: ["United Arab Emirates"],
         }),

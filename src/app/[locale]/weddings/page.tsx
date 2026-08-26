@@ -39,29 +39,29 @@ const COPY = {
   groom: {
     title: { en: "Groom Weddings", ar: "أفراح العريس" },
     description: {
-      en: "Full groom celebration coverage: film, photography, LED walls, livestream, crane, and social cuts. 4 packages from Basic to Platinum, starting at AED 16,000.",
-      ar: "تغطية شاملة لاحتفالات العريس: فيلم وتصوير فوتوغرافي وجدران LED وبث مباشر ورافعة ومقاطع سوشيال. 4 باقات من الأساسية إلى البلاتينية، تبدأ من 16,000 درهم.",
+      en: "Groom preparation is included in every wedding package — Silver, Gold, and Platinum. Film, photography, LED walls, livestream, crane, and social cuts.",
+      ar: "تحضير العريس مشمول في كل باقة زفاف — فضية وذهبية وبلاتينية. فيلم وتصوير فوتوغرافي وجدران LED وبث مباشر ورافعة ومقاطع سوشيال.",
     },
-    cta: { en: "See groom packages", ar: "شاهد باقات العريس" },
+    cta: { en: "See groom coverage", ar: "شاهد تغطية العريس" },
     href: "/services/groom-wedding-services",
   },
   bride: {
     title: { en: "Bride Weddings", ar: "أفراح العروس" },
     description: {
-      en: "Dedicated bride celebration coverage in a female-only setting. Film, photography, LED walls, and social cuts, all crewed by women when required.",
-      ar: "تغطية مخصصة لاحتفالات العروس في بيئة نسائية فقط. فيلم وتصوير فوتوغرافي وجدران LED ومقاطع سوشيال، بطاقم نسائي عند الطلب.",
+      en: "Tailored bride celebration coverage in a female-only setting. Film, photography, LED walls, and social cuts, all crewed by women when required. Availability confirmed after privacy and crew gates are met.",
+      ar: "تغطية مخصصة لاحتفالات العروس في بيئة نسائية فقط. فيلم وتصوير فوتوغرافي وجدران LED ومقاطع سوشيال، بطاقم نسائي عند الطلب. يُؤكد التوفر بعد استيفاء شروط الخصوصية والطاقم.",
     },
-    cta: { en: "See bride packages", ar: "شاهد باقات العروس" },
-    href: "/services/groom-wedding-services",
+    cta: { en: "See bride services", ar: "شاهد خدمات العروس" },
+    href: "/services/female-wedding",
   },
   katb: {
-    title: { en: "Katb Kitab", ar: "عقد القران" },
+    title: { en: "Katb Kitab / Aqd Al Qiran", ar: "كتب الكتاب / عقد القران" },
     description: {
-      en: "The Islamic marriage contract ceremony, filmed and photographed with care. Shorter coverage for a formal, intimate event. Digital invitations included.",
-      ar: "حفل عقد القران، يُصوَّر ويُ photograph بعناية. تغطية أقصر لحدث رسمي وحميم. دعوات رقمية مشمولة.",
+      en: "The Islamic marriage contract ceremony, filmed and photographed with care. Male, female, or both-section coverage. Tailored planning with specialist crew availability confirmed per project.",
+      ar: "حفل عقد القران، يُصوَّر ويُ photograph بعناية. تغطية قسم الرجال أو النساء أو كلاهما. تخطيط مخصص مع تأكيد توفر الطاقم المتخصص لكل مشروع.",
     },
-    cta: { en: "See Katb Kitab services", ar: "شاهد خدمات عقد القران" },
-    href: "/services/katb-kitab-invitations",
+    cta: { en: "See Katb Kitab services", ar: "شاهد خدمات كتب الكتاب" },
+    href: "/services/katb-kitab-aqd-al-qiran",
   },
   invitations: {
     title: { en: "Wedding Invitations", ar: "دعوات الأفراح" },
@@ -71,6 +71,30 @@ const COPY = {
     },
     cta: { en: "See invitation designs", ar: "شاهد تصاميم الدعوات" },
     href: "/invitation-designs",
+  },
+  packages: {
+    eyebrow: { en: "Wedding packages", ar: "باقات الزفاف" },
+    h2: { en: "Three packages, one production team", ar: "ثلاث باقات، فريق إنتاج واحد" },
+    lead: {
+      en: "Every package includes groom preparation, bride coverage options, and full wedding-day production. Starting prices shown below; final pricing is confirmed after we scope your day.",
+      ar: "كل باقة تشمل تحضير العريس، خيارات تغطية العروس، وإنتاج يوم الزفاف الكامل. الأسعار البداية أدناه؛ يُؤكد التسعير النهائي بعد دراسة يومكم.",
+    },
+    silver: {
+      name: { en: "Silver", ar: "فضية" },
+      tagline: { en: "Essential record", ar: "توثيق أساسي" },
+      price: { en: "Starting from AED 26,500", ar: "يبدأ من 26,500 درهم" },
+    },
+    gold: {
+      name: { en: "Gold", ar: "ذهبية" },
+      tagline: { en: "Cinematic Wedding Story", ar: "قصة زفاف سينمائية" },
+      price: { en: "Starting from AED 31,500", ar: "يبدأ من 31,500 درهم" },
+    },
+    platinum: {
+      name: { en: "Platinum", ar: "بلاتينية" },
+      tagline: { en: "Expanded coverage", ar: "تغطية موسعة" },
+      price: { en: "Starting from AED 36,500", ar: "يبدأ من 36,500 درهم" },
+    },
+    cta: { en: "Get a quotation", ar: "احصل على عرض سعر" },
   },
   cta: {
     h2: { en: "Planning a wedding?", ar: "خطط لحفل زفاف؟" },
@@ -173,6 +197,36 @@ export default async function WeddingsDirectory({ params }: { params: Promise<{ 
                     <span aria-hidden="true" className="bs-arrow">→</span>
                   </span>
                 </Link>
+              </Reveal>
+            );
+          })}
+        </div>
+      </Section>
+
+      {/* ---------- PACKAGES ---------- */}
+      <Section>
+        <Reveal>
+          <Eyebrow>{t(COPY.packages.eyebrow, locale)}</Eyebrow>
+          <h2 className="mt-5 max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)]">{t(COPY.packages.h2, locale)}</h2>
+          <p className="bs-lead mt-6 !max-w-3xl">{t(COPY.packages.lead, locale)}</p>
+        </Reveal>
+        <div className="mt-12 grid gap-6 sm:grid-cols-3">
+          {[
+            { key: "silver" as const, highlight: false },
+            { key: "gold" as const, highlight: true },
+            { key: "platinum" as const, highlight: false },
+          ].map((pkg, i) => {
+            const data = COPY.packages[pkg.key];
+            return (
+              <Reveal key={pkg.key} delay={i * 70} className={`bs-card flex flex-col ${pkg.highlight ? "ring-2 ring-[color:var(--color-gold)]" : ""}`}>
+                <p className="bs-eyebrow">{t(data.name, locale)}</p>
+                <h3 className="mt-3 text-xl">{t(data.tagline, locale)}</h3>
+                <p className="mt-4 text-lg font-semibold text-[color:var(--color-gold)]">{t(data.price, locale)}</p>
+                <div className="mt-6">
+                  <Button href={localizedPath(locale, "/wedding-quotation")} variant={pkg.highlight ? "gold" : "ghost"}>
+                    {t(COPY.packages.cta, locale)}
+                  </Button>
+                </div>
               </Reveal>
             );
           })}

@@ -66,6 +66,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/services/wedding-live-streaming", priority: 0.8, changefreq: "monthly" as const },
     { path: "/services/wedding-album-design", priority: 0.75, changefreq: "monthly" as const },
     { path: "/services/wedding-engagement-session", priority: 0.75, changefreq: "monthly" as const },
+    // Wedding service pages (2026-08-26)
+    { path: "/services/female-wedding", priority: 0.85, changefreq: "monthly" as const },
+    { path: "/services/katb-kitab-aqd-al-qiran", priority: 0.85, changefreq: "monthly" as const },
     // Dedicated SEO service pages (2026-07-15) — high-value search wedges
     { path: "/services/corporate-video-production-uae", priority: 0.9, changefreq: "monthly" as const },
     { path: "/services/tvc-production-dubai", priority: 0.9, changefreq: "monthly" as const },

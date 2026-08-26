@@ -51,8 +51,8 @@ const COPY = {
     ar: "خدمات تصوير العريس في دبي والإمارات، طاقم رجالي للأعراس والفعاليات الرجالية",
   },
   lead: {
-    en: "Big Story covers groom preparation and wedding-day male hall coverage across Dubai, Abu Dhabi and the wider UAE. The crew for this service is male, which matters for celebrations where the male hall is filmed by men. Each project is scoped in writing before anything is locked: one event day, one agreed coverage plan, and a clear list of deliverables.",
-    ar: "تغطي بيك ستوري تحضير العريس وتغطية قاعة الرجال في يوم الزفاف عبر دبي وأبوظبي وبقية الإمارات. طاقم هذه الخدمة رجالي، وهذا مهم في الاحتفالات التي تُصوَّر فيها قاعة الرجال بطاقم رجالي. يُحدَّد نطاق كل مشروع كتابياً قبل تثبيت أي شيء: يوم فعالية واحد، خطة تغطية متفق عليها، وقائمة مخرجات واضحة.",
+    en: "Big Story covers groom preparation and wedding-day male hall coverage across Dubai, Abu Dhabi and the wider UAE. Groom preparation is included in every wedding package — Silver, Gold, and Platinum — not sold separately. The crew for this service is male, which matters for celebrations where the male hall is filmed by men. Each project is scoped in writing before anything is locked.",
+    ar: "تغطي بيك ستوري تحضير العريس وتغطية قاعة الرجال في يوم الزفاف عبر دبي وأبوظبي وبقية الإمارات. تحضير العريس مشمول في كل باقة زفاف — فضية وذهبية وبلاتينية — لا يُباع منفصلاً. طاقم هذه الخدمة رجالي، وهذا مهم في الاحتفالات التي تُصوَّر فيها قاعة الرجال بطاقم رجالي. يُحدَّد نطاق كل مشروع كتابياً قبل تثبيت أي شيء.",
   },
 };
 
@@ -142,61 +142,94 @@ const differentiators = {
   ],
 };
 
-// Scope architecture replaces the retired price table.
-// Source: Production first-lane matrix (one Recommended + one Enhanced,
-// both unpriced). No public prices, no optional-extras menu, no third scope.
-const scopes = {
+// Packages replace the retired scope architecture.
+// Groom preparation is included in every wedding package — not sold separately.
+const packages = {
   en: {
-    eyebrow: "Scopes, not packages",
-    h2: "One Recommended scope, one Enhanced scope",
-    lead: "Groom coverage is organised around exactly two scopes. Both cover groom preparation and wedding-day male hall coverage on one event day of up to 10 hours. The Enhanced scope adds bigger-scale camera moves and an extended film, confirmed only after venue and safety checks. The price is quoted per event after we scope your day; there is no fixed public price list, and nothing is locked before the scope is agreed in writing.",
-    recommendedName: "Recommended Scope",
-    recommendedBadge: "Recommended",
-    recommendedBullets: [
-      "Groom preparation plus wedding-day male hall coverage, one event day of up to 10 hours",
-      "Director of photography, active second camera operator and sound recordist, with gaffer and support roles in the crew plan",
-      "Dedicated sound recording with boom, mixer, safety track and room tone, not camera mics alone",
-      "One 3 to 5 minute highlight film, one 15 to 20 minute key-event film where your programme supports it, one 15-second vertical cut",
-      "Colour, sound and two revision rounds included",
-      "Movement on tripod and approved support matched to the camera",
-      "Private family delivery; any public use is a separate written choice",
-    ],
-    enhancedName: "Enhanced Scope",
-    enhancedBullets: [
-      "Everything in the Recommended scope, plus larger-scale coverage",
-      "Crane or jib with a dedicated operator, added only after venue, safety, payload, insurance and event-date confirmation",
-      "One additional camera role where the approved camera plan requires it",
-      "A longer 5 to 7 minute highlight film and an additional vertical cut",
-      "Three revision rounds, agreed at scoping",
-    ],
-    notes: "Overtime beyond 10 hours, added locations, added deliverables and public use are written change orders agreed before work starts. Stills photography is not part of these scopes; if you need it, we scope it separately.",
-    basis: "Price basis: costed per event after scoping and quoted in writing. No price is published or locked before the written scope is agreed.",
+    eyebrow: "Wedding packages",
+    h2: "Groom preparation is included in every package",
+    lead: "Groom preparation and male hall coverage are part of the main Silver, Gold, and Platinum wedding packages — not a separate service. Every package includes 8 hours of coverage, crane/jib, and dedicated sound recording. Starting prices shown below; final pricing is confirmed after we scope your day.",
+    silver: {
+      name: "Silver",
+      tagline: "Essential record",
+      price: "Starting from AED 26,500",
+      bullets: [
+        "8 hours · 1 videographer · 1 photographer",
+        "Crane/jib coverage included",
+        "50 edited photographs",
+        "Highlight + ceremony edit",
+        "Groom preparation included",
+      ],
+    },
+    gold: {
+      name: "Gold",
+      tagline: "Cinematic Wedding Story",
+      price: "Starting from AED 31,500",
+      bullets: [
+        "8 hours · 2 videographers · 1 photographer",
+        "Crane/jib coverage included",
+        "100 edited photographs",
+        "Highlight + key-event film + 1 social cut",
+        "Groom preparation included",
+      ],
+    },
+    platinum: {
+      name: "Platinum",
+      tagline: "Expanded coverage",
+      price: "Starting from AED 36,500",
+      bullets: [
+        "8 hours · 2 videographers · 2 photographers",
+        "Crane/jib coverage included",
+        "150 edited photographs",
+        "Highlight + extended film + 3 social cuts",
+        "Groom preparation included",
+      ],
+    },
+    cta: "Get a quotation",
+    notes: "All packages include groom preparation and male hall coverage on one event day. Overtime, added locations, and public use are written change orders agreed before work starts.",
   },
   ar: {
-    eyebrow: "نطاقان محددان، لا باقات",
-    h2: "نطاق موصى به واحد ونطاق موسّع واحد",
-    lead: "تُنظَّم تغطية العريس حول نطاقين اثنين فقط. كلاهما يغطي تحضير العريس وتغطية قاعة الرجال في يوم الزفاف، يوم فعالية واحد بحد أقصى 10 ساعات. النطاق الموسّع يضيف حركات كاميرا أكبر وفلماً أطول، ولا يُعتمد إلا بعد فحص الموقع والسلامة. يُحدَّد السعر لكل فعالية بعد دراسة يومكم؛ لا توجد قائمة أسعار عامة، ولا يُثبَّت أي شيء قبل الاتفاق على النطاق كتابياً.",
-    recommendedName: "النطاق الموصى به",
-    recommendedBadge: "موصى به",
-    recommendedBullets: [
-      "تحضير العريس مع تغطية قاعة الرجال في يوم الزفاف، يوم فعالية واحد بحد أقصى 10 ساعات",
-      "مدير تصوير ومشغل كاميرا ثانٍ نشط ومسجل صوت، مع كهربائي وأدوار مساندة في خطة الطاقم",
-      "تسجيل صوت مخصص بالميكروفون الذاتي والخلاط ومسار أمان وتسجيل صوت القاعة، لا ميكروفونات الكاميرا وحدها",
-      "فيلم مختارات من 3 إلى 5 دقائق، وفيلم فعاليات رئيسية من 15 إلى 20 دقيقة إذا كان برنامجكم يدعم ذلك، ومقطع عمودي مدته 15 ثانية",
-      "تدريج الألوان والصوت وجولتا تعديل مشمولة",
-      "الحركة على حامل ثلاثي ودعامة معتمدة تناسب الكاميرا",
-      "تسليم خاص للعائلة؛ وأي استخدام عام خيار كتابي منفصل",
-    ],
-    enhancedName: "النطاق الموسّع",
-    enhancedBullets: [
-      "كل ما في النطاق الموصى به، مع تغطية أوسع نطاقاً",
-      "رافع كاميرا (كرين أو جيب) مع مشغل مخصص، لا يُضاف إلا بعد تأكيد الموقع والسلامة والحمولة والتأمين وتاريخ الفعالية",
-      "دور كاميرا إضافي واحد حيث تتطلبه خطة الكاميرات المعتمدة",
-      "فيلم مختارات أطول من 5 إلى 7 دقائق ومقطع عمودي إضافي",
-      "ثلاث جولات تعديل، يُتفق عليها عند تحديد النطاق",
-    ],
-    notes: "العمل الإضافي بعد 10 ساعات، والمواقع الإضافية، والمخرجات الإضافية، والاستخدام العام، كلها أوامر تغيير كتابية يُتفق عليها قبل بدء العمل. التصوير الفوتوغرافي ليس جزءاً من هذين النطاقين؛ إذا احتجتموه نحدد نطاقه بشكل منفصل.",
-    basis: "أساس التسعير: يُحسب لكل فعالية بعد تحديد النطاق ويُقدَّم عرضاً كتابياً. لا يُنشر أي سعر ولا يُثبَّت أي شيء قبل الاتفاق على النطاق الكتابي.",
+    eyebrow: "باقات الزفاف",
+    h2: "تحضير العريس مشمول في كل باقة",
+    lead: "تحضير العريس وتغطية قاعة الرجال جزء من باقات الزفاف الرئيسية — فضية وذهبية وبلاتينية — لا خدمة منفصلة. كل باقة تشمل ٨ ساعات تغطية، رافعة/جيب، وتسجيل صوت مخصص. الأسعار البداية أدناه؛ يُؤكد التسعير النهائي بعد دراسة يومكم.",
+    silver: {
+      name: "فضية",
+      tagline: "توثيق أساسي",
+      price: "يبدأ من 26,500 درهم",
+      bullets: [
+        "٨ ساعات · مصور فيديو واحد · مصور فوتوغرافي واحد",
+        "تغطية رافعة/جيب مشمولة",
+        "٥٠ صورة معدلة",
+        "فيلم مختارات + مونتاج الحفل",
+        "تحضير العريس مشمول",
+      ],
+    },
+    gold: {
+      name: "ذهبية",
+      tagline: "قصة زفاف سينمائية",
+      price: "يبدأ من 31,500 درهم",
+      bullets: [
+        "٨ ساعات · مصورا فيديو · مصور فوتوغرافي واحد",
+        "تغطية رافعة/جيب مشمولة",
+        "١٠٠ صورة معدلة",
+        "فيلم مختارات + فيلم فعاليات رئيسية + مقطع اجتماعي واحد",
+        "تحضير العريس مشمول",
+      ],
+    },
+    platinum: {
+      name: "بلاتينية",
+      tagline: "تغطية موسعة",
+      price: "يبدأ من 36,500 درهم",
+      bullets: [
+        "٨ ساعات · مصورا فيديو · مصورا فوتوغرافيا",
+        "تغطية رافعة/جيب مشمولة",
+        "١٥٠ صورة معدلة",
+        "فيلم مختارات + فيلم موسع + ٣ مقاطع اجتماعية",
+        "تحضير العريس مشمول",
+      ],
+    },
+    cta: "احصل على عرض سعر",
+    notes: "جميع الباقات تشمل تحضير العريس وتغطية قاعة الرجال في يوم فعالية واحد. العمل الإضافي والمواقع الإضافية والاستخدام العام هي أوامر تغيير كتابية يُتفق عليها قبل بدء العمل.",
   },
 };
 
@@ -276,7 +309,7 @@ export default async function GroomWeddingServicesPage({ params }: { params: Pro
   const itemFaqs = isAr ? faqItems.ar : faqItems.en;
   const coverageList = isAr ? coverage.ar : coverage.en;
   const differentiatorList = isAr ? differentiators.ar : differentiators.en;
-  const scopeBlock = isAr ? scopes.ar : scopes.en;
+  const scopeBlock = isAr ? packages.ar : packages.en;
 
   return (
     <>
@@ -300,8 +333,8 @@ export default async function GroomWeddingServicesPage({ params }: { params: Pro
             locale,
             name: isAr ? "تصوير العريس والأفراح الرجالية في دبي" : "Groom Wedding Photography & Videography in Dubai",
             description: isAr
-              ? "خدمات تصوير العريس والأفراح الرجالية في دبي والإمارات. تحضير العريس وتغطية قاعة الرجال بطاقم رجالي، نطاق موصى به ونطاق موسّع، والتسعير لكل فعالية بعد تحديد النطاق."
-              : "Groom and male-only wedding coverage in Dubai and the UAE. Groom preparation and wedding-day male hall coverage by a male crew, one Recommended and one Enhanced scope, quoted per event after scoping.",
+              ? "خدمات تصوير العريس والأفراح الرجالية في دبي والإمارات. تحضير العريس مشمول في كل باقة زفاف — فضية وذهبية وبلاتينية."
+              : "Groom and male-only wedding coverage in Dubai and the UAE. Groom preparation is included in every wedding package — Silver, Gold, and Platinum.",
             path,
             areaServed: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah", "Al Ain"],
           }),
@@ -410,48 +443,43 @@ export default async function GroomWeddingServicesPage({ params }: { params: Pro
         </div>
       </Section>
 
-      {/* SCOPE ARCHITECTURE, one Recommended + one Enhanced, unpriced */}
-      <Section id="scopes">
+      {/* PACKAGES — groom preparation included in every package */}
+      <Section id="packages">
         <Reveal>
           <Eyebrow>{scopeBlock.eyebrow}</Eyebrow>
           <h2 className="mt-5 text-[clamp(1.8rem,4vw,2.75rem)]">{scopeBlock.h2}</h2>
           <p className="bs-lead mt-6 !max-w-3xl">{scopeBlock.lead}</p>
         </Reveal>
-        <div className="mt-12 grid gap-8 lg:grid-cols-2">
-          <Reveal className="bs-card flex flex-col bg-[color:var(--color-bg-alt)]/40">
-            <div>
-              <div className="flex flex-wrap items-center gap-3">
-                <h3 className="text-xl">{scopeBlock.recommendedName}</h3>
-                <span className="inline-block rounded-full bg-[color:var(--color-accent)]/10 px-2 py-0.5 text-[10px] uppercase tracking-wide text-[color:var(--color-accent)]">
-                  {scopeBlock.recommendedBadge}
-                </span>
-              </div>
-              <ul className="mt-6 space-y-3">
-                {scopeBlock.recommendedBullets.map((b, i) => (
-                  <li key={i} className="flex gap-3 text-sm text-[color:var(--color-muted)]">
-                    <span aria-hidden className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--color-accent)]" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-          <Reveal delay={80} className="bs-card flex flex-col">
-            <div>
-              <h3 className="text-xl">{scopeBlock.enhancedName}</h3>
-              <ul className="mt-6 space-y-3">
-                {scopeBlock.enhancedBullets.map((b, i) => (
-                  <li key={i} className="flex gap-3 text-sm text-[color:var(--color-muted)]">
-                    <span aria-hidden className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--color-accent)]" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
+        <div className="mt-12 grid gap-6 sm:grid-cols-3">
+          {[
+            { key: "silver" as const, highlight: false },
+            { key: "gold" as const, highlight: true },
+            { key: "platinum" as const, highlight: false },
+          ].map((pkg, i) => {
+            const data = scopeBlock[pkg.key];
+            return (
+              <Reveal key={pkg.key} delay={i * 70} className={`bs-card flex flex-col ${pkg.highlight ? "ring-2 ring-[color:var(--color-gold)]" : ""}`}>
+                <p className="bs-eyebrow">{data.name}</p>
+                <h3 className="mt-3 text-xl">{data.tagline}</h3>
+                <p className="mt-4 text-lg font-semibold text-[color:var(--color-gold)]">{data.price}</p>
+                <ul className="mt-6 space-y-3 flex-1">
+                  {data.bullets.map((b: string, bi: number) => (
+                    <li key={bi} className="flex gap-3 text-sm text-[color:var(--color-muted)]">
+                      <span aria-hidden className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--color-accent)]" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6">
+                  <Button href={localizedPath(locale, "/wedding-quotation")} variant={pkg.highlight ? "gold" : "ghost"}>
+                    {scopeBlock.cta}
+                  </Button>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
         <p className="mt-8 text-xs text-[color:var(--color-muted)]">{scopeBlock.notes}</p>
-        <p className="mt-3 text-xs text-[color:var(--color-muted)]">{scopeBlock.basis}</p>
       </Section>
 
       {/* FAQ */}

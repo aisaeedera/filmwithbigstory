@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": 1,
+      "url": "https://docs.dataforseo.com/v3/keywords_data-google_ads-search_volume-live",
+      "title": "DataForSEO Google Ads Search Volume API",
+      "accessed": "2026-08-25"
+    },
+    {
+      "id": 2,
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=ae&q=katb",
+      "title": "Google Suggest UAE query: katb",
+      "accessed": "2026-08-25"
+    },
+    {
+      "id": 3,
+      "url": "https://dubaicourtmarriage.com/blog/islamic-marital-practices-uae",
+      "title": "Islamic marital practices in the UAE",
+      "accessed": "2026-08-25"
+    },
+    {
+      "id": 4,
+      "url": "https://graziamagazine.com/me/articles/asallah-kamel-wedding",
+      "title": "Asallah Kamel Dubai wedding",
+      "accessed": "2026-08-25"
+    },
+    {
+      "id": 5,
+      "url": "https://arabiaweddings.com/tips/sheikha-mahra-and-sheikh-manas-royal-wedding",
+      "title": "Sheikha Mahra and Sheikh Mana royal wedding",
+      "accessed": "2026-08-25"
+    }
+  ]
+}
