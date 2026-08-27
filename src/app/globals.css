@@ -1069,7 +1069,8 @@
   }
 }
 
-/* Skip link.
+/* Skip link */
+/*
    Hidden by moving it up out of view with a transform rather than off-canvas
    with `left: -9999px`. The old approach expanded the document scroll width by
    ~10,000px on every RTL page (documentElement.scrollWidth measured 11439 at a

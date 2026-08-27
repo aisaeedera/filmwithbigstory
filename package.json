@@ -6,14 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "tsc --noEmit",
     "test:photo-finder": "node --test --experimental-strip-types tests/photo-finder.test.ts",
     "test:careers": "node --test --experimental-strip-types tests/careers.test.ts",
     "test:contact-wizard": "node --test --experimental-strip-types tests/contact-wizard.test.ts",
     "test:careers-wedding": "node --test --experimental-strip-types tests/careers-wedding.test.ts",
     "test:invitations": "node --test --experimental-strip-types tests/invitations.test.ts",
     "test:media-production": "node --test --experimental-strip-types tests/media-production.test.ts",
-    "test:wedding-quotation": "node --test --experimental-strip-types tests/wedding-quotation.test.ts",
+    "test:wedding-quotation": "node --test --experimental-strip-types tests/wedding-p0.test.ts",
     "test": "npm run test:photo-finder && npm run test:careers && npm run test:careers-wedding && npm run test:contact-wizard && npm run test:invitations && npm run test:media-production && npm run test:wedding-quotation"
   },
   "dependencies": {

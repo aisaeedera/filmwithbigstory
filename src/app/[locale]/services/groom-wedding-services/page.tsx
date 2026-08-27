@@ -111,7 +111,7 @@ const differentiators = {
     },
     {
       h: "Cinema tools, chosen per project",
-      b: "Coverage draws on our owned RED cinema kit, and filtration from our owned set is used when the creative calls for it, selected with the director of photography at scoping rather than promised as a default on each camera. The look follows your day, not a template.",
+      b: "Coverage draws on our Sony FX3 and Sony FX6 autofocus system cameras, and filtration from our owned set is used when the creative calls for it, selected with the director of photography at scoping rather than promised as a default on each camera. The look follows your day, not a template.",
     },
     {
       h: "Arabic-first delivery",
@@ -121,6 +121,10 @@ const differentiators = {
       h: "Discretion around elders and guests",
       b: "Filming at a UAE male wedding works around elders, guests and the hosting family. Camera positions are agreed with your planner ahead of the day, the crew stays out of the receiving line, and guests who should not appear on camera are coordinated in advance.",
     },
+    {
+      h: "Storyboarded key moments",
+      b: "We plan your film's story before the day, not after. At scoping we map the key moments — the entrance, the vows, the first dance — so every camera knows what to capture and your film has a narrative arc, not just a sequence of clips.",
+    },
   ],
   ar: [
     {
@@ -129,7 +133,7 @@ const differentiators = {
     },
     {
       h: "أدوات سينمائية تُختار لكل مشروع",
-      b: "تستند التغطية إلى حزمة كاميرات RED السينمائية المملوكة لدينا، ويُستخدم الترشيح من مجموعتنا المملوكة عندما يتطلبه الإبداع، باختيار مشترك مع مدير التصوير عند تحديد النطاق، لا كوعد افتراضي على كل كاميرا. المظهر يتبع يومكم، لا قالباً جاهزاً.",
+      b: "تستند التغطية إلى كاميرات Sony FX3 و Sony FX6 بنظام التركيز التلقائي، ويُستخدم الترشيح من مجموعتنا المملوكة عندما يتطلبه الإبداع، باختيار مشترك مع مدير التصوير عند تحديد النطاق، لا كوعد افتراضي على كل كاميرا. المظهر يتبع يومكم، لا قالباً جاهزاً.",
     },
     {
       h: "تسليم عربي أولاً",
@@ -138,6 +142,10 @@ const differentiators = {
     {
       h: "تحفظ حول كبار السن والضيوف",
       b: "التصوير في زفاف رجالي إماراتي يراعي كبار السن والضيوف والعائلة المضيفة. تُتفق مواضع الكاميرات مع منظم الزفاف قبل اليوم، ويبقى الطاقم خارج صف الاستقبال، ويُنسَّق مسبقاً أمر الضيوف الذين لا يجب أن تظهر صورهم.",
+    },
+    {
+      h: "لحظات مخططة بستوري بورد",
+      b: "نخطط قصة فيلمكم قبل اليوم، لا بعده. عند التخطيط نرسم اللحظات الرئيسية — الدخول، القسم، الرقصة الأولى — بحيث تعرف كل كاميرا ما يجب التقاطه ويكون لفيلمكم بنية سردية، لا مجرد تسلسل من المقاطع.",
     },
   ],
 };
@@ -154,11 +162,12 @@ const packages = {
       tagline: "Essential record",
       price: "Starting from AED 26,500",
       bullets: [
-        "8 hours · 1 videographer · 1 photographer",
+        "8 hours · 1 videographer (Sony FX3) · 1 photographer",
         "Crane/jib coverage included",
-        "50 edited photographs",
-        "Highlight + ceremony edit",
-        "Groom preparation included",
+        "50 edited photographs + all RAW photos and originals",
+        "3–5 min highlight film + ceremony edit",
+        "Groom preparation + male hall coverage",
+        "21-day delivery · 1 revision round",
       ],
     },
     gold: {
@@ -166,11 +175,12 @@ const packages = {
       tagline: "Cinematic Wedding Story",
       price: "Starting from AED 31,500",
       bullets: [
-        "8 hours · 2 videographers · 1 photographer",
+        "8 hours · 2 videographers (Sony FX3 + Sony FX6 crane cam) · 1 photographer",
         "Crane/jib coverage included",
-        "100 edited photographs",
-        "Highlight + key-event film + 1 social cut",
-        "Groom preparation included",
+        "100 edited photographs + all RAW photos and originals",
+        "5–8 min highlight + 15–20 min key-event film + 1 social cut",
+        "Groom preparation + male hall coverage",
+        "14-day delivery · 2 revision rounds",
       ],
     },
     platinum: {
@@ -178,11 +188,12 @@ const packages = {
       tagline: "Expanded coverage",
       price: "Starting from AED 36,500",
       bullets: [
-        "8 hours · 2 videographers · 2 photographers",
+        "8 hours · 2 videographers (Sony FX3 + Sony FX6 crane cam) · 2 photographers",
         "Crane/jib coverage included",
-        "150 edited photographs",
+        "150 edited photographs + all RAW photos and originals",
         "Highlight + extended film + 3 social cuts",
-        "Groom preparation included",
+        "Groom preparation + male hall coverage",
+        "7-day delivery · 3 revision rounds",
       ],
     },
     cta: "Get a quotation",
@@ -197,11 +208,12 @@ const packages = {
       tagline: "توثيق أساسي",
       price: "يبدأ من 26,500 درهم",
       bullets: [
-        "٨ ساعات · مصور فيديو واحد · مصور فوتوغرافي واحد",
+        "٨ ساعات · مصور فيديو واحد (Sony FX3) · مصور فوتوغرافي واحد",
         "تغطية رافعة/جيب مشمولة",
-        "٥٠ صورة معدلة",
-        "فيلم مختارات + مونتاج الحفل",
-        "تحضير العريس مشمول",
+        "٥٠ صورة معدلة + جميع صور RAW والأصول",
+        "فيلم مختارات ٣–٥ دقائق + مونتاج الحفل",
+        "تحضير العريس + تغطية قاعة الرجال",
+        "تسليم خلال ٢١ يوم · جولة تعديل واحدة",
       ],
     },
     gold: {
@@ -209,11 +221,12 @@ const packages = {
       tagline: "قصة زفاف سينمائية",
       price: "يبدأ من 31,500 درهم",
       bullets: [
-        "٨ ساعات · مصورا فيديو · مصور فوتوغرافي واحد",
+        "٨ ساعات · مصورا فيديو (Sony FX3 + Sony FX6 كاميرا الرافعة) · مصور فوتوغرافي واحد",
         "تغطية رافعة/جيب مشمولة",
-        "١٠٠ صورة معدلة",
-        "فيلم مختارات + فيلم فعاليات رئيسية + مقطع اجتماعي واحد",
-        "تحضير العريس مشمول",
+        "١٠٠ صورة معدلة + جميع صور RAW والأصول",
+        "فيلم مختارات ٥–٨ دقائق + فيلم فعاليات رئيسية ١٥–٢٠ دقيقة + مقطع اجتماعي واحد",
+        "تحضير العريس + تغطية قاعة الرجال",
+        "تسليم خلال ١٤ يوم · جولتا تعديل",
       ],
     },
     platinum: {
@@ -221,11 +234,12 @@ const packages = {
       tagline: "تغطية موسعة",
       price: "يبدأ من 36,500 درهم",
       bullets: [
-        "٨ ساعات · مصورا فيديو · مصورا فوتوغرافيا",
+        "٨ ساعات · مصورا فيديو (Sony FX3 + Sony FX6 كاميرا الرافعة) · مصورا فوتوغرافيا",
         "تغطية رافعة/جيب مشمولة",
-        "١٥٠ صورة معدلة",
+        "١٥٠ صورة معدلة + جميع صور RAW والأصول",
         "فيلم مختارات + فيلم موسع + ٣ مقاطع اجتماعية",
-        "تحضير العريس مشمول",
+        "تحضير العريس + تغطية قاعة الرجال",
+        "تسليم خلال ٧ أيام · ٣ جولات تعديل",
       ],
     },
     cta: "احصل على عرض سعر",
@@ -245,11 +259,11 @@ const faqItems = {
     },
     {
       q: "Is a crane included?",
-      a: "The Recommended scope uses tripod and approved camera support. A crane or jib with a dedicated operator belongs to the Enhanced scope, and it is confirmed only after venue, safety, payload, insurance and event-date checks. We do not promise it by default, because a crane on a wedding day has to be safe for your guests first.",
+      a: "Yes — crane/jib coverage with a dedicated operator is included in every wedding package: Silver, Gold, and Platinum. We confirm venue safety, payload and insurance checks before the day.",
     },
     {
       q: "What is cinema filtration and when do you use it?",
-      a: "Cinema diffusion filters sit in front of the lens and take the edge off bright reflections while lifting shadow detail, so the image reads with a film texture rather than a video look. On a groom this helps when the gold thread on the bisht and the white of the kandura are hard for a camera to hold. Filtration from our owned set is chosen with the director of photography at scoping, when your creative calls for it, rather than fitted to each camera as a default.",
+      a: "Cinema filtration is how we make your film feel like a memory, not a recording. Soft diffusion takes the harsh edge off bright lights and gives skin and fabric a warm, film-like quality. It is the difference between watching a video and reliving a moment. The look follows your day, not a template — chosen with your director at scoping to match the mood of your celebration.",
     },
     {
       q: "What do we receive?",
@@ -275,11 +289,11 @@ const faqItems = {
     },
     {
       q: "هل الكرين مشمول؟",
-      a: "النطاق الموصى به يستخدم حاملاً ثلاثياً ودعامة كاميرا معتمدة. رافع الكاميرا مع مشغل مخصص يكون ضمن النطاق الموسّع، ولا يُعتمد إلا بعد تأكيد الموقع والسلامة والحمولة والتأمين وتاريخ الفعالية. لا نعده افتراضياً، لأن رافع الكاميرا في يوم زفاف يجب أن يكون آمناً لضيوفكم أولاً.",
+      a: "نعم — تغطية الرافعة/الجيب مع مشغل مخصص مشمولة في كل باقة زفاف: فضية وذهبية وبلاتينية. نؤكد سلامة الموقع والحمولة والتأمين قبل اليوم.",
     },
     {
       q: "ما هو الترشيح السينمائي ومتى تستخدمونه؟",
-      a: "فلاتر الانتشار السينمائية توضع أمام العدسة، تخفف حدّة الانعكاسات القاسية وترفع تفاصيل المناطق الداكنة، فتعطي الصورة ملمس الفيلم السينمائي بدلاً من مظهر الفيديو. بالنسبة للعريس يساعد هذا عندما يكون الخيط الذهبي على البشت وأبيض الكندورة صعبين على الكاميرا. يُختار الترشيح من مجموعتنا المملوكة مع مدير التصوير عند تحديد النطاق، عندما يتطلبه الإبداع، لا كتطبيق افتراضي على كل كاميرا.",
+      a: "الترشيح السينمائي هو كيف نجعل فيلمك يُشبه ذكرى، لا تسجيلاً. الانتشار الناعم يخفف الحدّة من الأضواء القاسية ويمنح البشرة والقماش جودة دافئة تشبه الفيلم. هو الفرق بين مشاهدة فيديو وإعادة لحظة. المظهر يتبع يومكم، لا قالباً — يُختار مع مخرجكم عند التخطيط ليناسب مزاج احتفالكم.",
     },
     {
       q: "ماذا نستلم؟",
@@ -429,7 +443,7 @@ export default async function GroomWeddingServicesPage({ params }: { params: Pro
         <Reveal>
           <Eyebrow>{isAr ? "لماذا بيك ستوري لتغطية العريس" : "Why Big Story for groom coverage"}</Eyebrow>
           <h2 className="mt-5 text-[clamp(1.8rem,4vw,2.75rem)]">
-            {isAr ? "أربعة فروقات مبنية للسوق الإماراتي" : "Four differences built for the UAE market"}
+            {isAr ? "خمس فروقات مبنية للسوق الإماراتي" : "Five differences built for the UAE market"}
           </h2>
         </Reveal>
         <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -462,6 +476,11 @@ export default async function GroomWeddingServicesPage({ params }: { params: Pro
                 <p className="bs-eyebrow">{data.name}</p>
                 <h3 className="mt-3 text-xl">{data.tagline}</h3>
                 <p className="mt-4 text-lg font-semibold text-[color:var(--color-gold)]">{data.price}</p>
+                <p className="mt-1 text-sm text-[color:var(--color-muted)]">
+                  {isAr
+                    ? `أو ${pkg.key === "silver" ? "6,625" : pkg.key === "gold" ? "7,875" : "9,125"} درهم / شهر لمدة ٤ أشهر`
+                    : `or ${pkg.key === "silver" ? "AED 6,625" : pkg.key === "gold" ? "AED 7,875" : "AED 9,125"} / month for 4 months`}
+                </p>
                 <ul className="mt-6 space-y-3 flex-1">
                   {data.bullets.map((b: string, bi: number) => (
                     <li key={bi} className="flex gap-3 text-sm text-[color:var(--color-muted)]">
@@ -480,6 +499,97 @@ export default async function GroomWeddingServicesPage({ params }: { params: Pro
           })}
         </div>
         <p className="mt-8 text-xs text-[color:var(--color-muted)]">{scopeBlock.notes}</p>
+
+        {/* Payment options */}
+        <div className="mt-10">
+          <h3 className="text-lg font-semibold">{isAr ? "خيارات الدفع" : "Payment options"}</h3>
+          <div className="mt-4 grid gap-4 sm:grid-cols-3">
+            {/* Tabby */}
+            <div className="bs-card">
+              <div className="flex items-center gap-2">
+                <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#00C8B4"/><path d="M7 8h10v2H7V8zm0 3h7v2H7v-2zm0 3h10v2H7v-2z" fill="white"/></svg>
+                <span className="font-semibold">Tabby</span>
+              </div>
+              <p className="mt-2 text-sm text-[color:var(--color-muted)]">{isAr ? "ادفع على ٤ دفعات بدون فوائد" : "Pay in 4 interest-free installments"}</p>
+              <p className="mt-1 text-xs text-[color:var(--color-muted)]">{isAr ? "يبدأ من ٦,٦٢٥ درهم / شهر" : "Starting from AED 6,625 / month"}</p>
+            </div>
+            {/* Cash */}
+            <div className="bs-card">
+              <div className="flex items-center gap-2">
+                <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="2" stroke="currentColor" strokeWidth="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5"/></svg>
+                <span className="font-semibold">{isAr ? "نقداً" : "Cash"}</span>
+              </div>
+              <p className="mt-2 text-sm text-[color:var(--color-muted)]">{isAr ? "الدفع نقداً في يوم الفعالية · بدون رسوم" : "Pay cash on event day · No fees"}</p>
+            </div>
+            {/* Bank Transfer */}
+            <div className="bs-card">
+              <div className="flex items-center gap-2">
+                <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <span className="font-semibold">{isAr ? "تحويل بنكي" : "Bank Transfer"}</span>
+              </div>
+              <p className="mt-2 text-xs"><span className="text-[color:var(--color-muted)]">{isAr ? "المستلم:" : "Beneficiary:"}</span> Big Story Film Production</p>
+              <p className="text-xs"><span className="text-[color:var(--color-muted)]">IBAN:</span> AE090400000033353002001</p>
+              <p className="text-xs"><span className="text-[color:var(--color-muted)]">{isAr ? "البنك:" : "Bank:"}</span> RAK Bank</p>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* LED WALL OPTIONS */}
+      <Section alt>
+        <Reveal>
+          <Eyebrow>{isAr ? "جدران LED" : "LED walls"}</Eyebrow>
+          <h2 className="mt-5 text-[clamp(1.8rem,4vw,2.75rem)]">
+            {isAr ? "عزّزوا احتفالكم بجدار LED" : "Enhance your celebration with an LED wall"}
+          </h2>
+          <p className="bs-lead mt-6 !max-w-3xl">
+            {isAr
+              ? "جدار LED يحوّل قاعة احتفالكم إلى تجربة بصرية مذهلة. الضيوف يرون كل لحظة بوضوح، ويُضفي أجواءً سينمائية، ويخلق خلفيات مذهلة للتصوير والفيديو."
+              : "An LED wall transforms your celebration hall into a visual experience. Guests see every moment clearly, it adds cinematic atmosphere, and creates stunning backdrops for photography and video."}
+          </p>
+        </Reveal>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {/* Standard LED Wall */}
+          <Reveal className="bs-card">
+            <p className="bs-eyebrow">{isAr ? "الأفضل قيمة" : "Best value"}</p>
+            <h3 className="mt-3 text-xl">{isAr ? "جدار LED قياسي (3×3.5م)" : "Standard LED Wall (3×3.5m)"}</h3>
+            <p className="mt-3 text-sm text-[color:var(--color-muted)]">
+              {isAr
+                ? "مثالي لمعظم حفلات الزفاف. يشمل الرافعة والمعالج والكابلات والفني والتركيب والفك."
+                : "Ideal for most weddings. Includes riser, processor, cables, technician, installation and dismantling."}
+            </p>
+            <p className="mt-4 text-lg font-semibold text-[color:var(--color-gold)]">{isAr ? "6,125 درهم/يوم" : "AED 6,125/day"}</p>
+          </Reveal>
+
+          {/* Large LED Wall */}
+          <Reveal className="bs-card ring-2 ring-[color:var(--color-gold)]" delay={70}>
+            <p className="bs-eyebrow">{isAr ? "مميز" : "Premium"}</p>
+            <h3 className="mt-3 text-xl">{isAr ? "جدار LED كبير (4×7م)" : "Large LED Wall (4×7m)"}</h3>
+            <p className="mt-3 text-sm text-[color:var(--color-muted)]">
+              {isAr
+                ? "للمواقع الكبيرة. يشمل الطاقم الفني والتركيب والتشغيل."
+                : "For larger venues. Includes technical crew, installation and operation."}
+            </p>
+            <p className="mt-4 text-lg font-semibold text-[color:var(--color-gold)]">{isAr ? "14,350 درهم/يوم" : "AED 14,350/day"}</p>
+          </Reveal>
+
+          {/* Custom LED Wall */}
+          <Reveal className="bs-card" delay={140}>
+            <p className="bs-eyebrow">{isAr ? "مخصص" : "Custom"}</p>
+            <h3 className="mt-3 text-xl">{isAr ? "جدار LED مخصص" : "Custom LED Wall"}</h3>
+            <p className="mt-3 text-sm text-[color:var(--color-muted)]">
+              {isAr
+                ? "لمتطلبات محددة. أحجام مخصصة متاحة. نقدم عرض سعر لكل مشروع."
+                : "For specific requirements. Custom sizes available. We quote per project."}
+            </p>
+            <p className="mt-4 text-lg font-semibold text-[color:var(--color-gold)]">{isAr ? "تواصل معنا للسعر" : "Contact for pricing"}</p>
+            <div className="mt-4">
+              <a href={waLink(isAr ? "مهتم بجدار LED لحفل زفاف." : "Interested in an LED wall for a wedding.")} target="_blank" rel="noopener noreferrer" className="bs-btn bs-btn-ghost">
+                {isAr ? "تواصل معنا" : "Contact us"}
+              </a>
+            </div>
+          </Reveal>
+        </div>
       </Section>
 
       {/* FAQ */}

@@ -18,8 +18,8 @@ const COPY = {
       ar: "الأفراح في دبي | بيك ستوري",
     },
     description: {
-      en: "Full wedding production in Dubai and the UAE: groom celebrations, bride celebrations, Katb Kitab ceremonies, and wedding invitations. Film, photography, LED walls, livestream and social cuts.",
-      ar: "إنتاج أفراح متكامل في دبي والإمارات: احتفالات العريس واحتفالات العروس وحفلات عقد القران ودعوات الأفراح. فيلم وتصوير فوتوغرافي وجدران LED وبث مباشر ومقاطع سوشيال.",
+      en: "Wedding production in Dubai and the UAE: distinct groom, bride, Katb Kitab, and invitation services with service-specific crew and privacy planning.",
+      ar: "إنتاج أفراح في دبي والإمارات: خدمات منفصلة للعريس والعروس وكتب الكتاب والدعوات، مع تخطيط خاص للطاقم والخصوصية.",
     },
   },
   hero: {
@@ -39,8 +39,8 @@ const COPY = {
   groom: {
     title: { en: "Groom Weddings", ar: "أفراح العريس" },
     description: {
-      en: "Groom preparation is included in every wedding package — Silver, Gold, and Platinum. Film, photography, LED walls, livestream, crane, and social cuts.",
-      ar: "تحضير العريس مشمول في كل باقة زفاف — فضية وذهبية وبلاتينية. فيلم وتصوير فوتوغرافي وجدران LED وبث مباشر ورافعة ومقاطع سوشيال.",
+      en: "Groom preparation and male-hall coverage. Silver, Gold, and Platinum include crane/jib coverage, a YouTube workflow, and QR discovery under the approved production plan.",
+      ar: "تحضير العريس وتغطية قاعة الرجال. تشمل الفضية والذهبية والبلاتينية الرافعة/الجيب وسير عمل يوتيوب واكتشاف QR ضمن خطة الإنتاج المعتمدة.",
     },
     cta: { en: "See groom coverage", ar: "شاهد تغطية العريس" },
     href: "/services/groom-wedding-services",
@@ -48,8 +48,8 @@ const COPY = {
   bride: {
     title: { en: "Bride Weddings", ar: "أفراح العروس" },
     description: {
-      en: "Tailored bride celebration coverage in a female-only setting. Film, photography, LED walls, and social cuts, all crewed by women when required. Availability confirmed after privacy and crew gates are met.",
-      ar: "تغطية مخصصة لاحتفالات العروس في بيئة نسائية فقط. فيلم وتصوير فوتوغرافي وجدران LED ومقاطع سوشيال، بطاقم نسائي عند الطلب. يُؤكد التوفر بعد استيفاء شروط الخصوصية والطاقم.",
+      en: "Private bride celebration coverage with a female-only crew and private family delivery. Availability and reviewed starting-point pricing are confirmed after privacy and crew gates are met.",
+      ar: "تغطية خاصة لاحتفالات العروس بطاقم نسائي فقط وتسليم عائلي خاص. يؤكد التوفر ونقطة السعر الخاضعة للمراجعة بعد استيفاء شروط الخصوصية والطاقم.",
     },
     cta: { en: "See bride services", ar: "شاهد خدمات العروس" },
     href: "/services/female-wedding",
@@ -83,16 +83,64 @@ const COPY = {
       name: { en: "Silver", ar: "فضية" },
       tagline: { en: "Essential record", ar: "توثيق أساسي" },
       price: { en: "Starting from AED 26,500", ar: "يبدأ من 26,500 درهم" },
+      deliverables: {
+        en: [
+          "8 hours · 1 videographer (Sony FX3) · 1 photographer",
+          "Crane/jib coverage included",
+          "50 edited photos + all RAW photos and originals",
+          "3–5 min highlight film + ceremony edit",
+          "21-day delivery · 1 revision round",
+        ],
+        ar: [
+          "٨ ساعات · مصور فيديو واحد (Sony FX3) · مصور فوتوغرافي واحد",
+          "تغطية رافعة/جيب مشمولة",
+          "٥٠ صورة معدلة + جميع صور RAW والأصول",
+          "فيلم مختارات ٣–٥ دقائق + مونتاج الحفل",
+          "تسليم خلال ٢١ يوم · جولة تعديل واحدة",
+        ],
+      },
     },
     gold: {
       name: { en: "Gold", ar: "ذهبية" },
       tagline: { en: "Cinematic Wedding Story", ar: "قصة زفاف سينمائية" },
       price: { en: "Starting from AED 31,500", ar: "يبدأ من 31,500 درهم" },
+      deliverables: {
+        en: [
+          "8 hours · 2 videographers (Sony FX3 + Sony FX6 crane cam) · 1 photographer",
+          "Crane/jib coverage included",
+          "100 edited photos + all RAW photos and originals",
+          "5–8 min highlight + 15–20 min key-event film + 1 social cut",
+          "14-day delivery · 2 revision rounds",
+        ],
+        ar: [
+          "٨ ساعات · مصورا فيديو (Sony FX3 + Sony FX6 كاميرا الرافعة) · مصور فوتوغرافي واحد",
+          "تغطية رافعة/جيب مشمولة",
+          "١٠٠ صورة معدلة + جميع صور RAW والأصول",
+          "فيلم مختارات ٥–٨ دقائق + فيلم فعاليات رئيسية ١٥–٢٠ دقيقة + مقطع اجتماعي واحد",
+          "تسليم خلال ١٤ يوم · جولتا تعديل",
+        ],
+      },
     },
     platinum: {
       name: { en: "Platinum", ar: "بلاتينية" },
       tagline: { en: "Expanded coverage", ar: "تغطية موسعة" },
       price: { en: "Starting from AED 36,500", ar: "يبدأ من 36,500 درهم" },
+      deliverables: {
+        en: [
+          "8 hours · 2 videographers (Sony FX3 + Sony FX6 crane cam) · 2 photographers",
+          "Crane/jib coverage included",
+          "150 edited photos + all RAW photos and originals",
+          "Highlight + extended film + 3 social cuts",
+          "7-day delivery · 3 revision rounds",
+        ],
+        ar: [
+          "٨ ساعات · مصورا فيديو (Sony FX3 + Sony FX6 كاميرا الرافعة) · مصورا فوتوغرافيا",
+          "تغطية رافعة/جيب مشمولة",
+          "١٥٠ صورة معدلة + جميع صور RAW والأصول",
+          "فيلم مختارات + فيلم موسع + ٣ مقاطع اجتماعية",
+          "تسليم خلال ٧ أيام · ٣ جولات تعديل",
+        ],
+      },
     },
     cta: { en: "Get a quotation", ar: "احصل على عرض سعر" },
   },
@@ -130,6 +178,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
 
 export default async function WeddingsDirectory({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
+  const isAr = locale === "ar";
 
   return (
     <>
@@ -217,11 +266,20 @@ export default async function WeddingsDirectory({ params }: { params: Promise<{ 
             { key: "platinum" as const, highlight: false },
           ].map((pkg, i) => {
             const data = COPY.packages[pkg.key];
+            const deliverables = isAr ? data.deliverables.ar : data.deliverables.en;
             return (
               <Reveal key={pkg.key} delay={i * 70} className={`bs-card flex flex-col ${pkg.highlight ? "ring-2 ring-[color:var(--color-gold)]" : ""}`}>
                 <p className="bs-eyebrow">{t(data.name, locale)}</p>
                 <h3 className="mt-3 text-xl">{t(data.tagline, locale)}</h3>
                 <p className="mt-4 text-lg font-semibold text-[color:var(--color-gold)]">{t(data.price, locale)}</p>
+                <ul className="mt-5 flex-1 space-y-2.5">
+                  {deliverables.map((item: string, di: number) => (
+                    <li key={di} className="flex gap-2.5 text-sm text-[color:var(--color-muted)]">
+                      <span aria-hidden className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--color-gold)]" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
                 <div className="mt-6">
                   <Button href={localizedPath(locale, "/wedding-quotation")} variant={pkg.highlight ? "gold" : "ghost"}>
                     {t(COPY.packages.cta, locale)}
@@ -230,6 +288,63 @@ export default async function WeddingsDirectory({ params }: { params: Promise<{ 
               </Reveal>
             );
           })}
+        </div>
+      </Section>
+
+      {/* ---------- LED WALL OPTIONS ---------- */}
+      <Section alt>
+        <Reveal>
+          <Eyebrow>{isAr ? "جدران LED" : "LED walls"}</Eyebrow>
+          <h2 className="mt-5 max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)]">
+            {isAr ? "عزّزوا احتفالكم بجدار LED" : "Enhance your celebration with an LED wall"}
+          </h2>
+          <p className="bs-lead mt-6 !max-w-3xl">
+            {isAr
+              ? "جدار LED يحوّل قاعة احتفالكم إلى تجربة بصرية مذهلة. الضيوف يرون كل لحظة بوضوح، ويُضفي أجواءً سينمائية، ويخلق خلفيات مذهلة للتصوير والفيديو."
+              : "An LED wall transforms your celebration hall into a visual experience. Guests see every moment clearly, it adds cinematic atmosphere, and creates stunning backdrops for photography and video."}
+          </p>
+        </Reveal>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {/* Standard LED Wall */}
+          <Reveal className="bs-card">
+            <p className="bs-eyebrow">{isAr ? "الأفضل قيمة" : "Best value"}</p>
+            <h3 className="mt-3 text-xl">{isAr ? "جدار LED قياسي (3×3.5م)" : "Standard LED Wall (3×3.5m)"}</h3>
+            <p className="mt-3 text-sm text-[color:var(--color-muted)]">
+              {isAr
+                ? "مثالي لمعظم حفلات الزفاف. يشمل الرافعة والمعالج والكابلات والفني والتركيب والفك."
+                : "Ideal for most weddings. Includes riser, processor, cables, technician, installation and dismantling."}
+            </p>
+            <p className="mt-4 text-lg font-semibold text-[color:var(--color-gold)]">{isAr ? "6,125 درهم/يوم" : "AED 6,125/day"}</p>
+          </Reveal>
+
+          {/* Large LED Wall */}
+          <Reveal className="bs-card ring-2 ring-[color:var(--color-gold)]" delay={70}>
+            <p className="bs-eyebrow">{isAr ? "مميز" : "Premium"}</p>
+            <h3 className="mt-3 text-xl">{isAr ? "جدار LED كبير (4×7م)" : "Large LED Wall (4×7m)"}</h3>
+            <p className="mt-3 text-sm text-[color:var(--color-muted)]">
+              {isAr
+                ? "للمواقع الكبيرة. يشمل الطاقم الفني والتركيب والتشغيل."
+                : "For larger venues. Includes technical crew, installation and operation."}
+            </p>
+            <p className="mt-4 text-lg font-semibold text-[color:var(--color-gold)]">{isAr ? "14,350 درهم/يوم" : "AED 14,350/day"}</p>
+          </Reveal>
+
+          {/* Custom LED Wall */}
+          <Reveal className="bs-card" delay={140}>
+            <p className="bs-eyebrow">{isAr ? "مخصص" : "Custom"}</p>
+            <h3 className="mt-3 text-xl">{isAr ? "جدار LED مخصص" : "Custom LED Wall"}</h3>
+            <p className="mt-3 text-sm text-[color:var(--color-muted)]">
+              {isAr
+                ? "لمتطلبات محددة. أحجام مخصصة متاحة. نقدم عرض سعر لكل مشروع."
+                : "For specific requirements. Custom sizes available. We quote per project."}
+            </p>
+            <p className="mt-4 text-lg font-semibold text-[color:var(--color-gold)]">{isAr ? "تواصل معنا للسعر" : "Contact for pricing"}</p>
+            <div className="mt-4">
+              <a href={waLink(isAr ? "مهتم بجدار LED لحفل زفاف." : "Interested in an LED wall for a wedding.")} target="_blank" rel="noopener noreferrer" className="bs-btn bs-btn-ghost">
+                {isAr ? "تواصل معنا" : "Contact us"}
+              </a>
+            </div>
+          </Reveal>
         </div>
       </Section>
 
